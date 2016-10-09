@@ -90,45 +90,46 @@ constructor(private pService: NgProgressService) {
 ></ng-progress>
 ```
 
-#### Progress initial starting value
 
-**[minimum]**: between `0.0` to `1.0`, default `0.08`
+ - **[minimum]**: between `0.0` to `1.0`.
 
-#### Progress animation ease
+  Progress initial starting value, default `0.08`
 
-**[ease]**: default `linear`
+ - **[ease]**: [Any easing function](http://easings.net/)
 
-#### Transition speed
+  Progress animation ease, default `linear.
 
-**[speed]**: in milliseconds. default `300`
+ - **[speed]**: in milliseconds.
 
-#### Auto trickle the progressbar
+  Transition speed,  default `300`.
 
-**[trickle]**: default `true`
+ - **[trickle]**: boolean
 
-#### Progress incrementing speed
+  Auto trickle the progressbar, default `true`
 
-**[trickleSpeed]**: in milliseconds. default `300`
+ - **[trickleSpeed]**: in milliseconds. 
 
-#### Progressbar direction for LTR and RTL websites:
+  Progress trickling speed, default `300`.
 
-**[direction]**:  `leftToRightIncreased`, `leftToRightReduced` , `rightToLeftIncreased`, `rightToLeftReduced`. default: `leftToRightIncreased`
+ - **[direction]**:  `leftToRightIncreased`, `leftToRightReduced` , `rightToLeftIncreased`, `rightToLeftReduced`.
 
-#### Positioning method:
+  Progressbar direction for LTR and RTL websites, default: `leftToRightIncreased`.
 
-**[positionUsing]**: `marginLeft`, `translate`, `translate3d` default: `marginLeft`
+ - **[positionUsing]**: `marginLeft`, `translate`, `translate3d`.
 
-#### Set the progressbar color:
+  Positioning method, default: `marginLeft`
 
-**[color]**: any color format `#1eb77f`, `brown`, `rgb(30, 183, 127)`, default: `#29d`
+ - **[color]**: any color format `#1eb77f`, `brown`, `rgb(30, 183, 127)`.
 
-#### Display spinner:
+  Set the progressbar color, default: `#29d`
 
-**[showSpinner]**: show spinner default: `true`
+ - **[showSpinner]**: boolean 
 
-#### Toggle the progressbar (alternate to `start()`/`done()`):
+  Display the spinner, default: `true`.
 
-**[toggle]**: you can bind toggle to a value to start/done (leave it if you are using the NgProgressService). default `false`
+ - **[toggle]**: boolean
+
+  Toggle the progressbar (alternate to `start`/`done`), . default `false`.
 
 <a name="issues"/>
 ## Issues
