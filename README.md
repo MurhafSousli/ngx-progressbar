@@ -1,6 +1,7 @@
+<div style="text-align=center"><img src="/assets/ng2-progressbar.png?raw=true"></div>
+
 # Angular 2 Progressbar [![npm](https://img.shields.io/npm/v/ng2-progressbar.svg?maxAge=2592000?style=plastic)](https://www.npmjs.com/package/ng2-progressbar) [![Build Status](https://travis-ci.org/MurhafSousli/ng2-progressbar.svg?branch=master)](https://travis-ci.org/MurhafSousli/ng2-progressbar) [![npm](https://img.shields.io/npm/dt/ng2-progressbar.svg?maxAge=2592000?style=plastic)](https://www.npmjs.com/package/ng2-progressbar)
 
-![alt tag](/assets/ng2-progressbar.png?raw=true)
 
 A nanoscopic progress bar. Featuring realistic trickle animations to convince your users that something is happening!
 
