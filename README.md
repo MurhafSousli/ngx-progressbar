@@ -2,7 +2,7 @@
 
 ![alt tag](/assets/ng2-progressbar.png?raw=true)
 
-This library is designed to make it easy for your Angular2 application to request specific resources from a WordPress install. | <a href="https://murhafsousli.github.io/ng2-progressbar/">Live Demo</a> 
+A nanoscopic progress bar. Featuring realistic trickle animations to convince your users that something is happening!
 
 ## Table of Contents
  
