@@ -38,15 +38,13 @@ imports: [
 })
 ```
 
-in your template
+In your template
 
 ```html
 <ng-progress></ng-progress>
 ```
 
 Add `NgProgressService` wherever you want to use the progressbar.
-
-Usage example:
 
 ```javascript
 import {NgProgressService} from "ng2-progressbar";
@@ -94,49 +92,43 @@ constructor(private pService: NgProgressService) {
 
 #### Progress initial starting value
 
-minimum: between `0.0` to `1.0`, default `0.08`
+`[minimum]`: between `0.0` to `1.0`, default `0.08`
 
 #### Progress animation ease
 
-ease: default `linear`
+`[ease]`: default `linear`
 
 #### Transition speed
 
-speed: in milliseconds. default `300`
+`[speed]`: in milliseconds. default `300`
 
 #### Auto trickle the progressbar
 
-trickle: default `true`
+`[trickle]`: default `true`
 
 #### Progress incrementing speed
 
-trickleSpeed: in milliseconds. default `300`
+`[trickleSpeed]`: in milliseconds. default `300`
 
 #### Progressbar direction for LTR and RTL websites:
 
-direction:  `leftToRightIncreased`, `leftToRightReduced` , `rightToLeftIncreased`, `rightToLeftReduced`. default: `leftToRightIncreased`
+`[direction]`:  `leftToRightIncreased`, `leftToRightReduced` , `rightToLeftIncreased`, `rightToLeftReduced`. default: `leftToRightIncreased`
 
 #### Positioning method:
 
-positionUsing: `marginLeft`, `translate`, `translate3d` default: `marginLeft`
+`[positionUsing]`: `marginLeft`, `translate`, `translate3d` default: `marginLeft`
 
 #### Set the progressbar color:
 
-color: any color format `#1eb77f`, `brown`, `rgb(30, 183, 127)`, default: `#29d`
+`[color]`: any color format `#1eb77f`, `brown`, `rgb(30, 183, 127)`, default: `#29d`
 
 #### Display spinner:
 
-showSpinner: show spinner default: `true`
+`[showSpinner]`: show spinner default: `true`
 
-#### Toggle the progressbar start/done (Optional):
+#### Toggle the progressbar (alternate to `start()`/`done()`):
 
-toggle: you can bind toggle to a value to start/done (leave it if you are using the NgProgressService). default `false`
-
-
-
-
-## Misc
-
+`[toggle]`: you can bind toggle to a value to start/done (leave it if you are using the NgProgressService). default `false`
 
 <a name="issues"/>
 ## Issues
