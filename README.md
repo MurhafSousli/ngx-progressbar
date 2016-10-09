@@ -84,7 +84,7 @@ constructor(private pService: NgProgressService) {
 ## NgProgressComponent options (inputs):
 
 ```html
-<ng-progress [positionUsing]="" [minimum]="0.15" [ease]="'linear'"
+<ng-progress [positionUsing]="'marginLeft'" [minimum]="0.15" [ease]="'linear'"
             [speed]="'200'" [showSpinner]="'false'" [direction]="'rightToLeftIncreased'"
              [color]="'red'" [trickle]="true" [trickleSpeed]="250"
 ></ng-progress>
@@ -97,7 +97,7 @@ constructor(private pService: NgProgressService) {
 
  - **[ease]**: [Any easing function](http://easings.net/)
 
-  Progress animation ease, default `linear.
+  Progress animation ease, default `linear`.
 
  - **[speed]**: in milliseconds.
 
