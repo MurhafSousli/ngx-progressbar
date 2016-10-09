@@ -9,6 +9,7 @@ A nanoscopic progress bar. Featuring realistic trickle animations to convince yo
 
 ## Table of Contents
  
+ - [Live Demo](https://github.com/MurhafSousli/ng2-progressbar)
  - [Installation](#installation)
  - [Usage](#usage) 
  - [Issues](#issues)    
