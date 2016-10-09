@@ -1,14 +1,14 @@
 {
   "name": "ng2-progressbar",
-  "version": "0.1.0",
-  "description": "Angular 2 slim progressbar",
+  "version": "0.1.1",
+  "description": "A slim customizable progress bar for angular2",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com:MurhafSousli/ng2-progress.git"
+    "url": "git+ssh://git@github.com:MurhafSousli/ng2-progressbar.git"
   },
-  "homepage": "https://github.com/MurhafSousli/ng2-progress#readme",
+  "homepage": "https://github.com/MurhafSousli/ng2-progressbar#readme",
   "bugs": {
-    "url": "https://github.com/MurhafSousli/ng2-progress/issues"
+    "url": "https://github.com/MurhafSousli/ng2-progressbar/issues"
   },
   "keywords": [
     "angular2",

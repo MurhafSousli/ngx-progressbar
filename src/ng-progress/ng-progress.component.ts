@@ -79,7 +79,6 @@ export class NgProgressComponent implements OnInit, OnDestroy {
     this.status = clamp(n, +this.minimum, 1);
 
     if (n === 1) {
-
       setTimeout(()=> {
         this.isActive = false;
       }, this.speed);

@@ -21,3 +21,8 @@ import {NgProgressService} from './ng-progress.service';
 })
 export class NgProgressModule {
 }
+
+export {
+    NgProgressService,
+    NgProgressComponent
+}

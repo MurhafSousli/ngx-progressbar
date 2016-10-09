@@ -71,11 +71,11 @@ constructor(private pService: NgProgressService) {
 
  - `NgProgressService.start()` *Shows the progress bar*
 
- - `NgProgressService.set(n);`   *Sets a percentage 30%*
+ - `NgProgressService.set(n)`   *Sets a percentage 30%*
 
- - `NgProgressService.inc(n);`   *Increments by 20%*
+ - `NgProgressService.inc(n)`   *Increments by 20%*
 
- - `NgProgressService.done();`   *Completes the progress*
+ - `NgProgressService.done()`   *Completes the progress*
  
  - `NgProgressService.colors = [color1, color2, color3, ...]`   *if presented, animates the progress color with colors array*
 
