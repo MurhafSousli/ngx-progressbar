@@ -1,7 +1,7 @@
 {
   "name": "ng2-progressbar",
-  "version": "0.1.1",
-  "description": "A slim customizable progress bar for angular2",
+  "version": "0.1.2",
+  "description": "A slim customizable progressbar for angular2",
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com:MurhafSousli/ng2-progressbar.git"
