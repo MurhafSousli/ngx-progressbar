@@ -4,9 +4,6 @@
 
 const gulp = require('gulp');
 
-/** To log like console.log().. */
-var gutil = require('gulp-util');
-
 /** del to remove dist directory */
 const del = require('del');
 
@@ -15,6 +12,11 @@ var merge = require('merge2');
 
 /** load templates and styles in ng2 components */
 var embedTemplates = require('gulp-inline-ng2-template');
+
+const embedOptions = {
+    base: './src',
+    useRelativePaths: true
+}
 
 /** Typescript compiler */
 const typescript = require('gulp-typescript');
@@ -35,9 +37,6 @@ const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
 const scss = require('postcss-scss');
 const stripInlineComments = require('postcss-strip-inline-comments');
-
-
-const tsProject = typescript.createProject('tsconfig.json');
 
 const config = {
     allSass: 'src/**/*.scss',
@@ -64,17 +63,10 @@ gulp.task('compile-ts', ['clean', 'styles'], function () {
         config.allTs,
         config.allTsd
     ];
-
-    var defaults = {
-        base: '/src',  
-        target: 'es5', 
-        useRelativePaths: true
-    };
-
     var tsResult = gulp.src(sourceTsFile)
-        .pipe(embedTemplates(defaults))
+        .pipe(embedTemplates(embedOptions))
         .pipe(sourcemaps.init())
-        .pipe(typescript(tsProject));
+        .pipe(typescript('tsconfig.json'));
 
     tsResult.js.pipe(uglify())
         .pipe(gulp.dest(config.OutputDir));
@@ -84,7 +76,7 @@ gulp.task('compile-ts', ['clean', 'styles'], function () {
         tsResult.js
             .pipe(sourcemaps.write('.'))
             .pipe(gulp.dest(config.OutputDir))
-        ]);
+    ]);
 
 });
 
@@ -102,7 +94,7 @@ gulp.task('styles', function () {
      * Remove comments, autoprefixer, Minifier
      */
     var processors = [
-        stripInlineComments,    
+        stripInlineComments,
         autoprefixer,
         cssnano
     ];
@@ -112,10 +104,9 @@ gulp.task('styles', function () {
         .pipe(gulp.dest('src'));
 });
 
-gulp.task('watch', function() {
+gulp.task('watch', function () {
     gulp.watch([config.allTs], ['ts-lint', 'compile-ts']);
     gulp.watch([config.allSass, config.allHtml], ['styles']);
 });
 
 gulp.task('default', ['ts-lint', 'compile-ts']);
-gulp.task('default', ['compile-ts']);
