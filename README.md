@@ -71,9 +71,9 @@ constructor(private pService: NgProgressService) {
 
  - `NgProgressService.start()` *Shows the progress bar*
 
- - `NgProgressService.set(n)`   *Sets a percentage 30%*
+ - `NgProgressService.set(n)`   *Sets a percentage n (where n is between 0-1)*
 
- - `NgProgressService.inc(n)`   *Increments by 20%*
+ - `NgProgressService.inc(n)`   *Increments by n (where n is between 0-1)*
 
  - `NgProgressService.done()`   *Completes the progress*
  
