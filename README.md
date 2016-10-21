@@ -128,6 +128,10 @@ constructor(private pService: NgProgressService) {
 
   Display the spinner, default: `true`.
 
+ - **[thick]**: boolean 
+
+  A thicker size of the progressbar, default: `false`.
+
  - **[toggle]**: boolean
 
   Toggle the progressbar (alternate to `start`/`done`), . default `false`.
