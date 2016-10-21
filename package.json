@@ -1,6 +1,6 @@
 {
   "name": "ng2-progressbar",
-  "version": "0.1.5",
+  "version": "1.0.1",
   "description": "A slim customizable progressbar for angular2",
   "repository": {
     "type": "git",
@@ -19,7 +19,8 @@
     "ng2-progress",
     "slim",
     "youtube",
-    "medium"
+    "medium",
+    "github"
   ],
   "author": "Murhaf Sousli <murhafsousi@gmail.com>",
   "license": "MIT",

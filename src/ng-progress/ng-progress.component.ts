@@ -1,4 +1,6 @@
-import {Component, Input, OnInit, OnDestroy, style, animate, state, transition, trigger} from '@angular/core';
+import {
+  Component, Input, OnInit, OnDestroy, style, animate, state, transition, trigger
+} from '@angular/core';
 import {NgProgressService} from "../ng-progress.service";
 
 @Component({
@@ -11,10 +13,10 @@ import {NgProgressService} from "../ng-progress.service";
         style({
           opacity: 0
         }),
-        animate('0.2s ease-in')
+        animate('0.4s ease-in')
       ]),
       transition('* => void', [
-        animate('0.2s 10 ease-out', style({
+        animate('0.4s ease-out', style({
           opacity: 0
         }))
       ])
@@ -33,12 +35,13 @@ export class NgProgressComponent implements OnInit, OnDestroy {
   @Input() minimum = 0.08;
   @Input() ease = 'linear';
   @Input() positionUsing = '';
-  @Input() speed = 200;
+  @Input() speed = 300;
   @Input() trickle = true;
-  @Input() trickleSpeed = 200;
+  @Input() trickleSpeed = 300;
   @Input() showSpinner = true;
   @Input() direction = "leftToRightIncreased";
   @Input() color;
+  @Input() thick;
 
   /** current progress */
   private status: any = false;
@@ -96,7 +99,7 @@ export class NgProgressComponent implements OnInit, OnDestroy {
         if (!this.isStarted()) return;
         this.inc();
         work();
-      }, this.trickleSpeed$());
+      }, this.trickleSpeed);
     };
 
     if (this.trickle) work();
@@ -150,10 +153,6 @@ export class NgProgressComponent implements OnInit, OnDestroy {
       n = clamp(n + amount, 0, 0.994);
       this.set(n);
     }
-  }
-
-  trickleSpeed$() {
-    return this.trickleSpeed;
   }
 
 }
