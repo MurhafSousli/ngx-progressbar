@@ -86,8 +86,8 @@ constructor(private pService: NgProgressService) {
 
 ```html
 <ng-progress [positionUsing]="'marginLeft'" [minimum]="0.15" [ease]="'linear'"
-            [speed]="'200'" [showSpinner]="'false'" [direction]="'rightToLeftIncreased'"
-             [color]="'red'" [trickle]="true" [trickleSpeed]="250"
+             [speed]="'200'" [showSpinner]="'false'" [direction]="'rightToLeftIncreased'"
+             [color]="'red'" [trickle]="true" [trickleSpeed]="250" [thick]="false"
 ></ng-progress>
 ```
 
