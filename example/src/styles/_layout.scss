@@ -1,0 +1,47 @@
+$btnColor: #1EB77F;
+$strongColor: #2C7CD1;
+$fontColor: #3d3c3c;
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700');
+
+body, html{
+  min-height: 100%;
+}
+body{
+  font-family: 'Source Sans Pro', sans-serif;
+  //font-size: .9em;
+  color: $fontColor;
+  margin:0;
+  padding: 10px;
+
+  background: -moz-linear-gradient(-45deg,  rgba(136,212,152,0) 73%, rgba(136,212,152,0.3) 81%, rgba(136,212,152,1) 100%);
+  background: -webkit-linear-gradient(-45deg,  rgba(136,212,152,0) 73%,rgba(136,212,152,0.3) 81%,rgba(136,212,152,1) 100%);
+  background: linear-gradient(135deg,  rgba(136,212,152,0) 73%,rgba(136,212,152,0.3) 81%,rgba(136,212,152,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0088d498', endColorstr='#88d498',GradientType=1 );
+
+}
+
+app-root{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+
+button{
+  color: white;
+  margin: 2px 0;
+  background-color: $btnColor;
+  border: 0;
+  padding: 4px 15px;
+  border-radius: 4px;
+  transition: all .15s ease;
+  outline: 0;
+  &:hover{
+    opacity: 0.8;
+    cursor: pointer;
+  }
+  &:active{
+    margin-left:2px;
+  }
+}
+

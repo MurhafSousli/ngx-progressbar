@@ -1,0 +1,95 @@
+$cmpBg: #303030;
+$cmpColor:#2C7CD1;
+$inputName:#EAFDA1;
+$inputColor: #92c34e;
+$inputBg: #3d3c3c;
+
+.component-outer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+}
+
+.component{
+  margin-bottom: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: $cmpBg;
+  color: $inputName;
+  padding: 10px;
+  border-radius: 4px;
+  font-family: monospace;
+
+  .tag-name,.input-name, .input-wrapper, .input, input{
+    padding: 0;
+  }
+
+  .tag-name{
+    color: $cmpColor;
+    // font-size: 1.1em;
+    line-height: 30px;
+    font-weight: bold;
+  }
+
+  .input-name{
+    color: $inputName;
+    &:before{
+      content: "[";
+      color: $inputName;
+    }
+    &:after{
+      content: "]";
+      color: $inputName;
+    }
+  }
+  .input-wrapper{
+    margin: 3px;
+  }
+  .input{
+    color:$inputColor;
+    &:before{
+      content: '"';
+    }
+    &:after{
+      content: '"';
+    }
+
+    span{
+      color: $inputColor;
+      font-style: normal;
+    }
+    input, select{
+      color: $inputColor;
+      border:0;
+      font-family: monospace;
+      outline: 0;
+      background-color: $inputBg;
+
+    }
+  }
+}
+
+.container{
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+table{
+  font-size: 0.8em;
+  margin-bottom: 10px;
+  strong{
+    font-weight: bold;
+    color: $strongColor;
+  }
+}
+
+.try-this{
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#dd3bd3+0,2c8ddd+20,e54124+40,eaea25+60,1cb575+81,37e22b+100 */
+  background: rgb(221,59,211); /* Old browsers */
+  background: -moz-linear-gradient(-45deg,  rgba(221,59,211,1) 0%, rgba(44,141,221,1) 20%, rgba(229,65,36,1) 40%, rgba(234,234,37,1) 60%, rgba(28,181,117,1) 81%, rgba(55,226,43,1) 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(-45deg,  rgba(221,59,211,1) 0%,rgba(44,141,221,1) 20%,rgba(229,65,36,1) 40%,rgba(234,234,37,1) 60%,rgba(28,181,117,1) 81%,rgba(55,226,43,1) 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(135deg,  rgba(221,59,211,1) 0%,rgba(44,141,221,1) 20%,rgba(229,65,36,1) 40%,rgba(234,234,37,1) 60%,rgba(28,181,117,1) 81%,rgba(55,226,43,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#dd3bd3', endColorstr='#37e22b',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+}

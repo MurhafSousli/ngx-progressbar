@@ -1,0 +1,61 @@
+header{
+  flex: 0 0 300px;
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0;
+}
+.brand{
+  display: flex;
+}
+.social{
+  flex: 0 0 80px;
+}
+.title{
+  padding-top: 30px;
+  .angular{
+    color: $btnColor;
+    text-shadow: 1px 2px 2px $fontColor;
+  }
+}
+
+.logo{
+  position: relative;
+  display: flex;
+  flex: 0 0 230px;
+  justify-content: center;
+  align-items: center;
+}
+
+.ng-logo{
+  width: 160px;
+}
+
+// .ngprogress-logo {
+//   position: absolute;
+
+//   display: inline-block;
+//   width: 100px;
+//   height: 20px;
+//   border: solid 4px white;
+//   border-radius: 8px;
+//   &:after {
+//     content: '';
+//     display: block;
+//     position: absolute;
+//     top: 4px;
+//     left: 4px;
+//     bottom: 4px;
+//     width: 45%;
+//     background: white;
+//     border-radius: 2px;
+//   }
+// }
+
+.links, .badges{
+  text-align: right;
+}
+// .twitter-follow-button{
+//   float: right;
+// }
+
+
