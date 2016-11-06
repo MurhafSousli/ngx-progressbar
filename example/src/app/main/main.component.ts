@@ -1,5 +1,5 @@
 import {Component, AfterContentInit} from '@angular/core';
-import {NgProgressService} from "../ng2-progressbar";
+import {NgProgressService} from "ng2-progressbar";
 
 @Component({
   selector: 'main',

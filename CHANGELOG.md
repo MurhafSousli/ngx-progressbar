@@ -1,4 +1,4 @@
-##1.0.2
+##1.0.3
 
 * **Improvement:** Uses `OnPush` change detection strategy on the outer component to improve performance.
 
