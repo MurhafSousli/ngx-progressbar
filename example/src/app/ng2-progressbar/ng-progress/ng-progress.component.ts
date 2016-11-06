@@ -1,11 +1,13 @@
 import {
-  Component, Input, OnInit, OnDestroy, style, animate, state, transition, trigger
+  Component, Input, OnInit, OnDestroy, style, animate, state, transition, trigger, ChangeDetectionStrategy
 } from '@angular/core';
 import {NgProgressService} from "../ng-progress.service";
+import {Subject} from "rxjs/Subject";
 
 @Component({
   selector: 'ng-progress',
   templateUrl: 'ng-progress.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
     trigger('progressState', [
       state("", style({opacity: 1})),
@@ -47,7 +49,7 @@ export class NgProgressComponent implements OnInit, OnDestroy {
   private status: any = false;
 
   /** if progressbar child is displayed */
-  private isActive;
+  private isActive: Subject<boolean> = new Subject<boolean>();
 
   /** if progress is started*/
   isStarted() {
@@ -83,11 +85,11 @@ export class NgProgressComponent implements OnInit, OnDestroy {
 
     if (n === 1) {
       setTimeout(()=> {
-        this.isActive = false;
+        this.isActive.next(false);
       }, this.speed);
     }
     else {
-      this.isActive = true;
+     this.isActive.next(true);
     }
   }
 

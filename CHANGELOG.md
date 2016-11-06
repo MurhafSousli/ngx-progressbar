@@ -1,3 +1,7 @@
+##1.0.2
+
+* **Improvement:** Uses `OnPush` change detection strategy on the outer component to improve performance.
+
 ##1.0.1
 
 Stable release
