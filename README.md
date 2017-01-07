@@ -77,17 +77,13 @@ constructor(private pService: NgProgressService) {
 
  - `NgProgressService.done()`   *Completes the progress*
  
- - `NgProgressService.colors = [color1, color2, color3, ...]`   *if presented, animates the progress color with colors array*
-
- - `NgProgressService.colorsInterval = 500`   *progressbar colors transition speed in ms*
- 
 
 ## NgProgressComponent options (inputs):
 
 ```html
 <ng-progress [positionUsing]="'marginLeft'" [minimum]="0.15" [ease]="'linear'"
              [speed]="'200'" [showSpinner]="'false'" [direction]="'rightToLeftIncreased'"
-             [color]="'red'" [trickle]="true" [trickleSpeed]="250" [thick]="false"
+             [color]="'red'" [trickleSpeed]="250" [thick]="false"
 ></ng-progress>
 ```
 
@@ -103,10 +99,6 @@ constructor(private pService: NgProgressService) {
  - **[speed]**: in milliseconds.
 
   Transition speed,  default `300`.
-
- - **[trickle]**: boolean
-
-  Auto trickle the progressbar, default `true`
 
  - **[trickleSpeed]**: in milliseconds. 
 

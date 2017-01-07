@@ -1,5 +1,5 @@
 import {Component, AfterContentInit, ChangeDetectionStrategy} from '@angular/core';
-import {ProgressService} from "../ng2-progressbar";
+import {NgProgressService} from "ng2-progressbar";
 
 @Component({
   selector: 'main',
@@ -36,7 +36,7 @@ export class MainComponent implements AfterContentInit {
 
   toggle;
 
-  constructor(private progress: ProgressService) {
+  constructor(private progress: NgProgressService) {
   }
 
   ngAfterContentInit() {

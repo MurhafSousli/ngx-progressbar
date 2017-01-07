@@ -4,13 +4,13 @@ $fontColor: #3d3c3c;
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700');
 
 body, html{
+  height: 100%;
   min-height: 100%;
 }
 body{
   font-family: 'Source Sans Pro', sans-serif;
   color: $fontColor;
   margin:0;
-  padding: 10px;
 
   background: -moz-linear-gradient(-45deg,  rgba(136,212,152,0) 73%, rgba(136,212,152,0.3) 81%, rgba(136,212,152,1) 100%);
   background: -webkit-linear-gradient(-45deg,  rgba(136,212,152,0) 73%,rgba(136,212,152,0.3) 81%,rgba(136,212,152,1) 100%);
@@ -23,6 +23,7 @@ app-root{
   display: flex;
   flex-direction: column;
   justify-content: center;
+  height: 100%;
 }
 
 

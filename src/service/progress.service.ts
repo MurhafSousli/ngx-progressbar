@@ -9,7 +9,7 @@ import 'rxjs/add/operator/repeat';
 import 'rxjs/add/operator/takeWhile';
 
 @Injectable()
-export class ProgressService {
+export class NgProgressService {
 
   minimum = 0.08;
   speed = 300;

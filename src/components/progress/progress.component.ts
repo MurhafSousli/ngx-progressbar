@@ -1,7 +1,7 @@
 import {
   Component, Input, ChangeDetectionStrategy, ViewEncapsulation, OnChanges, SimpleChanges
 } from '@angular/core';
-import {ProgressService} from "../progress.service";
+import {NgProgressService} from "../../service/progress.service";
 
 @Component({
   selector: 'ng-progress',
@@ -26,7 +26,7 @@ export class ProgressComponent implements OnChanges {
   /** Start/Stop Progressbar */
   @Input() toggle;
 
-  constructor(private progress: ProgressService) {
+  constructor(private progress: NgProgressService) {
 
   }
 

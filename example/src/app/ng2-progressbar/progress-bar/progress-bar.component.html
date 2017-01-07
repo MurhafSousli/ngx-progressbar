@@ -1,8 +1,0 @@
-<div class="ng-progress" [@progressState] *ngIf="state?.active" [class.thick]="thick">
-  <div class="bar" [ngStyle]="barStyles()">
-    <div class="bar-shadow" [ngStyle]="shadowStyles()"></div>
-  </div>
-  <div *ngIf="showSpinner" class="spinner" [ngClass]="spinnerClasses()">
-    <div class="spinner-icon" [style.borderTopColor]="color" [style.borderLeftColor]="color"></div>
-  </div>
-</div>
