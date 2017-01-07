@@ -1,4 +1,4 @@
-<div class="ng-progress" [class.thick]="thick">
+<div class="ng-progress" [@progressState] *ngIf="state?.active" [class.thick]="thick">
   <div class="bar" [ngStyle]="barStyles()">
   </div>
   <div *ngIf="showSpinner" class="spinner" [ngClass]="spinnerClasses()" #spinner>

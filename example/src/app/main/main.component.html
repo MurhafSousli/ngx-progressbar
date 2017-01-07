@@ -2,41 +2,34 @@
              [minimum]="options.minimum" [ease]="options.ease"
              [speed]="options.speed" [showSpinner]="options.showSpinner"
              [direction]="options.direction" [color]="options.color"
-             [trickle]="options.trickle" [trickleSpeed]="options.trickleSpeed"
+             [trickleSpeed]="options.trickleSpeed"
              [thick]="options.thick" [toggle]="toggle"
 ></ng-progress>
 
 <table>
   <tr>
     <td>
-      <button (click)="start()">&#9654;</button>
+      <button (click)="toggle=true">&#9654;</button>
     </td>
     <td>NgProgressService.<strong>start()</strong> — <i>shows the progress bar</i></td>
   </tr>
   <tr>
     <td>
-      <button (click)="set(0.3)">&#9654;</button>
+      <button (click)="progress.set(0.3)">&#9654;</button>
     </td>
     <td>NgProgressService.<strong>set(0.3)</strong> — <i>sets a percentage 30%</i></td>
   </tr>
   <tr>
     <td>
-      <button (click)="inc(0.2)">&#9654;</button>
+      <button (click)="progress.inc(0.2)">&#9654;</button>
     </td>
     <td>NgProgressService.<strong>inc(0.2)</strong> — <i>increments by 20%</i></td>
   </tr>
   <tr>
     <td>
-      <button (click)="done()">&#9654;</button>
+      <button (click)="toggle=false">&#9654;</button>
     </td>
     <td>NgProgressService.<strong>done()</strong> — <i>completes the progress</i></td>
-  </tr>
-  <tr>
-    <td>
-      <button class="try-this" (click)="colorify()">&#9654;</button>
-    </td>
-    <td>NgProgressService.<strong>colors = [color1, color2, color3, ...]</strong> — <i> colorify the progress bar</i>
-    </td>
   </tr>
 
 
@@ -76,17 +69,9 @@
       =
       <i class="input">
         <select [(ngModel)]="options.positionUsing">
-          <option *ngFor="let p of positionings" [ngValue]="p">{{p}}</option>
+          <option *ngFor="let p of positionMethods" [ngValue]="p">{{p}}</option>
         </select>
       </i>
-    </span>
-
-    <span class="input-wrapper">
-      <span class="input-name">trickle</span>
-      =
-      <i class="input">
-      <input type="checkbox" [(ngModel)]="options.trickle"><span>{{(options.trickle)?"true":"false"}}</span>
-    </i>
     </span>
 
     <span class="input-wrapper">

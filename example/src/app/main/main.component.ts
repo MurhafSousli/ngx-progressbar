@@ -1,19 +1,18 @@
-import {Component, AfterContentInit} from '@angular/core';
-import {NgProgressService} from "ng2-progressbar";
+import {Component, AfterContentInit, ChangeDetectionStrategy} from '@angular/core';
+import {ProgressService} from "../ng2-progressbar";
 
 @Component({
   selector: 'main',
   templateUrl: './main.component.html',
-  styleUrls: ['./main.component.scss']
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MainComponent implements AfterContentInit {
 
   options = {
     minimum: 0.08,
     ease: 'linear',
-    positionUsing: 'marginLeft',
+    positionUsing: 'margin',
     speed: 300,
-    trickle: true,
     trickleSpeed: 300,
     showSpinner: true,
     direction: "leftToRightIncreased",
@@ -29,58 +28,22 @@ export class MainComponent implements AfterContentInit {
     'rightToLeftReduced'
   ];
 
-  positionings = [
-    'marginLeft',
+  positionMethods = [
+    'margin',
     'translate3d',
     'translate'
   ];
 
-  colors = [
-    '#FE424D',
-    'brown',
-    '#8CC152',
-    '#4A89DC',
-    '#FF9600',
-    '#BD29C4', //hot purple
-    '#FF007F', //hotpink
-    'limegreen',
-    '#1AA6B7' //cyan
-  ];
-
   toggle;
 
-  constructor(private pService: NgProgressService) {
+  constructor(private progress: ProgressService) {
   }
 
   ngAfterContentInit() {
-    this.start();
+    this.toggle = true;
     setTimeout(()=> {
-      this.done();
+      this.toggle = false;
     }, 2000)
   }
 
-  colorify() {
-    this.pService.colors = this.colors;
-    this.pService.start();
-    this.toggle = true;
-  }
-
-  start() {
-    this.pService.start();
-    this.toggle = true;
-  }
-
-  inc(n) {
-    this.pService.inc(n);
-  }
-
-  set(n) {
-    this.pService.set(n);
-  }
-
-  done() {
-    this.pService.done();
-    this.toggle = false;
-    this.pService.colors = [];
-  }
 }
