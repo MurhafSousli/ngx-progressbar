@@ -4,7 +4,7 @@
   z-index: 65535;
 }
 
-.bar, .bar:after, .spinner-icon {
+.bar, .bar-shadow, .spinner-icon {
   transition: all 500ms ease;
 }
 
@@ -17,8 +17,7 @@
   height: 2px;
 }
 
-.bar:after {
-  content: "";
+.bar-shadow {
   display: block;
   position: absolute;
   right: 0;
@@ -35,7 +34,7 @@
   height: 3px;
 }
 
-.thick .bar:after {
+.thick .bar-shadow {
   top: -4px;
   -webkit-transform: rotate(4deg);
   -ms-transform: rotate(4deg);

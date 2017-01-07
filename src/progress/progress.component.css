@@ -4,12 +4,11 @@
   z-index: 65535;
 }
 
-.bar, .bar:after, .spinner-icon{
+.bar, .bar-shadow, .spinner-icon {
   transition: all 500ms ease;
 }
 
 .bar {
-  background: #29d;
   position: fixed;
   z-index: 1031;
   top: 0;
@@ -18,36 +17,34 @@
   height: 2px;
 }
 
-.bar:after {
-  content: "";
+.bar-shadow {
   display: block;
   position: absolute;
   right: 0;
-  top: -4px;
+  top: -3px;
   width: 100px;
   height: 100%;
-  box-shadow: 0 0 10px #29d, 0 0 5px #29d;
   opacity: 1.0;
   -webkit-transform: rotate(3deg);
   -ms-transform: rotate(3deg);
   transform: rotate(3deg);
 }
 
-.thick .bar{
+.thick .bar {
   height: 3px;
 }
-.thick .bar:after{
-  top: -3px;
-  -webkit-transform: rotate(3deg);
-  -ms-transform: rotate(3deg);
-  transform: rotate(3deg);
+
+.thick .bar-shadow {
+  top: -4px;
+  -webkit-transform: rotate(4deg);
+  -ms-transform: rotate(4deg);
+  transform: rotate(4deg);
 }
-.thick .spinner-icon{
+
+.thick .spinner-icon {
   width: 24px;
   height: 24px;
   border: solid 3px transparent;
-  border-top-color: #29d;
-  border-left-color: #29d;
 }
 
 /* Remove these to get rid of the spinner */
@@ -65,8 +62,6 @@
   box-sizing: border-box;
 
   border: solid 2px transparent;
-  border-top-color: #29d;
-  border-left-color: #29d;
   border-radius: 50%;
 
   -webkit-animation: nprogress-spinner 400ms linear infinite;
@@ -76,16 +71,6 @@
 .anti-clockwise .spinner-icon {
   -webkit-animation-direction: reverse;
   animation-direction: reverse;
-}
-
-.nprogress-custom-parent {
-  overflow: hidden;
-  position: relative;
-}
-
-.nprogress-custom-parent #nprogress .spinner,
-.nprogress-custom-parent #nprogress .bar {
-  position: absolute;
 }
 
 @-webkit-keyframes nprogress-spinner {
@@ -105,3 +90,4 @@
     transform: rotate(360deg);
   }
 }
+
