@@ -12,9 +12,9 @@ import 'rxjs/add/operator/delay';
 @Injectable()
 export class NgProgressService {
 
-  minimum = 0;
-  speed = 200;
-  trickleSpeed = 300;
+  minimum;
+  speed;
+  trickleSpeed;
   progress = 0;
 
   /** Progress state */

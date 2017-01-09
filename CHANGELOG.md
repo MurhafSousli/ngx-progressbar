@@ -1,3 +1,8 @@
+##1.1.6
+
+* **Fixes Bugs:** 
+ - fixes: default input values
+
 ##1.1.4
 
 * **Fixes Bugs:** 

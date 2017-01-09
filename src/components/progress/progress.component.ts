@@ -15,38 +15,37 @@ export class ProgressComponent implements OnChanges {
 
   /** Progress options  */
   @Input() ease = 'linear';
-  @Input() positionUsing = '';
+  @Input() positionUsing = 'margin';
   @Input() showSpinner = true;
   @Input() direction = "leftToRightIncreased";
-  @Input() color;
-  @Input() thick;
-  @Input() minimum;
-  @Input() speed;
-  @Input() trickleSpeed;
+  @Input() color = '#29d';
+  @Input() thick = false;
+  @Input() minimum = 0.08;
+  @Input() speed = 200;
+  @Input() trickleSpeed = 300;
   /** Start/Stop Progressbar */
   @Input() toggle;
 
   constructor(private progress: NgProgressService) {
-
   }
 
   ngOnChanges(changes: SimpleChanges) {
 
-    let minimumChange = changes['minimum'];
-    let speedChange = changes['speed'];
-    let trickleSpeedChange = changes['trickleSpeed'];
-    let toggleChange = changes['toggle'];
+    let minChng = changes['minimum'];
+    let spdChng = changes['speed'];
+    let tklSpdChng = changes['trickleSpeed'];
+    let tglChng = changes['toggle'];
 
-    if (minimumChange && minimumChange.currentValue !== minimumChange.previousValue)
-      this.progress.minimum = minimumChange.currentValue;
+    this.progress.minimum = (minChng !== undefined && minChng.currentValue !== minChng.previousValue) ?
+      minChng.currentValue : this.minimum;
 
-    if (speedChange && speedChange.currentValue !== speedChange.previousValue)
-      this.progress.speed = speedChange.currentValue;
+    this.progress.speed = (spdChng && spdChng.currentValue !== spdChng.previousValue) ?
+      spdChng.currentValue : this.speed;
 
-    if (trickleSpeedChange && trickleSpeedChange.currentValue !== trickleSpeedChange.previousValue)
-      this.progress.trickleSpeed = trickleSpeedChange.currentValue;
+    this.progress.trickleSpeed = (tklSpdChng && tklSpdChng.currentValue !== tklSpdChng.previousValue) ?
+      tklSpdChng.currentValue : this.trickleSpeed;
 
-    if (toggleChange)
-      toggleChange.currentValue ? this.progress.start() : this.progress.done();
+    if (tglChng && tglChng.currentValue !== tglChng.previousValue)
+      tglChng.currentValue ? this.progress.start() : this.progress.done();
   };
 }
