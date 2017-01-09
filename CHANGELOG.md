@@ -1,3 +1,8 @@
+##1.1.3
+
+* **Fixes Bugs:** 
+ - margin positioning
+
 ##1.1.2
 
 * **Fixes Bugs:** 
