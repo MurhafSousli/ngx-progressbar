@@ -9,25 +9,25 @@
 <table>
   <tr>
     <td>
-      <button (click)="toggle=true">&#9654;</button>
+      <button (click)="start()">&#9654;</button>
     </td>
     <td>NgProgressService.<strong>start()</strong> — <i>shows the progress bar</i></td>
   </tr>
   <tr>
     <td>
-      <button (click)="progress.set(0.3)">&#9654;</button>
+      <button (click)="progress.set(0.4)">&#9654;</button>
     </td>
-    <td>NgProgressService.<strong>set(0.3)</strong> — <i>sets a percentage 30%</i></td>
+    <td>NgProgressService.<strong>set(0.4)</strong> — <i>sets a percentage 40%</i></td>
   </tr>
   <tr>
     <td>
       <button (click)="progress.inc(0.2)">&#9654;</button>
     </td>
-    <td>NgProgressService.<strong>inc(0.2)</strong> — <i>increments by 20%</i></td>
+    <td>NgProgressService.<strong>inc(0.2)</strong> — <i>increments by a percentage 20%</i></td>
   </tr>
   <tr>
     <td>
-      <button (click)="toggle=false">&#9654;</button>
+      <button (click)="done()">&#9654;</button>
     </td>
     <td>NgProgressService.<strong>done()</strong> — <i>completes the progress</i></td>
   </tr>

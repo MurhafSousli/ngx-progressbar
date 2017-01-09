@@ -77,6 +77,12 @@ $inputBg: #3d3c3c;
 table{
   font-size: 0.8em;
   margin-bottom: 10px;
+  td{
+    color: gray;
+    i{
+      color: $fontColor;
+    }
+  }
   strong{
     font-weight: bold;
     color: $strongColor;

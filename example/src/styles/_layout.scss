@@ -1,4 +1,5 @@
-$btnColor: #1EB77F;
+$btnColor: lightgray;
+$btnHoverColor: #1EB77F;
 $strongColor: #2C7CD1;
 $fontColor: #3d3c3c;
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700');
@@ -28,20 +29,21 @@ app-root{
 
 
 button{
-  color: white;
-  margin: 2px 0;
+  color: gray;
+  margin: 4px 5px 3px 0;
   background-color: $btnColor;
   border: 0;
-  padding: 4px 15px;
+  padding: 7px 14px;
   border-radius: 4px;
   transition: all .15s ease;
   outline: 0;
   &:hover{
-    opacity: 0.8;
+    color: white;
+    background-color: $btnHoverColor;
     cursor: pointer;
   }
   &:active{
-    margin-left:2px;
+    box-shadow: inset 0 0 4px rgba(black, 0.8);
   }
 }
 

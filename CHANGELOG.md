@@ -1,3 +1,10 @@
+##1.1.2
+
+* **Fixes Bugs:** 
+ - fixes: Service.Done() doesn't complete the progress if it wasn't trickling 
+ - fixes: No Animation on IE, Edge 
+    fixed by using css animation instead of angular animation (because it depends on the pollyfill web-animation-js)
+
 ##1.1.1
 
  - Use rxjs operators to imrpove code quality
