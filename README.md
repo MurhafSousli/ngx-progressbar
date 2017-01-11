@@ -2,7 +2,7 @@
 [![npm](https://img.shields.io/npm/v/ng2-progressbar.svg?maxAge=2592000?style=plastic)](https://www.npmjs.com/package/ng2-progressbar) [![Build Status](https://travis-ci.org/MurhafSousli/ng2-progressbar.svg?branch=master)](https://travis-ci.org/MurhafSousli/ng2-progressbar) [![npm](https://img.shields.io/npm/dt/ng2-progressbar.svg?maxAge=2592000?style=plastic)](https://www.npmjs.com/package/ng2-progressbar)
 
 <p align="center">
-  <img height="300px" width="300px" style="text-align: center;" src="https://cdn.rawgit.com/MurhafSousli/ng2-progressbar/master/assets/logo.svg">
+  <img height="300px" width="300px" style="text-align: center;" src="https://cdn.rawgit.com/MurhafSousli/ng2-progressbar/79d7fbba96cc528238e67aadb85eafe8653198de/assets/logo.svg">
   <h1 align="center">Angular Progressbar</h1>
 </p>
 
