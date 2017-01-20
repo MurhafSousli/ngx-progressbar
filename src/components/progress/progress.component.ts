@@ -13,6 +13,7 @@ import {NgProgressService} from "../../service/progress.service";
 
 export class ProgressComponent implements OnChanges {
 
+  progress: NgProgressService;
   /** Progress options  */
   @Input() ease = 'linear';
   @Input() positionUsing = 'margin';
@@ -26,7 +27,8 @@ export class ProgressComponent implements OnChanges {
   /** Start/Stop Progressbar */
   @Input() toggle;
 
-  constructor(private progress: NgProgressService) {
+  constructor(progress: NgProgressService) {
+    this.progress = progress;
   }
 
   ngOnChanges(changes: SimpleChanges) {

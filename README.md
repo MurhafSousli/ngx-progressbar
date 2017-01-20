@@ -132,7 +132,7 @@ constructor(private pService: NgProgressService) {
 <a name="issues"/>
 ## Issues
 
-If you identify any errors in the library, or have an idea for an improvement, please open an [issue](https://github.com/MurhafSousli/ng2-wp-api/issues). I am excited to see what the community thinks of this project, and I would love your input!
+If you identify any errors in the library, or have an idea for an improvement, please open an [issue](https://github.com/MurhafSousli/ng2-progressbar/issues). I am excited to see what the community thinks of this project, and I would love your input!
 
 <a name="author"/>
 ## Author

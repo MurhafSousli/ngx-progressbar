@@ -7,7 +7,7 @@ import {Component, ChangeDetectionStrategy} from '@angular/core';
 })
 export class HeaderComponent {
 
-  logo = prefixRepo('../assets/img/ng-progress-logo.png');
+  logo = prefixRepo('../assets/img/logo.svg');
 
 }
 
