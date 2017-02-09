@@ -1,72 +1,55 @@
-import {Injectable} from "@angular/core";
-import {Subject} from "rxjs/Subject";
-import {Observable} from "rxjs/Observable";
+import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs/Subject';
+import { Observable } from 'rxjs/Observable';
 
 import 'rxjs/add/observable/timer';
-import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/takeWhile';
-import 'rxjs/add/operator/delay';
+
+/** Helper */
+const clamp = (n, min, max) => {
+  if (n < min) return min;
+  if (n > max) return max;
+  return n;
+};
 
 @Injectable()
 export class NgProgressService {
 
-  minimum;
-  speed;
-  trickleSpeed;
   progress = 0;
+  maximum = 1;
+  minimum = 0.08;
+  speed = 200;
+  trickleSpeed = 300;
 
   /** Progress state */
-  state$: Subject<any>;
+  state = new Subject();
   /** Trickling stream */
-  trickling$: Subject<any>;
+  trickling = new Subject();
 
   constructor() {
-    this.state$ = new Subject();
-    this.trickling$ = new Subject();
 
-    /** while progress is started keep emitting values */
-    this.trickling$.switchMap((res) => {
+    this.trickling.switchMap(() => {
       return Observable
         .timer(0, this.trickleSpeed)
         .takeWhile(() => this.isStarted())
-        .do(() => this.inc(res))
+        .do(() => this.inc());
     }).subscribe();
   }
 
   /** Start */
   start() {
-    if (!this.isStarted()) this.set(0);
-    this.trickling$.next();
+    if (!this.isStarted()) this.set(this.minimum);
+    this.trickling.next();
   }
 
-  /** Complete */
+  /** Done */
   done() {
-    /** if it hasn't already started don't complete the progress */
-    if (!this.isStarted()) return;
-    this.set(.3 + .5 * Math.random());
-    this.set(1);
-  }
-
-  /** Set progress state */
-  set(n) {
-    this.progress = this.clamp(n, this.minimum, 1);
-    this.updateState(this.progress, true);
-    /** if progress completed */
-    if (n === 1) {
-      /** complete then hide progressbar */
-      Observable.of(n)
-        .delay(this.speed)
-        .do(() => {
-          this.updateState(this.progress, false);
-        })
-        .delay(this.speed)
-        .do(() => {
-          /** reset progress */
-          this.progress = 0;
-          this.updateState(this.progress, false)
-        }).subscribe();
+    /** if started complete the progress */
+    if (this.isStarted()) {
+      this.set(.3 + .5 * Math.random());
+      this.set(this.maximum);
     }
   }
 
@@ -83,30 +66,44 @@ export class NgProgressService {
         else if (n >= 0.8 && n < 0.99) amount = 0.005;
         else amount = 0;
       }
-      n = this.clamp(n + amount, 0, 0.994);
+      n = clamp(n + amount, 0, 0.994);
       this.set(n);
+    }
+  }
+
+  /** Set progress state */
+  set(n) {
+    this.progress = clamp(n, this.minimum, this.maximum);
+    this.updateState(this.progress, true);
+    /** if progress completed */
+    if (n === this.maximum) {
+      let hide = () => {
+        /** reset progress
+         * Keep it { 0, false } to fadeOut progress-bar after complete */
+        this.progress = 0;
+        this.updateState(this.progress, false);
+      };
+      let complete = () => {
+        /** complete progressbar
+         * { 1, false } to complete progress-bar before hiding */
+        this.updateState(this.progress, false);
+        setTimeout(hide, this.speed);
+      };
+      setTimeout(complete, this.speed);
     }
   }
 
   /** Is progress started*/
   isStarted() {
-    return this.progress && this.progress < 1;
+    return this.progress > 0 && this.progress < this.maximum;
   }
 
-  /** Helper */
-  clamp = (n, min, max) => {
-    if (n < min) return min;
-    if (n > max) return max;
-    return n;
-  };
-
   /** Update Progressbar State */
-  updateState(value, active) {
-    let state = {
-      value: value,
+  updateState(progress, active) {
+    this.state.next({
+      value: progress,
       active: active
-    };
-    this.state$.next(state);
+    });
   }
 }
 

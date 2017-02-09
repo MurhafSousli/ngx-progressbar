@@ -1,0 +1,134 @@
+<ng-progress [toggle]="toggle" [positionUsing]="options.positionUsing"
+             [color]="options.color" [minimum]="options.minimum"
+             [speed]="options.speed" [showSpinner]="options.showSpinner"
+             [direction]="options.direction" [thick]="options.thick"
+             [trickleSpeed]="options.trickleSpeed" [ease]="options.ease"
+></ng-progress>
+
+<table>
+  <tr>
+    <td>
+      <button (click)="start()"><img src="assets/img/play.svg"/></button>
+    </td>
+    <td>NgProgressService.<strong>start()</strong> — <i>shows the progress bar</i></td>
+  </tr>
+  <tr>
+    <td>
+      <button (click)="progress.set(0.4)"><img src="assets/img/play.svg"/></button>
+    </td>
+    <td>NgProgressService.<strong>set(0.4)</strong> — <i>sets a percentage 40%</i></td>
+  </tr>
+  <tr>
+    <td>
+      <button (click)="progress.inc(0.2)"><img src="assets/img/play.svg"/></button>
+    </td>
+    <td>NgProgressService.<strong>inc(0.2)</strong> — <i>increments by a percentage 20%</i></td>
+  </tr>
+  <tr>
+    <td>
+      <button (click)="done()"><img src="assets/img/play.svg"/></button>
+    </td>
+    <td>NgProgressService.<strong>done()</strong> — <i>completes the progress</i></td>
+  </tr>
+
+</table>
+
+<div class="component-outer">
+  <div class="component">
+    <i class="tag-name" [textContent]="'<ng-progress '"></i>
+
+    <span class="input-wrapper">
+      <span class="input-name">toggle</span>
+      =
+      <i class="input">
+        <input type="checkbox" [(ngModel)]="toggle"><span>{{(toggle)?"true":"false"}}</span>
+      </i>
+    </span>
+
+    <span class="input-wrapper">
+      <span class="input-name">showSpinner</span>
+      =
+      <i class="input">
+        <input type="checkbox" [(ngModel)]="options.showSpinner"><span>{{(options.showSpinner)?"true":"false"}}</span>
+      </i>
+    </span>
+
+    <span class="input-wrapper">
+      <span class="input-name">thick</span>
+      =
+      <i class="input">
+        <input type="checkbox" [(ngModel)]="options.thick"><span>{{(options.thick)?"true":"false"}}</span>
+      </i>
+    </span>
+
+    <span class="input-wrapper">
+       <span class="input-name">positionUsing</span>
+      =
+      <i class="input">
+        <select [(ngModel)]="options.positionUsing">
+          <option *ngFor="let p of positionMethods" [ngValue]="p">{{p}}</option>
+        </select>
+      </i>
+    </span>
+
+    <span class="input-wrapper">
+      <span class="input-name">direction</span>
+      =
+      <i class="input">
+        <select [(ngModel)]="options.direction">
+          <option *ngFor="let d of directions" [ngValue]="d">{{d}}</option>
+        </select>
+      </i>
+    </span>
+
+    <span class="input-wrapper">
+      <span class="input-name">trickleSpeed</span>
+        =
+      <i class="input">
+        <input [(ngModel)]="options.trickleSpeed">
+      </i>
+    </span>
+
+    <span class="input-wrapper">
+       <span class="input-name">minimum</span>
+      =
+      <i class="input">
+        <input disabled [(ngModel)]="options.minimum">
+      </i>
+    </span>
+
+    <span class="input-wrapper">
+       <span class="input-name">maximum</span>
+      =
+      <i class="input">
+        <input disabled [(ngModel)]="options.maximum">
+      </i>
+    </span>
+
+    <span class="input-wrapper">
+       <span class="input-name">ease</span>
+      =
+      <i class="input">
+        <input [(ngModel)]="options.ease">
+      </i>
+    </span>
+
+    <span class="input-wrapper">
+       <span class="input-name">speed</span>
+      =
+      <i class="input">
+        <input [(ngModel)]="options.speed">
+      </i>
+    </span>
+
+    <span class="input-wrapper">
+      <span class="input-name">color</span>
+      =
+      <i class="input">
+        <input [(ngModel)]="options.color">
+      </i>
+    </span>
+
+    <i class="tag-name" [textContent]="' ></ng-progress>'"></i>
+  </div>
+</div>
