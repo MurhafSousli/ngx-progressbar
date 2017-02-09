@@ -1,6 +1,14 @@
+sudo: required
+dist: trusty
+
 language: node_js
 node_js:
   - "6"
-  - "6.3"
-  - "5.0"
-script: npm run prepublish
+
+before_script:
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+  - npm install --quiet -g gulp-cli
+  - npm install
+
+script: gulp build

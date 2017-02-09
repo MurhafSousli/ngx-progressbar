@@ -1,3 +1,9 @@
+##1.2.0
+
+ - (fix) Progressbar stuck after one time, closes [#10](https://github.com/MurhafSousli/ng2-progressbar/issues/10)
+ - (fix) AOT failing, cloese [#8](https://github.com/MurhafSousli/ng2-progressbar/issues/8)
+ - (feat) adds maximum input, closes [#9](https://github.com/MurhafSousli/ng2-progressbar/issues/9)
+
 ##1.1.6
 
 * **Fixes Bugs:** 

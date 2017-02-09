@@ -82,14 +82,18 @@ constructor(private pService: NgProgressService) {
 ## NgProgressComponent options (inputs):
 
 ```html
-<ng-progress [positionUsing]="'marginLeft'" [minimum]="0.15" [ease]="'linear'"
-             [speed]="'200'" [showSpinner]="false" [direction]="'rightToLeftIncreased'"
-             [color]="'red'" [trickleSpeed]="250" [thick]="false"
+<ng-progress [positionUsing]="'marginLeft'" [minimum]="0.15" [maximum]="1"
+             [speed]="'200'" [showSpinner]="'false'" [direction]="'rightToLeftIncreased'"
+             [color]="'red'" [trickleSpeed]="250" [thick]="false" [ease]="'linear'"
 ></ng-progress>
 ```
 
 
  - **[minimum]**: between `0.0` to `1.0`.
+
+  Progress initial starting value, default `0.08`
+
+ - **[maximum]**: between `0.0` to `1.0`.
 
   Progress initial starting value, default `0.08`
 

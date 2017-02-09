@@ -20,6 +20,17 @@
     "files": [
         "./dist/inlined/index.ts"
     ],
+    "typeRoots": [
+        "node_modules/@types"
+    ],
+    "exclude": [
+        "node_modules",
+        "dist",
+        "demo",
+        "config",
+        "coverage",
+        "src/**/*.spec.ts"
+    ],
     "angularCompilerOptions": {
         "strictMetadataEmit": true,
         "genDir": "./dist/waste"
