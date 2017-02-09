@@ -1,7 +1,7 @@
 import {
-  Component, Input, ChangeDetectionStrategy, ViewEncapsulation, OnChanges, SimpleChanges
+  Component, Input, ChangeDetectionStrategy, ViewEncapsulation, OnChanges, SimpleChanges, OnDestroy
 } from '@angular/core';
-import {NgProgressService} from "../../service/progress.service";
+import { NgProgressService } from '../../service/progress.service';
 
 @Component({
   selector: 'ng-progress',
@@ -11,19 +11,20 @@ import {NgProgressService} from "../../service/progress.service";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class ProgressComponent implements OnChanges {
+export class ProgressComponent implements OnChanges, OnDestroy {
 
   progress: NgProgressService;
   /** Progress options  */
   @Input() ease = 'linear';
   @Input() positionUsing = 'margin';
   @Input() showSpinner = true;
-  @Input() direction = "leftToRightIncreased";
-  @Input() color = '#29d';
+  @Input() direction = 'leftToRightIncreased';
+  @Input() color = '#CC181E';
   @Input() thick = false;
-  @Input() minimum = 0.08;
-  @Input() speed = 200;
-  @Input() trickleSpeed = 300;
+  @Input() maximum;
+  @Input() minimum;
+  @Input() speed;
+  @Input() trickleSpeed;
   /** Start/Stop Progressbar */
   @Input() toggle;
 
@@ -34,20 +35,57 @@ export class ProgressComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges) {
 
     let minChng = changes['minimum'];
+    let maxChng = changes['maximum'];
     let spdChng = changes['speed'];
     let tklSpdChng = changes['trickleSpeed'];
     let tglChng = changes['toggle'];
 
-    this.progress.minimum = (minChng !== undefined && minChng.currentValue !== minChng.previousValue) ?
-      minChng.currentValue : this.minimum;
+    if (minChng) {
+      if (typeof minChng.currentValue !== 'undefined' && minChng.currentValue !== minChng.previousValue) {
+        if (minChng.currentValue < 0 || minChng.currentValue > 1) {
+          throw 'Input [minimum] must be between 0 and 1';
+        } else {
+          this.progress.minimum = minChng.currentValue;
+        }
+      }
+    }
 
-    this.progress.speed = (spdChng && spdChng.currentValue !== spdChng.previousValue) ?
-      spdChng.currentValue : this.speed;
+    if (maxChng) {
+      if (typeof maxChng.currentValue !== 'undefined' && maxChng.currentValue !== maxChng.previousValue) {
+        if (maxChng.currentValue < 0 || maxChng.currentValue > 1) {
+          throw 'Input [maximum] must be between 0 and 1';
+        } else {
+          this.progress.maximum = maxChng.currentValue;
+        }
+      }
+    }
 
-    this.progress.trickleSpeed = (tklSpdChng && tklSpdChng.currentValue !== tklSpdChng.previousValue) ?
-      tklSpdChng.currentValue : this.trickleSpeed;
+    if (spdChng) {
+      if (typeof spdChng.currentValue !== 'undefined' && spdChng.currentValue !== spdChng.previousValue) {
+        this.progress.speed = spdChng.currentValue;
+      }
+    }
 
-    if (tglChng && tglChng.currentValue !== tglChng.previousValue)
-      tglChng.currentValue ? this.progress.start() : this.progress.done();
-  };
+    if (tklSpdChng) {
+      if (typeof tklSpdChng.currentValue !== 'undefined' && tklSpdChng.currentValue !== tklSpdChng.previousValue) {
+        this.progress.trickleSpeed = tklSpdChng.currentValue;
+      }
+    }
+
+    if (tglChng) {
+      if (typeof tglChng.currentValue !== 'undefined' && tglChng.currentValue !== tglChng.previousValue) {
+        if (tglChng.currentValue) {
+          this.progress.start();
+        } else {
+          this.progress.done();
+        }
+      }
+    }
+  }
+
+  ngOnDestroy() {
+    this.progress.state.unsubscribe();
+    this.progress.trickling.unsubscribe();
+  }
+
 }
