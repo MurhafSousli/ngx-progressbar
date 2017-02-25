@@ -1,5 +1,5 @@
-import {Component, AfterContentInit, ChangeDetectionStrategy} from '@angular/core';
-import {NgProgressService} from "ng2-progressbar";
+import { Component, AfterContentInit, ChangeDetectionStrategy } from '@angular/core';
+import {NgProgressService} from 'ng2-progressbar';
 
 @Component({
   selector: 'main',
@@ -41,16 +41,16 @@ export class MainComponent implements AfterContentInit {
 
   ngAfterContentInit() {
     this.toggle = true;
-    setTimeout(()=> {
+    setTimeout(() => {
       this.toggle = false;
     }, 2000)
   }
 
-  start(){
+  start() {
     this.progress.start();
     this.toggle = true;
   }
-  done(){
+  done() {
     this.progress.done();
     this.toggle = false;
   }
