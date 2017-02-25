@@ -25,6 +25,19 @@ Install it with npm
 
 `npm install ng2-progressbar --save`
 
+###SystemJS
+
+If you are using SystemJS, you should also adjust your configuration to point to the UMD bundle.
+
+In your systemjs config file, map needs to tell the System loader where to look for `ng2-progressbar`:
+```js
+map: {
+  'ng2-progressbar': 'node_modules/ng2-progressbar/bundles/ng2-progressbar.umd.js',
+}
+```
+Here is a working [plunker](https://plnkr.co/edit/OEVjavH87Hk8GdAqdayK?p=preview).
+
+
 <a name="usage"/>
 ## Usage
 
@@ -132,6 +145,28 @@ constructor(private pService: NgProgressService) {
  - **[toggle]**: boolean
 
   Toggle the progressbar (alternate to `start`/`done`), . default `false`.
+
+
+### Automagic loading bar (BETA)
+ 
+ If you only need a progressbar for multiple (XHR) requests, there is a simple _plug and play_ provider. It does the trick.
+ 
+ ```ts
+ import { NgProgressCustomBrowserXhr } from 'ng2-progressbar';
+ 
+ @NgModule({
+   
+   providers: [
+     { provide: BrowserXhr, useClass: NgProgressCustomBrowserXhr } ,
+   ],
+ })
+ ```
+ ```html
+ <ng-progress></ng-progress>
+ ```
+ The progress will start and complete automatically with your HTTP requests. no need to use `NgProgressService` to call start()/done() manually.
+
+ 
 
 <a name="issues"/>
 ## Issues
