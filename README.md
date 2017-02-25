@@ -80,25 +80,6 @@ constructor(private pService: NgProgressService) {
   }
 ```
 
-### Automagic loading bar
-
-If you only need a progress for REST (XHR) request, there is a simple _plug and play_ provider. It does the trick.
-
-```javascript
-
-import { NgProgressCustomBrowserXhr } from "ng2-progressbar";
-
-@NgModule({
-  // ...
-  providers: [
-    /// ...
-    { provide: BrowserXhr, useClass: NgProgressCustomBrowserXhr } ,
-    /// ...
-  ],
-  // ...
-})
-```
-
 ## NgProgressService options (functions):
 
 
@@ -166,24 +147,30 @@ import { NgProgressCustomBrowserXhr } from "ng2-progressbar";
   Toggle the progressbar (alternate to `start`/`done`), . default `false`.
 
 
-### Automagic loading bar (BETA)
+## Automagic loading bar (BETA)
  
  If you only need a progressbar for multiple (XHR) requests, there is a simple _plug and play_ provider. It does the trick.
  
- ```ts
- import { NgProgressCustomBrowserXhr } from 'ng2-progressbar';
- 
- @NgModule({
-   
-   providers: [
-     { provide: BrowserXhr, useClass: NgProgressCustomBrowserXhr } ,
-   ],
- })
- ```
- ```html
+ ```js
+
+import { NgProgressCustomBrowserXhr } from "ng2-progressbar";
+
+@NgModule({
+  // ...
+  providers: [
+    /// ...
+    { provide: BrowserXhr, useClass: NgProgressCustomBrowserXhr } ,
+    /// ...
+  ],
+  // ...
+})
+```
+```html
  <ng-progress></ng-progress>
- ```
+```
  The progress will start and complete automatically with your HTTP requests. no need to use `NgProgressService` to call start()/done() manually.
+ 
+ > Automagic progress is WIP, you might encounter it doesn't reflect flawlessly responses, it is a WIP.
 
  
 
@@ -191,7 +178,6 @@ import { NgProgressCustomBrowserXhr } from "ng2-progressbar";
 ## Issues
 
 If you identify any errors in the library, or have an idea for an improvement, please open an [issue](https://github.com/MurhafSousli/ng2-progressbar/issues). I am excited to see what the community thinks of this project, and I would love your input!
-Automagic progress is WIP, you might encounter it doesn't reflect flawlessly responses, it is a WIP.
 
 <a name="author"/>
 ## Author
