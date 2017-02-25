@@ -13,6 +13,7 @@ module.exports = function (config) {
             require('karma-chrome-launcher'),
             require('karma-remap-coverage'),
             require('karma-sourcemap-loader'),
+            require('karma-mocha-reporter'),
         ],
 
         customLaunchers: {
@@ -55,8 +56,11 @@ module.exports = function (config) {
             html: './coverage/html'
         },
 
+        mochaReporter: {
+            output: 'autowatch',
+        },
 
-        reporters: config.hasCoverage ? ['progress', 'coverage', 'remap-coverage'] : ['progress'],
+        reporters: config.hasCoverage ? ['mocha', 'coverage', 'remap-coverage'] : ['mocha'],
         port: 9876,
         colors: true,
         logLevel: config.LOG_INFO,

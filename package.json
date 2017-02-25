@@ -1,6 +1,6 @@
 {
   "name": "ng2-progressbar",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "A slim customizable progressbar for angular2",
   "repository": {
     "type": "git",
@@ -33,7 +33,8 @@
   "dependencies": {
     "@angular/common": "2.0.0",
     "@angular/core": "2.0.0",
-    "@angular/http": "2.0.0"
+    "@angular/http": "2.0.0",
+    "rxjs": "5.0.0-beta.12"
   },
   "devDependencies": {
     "@angular/compiler": "2.0.0",
@@ -42,7 +43,7 @@
     "@angular/platform-browser-dynamic": "2.0.0",
     "@angular/platform-server": "2.0.0",
     "@angular/router": "3.0.0",
-    "@types/jasmine": "^2.5.40",
+    "@types/jasmine": "2.5.41",
     "@types/node": "^6.0.58",
     "angular2-template-loader": "^0.6.0",
     "autoprefixer": "^6.6.1",
@@ -53,6 +54,7 @@
     "cssnano": "^3.7.4",
     "del": "^2.2.2",
     "gulp": "^3.9.1",
+    "gulp-better-rollup": "^1.0.2",
     "gulp-coveralls": "^0.1.4",
     "gulp-file": "^0.3.0",
     "gulp-inline-ng2-template": "^4.0.0",
@@ -67,7 +69,7 @@
     "karma-chrome-launcher": "^2.0.0",
     "karma-coverage": "^1.1.1",
     "karma-jasmine": "^1.0.2",
-    "karma-mocha-reporter": "^2.0.0",
+    "karma-mocha-reporter": "^2.2.2",
     "karma-remap-coverage": "^0.1.4",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "2.0.1",
@@ -76,6 +78,8 @@
     "postcss-strip-inline-comments": "^0.1.5",
     "pump": "^1.0.2",
     "raw-loader": "0.5.1",
+    "rollup-plugin-node-resolve": "^2.0.0",
+    "rollup-plugin-uglify": "^1.0.1",
     "run-sequence": "^1.2.2",
     "rxjs": "5.0.0-beta.12",
     "source-map-loader": "^0.1.5",

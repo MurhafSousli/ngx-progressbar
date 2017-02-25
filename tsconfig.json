@@ -14,13 +14,13 @@
     "outDir": "./dist",
     "rootDir": "./src",
     "sourceMap": true,
-    "noEmitOnError": false
+    "noEmitOnError": false,
+    "typeRoots": [
+      "node_modules/@types"
+    ]
   },
   "files": [
     "./src/index.ts"
-  ],
-  "typeRoots": [
-    "node_modules/@types"
   ],
   "exclude": [
     "node_modules",
