@@ -1,3 +1,10 @@
+##1.3.0
+
+ - (fix) Progressbar transition animation (which was introduced in v1.2.0), closes [#16](https://github.com/MurhafSousli/ng2-progressbar/issues/16)
+ - (refactor) ProgressBarComponent
+ - (feat) Support systemjs
+ - (feat) XHR provider for multiple http requests (BETA), closes [#15](https://github.com/MurhafSousli/ng2-progressbar/issues/15)
+
 ##1.2.0
 
  - (fix) Progressbar stuck after one time, closes [#10](https://github.com/MurhafSousli/ng2-progressbar/issues/10)

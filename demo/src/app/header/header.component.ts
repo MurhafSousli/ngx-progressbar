@@ -7,10 +7,6 @@ import {Component, ChangeDetectionStrategy} from '@angular/core';
 })
 export class HeaderComponent {
 
-  logo = prefixRepo('../assets/img/logo.svg');
+  logo = 'assets/img/logo.svg';
 
 }
-
-let prefixRepo = (path) => {
-  return  'ng2-progressbar/' + path;
-};

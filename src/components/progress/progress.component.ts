@@ -21,10 +21,10 @@ export class ProgressComponent implements OnChanges, OnDestroy {
   @Input() direction = 'leftToRightIncreased';
   @Input() color = '#CC181E';
   @Input() thick = false;
-  @Input() maximum;
-  @Input() minimum;
-  @Input() speed;
-  @Input() trickleSpeed;
+  @Input() maximum = 1;
+  @Input() minimum = 0.08;
+  @Input() speed = 200;
+  @Input() trickleSpeed = 300;
   /** Start/Stop Progressbar */
   @Input() toggle;
 

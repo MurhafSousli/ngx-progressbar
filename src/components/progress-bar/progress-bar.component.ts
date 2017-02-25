@@ -66,19 +66,19 @@ export class ProgressBarComponent {
 
   toPercentage(n) {
     return ({
-      'leftToRightIncreased': -1 + n,
-      'leftToRightReduced': -n,
-      'rightToLeftIncreased': 1 - n,
-      'rightToLeftReduced': n
+      leftToRightIncreased: -1 + n,
+      leftToRightReduced: -n,
+      rightToLeftIncreased: 1 - n,
+      rightToLeftReduced: n
     }[this.direction]) * 100;
   }
 
   spinnerClasses() {
     return {
-      'leftToRightIncreased': 'clockwise',
-      'leftToRightReduced': 'anti-clockwise',
-      'rightToLeftIncreased': 'anti-clockwise',
-      'rightToLeftReduced': 'clockwise'
+      leftToRightIncreased: 'clockwise',
+      leftToRightReduced: 'anti-clockwise',
+      rightToLeftIncreased: 'anti-clockwise',
+      rightToLeftReduced: 'clockwise'
     }[this.direction];
   }
 }
