@@ -27,7 +27,7 @@ Install it with npm
 
 `npm install ng2-progressbar --save`
 
-###SystemJS
+### SystemJS
 
 If you are using SystemJS, you should also adjust your configuration to point to the UMD bundle.
 
