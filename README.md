@@ -13,12 +13,14 @@ A nanoscopic progress bar. Featuring realistic trickle animations to convince yo
  - [Live Demo](https://MurhafSousli.github.io/ng2-progressbar)
  - [Installation](#installation)
  - [Usage](#usage) 
+ - [Automagic Usage](#automagic)
  - [Issues](#issues)    
  - [Author](#author)
  - [Credits](#credits)
  - [License](#license) 
 
 <a name="installation"/>
+
 ## Installation
 
 Install it with npm
@@ -39,6 +41,7 @@ Here is a working [plunker](https://plnkr.co/edit/OEVjavH87Hk8GdAqdayK?p=preview
 
 
 <a name="usage"/>
+
 ## Usage
 
 Add `NgProgressModule` to **NgModule** `imports` array.
@@ -146,12 +149,13 @@ constructor(private pService: NgProgressService) {
 
   Toggle the progressbar (alternate to `start`/`done`), . default `false`.
 
+<a name="automagic"/>
 
 ## Automagic loading bar (BETA)
  
  If you only need a progressbar for multiple (XHR) requests, there is a simple _plug and play_ provider. It does the trick.
  
- ```js
+ ```ts
 
 import { NgProgressCustomBrowserXhr } from "ng2-progressbar";
 
@@ -175,11 +179,13 @@ import { NgProgressCustomBrowserXhr } from "ng2-progressbar";
  
 
 <a name="issues"/>
+
 ## Issues
 
 If you identify any errors in the library, or have an idea for an improvement, please open an [issue](https://github.com/MurhafSousli/ng2-progressbar/issues). I am excited to see what the community thinks of this project, and I would love your input!
 
 <a name="author"/>
+
 ## Author
 
  **[Murhaf Sousli](http://murhafsousli.com)**
@@ -188,11 +194,13 @@ If you identify any errors in the library, or have an idea for an improvement, p
  - [twitter/murhafsousli](https://twitter.com/MurhafSousli)
  
 <a name="credit"/>
+
 ## Credits 
 
  Inspired by [NProgress.js by Rico Sta. Cruz.](https://github.com/rstacruz/nprogress)
 
 <a name="license"/>
+
 ## License
 
 [![npm](https://img.shields.io/npm/l/express.svg?maxAge=2592000)](/LICENSE)
