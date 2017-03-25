@@ -13,8 +13,6 @@ body {
   font-family: 'Source Sans Pro', sans-serif;
   color: $fontColor;
   margin: 0;
-
-  background: -moz-linear-gradient(-45deg, rgba(136, 212, 152, 0) 73%, rgba(136, 212, 152, 0.3) 81%, rgba(136, 212, 152, 1) 100%);
   background: -webkit-linear-gradient(-45deg, rgba(136, 212, 152, 0) 73%, rgba(136, 212, 152, 0.3) 81%, rgba(136, 212, 152, 1) 100%);
   background: linear-gradient(135deg, rgba(136, 212, 152, 0) 73%, rgba(136, 212, 152, 0.3) 81%, rgba(136, 212, 152, 1) 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0088d498', endColorstr='#88d498', GradientType=1);
