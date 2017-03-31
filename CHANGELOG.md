@@ -15,8 +15,7 @@
 
 ## 1.1.6
 
-* **Fixes Bugs:** 
- - fixes: default input values
+ - (fix) default input values
 
 ## 1.1.4
 
@@ -25,10 +24,8 @@
 
 ## 1.1.2
 
-* **Fixes Bugs:** 
  - fixes: Service.Done() doesn't complete the progress if it wasn't trickling 
- - fixes: No Animation on IE, Edge 
-    fixed by using css animation instead of angular animation (because it depends on the pollyfill web-animation-js)
+ - (fix) No Animation on IE, Edge by using css animation-js polyfills
 
 ## 1.1.1
 
