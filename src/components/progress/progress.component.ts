@@ -82,10 +82,4 @@ export class ProgressComponent implements OnChanges, OnDestroy {
       }
     }
   }
-
-  ngOnDestroy() {
-    this.progress.state.unsubscribe();
-    this.progress.trickling.unsubscribe();
-  }
-
 }
