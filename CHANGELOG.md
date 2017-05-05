@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.0.0
+
+ - Rename npm package to `ngx-progressbar`.
+ - Update peerDependecies.
+
 ## 1.3.0
 
  - (fix) Progressbar transition animation (which was introduced in v1.2.0), closes [#16](https://github.com/MurhafSousli/ng2-progressbar/issues/16)

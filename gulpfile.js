@@ -17,8 +17,8 @@ const embedTemplates = require('gulp-inline-ng2-template');
 const tslint = require('gulp-tslint');
 
 /** Sass style */
-const postcss = require('gulp-postcss');
-const sass = require('gulp-sass');
+const postcss = require('postcss');
+const sass = require('node-sass');
 const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
 const scss = require('postcss-scss');
@@ -51,8 +51,7 @@ const gulpRollup = require('gulp-better-rollup');
 const rollupNodeResolve = require('rollup-plugin-node-resolve');
 const rollupUglify = require('rollup-plugin-uglify');
 
-
-const LIBRARY_NAME = 'ng2-progressbar';
+const LIBRARY_NAME = 'ngx-progressbar';
 
 const config = {
     allTs: 'src/**/!(*.spec).ts',
@@ -92,7 +91,7 @@ function execCallback(gulpDone) {
         if (stdout) {
             gutil.log(gutil.colors.green(stdout));
         }
-        // execute callback when its done 
+        // execute callback when its done
         if (gulpDone) {
             gulpDone();
         }
@@ -109,25 +108,6 @@ gulp.task('clean:coverage', () => {
 
 gulp.task('clean', ['clean:dist', 'clean:coverage']);
 
-
-// Compile Sass to css
-gulp.task('styles', (cb) => {
-    /**
-     * Remove comments, autoprefixer, Minifier
-     */
-    const processors = [
-        stripInlineComments,
-        autoprefixer,
-        cssnano
-    ];
-    pump([
-        gulp.src(config.allSass),
-        sass().on('error', sass.logError),
-        postcss(processors, { syntax: scss }),
-        gulp.dest('src')
-    ], cb);
-});
-
 // TsLint the source files
 gulp.task('lint', (cb) => {
     pump([
@@ -137,17 +117,43 @@ gulp.task('lint', (cb) => {
     ], cb);
 });
 
-// Inline templates and styles in ng2 components
+// Compile Sass to css and Inline templates and styles in ng2 components
+const styleProcessor = (stylePath, ext, styleFile, callback) => {
+  /**
+   * Remove comments, autoprefixer, Minifier
+   */
+  const processors = [
+      stripInlineComments,
+      autoprefixer,
+      cssnano
+  ];
+
+  if (/\.(scss|sass)$/.test(ext[0])) {
+    let sassObj = sass.renderSync({ file: stylePath });
+    if (sassObj && sassObj['css']){
+     let css = sassObj.css.toString('utf8');
+     postcss(processors).process(css).then(function (result) {
+        result.warnings().forEach(function (warn) {
+          gutil.warn(warn.toString());
+        });
+        styleFile = result.css;
+        callback(null, styleFile);
+    });
+    }
+  }
+};
+
 gulp.task('inline-templates', (cb) => {
-    const defaults = {
+    const options = {
         base: '/src',
         target: 'es5',
+        styleProcessor: styleProcessor,
         useRelativePaths: true
     };
     pump(
         [
             gulp.src(config.allTs),
-            embedTemplates(defaults),
+            embedTemplates(options),
             gulp.dest(`${config.outputDir}/inlined`)
         ],
         cb);
@@ -158,7 +164,7 @@ gulp.task('ngc', (cb) => {
     const executable = path.join(__dirname, platformPath('/node_modules/.bin/ngc'));
     const ngc = exec(`${executable} -p ./tsconfig-aot.json`, (err) => {
         if (err) return cb(err); // return error
-        del(`${config.outputDir}/inlined`); //delete temporary *.ts files with inlined templates and styles 
+        del(`${config.outputDir}/inlined`); //delete temporary *.ts files with inlined templates and styles
         cb();
     }).stdout.on('data', (data) => console.log(data));
 });
@@ -194,7 +200,7 @@ gulp.task('package', (cb) => {
     //only copy needed properties from project's package json
     fieldsToCopy.forEach((field) => { targetPkgJson[field] = pkgJson[field]; });
 
-    targetPkgJson['main'] = `bundles/ng2-progressbar.umd.js`;
+    targetPkgJson['main'] = `bundles/ngx-progressbar.umd.js`;
     targetPkgJson['module'] = 'index.js';
     targetPkgJson['typings'] = 'index.d.ts';
 
@@ -252,10 +258,10 @@ gulp.task('bundle', () => {
     const rollupGenerateOptions = {
         // Keep the moduleId empty because we don't want to force developers to a specific moduleId.
         moduleId: '',
-        moduleName: 'ng2Progressbar', //require for 'umd' bundling, must be a valid js identifier, see rollup/rollup/issues/584
+        moduleName: 'ngxProgressbar', //require for 'umd' bundling, must be a valid js identifier, see rollup/rollup/issues/584
         format: 'umd',
         globals,
-        dest: 'ng2-progressbar.umd.js'
+        dest: 'ngx-progressbar.umd.js'
     };
 
     return gulp.src(`${config.outputDir}/index.js`)
@@ -272,9 +278,9 @@ gulp.task('demo', (done) => {
 
 });
 
-// Link 'dist' folder (create a local 'ng2-progressbar' package that symlinks to it)
-// This way, we can have the demo project declare a dependency on 'ng2-progressbar' (as it should)
-// and, thanks to 'npm link ng2-progressbar' on demo project, be sure to always use the latest built
+// Link 'dist' folder (create a local 'ngx-progressbar' package that symlinks to it)
+// This way, we can have the demo project declare a dependency on 'ngx-progressbar' (as it should)
+// and, thanks to 'npm link ngx-progressbar' on demo project, be sure to always use the latest built
 // version of the library ( which is in 'dist/' folder)
 gulp.task('link', (done) => {
     exec('npm link', { cwd: `${config.outputDir}` }, execCallback(done)); // run 'npm link' from 'dist' folder
@@ -288,7 +294,7 @@ gulp.task('coveralls', () => {
 
 // Lint, Sass to css, Inline templates & Styles and Compile
 gulp.task('compile', (cb) => {
-    runSequence('lint', 'styles', 'inline-templates', 'ngc', cb);
+    runSequence('lint', 'inline-templates', 'ngc', cb);
 });
 
 // Watch changes on (*.ts, *.sass, *.html) and Compile

@@ -1,23 +1,25 @@
-
-[![npm](https://img.shields.io/npm/v/ng2-progressbar.svg?maxAge=2592000?style=plastic)](https://www.npmjs.com/package/ng2-progressbar) [![Build Status](https://travis-ci.org/MurhafSousli/ng2-progressbar.svg?branch=master)](https://travis-ci.org/MurhafSousli/ng2-progressbar) [![npm](https://img.shields.io/npm/dt/ng2-progressbar.svg?maxAge=2592000?style=plastic)](https://www.npmjs.com/package/ng2-progressbar)
-
 <p align="center">
-  <img height="300px" width="300px" style="text-align: center;" src="https://cdn.rawgit.com/MurhafSousli/ng2-progressbar/79d7fbba96cc528238e67aadb85eafe8653198de/assets/logo.svg">
+  <img height="200px" width="200px" style="text-align: center;" src="https://cdn.rawgit.com/MurhafSousli/ngx-progressbar/79d7fbba96cc528238e67aadb85eafe8653198de/assets/logo.svg">
   <h1 align="center">Angular Progressbar</h1>
 </p>
 
 A nanoscopic progress bar. Featuring realistic trickle animations to convince your users that something is happening!
 
+___
+[![npm](https://img.shields.io/badge/demo-online-ed1c46.svg)](https://murhafsousli.github.io/ngx-progressbar/)
+[![npm](https://img.shields.io/npm/v/ngx-progressbar.svg?maxAge=2592000?style=plastic)](https://www.npmjs.com/package/ngx-progressbar) 
+[![Build Status](https://travis-ci.org/MurhafSousli/ngx-progressbar.svg?branch=master)](https://www.npmjs.com/package/ngx-progressbar) 
+[![npm](https://img.shields.io/npm/l/express.svg?maxAge=2592000)](/LICENSE)
+
 ## Table of Contents 
  
- - [Live Demo](https://MurhafSousli.github.io/ng2-progressbar)
+ - [Live Demo](https://MurhafSousli.github.io/ngx-progressbar)
  - [Installation](#installation)
  - [Usage](#usage) 
  - [Automagic Usage](#automagic)
  - [Issues](#issues)    
  - [Author](#author)
  - [Credits](#credits)
- - [License](#license) 
 
 <a name="installation"/>
 
@@ -25,16 +27,16 @@ A nanoscopic progress bar. Featuring realistic trickle animations to convince yo
 
 Install it with npm
 
-`npm install ng2-progressbar --save`
+`npm install ngx-progressbar --save`
 
 ### SystemJS
 
 If you are using SystemJS, you should also adjust your configuration to point to the UMD bundle.
 
-In your systemjs config file, map needs to tell the System loader where to look for `ng2-progressbar`:
+In your systemjs config file, map needs to tell the System loader where to look for `ngx-progressbar`:
 ```js
 map: {
-  'ng2-progressbar': 'node_modules/ng2-progressbar/bundles/ng2-progressbar.umd.js',
+  'ngx-progressbar': 'node_modules/ngx-progressbar/bundles/ngx-progressbar.umd.js',
 }
 ```
 Here is a working [plunker](https://plnkr.co/edit/OEVjavH87Hk8GdAqdayK?p=preview).
@@ -44,13 +46,14 @@ Here is a working [plunker](https://plnkr.co/edit/OEVjavH87Hk8GdAqdayK?p=preview
 
 ## Usage
 
-Add `NgProgressModule` to **NgModule** `imports` array.
+Import `NgProgressModule` in the root module
 
 ```javascript
-import { NgProgressModule } from 'ng2-progressbar';
+import { NgProgressModule } from 'ngx-progressbar';
 
 @NgModule({
-imports: [
+  imports: [
+    // ...
     NgProgressModule
   ]
 })
@@ -65,12 +68,14 @@ In your template
 Add `NgProgressService` wherever you want to use the progressbar.
 
 ```javascript
-import {NgProgressService} from "ng2-progressbar";
+import {NgProgressService} from 'ngx-progressbar';
 
 @Component({
  /**  */ 
 })
-constructor(private pService: NgProgressService) {
+export class SomeComponent {
+  
+  constructor(public pService: NgProgressService) {
   }
   
   ngOnInit(){
@@ -81,6 +86,7 @@ constructor(private pService: NgProgressService) {
           this.pService.done();
       }
   }
+}
 ```
 
 ## NgProgressService options (functions):
@@ -151,38 +157,36 @@ constructor(private pService: NgProgressService) {
 
 <a name="automagic"/>
 
-## Automagic loading bar (BETA)
+## Automagic loading bar
  
  If you only need a progressbar for multiple (XHR) requests, there is a simple _plug and play_ provider. It does the trick.
  
  ```ts
 
-import { NgProgressCustomBrowserXhr } from "ng2-progressbar";
+import { NgProgressCustomBrowserXhr } from 'ngx-progressbar';
 
 @NgModule({
-  // ...
   providers: [
-    /// ...
+    // ...
     { provide: BrowserXhr, useClass: NgProgressCustomBrowserXhr } ,
-    /// ...
   ],
-  // ...
+  imports: [
+    // ...
+    NgProgressModule
+  ]
 })
 ```
 ```html
  <ng-progress></ng-progress>
 ```
- The progress will start and complete automatically with your HTTP requests. no need to use `NgProgressService` to call start()/done() manually.
- 
- > Automagic progress is WIP, you might encounter it doesn't reflect flawlessly responses, it is a WIP.
 
- 
+ The progress will start and complete automatically with your HTTP requests. no need to use `NgProgressService` to call start()/done() manually.
 
 <a name="issues"/>
 
 ## Issues
 
-If you identify any errors in the library, or have an idea for an improvement, please open an [issue](https://github.com/MurhafSousli/ng2-progressbar/issues). I am excited to see what the community thinks of this project, and I would love your input!
+If you identify any errors in the library, or have an idea for an improvement, please open an [issue](https://github.com/MurhafSousli/ngx-progressbar/issues). I am excited to see what the community thinks of this project, and I would love your input!
 
 <a name="author"/>
 
@@ -199,10 +203,5 @@ If you identify any errors in the library, or have an idea for an improvement, p
 
  Inspired by [NProgress.js by Rico Sta. Cruz.](https://github.com/rstacruz/nprogress)
 
-<a name="license"/>
-
-## License
-
-[![npm](https://img.shields.io/npm/l/express.svg?maxAge=2592000)](/LICENSE)
 
 
