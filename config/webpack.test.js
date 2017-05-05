@@ -78,7 +78,11 @@ const getConfig = (hasCoverage, isTddMode) => {
                     test: /\.css$/,
                     loader: ['to-string-loader', 'css-loader']
                 },
-
+                {
+                  test: /\.(scss|sass)$/,
+                  use: ['to-string-loader', 'css-loader', 'sass-loader'],
+                  exclude: [helpers.root('src', 'scss')]
+                },
                 {
                     test: /\.html$/,
                     loader: 'raw-loader'

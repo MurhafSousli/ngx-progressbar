@@ -1,10 +1,10 @@
-import { DemoPage } from './app.po';
+import { AdvancedProgressPage } from './app.po';
 
-describe('demo App', () => {
-  let page: DemoPage;
+describe('advanced-progress App', () => {
+  let page: AdvancedProgressPage;
 
   beforeEach(() => {
-    page = new DemoPage();
+    page = new AdvancedProgressPage();
   });
 
   it('should display message saying app works', () => {

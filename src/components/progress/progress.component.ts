@@ -1,19 +1,17 @@
 import {
-  Component, Input, ChangeDetectionStrategy, ViewEncapsulation, OnChanges, SimpleChanges, OnDestroy
+  Component, Input, ChangeDetectionStrategy, OnChanges, SimpleChanges, OnDestroy
 } from '@angular/core';
 import { NgProgressService } from '../../service/progress.service';
 
 @Component({
   selector: 'ng-progress',
   templateUrl: 'progress.component.html',
-  styleUrls: ['progress.component.css'],
-  encapsulation: ViewEncapsulation.None,
+  styleUrls: ['progress.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class ProgressComponent implements OnChanges, OnDestroy {
 
-  progress: NgProgressService;
   /** Progress options  */
   @Input() ease = 'linear';
   @Input() positionUsing = 'margin';
@@ -28,8 +26,7 @@ export class ProgressComponent implements OnChanges, OnDestroy {
   /** Start/Stop Progressbar */
   @Input() toggle;
 
-  constructor(progress: NgProgressService) {
-    this.progress = progress;
+  constructor(public progress: NgProgressService) {
   }
 
   ngOnChanges(changes: SimpleChanges) {

@@ -1,9 +1,3 @@
-:host {
-  pointer-events: none;
-  position: relative;
-  z-index: 65535;
-}
-
 .ng-progress {
   z-index: 1031;
   top: 0;
@@ -102,4 +96,3 @@
     transform: rotate(360deg);
   }
 }
-
