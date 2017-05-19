@@ -105,7 +105,7 @@ export class SomeComponent {
 
 ```html
 <ng-progress [positionUsing]="'marginLeft'" [minimum]="0.15" [maximum]="1"
-             [speed]="'200'" [showSpinner]="'false'" [direction]="'rightToLeftIncreased'"
+             [speed]="200" [showSpinner]="false" [direction]="'rightToLeftIncreased'"
              [color]="'red'" [trickleSpeed]="250" [thick]="false" [ease]="'linear'"
 ></ng-progress>
 ```
