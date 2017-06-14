@@ -36,7 +36,7 @@ If you are using SystemJS, you should also adjust your configuration to point to
 In your systemjs config file, map needs to tell the System loader where to look for `ngx-progressbar`:
 ```js
 map: {
-  'ngx-progressbar': 'node_modules/ngx-progressbar/bundles/ngx-progressbar.umd.js',
+  'ngx-progressbar': 'node_modules/ngx-progressbar/ngx-progressbar.umd.js',
 }
 ```
 Here is a working [plunker](https://plnkr.co/edit/OEVjavH87Hk8GdAqdayK?p=preview).
