@@ -1,5 +1,5 @@
 import { Component, AfterContentInit, ChangeDetectionStrategy } from '@angular/core';
-import {NgProgressService} from '../../../../dist/ngx-progressbar';
+import {NgProgressService} from 'ngx-progressbar';
 
 @Component({
   selector: 'main',
