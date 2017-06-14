@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.0.2
+
+ - Refactor(ProgressComponent) Increase `z-index`, closes #37
+ - General refactor for all files, improve linting
+ - Use [generator-angular2-library](https://github.com/jvandemo/generator-angular2-library) for the workflow.
+
 ## 2.0.0
 
  - Rename npm package to `ngx-progressbar`.

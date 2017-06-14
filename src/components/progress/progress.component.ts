@@ -1,7 +1,7 @@
 import {
   Component, Input, ChangeDetectionStrategy, OnChanges, SimpleChanges, OnDestroy
 } from '@angular/core';
-import { NgProgressService } from '../../service/progress.service';
+import { NgProgressService } from '../../services/progress.service';
 
 @Component({
   selector: 'ng-progress',
@@ -31,11 +31,11 @@ export class ProgressComponent implements OnChanges, OnDestroy {
 
   ngOnChanges(changes: SimpleChanges) {
 
-    let minChng = changes['minimum'];
-    let maxChng = changes['maximum'];
-    let spdChng = changes['speed'];
-    let tklSpdChng = changes['trickleSpeed'];
-    let tglChng = changes['toggle'];
+    const minChng = changes['minimum'];
+    const maxChng = changes['maximum'];
+    const spdChng = changes['speed'];
+    const tklSpdChng = changes['trickleSpeed'];
+    const tglChng = changes['toggle'];
 
     if (minChng) {
       if (typeof minChng.currentValue !== 'undefined' && minChng.currentValue !== minChng.previousValue) {

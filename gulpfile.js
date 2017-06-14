@@ -1,316 +1,241 @@
+/* eslint-disable */
+var gulp = require('gulp'),
+  path = require('path'),
+  ngc = require('@angular/compiler-cli/src/main').main,
+  rollup = require('gulp-rollup'),
+  rename = require('gulp-rename'),
+  del = require('del'),
+  runSequence = require('run-sequence'),
+  inlineResources = require('./tools/gulp/inline-resources');
+
+const rootFolder = path.join(__dirname);
+const srcFolder = path.join(rootFolder, 'src');
+const tmpFolder = path.join(rootFolder, '.tmp');
+const buildFolder = path.join(rootFolder, 'build');
+const distFolder = path.join(rootFolder, 'dist');
+
 /**
- * @Author: @MurhafSousli
+ * 1. Delete /dist folder
  */
+gulp.task('clean:dist', function () {
 
-const gulp = require('gulp');
-
-/** To log like console.log().. */
-const gutil = require('gulp-util');
-
-/** del to remove dist directory */
-const del = require('del');
-
-/** load templates and styles in ng2 components */
-const embedTemplates = require('gulp-inline-ng2-template');
-
-/** TSLint checker */
-const tslint = require('gulp-tslint');
-
-/** Sass style */
-const postcss = require('postcss');
-const sass = require('node-sass');
-const autoprefixer = require('autoprefixer');
-const cssnano = require('cssnano');
-const scss = require('postcss-scss');
-const stripInlineComments = require('postcss-strip-inline-comments');
-
-/** External command runner */
-const exec = require('child_process').exec;
-const spawn = require('child_process').spawn;
-const process = require('process');
-
-/**OS Access */
-const os = require('os');
-
-/** File Access */
-const fs = require('fs');
-const file = require('gulp-file');
-const path = require('path');
-
-/** To properly handle pipes on error */
-const pump = require('pump');
-
-/** To upload code coverage to coveralls */
-const coveralls = require('gulp-coveralls');
-
-/** To order tasks */
-const runSequence = require('run-sequence');
-
-/** To bundle the library with Rollup */
-const gulpRollup = require('gulp-better-rollup');
-const rollupNodeResolve = require('rollup-plugin-node-resolve');
-const rollupUglify = require('rollup-plugin-uglify');
-
-const LIBRARY_NAME = 'ngx-progressbar';
-
-const config = {
-    allTs: 'src/**/!(*.spec).ts',
-    allSass: 'src/**/*.scss',
-    allHtml: 'src/**/*.html',
-    demoDir: 'demo/',
-    outputDir: 'dist/',
-    coverageDir: 'coverage/'
-};
-
-
-//Helper functions
-function platformPath(path) {
-    return /^win/.test(os.platform()) ? `${path}.cmd` : path;
-}
-
-function startKarmaServer(isTddMode, hasCoverage, done) {
-    const karmaServer = require('karma').Server;
-    const travis = process.env.TRAVIS;
-
-    let config = { configFile: `${__dirname}/karma.conf.js`, singleRun: !isTddMode, autoWatch: isTddMode };
-
-    if (travis) {
-        config['browsers'] = ['Chrome_travis_ci']; // 'Chrome_travis_ci' is defined in "customLaunchers" section of config/karma.conf.js
-    }
-
-    config['hasCoverage'] = hasCoverage;
-
-    new karmaServer(config, done).start();
-}
-
-function execCallback(gulpDone) {
-    return (error, stdout, stderr) => {
-        if (stderr) {
-            gutil.log(gutil.colors.red(stderr));
-        }
-        if (stdout) {
-            gutil.log(gutil.colors.green(stdout));
-        }
-        // execute callback when its done
-        if (gulpDone) {
-            gulpDone();
-        }
-    }
-}
-// Clean Tasks
-gulp.task('clean:dist', () => {
-    return del(config.outputDir);
+  // Delete contents but not dist folder to avoid broken npm links
+  // when dist directory is removed while npm link references it.
+  return deleteFolders([distFolder + '/**', '!' + distFolder]);
 });
 
-gulp.task('clean:coverage', () => {
-    return del(config.coverageDir);
+/**
+ * 2. Clone the /src folder into /.tmp. If an npm link inside /src has been made,
+ *    then it's likely that a node_modules folder exists. Ignore this folder
+ *    when copying to /.tmp.
+ */
+gulp.task('copy:source', function () {
+  return gulp.src([`${srcFolder}/**/*`, `!${srcFolder}/node_modules`])
+    .pipe(gulp.dest(tmpFolder));
 });
 
-gulp.task('clean', ['clean:dist', 'clean:coverage']);
-
-// TsLint the source files
-gulp.task('lint', (cb) => {
-    pump([
-        gulp.src(config.allTs),
-        tslint({ formatter: "verbose" }),
-        tslint.report()
-    ], cb);
+/**
+ * 3. Inline template (.html) and style (.css) files into the the component .ts files.
+ *    We do this on the /.tmp folder to avoid editing the original /src files
+ */
+gulp.task('inline-resources', function () {
+  return Promise.resolve()
+    .then(() => inlineResources(tmpFolder));
 });
 
-// Compile Sass to css and Inline templates and styles in ng2 components
-const styleProcessor = (stylePath, ext, styleFile, callback) => {
-  /**
-   * Remove comments, autoprefixer, Minifier
-   */
-  const processors = [
-      stripInlineComments,
-      autoprefixer,
-      cssnano
-  ];
 
-  if (/\.(scss|sass)$/.test(ext[0])) {
-    let sassObj = sass.renderSync({ file: stylePath });
-    if (sassObj && sassObj['css']){
-     let css = sassObj.css.toString('utf8');
-     postcss(processors).process(css).then(function (result) {
-        result.warnings().forEach(function (warn) {
-          gutil.warn(warn.toString());
-        });
-        styleFile = result.css;
-        callback(null, styleFile);
+/**
+ * 4. Run the Angular compiler, ngc, on the /.tmp folder. This will output all
+ *    compiled modules to the /build folder.
+ */
+gulp.task('ngc', function () {
+  return ngc({
+    project: `${tmpFolder}/tsconfig.es5.json`
+  })
+    .then((exitCode) => {
+      if (exitCode === 1) {
+        // This error is caught in the 'compile' task by the runSequence method callback
+        // so that when ngc fails to compile, the whole compile process stops running
+        throw new Error('ngc compilation failed');
+      }
     });
-    }
-  }
-};
-
-gulp.task('inline-templates', (cb) => {
-    const options = {
-        base: '/src',
-        target: 'es5',
-        styleProcessor: styleProcessor,
-        useRelativePaths: true
-    };
-    pump(
-        [
-            gulp.src(config.allTs),
-            embedTemplates(options),
-            gulp.dest(`${config.outputDir}/inlined`)
-        ],
-        cb);
 });
 
-// Compile inlined TS files with Angular Compiler (ngc)
-gulp.task('ngc', (cb) => {
-    const executable = path.join(__dirname, platformPath('/node_modules/.bin/ngc'));
-    const ngc = exec(`${executable} -p ./tsconfig-aot.json`, (err) => {
-        if (err) return cb(err); // return error
-        del(`${config.outputDir}/inlined`); //delete temporary *.ts files with inlined templates and styles
-        cb();
-    }).stdout.on('data', (data) => console.log(data));
+/**
+ * 5. Run rollup inside the /build folder to generate our Flat ES module and place the
+ *    generated file into the /dist folder
+ */
+gulp.task('rollup:fesm', function () {
+  return gulp.src(`${buildFolder}/**/*.js`)
+  // transform the files here.
+    .pipe(rollup({
+
+      // Bundle's entry point
+      // See https://github.com/rollup/rollup/wiki/JavaScript-API#entry
+      entry: `${buildFolder}/index.js`,
+
+      // Allow mixing of hypothetical and actual files. "Actual" files can be files
+      // accessed by Rollup or produced by plugins further down the chain.
+      // This prevents errors like: 'path/file' does not exist in the hypothetical file system
+      // when subdirectories are used in the `src` directory.
+      allowRealFiles: true,
+
+      // A list of IDs of modules that should remain external to the bundle
+      // See https://github.com/rollup/rollup/wiki/JavaScript-API#external
+      external: [
+        '@angular/core',
+        '@angular/common',
+        '@angular/http',
+        'rxjs/Observable',
+        'rxjs/Subject',
+        'rxjs/add/observable/timer',
+        'rxjs/add/operator/do',
+        'rxjs/add/operator/takeWhile',
+        'rxjs/add/operator/switchMap'
+      ],
+
+      // Format of generated bundle
+      // See https://github.com/rollup/rollup/wiki/JavaScript-API#format
+      format: 'es'
+    }))
+    .pipe(gulp.dest(distFolder));
 });
 
-// Test tasks
-gulp.task('test', (cb) => {
-    const ENV = process.env.NODE_ENV = process.env.ENV = 'test';
-    startKarmaServer(false, true, cb);
+/**
+ * 6. Run rollup inside the /build folder to generate our UMD module and place the
+ *    generated file into the /dist folder
+ */
+gulp.task('rollup:umd', function () {
+  return gulp.src(`${buildFolder}/**/*.js`)
+  // transform the files here.
+    .pipe(rollup({
+
+      // Bundle's entry point
+      // See https://github.com/rollup/rollup/wiki/JavaScript-API#entry
+      entry: `${buildFolder}/index.js`,
+
+      // Allow mixing of hypothetical and actual files. "Actual" files can be files
+      // accessed by Rollup or produced by plugins further down the chain.
+      // This prevents errors like: 'path/file' does not exist in the hypothetical file system
+      // when subdirectories are used in the `src` directory.
+      allowRealFiles: true,
+
+      // A list of IDs of modules that should remain external to the bundle
+      // See https://github.com/rollup/rollup/wiki/JavaScript-API#external
+      external: [
+        '@angular/core',
+        '@angular/common',
+        '@angular/http',
+        'rxjs/Observable',
+        'rxjs/Subject',
+        'rxjs/add/observable/timer',
+        'rxjs/add/operator/do',
+        'rxjs/add/operator/takeWhile',
+        'rxjs/add/operator/switchMap'
+      ],
+
+      // Format of generated bundle
+      // See https://github.com/rollup/rollup/wiki/JavaScript-API#format
+      format: 'umd',
+
+      // Export mode to use
+      // See https://github.com/rollup/rollup/wiki/JavaScript-API#exports
+      exports: 'named',
+
+      // The name to use for the module for UMD/IIFE bundles
+      // (required for bundles with exports)
+      // See https://github.com/rollup/rollup/wiki/JavaScript-API#modulename
+      moduleName: 'ngx-progressbar',
+
+      // See https://github.com/rollup/rollup/wiki/JavaScript-API#globals
+      globals: {
+        typescript: 'ts'
+      }
+
+    }))
+    .pipe(rename('ngx-progressbar.umd.js'))
+    .pipe(gulp.dest(distFolder));
 });
 
-gulp.task('test:ci', ['clean'], (cb) => {
-    runSequence('compile', 'test');
+/**
+ * 7. Copy all the files from /build to /dist, except .js files. We ignore all .js from /build
+ *    because with don't need individual modules anymore, just the Flat ES module generated
+ *    on step 5.
+ */
+gulp.task('copy:build', function () {
+  return gulp.src([`${buildFolder}/**/*`, `!${buildFolder}/**/*.js`])
+    .pipe(gulp.dest(distFolder));
 });
 
-gulp.task('test:watch', (cb) => {
-    const ENV = process.env.NODE_ENV = process.env.ENV = 'test';
-    startKarmaServer(true, true, cb);
+/**
+ * 8. Copy package.json from /src to /dist
+ */
+gulp.task('copy:manifest', function () {
+  return gulp.src([`${srcFolder}/package.json`])
+    .pipe(gulp.dest(distFolder));
 });
 
-gulp.task('test:watch-no-cc', (cb) => {//no coverage (useful for debugging failing tests in browser)
-    const ENV = process.env.NODE_ENV = process.env.ENV = 'test';
-    startKarmaServer(true, false, cb);
+/**
+ * 9. Copy README.md from / to /dist
+ */
+gulp.task('copy:readme', function () {
+  return gulp.src([path.join(rootFolder, 'README.MD')])
+    .pipe(gulp.dest(distFolder));
 });
 
-// Prepare 'dist' folder for publication to NPM
-gulp.task('package', (cb) => {
-    let pkgJson = JSON.parse(fs.readFileSync('./package.json', 'utf8'));
-    let targetPkgJson = {};
-    let fieldsToCopy = ['version', 'description', 'keywords', 'author', 'repository', 'license', 'bugs', 'homepage'];
+/**
+ * 10. Delete /.tmp folder
+ */
+gulp.task('clean:tmp', function () {
+  return deleteFolders([tmpFolder]);
+});
 
-    targetPkgJson['name'] = LIBRARY_NAME;
+/**
+ * 11. Delete /build folder
+ */
+gulp.task('clean:build', function () {
+  return deleteFolders([buildFolder]);
+});
 
-    //only copy needed properties from project's package json
-    fieldsToCopy.forEach((field) => { targetPkgJson[field] = pkgJson[field]; });
-
-    targetPkgJson['main'] = `bundles/ngx-progressbar.umd.js`;
-    targetPkgJson['module'] = 'index.js';
-    targetPkgJson['typings'] = 'index.d.ts';
-
-    // defines project's dependencies as 'peerDependencies' for final users
-    targetPkgJson.peerDependencies = {};
-    Object.keys(pkgJson.dependencies).forEach((dependency) => {
-        if (dependency.startsWith('@angular/')) {
-            // narrow version of @angular packages to address bug with JSONP inroduced in [2.4.6, 2.4.8[ && [4.0.0-beta.6, 4.0.0-beta.8[
-            // see https://github.com/angular/angular/pull/13219 and changelog
-            targetPkgJson.peerDependencies[dependency] = `>=2.0.0 <2.4.6 || >=2.4.8 <4.0.0-beta.6 || >=4.0.0-beta.8`;
-        }
-        else {
-            targetPkgJson.peerDependencies[dependency] = `^${pkgJson.dependencies[dependency]}`;
-
-        }
-
+gulp.task('compile', function () {
+  runSequence(
+    'clean:dist',
+    'copy:source',
+    'inline-resources',
+    'ngc',
+    'rollup:fesm',
+    'rollup:umd',
+    'copy:build',
+    'copy:manifest',
+    'copy:readme',
+    'clean:build',
+    'clean:tmp',
+    function (err) {
+      if (err) {
+        console.log('ERROR:', err.message);
+        deleteFolders([distFolder, tmpFolder, buildFolder]);
+      } else {
+        console.log('Compilation finished succesfully');
+      }
     });
-
-    // copy the needed additional files in the 'dist' folder
-    pump(
-        [
-            gulp.src(['README.md', 'LICENSE', 'CHANGELOG.md']),
-            file('package.json', JSON.stringify(targetPkgJson, null, 2)),
-            gulp.dest(config.outputDir)
-        ],
-        cb);
 });
 
-// Bundles the library as UMD bundle using RollupJS
-gulp.task('bundle', () => {
-    const globals = {
-        // Angular dependencies
-        '@angular/core': 'ng.core',
-        '@angular/common': 'ng.common',
-        '@angular/http': 'ng.http',
-
-        // Rxjs dependencies
-        'rxjs/Subject': 'Rx',
-        'rxjs/add/observable/timer': 'Rx.Observable',
-        'rxjs/add/operator/do': 'Rx.Observable.prototype',
-        'rxjs/add/operator/takeWhile': 'Rx.Observable.prototype',
-        'rxjs/add/operator/switchMap': 'Rx.Observable.prototype',
-        'rxjs/Observable': 'Rx'
-    };
-
-    const rollupOptions = {
-        context: 'this',
-        external: Object.keys(globals),
-        plugins: [
-            rollupNodeResolve({ module: true }),
-            rollupUglify()
-        ]
-    };
-
-    const rollupGenerateOptions = {
-        // Keep the moduleId empty because we don't want to force developers to a specific moduleId.
-        moduleId: '',
-        moduleName: 'ngxProgressbar', //require for 'umd' bundling, must be a valid js identifier, see rollup/rollup/issues/584
-        format: 'umd',
-        globals,
-        dest: 'ngx-progressbar.umd.js'
-    };
-
-    return gulp.src(`${config.outputDir}/index.js`)
-        .pipe(gulpRollup(rollupOptions, rollupGenerateOptions))
-        .pipe(gulp.dest(`${config.outputDir}/bundles`));
+/**
+ * Watch for any change in the /src folder and compile files
+ */
+gulp.task('watch', function () {
+  gulp.watch(`${srcFolder}/**/*`, ['compile']);
 });
 
-// Serve the demo application
-gulp.task('demo', (done) => {
-    const executable = path.join(__dirname, platformPath('demo/node_modules/.bin/ng'));
-    const ngServe = spawn(`${executable}`, ['serve'], { cwd: `${config.demoDir}` }); // run 'ng serve' from there
-    ngServe.stdout.pipe(process.stdout);
-    ngServe.stderr.pipe(process.stderr);
+gulp.task('clean', ['clean:dist', 'clean:tmp', 'clean:build']);
 
-});
+gulp.task('build', ['clean', 'compile']);
+gulp.task('build:watch', ['build', 'watch']);
+gulp.task('default', ['build:watch']);
 
-// Link 'dist' folder (create a local 'ngx-progressbar' package that symlinks to it)
-// This way, we can have the demo project declare a dependency on 'ngx-progressbar' (as it should)
-// and, thanks to 'npm link ngx-progressbar' on demo project, be sure to always use the latest built
-// version of the library ( which is in 'dist/' folder)
-gulp.task('link', (done) => {
-    exec('npm link', { cwd: `${config.outputDir}` }, execCallback(done)); // run 'npm link' from 'dist' folder
-});
-
-// Upload code coverage report to coveralls.io (will be triggered by Travis CI on successful build)
-gulp.task('coveralls', () => {
-    return gulp.src(`${config.coverageDir}/coverage.lcov`)
-        .pipe(coveralls());
-});
-
-// Lint, Sass to css, Inline templates & Styles and Compile
-gulp.task('compile', (cb) => {
-    runSequence('lint', 'inline-templates', 'ngc', cb);
-});
-
-// Watch changes on (*.ts, *.sass, *.html) and Compile
-gulp.task('watch', () => {
-    gulp.watch([config.allTs, config.allHtml, config.allSass], ['compile']);
-});
-
-// Build the 'dist' folder (without publishing it to NPM)
-gulp.task('build', ['clean'], (cb) => {
-    runSequence('compile', 'package', 'bundle', cb);
-});
-
-// Build and then Publish 'dist' folder to NPM
-gulp.task('publish', ['build'], (done) => {
-    // run npm publish terminal command to publish the 'dist' folder only
-    exec(`npm publish ${config.outputDir}`, execCallback(done));
-});
-
-gulp.task('default', ['build']);
+/**
+ * Deletes the specified folder
+ */
+function deleteFolders(folders) {
+  return del(folders);
+}

@@ -75,15 +75,15 @@ import {NgProgressService} from 'ngx-progressbar';
 })
 export class SomeComponent {
   
-  constructor(public pService: NgProgressService) {
+  constructor(public progressService: NgProgressService) {
   }
   
   ngOnInit(){
       /** request started */
-      this.pService.start();
+      this.progressService.start();
       this.http.get(url).subscribe(res){
           /** request completed */
-          this.pService.done();
+          this.progressService.done();
       }
   }
 }
@@ -163,12 +163,12 @@ export class SomeComponent {
  
  ```ts
 
-import { NgProgressCustomBrowserXhr } from 'ngx-progressbar';
+import { NgProgressBrowserXhr } from 'ngx-progressbar';
 
 @NgModule({
   providers: [
     // ...
-    { provide: BrowserXhr, useClass: NgProgressCustomBrowserXhr } ,
+    { provide: BrowserXhr, useClass: NgProgressBrowserXhr } ,
   ],
   imports: [
     // ...
@@ -202,6 +202,3 @@ If you identify any errors in the library, or have an idea for an improvement, p
 ## Credits 
 
  Inspired by [NProgress.js by Rico Sta. Cruz.](https://github.com/rstacruz/nprogress)
-
-
-
