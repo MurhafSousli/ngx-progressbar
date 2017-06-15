@@ -1,79 +1,80 @@
 {
-  "name": "ngx-progressbar",
-  "description": "A slim customizable progressbar for angular",
-  "version": "2.0.2",
-  "scripts": {
-    "build": "gulp build",
-    "build:watch": "gulp",
-    "docs": "npm run docs:build",
-    "docs:build": "compodoc -p tsconfig.json -n ngx-progressbar -d docs --hideGenerator",
-    "docs:serve": "npm run docs:build -- -s",
-    "docs:watch": "npm run docs:build -- -s -w",
-    "lint": "tslint --type-check --project tsconfig.json src/**/*.ts",
-    "test": "tsc && karma start"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/murhafsousli/ngx-progressbar"
-  },
-  "author": {
-    "name": "Murhaf Sousli",
-    "email": "murhafsousli@gmail.com"
-  },
-  "keywords": [
-    "angular",
-    "progress",
-    "progressbar",
-    "loading",
-    "xhr",
-    "loader",
-    "slim",
-    "youtube",
-    "medium",
-    "github"
-  ],
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/murhafsousli/ngx-progressbar/issues"
-  },
-  "devDependencies": {
-    "@angular/common": "^4.0.0",
-    "@angular/http": "^4.0.0",
-    "@angular/compiler": "^4.0.0",
-    "@angular/compiler-cli": "^4.0.0",
-    "@angular/core": "^4.0.0",
-    "@angular/platform-browser": "^4.0.0",
-    "@angular/platform-browser-dynamic": "^4.0.0",
-    "@compodoc/compodoc": "^1.0.0-beta.7",
-    "@types/jasmine": "2.5.38",
-    "@types/node": "~6.0.60",
-    "codelyzer": "~2.0.0",
-    "core-js": "^2.4.1",
-    "del": "^2.2.2",
-    "gulp": "^3.9.1",
-    "gulp-rename": "^1.2.2",
-    "gulp-rollup": "^2.11.0",
-    "jasmine-core": "~2.5.2",
-    "jasmine-spec-reporter": "~3.2.0",
-    "karma": "~1.4.1",
-    "karma-chrome-launcher": "~2.0.0",
-    "karma-cli": "~1.0.1",
-    "karma-coverage-istanbul-reporter": "^0.2.0",
-    "karma-jasmine": "~1.1.0",
-    "karma-jasmine-html-reporter": "^0.2.2",
-    "node-sass": "^4.5.2",
-    "node-sass-tilde-importer": "^1.0.0",
-    "node-watch": "^0.5.2",
-    "protractor": "~5.1.0",
-    "rollup": "^0.41.6",
-    "run-sequence": "^1.2.2",
-    "rxjs": "^5.1.0",
-    "ts-node": "~2.0.0",
-    "tslint": "~4.5.0",
-    "typescript": "~2.2.0",
-    "zone.js": "^0.8.4"
-  },
-  "engines": {
-    "node": ">=6.0.0"
-  }
+    "name": "ngx-progressbar",
+    "version": "2.0.3",
+    "description": "A slim customizable progressbar for angular",
+    "main": "./bundles/ngx-progressbar.umd.js",
+    "module": "./modules/ngx-progressbar.es5.js",
+    "es2015": "./modules/ngx-progressbar.js",
+    "scripts": {
+        "build": "node build.js",
+        "test": "karma start",
+        "pack-lib": "npm pack ./dist",
+        "publish-lib": "npm publish ./dist",
+        "compodoc": "compodoc -p tsconfig.json",
+        "compodoc-serve": "compodoc -s"
+    },
+    "typings": "./index.d.ts",
+    "author": "Murhaf Sousli <murhafsousi@gmail.com>",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/murhafsousli/ngx-progressbar.git"
+    },
+    "bugs": {
+        "url": "https://github.com/murhafsousli/ngx-progressbar/issues"
+    },
+    "homepage": "https://murhafsousli.github.io/ngx-progressbar", 
+    "keywords": [
+        "angular",
+        "progress",
+        "progressbar",
+        "loading",
+        "xhr",
+        "loader",
+        "slim",
+        "youtube",
+        "medium",
+        "github"
+    ],
+    "license": "MIT",
+    "peerDependencies": {
+        "@angular/common": ">= 4.1.0",
+        "@angular/core": ">= 4.1.0",
+        "@angular/http": ">= 4.1.0"
+    },
+    "devDependencies": {
+        "@angular/animations": "4.1.0",
+        "@angular/http": "4.1.0",
+        "@angular/common": "4.1.0",
+        "@angular/compiler": "4.1.0",
+        "@angular/compiler-cli": "4.1.0",
+        "@angular/core": "4.1.0",
+        "@angular/platform-browser": "4.1.0",
+        "@angular/platform-browser-dynamic": "4.1.0",
+        "@angular/platform-server": "4.1.0",
+        "@compodoc/compodoc": "1.0.0-beta.9",
+        "@types/jasmine": "2.5.48",
+        "@types/node": "7.0.22",
+        "chalk": "1.1.3",
+        "codelyzer": "3.0.1",
+        "core-js": "2.4.1",
+        "jasmine-core": "2.6.3",
+        "karma": "1.7.0",
+        "karma-chrome-launcher": "2.1.1",
+        "karma-jasmine": "1.1.0",
+        "karma-sourcemap-loader": "0.3.7",
+        "karma-spec-reporter": "0.0.31",
+        "karma-webpack": "2.0.3",
+        "reflect-metadata": "0.1.10",
+        "rollup": "0.41.6",
+        "rollup-plugin-node-resolve": "3.0.0",
+        "rxjs": "5.4.0",
+        "shelljs": "0.7.7",
+        "sorcery": "0.10.0",
+        "ts-loader": "2.1.0",
+        "tslint": "5.4.0",
+        "typescript": "2.3.4",
+        "webpack": "2.6.1",
+        "yargs": "8.0.1",
+        "zone.js": "0.8.11"
+    }
 }

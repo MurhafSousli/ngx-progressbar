@@ -6,7 +6,7 @@ import {NgProgressService} from './progress.service';
 @Injectable()
 export class NgProgressBrowserXhr extends BrowserXhr {
 
-  private currentRequest = 0;
+  private currentRequest: number = 0;
 
   constructor(private service: NgProgressService) {
     super();

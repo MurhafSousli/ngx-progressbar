@@ -1,12 +1,27 @@
 import {
   Component, Input, ChangeDetectionStrategy, OnChanges, SimpleChanges, OnDestroy
 } from '@angular/core';
-import { NgProgressService } from '../../services/progress.service';
+import { NgProgressService } from '../services/progress.service';
 
 @Component({
   selector: 'ng-progress',
-  templateUrl: 'progress.component.html',
-  styleUrls: ['progress.component.scss'],
+  template: `
+  <ng-progress-bar
+    [speed]="speed"
+    [positionUsing]="positionUsing"
+    [ease]="ease"
+    [showSpinner]="showSpinner"
+    [direction]="direction"
+    [color]="color"
+    [thick]="thick"
+    [state]="progress.state | async"
+  ></ng-progress-bar>`,
+  styles: [`
+  :host {
+    z-index: 999999;
+    pointer-events: none;
+    position: relative;
+  }`],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
@@ -31,11 +46,11 @@ export class ProgressComponent implements OnChanges, OnDestroy {
 
   ngOnChanges(changes: SimpleChanges) {
 
-    const minChng = changes['minimum'];
-    const maxChng = changes['maximum'];
-    const spdChng = changes['speed'];
-    const tklSpdChng = changes['trickleSpeed'];
-    const tglChng = changes['toggle'];
+    const minChng = changes.minimum;
+    const maxChng = changes.maximum;
+    const spdChng = changes.speed;
+    const tklSpdChng = changes.trickleSpeed;
+    const tglChng = changes.toggle;
 
     if (minChng) {
       if (typeof minChng.currentValue !== 'undefined' && minChng.currentValue !== minChng.previousValue) {

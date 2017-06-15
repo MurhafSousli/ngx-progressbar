@@ -1,10 +1,14 @@
 # Changelog
 
-## 2.0.2
+## 2.0.3
 
  - Refactor(ProgressComponent) Increase `z-index`, closes #37
  - General refactor for all files, improve linting
- - Use [generator-angular2-library](https://github.com/jvandemo/generator-angular2-library) for the workflow.
+ - Use inline styles and templates
+
+## ~~2.0.2~~
+
+ - Broken release
 
 ## 2.0.0
 
