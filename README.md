@@ -162,7 +162,7 @@ export class SomeComponent {
  If you only need a progressbar for multiple (XHR) requests, there is a simple _plug and play_ provider. It does the trick.
  
  ```ts
-
+import { BrowserXhr } from '@angular/http';
 import { NgProgressBrowserXhr } from 'ngx-progressbar';
 
 @NgModule({
