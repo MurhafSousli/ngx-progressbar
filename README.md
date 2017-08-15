@@ -17,6 +17,7 @@ ___
  - [Installation](#installation)
  - [Usage](#usage) 
  - [Automagic Usage](#automagic)
+ - [Use Automagic with HttpClient](#httpclient)
  - [Issues](#issues)    
  - [Author](#author)
  - [Credits](#credits)
@@ -181,6 +182,51 @@ import { NgProgressBrowserXhr } from 'ngx-progressbar';
 ```
 
  The progress will start and complete automatically with your HTTP requests. no need to use `NgProgressService` to call start()/done() manually.
+
+<a name="httpclient"/>
+
+## Use Automagic with HttpClient
+
+First create an interceptor:
+
+```javascript
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest } from '@angular/common/http';
+import { NgProgressService } from 'ngx-progressbar';
+
+@Injectable()
+export class LoadingbarInterceptor implements HttpInterceptor {
+
+    constructor(public progressService: NgProgressService) { }
+
+    intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+        this.progressService.start();
+        return next.handle(req).finally(() => {
+            this.progressService.done();
+        });
+    }
+}
+```
+
+Then [provide your interceptor](https://angular.io/guide/http#providing-your-interceptor) in your app module:
+
+```javascript
+import { NgModule } from '@angular/core';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+
+@NgModule({
+  providers: [
+    ...,
+    {
+        provide: HTTP_INTERCEPTORS,
+        useClass: LoadingbarInterceptor,
+        multi: true,
+    }
+  ],
+})
+export class AppModule {}
+```
 
 <a name="issues"/>
 
