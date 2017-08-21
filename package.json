@@ -22,7 +22,7 @@
     "bugs": {
         "url": "https://github.com/murhafsousli/ngx-progressbar/issues"
     },
-    "homepage": "https://murhafsousli.github.io/ngx-progressbar", 
+    "homepage": "https://murhafsousli.github.io/ngx-progressbar",
     "keywords": [
         "angular",
         "progress",
@@ -42,15 +42,15 @@
         "@angular/http": ">= 4.1.0"
     },
     "devDependencies": {
-        "@angular/animations": "4.1.0",
-        "@angular/http": "4.1.0",
-        "@angular/common": "4.1.0",
-        "@angular/compiler": "4.1.0",
-        "@angular/compiler-cli": "4.1.0",
-        "@angular/core": "4.1.0",
-        "@angular/platform-browser": "4.1.0",
-        "@angular/platform-browser-dynamic": "4.1.0",
-        "@angular/platform-server": "4.1.0",
+        "@angular/animations": "^4.3.5",
+        "@angular/common": "^4.3.5",
+        "@angular/compiler": "^4.3.5",
+        "@angular/compiler-cli": "^4.3.5",
+        "@angular/core": "^4.3.5",
+        "@angular/http": "^4.3.5",
+        "@angular/platform-browser": "^4.3.5",
+        "@angular/platform-browser-dynamic": "^4.3.5",
+        "@angular/platform-server": "^4.3.5",
         "@compodoc/compodoc": "1.0.0-beta.9",
         "@types/jasmine": "2.5.48",
         "@types/node": "7.0.22",
