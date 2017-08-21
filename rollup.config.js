@@ -11,6 +11,7 @@ const globals = {
     'rxjs/add/operator/do': 'Rx.Observable.prototype',
     'rxjs/add/operator/takeWhile': 'Rx.Observable.prototype',
     'rxjs/add/operator/switchMap': 'Rx.Observable.prototype',
+    'rxjs/add/operator/finally': 'Rx.Observable.prototype'
 };
 
 export default {
