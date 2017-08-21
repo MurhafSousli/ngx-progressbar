@@ -24,12 +24,7 @@ export class NgProgressBrowserXhr extends BrowserXhr {
       if (!this.service.isStarted()) {
         this.service.start();
       }
-      // TODO: do some progress magic here
-      // if (event.lengthComputable) {
     };
-
-    // TODO: use event information to compute pending
-    // xhr.onprogress = (event) => {};
 
     return xhr;
   }
