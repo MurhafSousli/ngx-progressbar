@@ -159,23 +159,47 @@ export class SomeComponent {
 
 ## Automagic loading bar
  
- If you only need a progressbar for multiple (XHR) requests, there is a simple _plug and play_ provider. It does the trick.
+ If you only need a progressbar for multiple requests, there is a simple _plug and play_ provider. It does the trick.
+
+ #### For the old `Http` (Angular < 4.3)
  
  ```ts
-
-import { NgProgressBrowserXhr } from 'ngx-progressbar';
+import { BrowserXhr, HttpModule } from '@angular/http';
+import { NgProgressModule, NgProgressBrowserXhr } from 'ngx-progressbar';
 
 @NgModule({
   providers: [
     // ...
-    { provide: BrowserXhr, useClass: NgProgressBrowserXhr } ,
+    { provide: BrowserXhr, useClass: NgProgressBrowserXhr }
   ],
   imports: [
     // ...
+    HttpModule,
     NgProgressModule
   ]
 })
 ```
+
+ #### For the new `HttpClient` (Angular >= 4.3)
+
+ ```ts
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NgProgressModule, NgProgressInterceptor } from 'ngx-progressbar';
+
+@NgModule({
+  providers: [
+    // ...
+    { provide: HTTP_INTERCEPTORS, useClass: NgProgressInterceptor, multi: true }
+  ],
+  imports: [
+    // ...
+    HttpClientModule,
+    NgProgressModule
+  ]
+})
+```
+And just put the component in the template
+
 ```html
  <ng-progress></ng-progress>
 ```
