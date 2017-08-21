@@ -117,7 +117,7 @@ export class SomeComponent {
 
  - **[maximum]**: between `0.0` to `1.0`.
 
-  Progress initial starting value, default `0.08`
+  Progress maximum value, default `1.0`
 
  - **[ease]**: [Any easing function](http://easings.net/)
 

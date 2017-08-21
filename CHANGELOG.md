@@ -9,6 +9,7 @@
  - Refactor(ProgressComponent) Increase `z-index`, closes #37
  - General refactor for all files, improve linting
  - Use inline styles and templates
+ - `NgProgressCustomBrowserXhr` has renamed to `NgProgressBrowserXhr`
 
 ## ~~2.0.2~~
 
