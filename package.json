@@ -1,6 +1,6 @@
 {
     "name": "ngx-progressbar",
-    "version": "2.0.4",
+    "version": "2.0.5",
     "description": "A slim customizable progressbar for angular",
     "main": "./bundles/ngx-progressbar.umd.js",
     "module": "./modules/ngx-progressbar.es5.js",
@@ -38,8 +38,7 @@
     "license": "MIT",
     "peerDependencies": {
         "@angular/common": ">= 4.1.0",
-        "@angular/core": ">= 4.1.0",
-        "@angular/http": ">= 4.1.0"
+        "@angular/core": ">= 4.1.0"
     },
     "devDependencies": {
         "@angular/animations": "^4.3.5",
