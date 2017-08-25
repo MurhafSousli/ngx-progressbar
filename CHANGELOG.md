@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.0.5
+
+ - Remove Http peerDepenedcy, closes [#61](https://github.com/MurhafSousli/ngx-progressbar/issues/61)
+
 ## 2.0.4
 
  - feat(NgProgressInterceptor): Adds automagic feature to `HttpClient` (Angular >= 4.3)
@@ -21,16 +25,16 @@
 
 ## 1.3.0
 
- - (fix) Progressbar transition animation (which was introduced in v1.2.0), closes [#16](https://github.com/MurhafSousli/ng2-progressbar/issues/16)
+ - (fix) Progressbar transition animation (which was introduced in v1.2.0), closes [#16](https://github.com/MurhafSousli/ngx-progressbar/issues/16)
  - (refactor) ProgressBarComponent
  - (feat) Support systemjs
- - (feat) XHR provider for multiple http requests (BETA), closes [#15](https://github.com/MurhafSousli/ng2-progressbar/issues/15)
+ - (feat) XHR provider for multiple http requests (BETA), closes [#15](https://github.com/MurhafSousli/ngx-progressbar/issues/15)
 
 ## 1.2.0
 
- - (fix) Progressbar stuck after one time, closes [#10](https://github.com/MurhafSousli/ng2-progressbar/issues/10)
- - (fix) AOT failing, cloese [#8](https://github.com/MurhafSousli/ng2-progressbar/issues/8)
- - (feat) adds maximum input, closes [#9](https://github.com/MurhafSousli/ng2-progressbar/issues/9)
+ - (fix) Progressbar stuck after one time, closes [#10](https://github.com/MurhafSousli/ngx-progressbar/issues/10)
+ - (fix) AOT failing, cloese [#8](https://github.com/MurhafSousli/ngx-progressbar/issues/8)
+ - (feat) adds maximum input, closes [#9](https://github.com/MurhafSousli/ngx-progressbar/issues/9)
 
 ## 1.1.6
 
