@@ -161,7 +161,7 @@ export class SomeComponent {
  
  If you only need a progressbar for multiple requests, there is a simple _plug and play_ provider. It does the trick.
 
- #### For the old `Http` (Angular < 4.3)
+ #### For `Http`
  
  ```ts
 import { BrowserXhr, HttpModule } from '@angular/http';
@@ -180,7 +180,7 @@ import { NgProgressModule, NgProgressBrowserXhr } from 'ngx-progressbar';
 })
 ```
 
- #### For the new `HttpClient` (Angular >= 4.3)
+ #### For `HttpClient` (Angular >= 4.3)
 
  ```ts
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
