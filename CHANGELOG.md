@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.0.6
+
+ - Remove **NgProgressBrowserXhr** from **NgProgressModule** providers
+
 ## 2.0.5
 
  - Remove Http peerDepenedcy, closes [#61](https://github.com/MurhafSousli/ngx-progressbar/issues/61)

@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { ProgressBarComponent } from '../components/progress-bar.component';
 import { ProgressComponent } from '../components/progress.component';
 import { NgProgressService } from '../services/progress.service';
-import { NgProgressBrowserXhr } from '../services/browser-xhr.provider';
 
 @NgModule({
   declarations: [
@@ -17,8 +16,7 @@ import { NgProgressBrowserXhr } from '../services/browser-xhr.provider';
     CommonModule
   ],
   providers: [
-    NgProgressService,
-    NgProgressBrowserXhr
+    NgProgressService
   ]
 })
 export class NgProgressModule { }
