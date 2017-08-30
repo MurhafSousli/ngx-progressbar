@@ -1,6 +1,6 @@
 {
     "name": "ngx-progressbar",
-    "version": "2.0.5",
+    "version": "2.0.6",
     "description": "A slim customizable progressbar for angular",
     "main": "./bundles/ngx-progressbar.umd.js",
     "module": "./modules/ngx-progressbar.es5.js",
