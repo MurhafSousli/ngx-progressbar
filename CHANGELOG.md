@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.0.7
+
+ - fix: after `progress.done() ` call `progress.start()` immediately will not work, closes #65, #66 in #67. Thanks to @xinshangshangxin
+
 ## 2.0.6
 
  - Remove **NgProgressBrowserXhr** from **NgProgressModule** providers
