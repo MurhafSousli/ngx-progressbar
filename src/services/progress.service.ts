@@ -106,7 +106,6 @@ export class NgProgressService {
          * complete progressbar
          * { 1, false } to complete progress-bar before hiding
          */
-        this.updateState(this.progress, false);
         if (this.progress >= this.maximum) {
           this.updateState(this.progress, false);
           setTimeout(hide, this.speed);
