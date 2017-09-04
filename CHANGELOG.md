@@ -1,8 +1,12 @@
 # Changelog
 
+## 2.0.8
+
+ - fix: remove unused code in [#68](https://github.com/MurhafSousli/ngx-progressbar/issues/68)
+
 ## 2.0.7
 
- - fix: after `progress.done() ` call `progress.start()` immediately will not work, closes #65, #66 in #67. Thanks to @xinshangshangxin
+ - fix: after `progress.done() ` call `progress.start()` immediately will not work, closes [#65](https://github.com/MurhafSousli/ngx-progressbar/issues/65), [#66](https://github.com/MurhafSousli/ngx-progressbar/issues/66) in [#67](https://github.com/MurhafSousli/ngx-progressbar/issues/67). Thanks to @xinshangshangxin
 
 ## 2.0.6
 
