@@ -59,7 +59,7 @@ import { NgProgressModule } from 'ngx-progressbar';
 })
 ```
 
-In your template
+In your root component **(or any component that does not get destroyed)!**
 
 ```html
 <ng-progress></ng-progress>
