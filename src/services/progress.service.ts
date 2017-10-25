@@ -1,6 +1,6 @@
-import {Injectable} from '@angular/core';
-import {Subject} from 'rxjs/Subject';
-import {Observable} from 'rxjs/Observable';
+import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs/Subject';
+import { Observable } from 'rxjs/Observable';
 
 import 'rxjs/add/observable/timer';
 import 'rxjs/add/operator/switchMap';
@@ -19,7 +19,7 @@ const clamp = (n, min, max) => {
 };
 
 @Injectable()
-export class NgProgressService {
+export class NgProgress {
 
   /** Progress state */
   state = new Subject();
@@ -53,14 +53,14 @@ export class NgProgressService {
 
   /** Done */
   done() {
-    /** if started complete the progress */
+    /** if started, complete the progress */
     if (this.isStarted()) {
       this.set(.3 + .5 * Math.random());
       this.set(this.maximum);
     }
   }
 
-  /** Increment Progress */
+  /** Increment the progress */
   inc(amount?) {
     let n = this.progress;
     /** if it hasn't start, start */
@@ -85,7 +85,7 @@ export class NgProgressService {
     }
   }
 
-  /** Set progress state */
+  /** Set the progress */
   set(n) {
     this.progress = clamp(n, this.minimum, this.maximum);
     this.updateState(this.progress, true);
@@ -93,7 +93,7 @@ export class NgProgressService {
     if (n === this.maximum) {
       const hide = () => {
         /**
-         *  reset progress
+         *  reset the progress
          *  Keep it { 0, false } to fadeOut progress-bar after complete
          */
         if (this.progress >= this.maximum) {
@@ -103,7 +103,7 @@ export class NgProgressService {
       };
       const complete = () => {
         /**
-         * complete progressbar
+         * complete the progress
          * { 1, false } to complete progress-bar before hiding
          */
         if (this.progress >= this.maximum) {
@@ -123,7 +123,7 @@ export class NgProgressService {
     return this.progress > 0 && this.progress < this.maximum;
   }
 
-  /** Update Progressbar State */
+  /** Update the progress */
   private updateState(progress, isActive) {
     this.state.next({
       active: isActive,

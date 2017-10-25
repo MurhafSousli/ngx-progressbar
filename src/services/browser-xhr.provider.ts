@@ -1,14 +1,14 @@
-import {Injectable} from '@angular/core';
-import {BrowserXhr} from '@angular/http';
+import { Injectable } from '@angular/core';
+import { BrowserXhr } from '@angular/http';
 
-import {NgProgressService} from './progress.service';
+import { NgProgress } from './progress.service';
 
 @Injectable()
 export class NgProgressBrowserXhr extends BrowserXhr {
 
   private currentRequest: number = 0;
 
-  constructor(private service: NgProgressService) {
+  constructor(private ngProgress: NgProgress) {
     super();
   }
 
@@ -21,8 +21,8 @@ export class NgProgressBrowserXhr extends BrowserXhr {
 
     xhr.onloadstart = (event) => {
       this.currentRequest++;
-      if (!this.service.isStarted()) {
-        this.service.start();
+      if (!this.ngProgress.isStarted()) {
+        this.ngProgress.start();
       }
     };
 
@@ -32,7 +32,7 @@ export class NgProgressBrowserXhr extends BrowserXhr {
   private done() {
     this.currentRequest--;
     if (this.currentRequest === 0) {
-      this.service.done();
+      this.ngProgress.done();
     }
   }
 }

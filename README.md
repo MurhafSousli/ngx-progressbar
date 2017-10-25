@@ -65,43 +65,43 @@ In your template
 <ng-progress></ng-progress>
 ```
 
-Add `NgProgressService` wherever you want to use the progressbar.
+Add `NgProgress` service wherever you want to use the progressbar.
 
 ```javascript
-import {NgProgressService} from 'ngx-progressbar';
+import { NgProgress } from 'ngx-progressbar';
 
 @Component({
  /**  */ 
 })
 export class SomeComponent {
   
-  constructor(public progressService: NgProgressService) {
+  constructor(public ngProgress: NgProgress) {
   }
   
   ngOnInit(){
       /** request started */
-      this.progressService.start();
+      this.ngProgress.start();
       this.http.get(url).subscribe(res){
           /** request completed */
-          this.progressService.done();
+          this.ngProgress.done();
       }
   }
 }
 ```
 
-## NgProgressService options (functions):
+## NgProgress Service:
 
 
- - `NgProgressService.start()` *Shows the progress bar*
+ - `NgProgress.start()` *Shows the progress bar*
 
- - `NgProgressService.set(n)`   *Sets a percentage n (where n is between 0-1)*
+ - `NgProgress.set(n)`   *Sets a percentage n (where n is between 0-1)*
 
- - `NgProgressService.inc(n)`   *Increments by n (where n is between 0-1)*
+ - `NgProgress.inc(n)`   *Increments by n (where n is between 0-1)*
 
- - `NgProgressService.done()`   *Completes the progress*
+ - `NgProgress.done()`   *Completes the progress*
  
 
-## NgProgressComponent options (inputs):
+## NgProgress Component:
 
 ```html
 <ng-progress [positionUsing]="'marginLeft'" [minimum]="0.15" [maximum]="1"
@@ -204,7 +204,7 @@ And just put the component in the template
  <ng-progress></ng-progress>
 ```
 
- The progress will start and complete automatically with your HTTP requests. no need to use `NgProgressService` to call start()/done() manually.
+ The progress will start and complete automatically with your HTTP requests. no need to use `NgProgress` service to call start()/done() manually.
 
 <a name="issues"/>
 
