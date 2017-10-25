@@ -1,5 +1,5 @@
 import {
-  Component, Input, ChangeDetectionStrategy, OnChanges, SimpleChanges, OnDestroy
+  Component, Input, ChangeDetectionStrategy, OnChanges, SimpleChanges
 } from '@angular/core';
 import { NgProgressService } from '../services/progress.service';
 
@@ -25,7 +25,7 @@ import { NgProgressService } from '../services/progress.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class ProgressComponent implements OnChanges, OnDestroy {
+export class ProgressComponent implements OnChanges {
 
   /** Progress options  */
   @Input() ease = 'linear';
@@ -93,11 +93,6 @@ export class ProgressComponent implements OnChanges, OnDestroy {
         }
       }
     }
-  }
-
-  ngOnDestroy() {
-    this.progress.state.unsubscribe();
-    this.progress.trickling.unsubscribe();
   }
 
 }
