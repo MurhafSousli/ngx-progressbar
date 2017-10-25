@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.0.9
+
+ - Allow `<ng-progress>` component to be destroyed, fixes [#27](https://github.com/MurhafSousli/ngx-progressbar/issues/27), [#28](https://github.com/MurhafSousli/ngx-progressbar/issues/28), [#33](https://github.com/MurhafSousli/ngx-progressbar/issues/33), [#41](https://github.com/MurhafSousli/ngx-progressbar/issues/41), [#81](https://github.com/MurhafSousli/ngx-progressbar/issues/81), [#82](https://github.com/MurhafSousli/ngx-progressbar/issues/82) in [#86](https://github.com/MurhafSousli/ngx-progressbar/issues/68)
+
 ## 2.0.8
 
  - fix: remove unused code in [#68](https://github.com/MurhafSousli/ngx-progressbar/issues/68)
