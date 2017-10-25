@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProgressBarComponent } from '../components/progress-bar.component';
 import { ProgressComponent } from '../components/progress.component';
-import { NgProgressService } from '../services/progress.service';
+import { NgProgress } from '../services/progress.service';
 
 @NgModule({
   declarations: [
@@ -16,7 +16,7 @@ import { NgProgressService } from '../services/progress.service';
     CommonModule
   ],
   providers: [
-    NgProgressService
+    NgProgress
   ]
 })
 export class NgProgressModule { }

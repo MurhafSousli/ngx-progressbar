@@ -1,7 +1,7 @@
 {
     "name": "ngx-progressbar",
-    "version": "2.0.8",
-    "description": "A slim customizable progressbar for angular",
+    "version": "2.1.0",
+    "description": "A nanoscopic progress bar. Featuring realistic trickle animations to convince your users that something is happening!",
     "main": "./bundles/ngx-progressbar.umd.js",
     "module": "./modules/ngx-progressbar.es5.js",
     "es2015": "./modules/ngx-progressbar.js",

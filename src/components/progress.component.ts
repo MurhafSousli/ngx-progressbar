@@ -1,7 +1,7 @@
 import {
   Component, Input, ChangeDetectionStrategy, OnChanges, SimpleChanges
 } from '@angular/core';
-import { NgProgressService } from '../services/progress.service';
+import { NgProgress } from '../services/progress.service';
 
 @Component({
   selector: 'ng-progress',
@@ -41,7 +41,7 @@ export class ProgressComponent implements OnChanges {
   /** Start/Stop Progressbar */
   @Input() toggle;
 
-  constructor(public progress: NgProgressService) {
+  constructor(public ngProgress: NgProgress) {
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -57,7 +57,7 @@ export class ProgressComponent implements OnChanges {
         if (minChng.currentValue < 0 || minChng.currentValue > 1) {
           throw 'Input [minimum] must be between 0 and 1';
         } else {
-          this.progress.minimum = minChng.currentValue;
+          this.ngProgress.minimum = minChng.currentValue;
         }
       }
     }
@@ -67,29 +67,29 @@ export class ProgressComponent implements OnChanges {
         if (maxChng.currentValue < 0 || maxChng.currentValue > 1) {
           throw 'Input [maximum] must be between 0 and 1';
         } else {
-          this.progress.maximum = maxChng.currentValue;
+          this.ngProgress.maximum = maxChng.currentValue;
         }
       }
     }
 
     if (spdChng) {
       if (typeof spdChng.currentValue !== 'undefined' && spdChng.currentValue !== spdChng.previousValue) {
-        this.progress.speed = spdChng.currentValue;
+        this.ngProgress.speed = spdChng.currentValue;
       }
     }
 
     if (tklSpdChng) {
       if (typeof tklSpdChng.currentValue !== 'undefined' && tklSpdChng.currentValue !== tklSpdChng.previousValue) {
-        this.progress.trickleSpeed = tklSpdChng.currentValue;
+        this.ngProgress.trickleSpeed = tklSpdChng.currentValue;
       }
     }
 
     if (tglChng) {
       if (typeof tglChng.currentValue !== 'undefined' && tglChng.currentValue !== tglChng.previousValue) {
         if (tglChng.currentValue) {
-          this.progress.start();
+          this.ngProgress.start();
         } else {
-          this.progress.done();
+          this.ngProgress.done();
         }
       }
     }

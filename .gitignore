@@ -2,6 +2,7 @@ $ cat .gitignore
 /node_modules
 /dist
 /documentation
+package-lock.json
 
 *.log
 *.tgz
