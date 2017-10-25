@@ -7,6 +7,7 @@ const globals = {
     '@angular/http': 'ng.http',
     'rxjs/Observable': 'Rx',
     'rxjs/Subject': 'Rx',
+    'rxjs/BehaviorSubject': 'Rx',
     'rxjs/add/observable/timer': 'Rx.Observable',
     'rxjs/add/operator/do': 'Rx.Observable.prototype',
     'rxjs/add/operator/takeWhile': 'Rx.Observable.prototype',
