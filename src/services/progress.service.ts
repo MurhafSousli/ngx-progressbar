@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
+import { NgProgressState } from '../models/progress.state';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
 
 import 'rxjs/add/observable/timer';
@@ -21,8 +23,14 @@ const clamp = (n, min, max) => {
 @Injectable()
 export class NgProgress {
 
+  /** Initial state */
+  initState: NgProgressState = {
+    active: false,
+    value: 0
+  };
+
   /** Progress state */
-  state = new Subject();
+  state = new BehaviorSubject(this.initState);
 
   /** Trickling stream */
   trickling = new Subject();

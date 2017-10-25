@@ -14,7 +14,7 @@ import { NgProgress } from '../services/progress.service';
     [direction]="direction"
     [color]="color"
     [thick]="thick"
-    [state]="progress.state | async"
+    [state]="ngProgress.state | async"
   ></ng-progress-bar>`,
   styles: [`
   :host {
@@ -94,5 +94,4 @@ export class ProgressComponent implements OnChanges {
       }
     }
   }
-
 }

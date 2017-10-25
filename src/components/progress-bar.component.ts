@@ -1,4 +1,5 @@
 import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
+import { NgProgressState } from '../models/progress.state';
 
 @Component({
   selector: 'ng-progress-bar',
@@ -126,14 +127,14 @@ import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 })
 export class ProgressBarComponent {
 
-  @Input() state;
-  @Input() positionUsing;
-  @Input() ease;
-  @Input() speed;
-  @Input() showSpinner;
-  @Input() direction;
-  @Input() thick;
-  @Input() color;
+  @Input() state: NgProgressState;
+  @Input() positionUsing: string;
+  @Input() ease: string;
+  @Input() speed: number;
+  @Input() showSpinner: boolean;
+  @Input() direction: string;
+  @Input() thick: string;
+  @Input() color: string;
 
   /** Styles for progressbar */
   barStyles() {
