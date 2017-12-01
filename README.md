@@ -166,7 +166,7 @@ If you only need a progress bar for multiple requests, there is a simple _plug a
 
 ### For HttpModule
 
-Install **HttpModule**
+Install **NgProgressHttpModule**
 
 ```bash
 $ npm install --save @ngx-progressbar/core @ngx-progressbar/http
@@ -191,7 +191,7 @@ See [Http stackblitz](https://stackblitz.com/edit/ngx-progressbar-http)
 
 ### For HttpClientModule
 
-Install **HttpClientModule**
+Install **NgProgressHttpClientModule**
 
 ```bash
 $ npm install --save @ngx-progressbar/core @ngx-progressbar/http-client
