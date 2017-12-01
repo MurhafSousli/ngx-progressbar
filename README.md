@@ -263,7 +263,7 @@ import { NgProgress } from 'ngx-progressbar';
 @Component({
   selector: 'app',
   template: `
-    <div *ngIf="progress.state | async; let state">
+    <div *ngIf="progress.state$ | async; let state">
       <mat-progress-bar *ngIf="state.active" mode="determinate" [value]="state.value"></mat-progress-bar>
     </div>
   `,
