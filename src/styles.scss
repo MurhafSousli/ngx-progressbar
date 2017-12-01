@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700');
+@import 'assets/variables';
+
+body,
+html {
+  height: 100%;
+  min-height: 100%;
+}
+
+body {
+  font-family: 'Source Sans Pro', sans-serif;
+  color: $fontColor;
+  margin: 0;
+  background: -moz-linear-gradient(-45deg, rgba(136, 212, 152, 0) 73%, rgba(136, 212, 152, 0.3) 81%, rgba(136, 212, 152, 1) 100%);
+  background: -webkit-linear-gradient(-45deg, rgba(136, 212, 152, 0) 73%, rgba(136, 212, 152, 0.3) 81%, rgba(136, 212, 152, 1) 100%);
+  background: linear-gradient(135deg, rgba(136, 212, 152, 0) 73%, rgba(136, 212, 152, 0.3) 81%, rgba(136, 212, 152, 1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0088d498', endColorstr='#88d498', GradientType=1);
+}
+
+app-root {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+
+.component-outer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+}
+
+.component {
+  margin-bottom: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: $cmpBg;
+  color: $inputName;
+  padding: 10px;
+  border-radius: 4px;
+  font-family: monospace;
+  .tag-name,
+  .input-name,
+  .input-wrapper,
+  .input,
+  input {
+    padding: 0;
+  }
+  .tag-name {
+    color: $cmpColor;
+    line-height: 30px;
+    font-weight: bold;
+  }
+  .input-name {
+    color: $inputName;
+    &:before {
+      content: "[";
+      color: $inputName;
+    }
+    &:after {
+      content: "]";
+      color: $inputName;
+    }
+  }
+  .input-wrapper {
+    margin: 3px;
+  }
+  .input {
+    color: $inputColor;
+    &:before {
+      content: '"';
+    }
+    &:after {
+      content: '"';
+    }
+    span {
+      color: $inputColor;
+      font-style: normal;
+    }
+    input,
+    select {
+      color: $inputColor;
+      border: 0;
+      font-family: monospace;
+      outline: 0;
+      background-color: $inputBg;
+    }
+  }
+}
+
+.container {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.github-corner:hover .octo-arm {
+  animation: octocat-wave 560ms ease-in-out
+}
+
+@keyframes octocat-wave {
+  0%,
+  100% {
+    transform: rotate(0)
+  }
+  20%,
+  60% {
+    transform: rotate(-25deg)
+  }
+  40%,
+  80% {
+    transform: rotate(10deg)
+  }
+}
+
+@media (max-width:500px) {
+  .github-corner:hover .octo-arm {
+    animation: none
+  }
+  .github-corner .octo-arm {
+    animation: octocat-wave 560ms ease-in-out
+  }
+}

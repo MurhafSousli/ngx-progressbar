@@ -1,0 +1,17 @@
+.idea
+.vscode
+.config\karma-shim.js
+.config\webpack.test.js
+demo
+node_modules
+coverage
+test
+.editorconfig
+.gitignore
+.npmignore
+.travis.yml
+gulpfile.js
+karma.conf.js
+npm-debug.log
+tsconfig.json
+tslint.json

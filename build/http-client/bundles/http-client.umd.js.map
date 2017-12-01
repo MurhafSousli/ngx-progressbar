@@ -1,0 +1,20 @@
+{
+  "version": 3,
+  "file": "http-client.umd.js",
+  "sources": [
+    "~/@ngx-progressbar/http-client/src/http-client.ts",
+    "~/@ngx-progressbar/http-client/src/ng-progress-http-client.module.ts",
+    "~/@ngx-progressbar/http-client/src/ng-progress.interceptor.ts"
+  ],
+  "sourcesContent": [
+    "/**\n * Generated bundle index. Do not edit.\n */\n\nexport * from './index';\n\nexport {NgProgressInterceptor as ɵa} from './ng-progress.interceptor';",
+    "import { NgModule } from '@angular/core';\nimport { HTTP_INTERCEPTORS } from '@angular/common/http';\nimport { NgProgressInterceptor } from './ng-progress.interceptor';\n\n@NgModule({\n  providers: [\n    { provide: HTTP_INTERCEPTORS, useClass: NgProgressInterceptor, multi: true }\n  ],\n})\nexport class NgProgressHttpClientModule {}\n",
+    "import { Injectable } from '@angular/core';\nimport { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest } from '@angular/common/http';\nimport { Observable } from 'rxjs/Observable';\nimport { finalize } from 'rxjs/operators';\nimport { NgProgress } from '@ngx-progressbar/core';\n\n@Injectable()\nexport class NgProgressInterceptor implements HttpInterceptor {\n\n  constructor(public progress: NgProgress) {\n  }\n\n  // Ignoring specific requests will be supported after this https://github.com/angular/angular/issues/18155\n  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {\n    this.progress.start();\n    return next.handle(req).pipe(finalize(() => this.progress.done()));\n  }\n}\n"
+  ],
+  "names": [
+    "finalize",
+    "__decorate",
+    "this"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;AEAA,IAOa,UAPb,GAAA,CAAAE,IAAA,IAAAA,IAAA,CAAA,UAAA,KAAA,UAOA,CAPA,EAAA,CAAA,EAAA;IASE,IAAF,OAAA,OAAA,KAAA,QAAA,IAAA,OAAA,OAAA,CAAA,QAAA,KAAA,UAAA;QAAqB,OAArB,OAAA,CAAA,QAAA,CAA6B,CAAY,EAAzC,CAAA,CAAA,CAAA;CACA,CAAA;;IAGE,SAAS,qBAAX,CAAA,QAAA,EAAA;QACI,IAAI,CAAC,QAAQ,GAAjB,QAAA,CAAA;KACA;;IAEA,qBAAA,CAAA,SAAA,CAAA,SAAA,GAAA,UAAA,GAAA,EAAA,IAAA,EAAA;QAVA,IAAA,KAAA,GAAA,IAAAD,CAAA;QADA,IAAA,CAAA,QAAA,CAAA,KAAA,EAAA,CAAA;QAGA,OAAA,IAAA,CAAA,MAAA,CAAA,GAAA,CAAA,CAAA,IAAA,CAA+BD,kBAA/B,CAAA,YAAA,EAAA,OAAA,KAAA,CAAA,QAAA,CAAA,IAAA,EAAA,CAAA,EAAA,CAAA,CAAA,CAAA;KAFA,CAAA;;;;;;;;IDEa,IATb,CAAA,GAAA,SAAA,CAAA,MAAA,EASuC,CATvC,GAAA,CAAA,GAAA,CASA,GATA,MAAA,GAAA,IAAA,KAAA,IAAA,GAAA,IAAA,GAAA,MAAA,CAAA,wBAAA,CAAA,MAAA,EAAA,GAAA,CAAA,GAAA,IAAA,EAAA,CAAA,CAAA;IASA,IAAA,OAAA,OAAA,KAAA,QAAA,IAAA,OAAA,OAAA,CAAA,QAAA,KAAA,UAAA;QAAA,CAAA,GAAA,OAAA,CAAA,QAAA,CAAA,UAAA,EAAA,MAAA,EAAA,GAAA,EAAA,IAAA,CAAA,CAAA;;QAJE,KAAF,IAAW,CAAX,GAAA,UAAA,CAAA,MAAA,GAAA,CAAA,EAAA,CAAA,IAAA,CAAA,EAAA,CAAA,EAAA;YACI,IAAJ,CAAA,GAAA,UAAA,CAAA,CAAA,CAAA;gBACA,CAAA,GAAA,CAAA,CAAA,GAAA,CAAA,GAAA,CAAA,CAAA,CAAA,CAAA,GAAA,CAAA,GAAA,CAAA,GAAA,CAAA,CAAA,MAAA,EAAA,GAAA,EAAA,CAAA,CAAA,GAAA,CAAA,CAAA,MAAA,EAAA,GAAA,CAAA,KAAA,CAAA,CAAA;IACA,OAAA,CAAA,GAAA,CAAA,IAAA,CAAA,IAAA,MAAA,CAAA,cAAA,CAAA,MAAA,EAAA,GAAA,EAAA,CAAA,CAAA,EAAA,CAAA,CAAA;CACA,CAAA;;IDTA,SAAA,0BAAA,GAAA;;IAEA,OAAA,0BAAA,CAAA;;;;;;;;;;;;;;;;"
+}
