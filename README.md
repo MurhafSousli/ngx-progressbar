@@ -62,7 +62,7 @@ In your template
 Add `NgProgress` service wherever you want to use the progressbar.
 
 ```ts
-import { NgProgress } from 'ngx-progressbar';
+import { NgProgress } from '@ngx-progressbar/core';
 
 export class AppComponent {
 
