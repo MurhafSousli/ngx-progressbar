@@ -1,0 +1,40 @@
+@import '../../assets/variables';
+
+:host {
+  flex: 0 0 300px;
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0;
+}
+
+.brand {
+  display: flex;
+}
+
+.social {
+  flex: 0 0 80px;
+}
+
+.title {
+  padding-top: 30px;
+  .angular {
+    color: $btnHoverColor;
+  }
+}
+
+.logo {
+  position: relative;
+  display: flex;
+  flex: 0 0 230px;
+  justify-content: center;
+  align-items: center;
+}
+
+.ng-logo {
+  width: 160px;
+}
+
+.links,
+.badges {
+  text-align: right;
+}

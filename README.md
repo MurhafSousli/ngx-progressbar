@@ -7,19 +7,20 @@ A nanoscopic progress bar. Featuring realistic trickle animations to convince yo
 
 ___
 [![npm](https://img.shields.io/badge/demo-online-ed1c46.svg)](https://murhafsousli.github.io/ngx-progressbar/)
-[![npm](https://img.shields.io/npm/v/ngx-progressbar.svg?maxAge=2592000?style=plastic)](https://www.npmjs.com/package/ngx-progressbar) 
+[![npm](https://img.shields.io/npm/v/@ngx-progressbar/core.svg?maxAge=2592000?style=plastic)](https://www.npmjs.com/package/ngx-progressbar) 
 [![Build Status](https://travis-ci.org/MurhafSousli/ngx-progressbar.svg?branch=master)](https://www.npmjs.com/package/ngx-progressbar) 
 [![npm](https://img.shields.io/npm/l/express.svg?maxAge=2592000)](/LICENSE)
 
-## Table of Contents 
- 
- - [Live Demo](https://MurhafSousli.github.io/ngx-progressbar)
- - [Installation](#installation)
- - [Usage](#usage) 
- - [Automagic Usage](#automagic)
- - [Issues](#issues)    
- - [Author](#author)
- - [Credits](#credits)
+## Table of Contents
+
+- [Live Demo](https://MurhafSousli.github.io/ngx-progressbar)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Automagic Usage](#automagic)
+- [Misc](#misc)
+- [Issues](#issues)
+- [Author](#author)
+- [Credits](#credits)
 
 <a name="installation"/>
 
@@ -27,20 +28,23 @@ ___
 
 Install it with npm
 
-`npm install ngx-progressbar --save`
+```bash
+$ npm install --save @ngx-progressbar/core
+```
 
 ### SystemJS
 
 If you are using SystemJS, you should also adjust your configuration to point to the UMD bundle.
 
 In your systemjs config file, map needs to tell the System loader where to look for `ngx-progressbar`:
+
 ```js
 map: {
   'ngx-progressbar': 'node_modules/ngx-progressbar/bundles/ngx-progressbar.umd.js',
 }
 ```
-Here is a working [plunker](https://plnkr.co/edit/OEVjavH87Hk8GdAqdayK?p=preview).
 
+Here is a working [plunker](https://plnkr.co/edit/OEVjavH87Hk8GdAqdayK?p=preview). | [stackblitz](https://stackblitz.com/edit/ngx-progressbar)
 
 <a name="usage"/>
 
@@ -48,13 +52,13 @@ Here is a working [plunker](https://plnkr.co/edit/OEVjavH87Hk8GdAqdayK?p=preview
 
 Import `NgProgressModule` in the root module
 
-```javascript
-import { NgProgressModule } from 'ngx-progressbar';
+```ts
+import { NgProgressModule } from '@ngx-progressbar/core';
 
 @NgModule({
   imports: [
     // ...
-    NgProgressModule
+    NgProgressModule.forRoot()
   ]
 })
 ```
@@ -67,137 +71,175 @@ In your template
 
 Add `NgProgress` service wherever you want to use the progressbar.
 
-```javascript
+```ts
 import { NgProgress } from 'ngx-progressbar';
 
-@Component({
- /**  */ 
-})
-export class SomeComponent {
-  
-  constructor(public ngProgress: NgProgress) {
+export class AppComponent {
+
+  constructor(public progress: NgProgress) {
   }
-  
+
   ngOnInit(){
-      /** request started */
-      this.ngProgress.start();
-      this.http.get(url).subscribe(res){
-          /** request completed */
-          this.ngProgress.done();
-      }
+    /** progress starts on init */
+    this.progress.start();
+
+    setTimeout(() => {
+        /** progress ends after 2 seconds */
+        this.progress.done();
+    }, 2000);
   }
 }
 ```
 
-## NgProgress Service:
+## NgProgress Service
 
+- `NgProgress.start()`  *Shows the progress bar*
 
- - `NgProgress.start()` *Shows the progress bar*
+- `NgProgress.set(n)`   *Sets a percentage n (where n is between 0-1)*
 
- - `NgProgress.set(n)`   *Sets a percentage n (where n is between 0-1)*
+- `NgProgress.inc(n)`   *Increments by n (where n is between 0-1)*
 
- - `NgProgress.inc(n)`   *Increments by n (where n is between 0-1)*
+- `NgProgress.done()`   *Completes the progress*
 
- - `NgProgress.done()`   *Completes the progress*
- 
+- `NgProgress.started()`  *Progress started event*
 
-## NgProgress Component:
+- `NgProgress.ended()`    *Progress ended event*
+
+## NgProgress Component
 
 ```html
-<ng-progress [positionUsing]="'marginLeft'" [minimum]="0.15" [maximum]="1"
-             [speed]="200" [showSpinner]="false" [direction]="'rightToLeftIncreased'"
-             [color]="'red'" [trickleSpeed]="250" [thick]="false" [ease]="'linear'"
+<ng-progress  [minimum]="0.15" [maximum]="1" [speed]="200" [ease]="'linear'"
+              [showSpinner]="false" [spinnerPosition]="'right'" [direction]="'rightToLeftIncreased'"
+              [color]="'red'" [trickleSpeed]="250" [thick]="false"
 ></ng-progress>
 ```
 
-
- - **[minimum]**: between `0.0` to `1.0`.
+- **[minimum]**: between `0.0` to `1.0`.
 
   Progress initial starting value, default `0.08`
 
- - **[maximum]**: between `0.0` to `1.0`.
+- **[maximum]**: between `0.0` to `1.0`.
 
   Progress maximum value, default `1.0`
 
- - **[ease]**: [Any easing function](http://easings.net/)
+- **[ease]**: [Any easing function](http://easings.net/)
 
   Progress animation ease, default `linear`.
 
- - **[speed]**: in milliseconds.
+- **[speed]**: in milliseconds.
 
-  Transition speed,  default `300`.
+  Transition speed,  default `200`.
 
- - **[trickleSpeed]**: in milliseconds. 
+- **[trickleSpeed]**: in milliseconds.
 
   Progress trickling speed, default `300`.
 
- - **[direction]**:  `leftToRightIncreased`, `leftToRightReduced` , `rightToLeftIncreased`, `rightToLeftReduced`.
+- **[direction]**:  `leftToRightIncreased`, `leftToRightReduced` , `rightToLeftIncreased`, `rightToLeftReduced`.
 
   Progressbar direction for LTR and RTL websites, default: `leftToRightIncreased`.
 
- - **[positionUsing]**: `marginLeft`, `translate`, `translate3d`.
+- **[spinnerPosition]**: `left`, `right`.
 
-  Positioning method, default: `marginLeft`
+  Spinner position, default: `right`
 
- - **[color]**: any color format `#1eb77f`, `brown`, `rgb(30, 183, 127)`.
+- **[color]**: any color format `#1eb77f`, `brown`, `rgb(30, 183, 127)`.
 
   Set the progressbar color, default: `#29d`
 
- - **[showSpinner]**: boolean 
+- **[showSpinner]**: boolean
 
   Display the spinner, default: `true`.
 
- - **[thick]**: boolean 
+- **[thick]**: boolean
 
   A thicker size of the progressbar, default: `false`.
 
- - **[toggle]**: boolean
+- **[toggle]**: boolean
 
   Toggle the progressbar (alternate to `start`/`done`), . default `false`.
 
 <a name="automagic"/>
 
 ## Automagic loading bar
- 
- If you only need a progressbar for multiple requests, there is a simple _plug and play_ provider. It does the trick.
 
- #### For `Http`
- 
+If you only need a progress bar for multiple requests, there is a simple _plug and play_ module. It does the trick.
+
+### For HttpModule
+
+Install **HttpModule**
+
+```bash
+$ npm install --save @ngx-progressbar/core @ngx-progressbar/http
+```
+
  ```ts
-import { BrowserXhr, HttpModule } from '@angular/http';
-import { NgProgressModule, NgProgressBrowserXhr } from 'ngx-progressbar';
+import { HttpModule } from '@angular/http';
+import { NgProgressModule } from '@ngx-progressbar/core';
+import { NgProgressHttpModule } from '@ngx-progressbar/http';
 
 @NgModule({
-  providers: [
-    // ...
-    { provide: BrowserXhr, useClass: NgProgressBrowserXhr }
-  ],
   imports: [
     // ...
     HttpModule,
-    NgProgressModule
+    NgProgressModule.forRoot(),
+    NgProgressHttpModule
   ]
 })
 ```
 
- #### For `HttpClient` (Angular >= 4.3)
+See [Http stackblitz](https://stackblitz.com/edit/ngx-progressbar-http)
 
- ```ts
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { NgProgressModule, NgProgressInterceptor } from 'ngx-progressbar';
+### For HttpClientModule
+
+Install **HttpClientModule**
+
+```bash
+$ npm install --save @ngx-progressbar/core @ngx-progressbar/http-client
+```
+
+```ts
+import { HttpClientModule } from '@angular/common/http';
+import { NgProgressModule } from '@ngx-progressbar/core';
+import { NgProgressHttpClientModule } from '@ngx-progressbar/http-client';
 
 @NgModule({
-  providers: [
-    // ...
-    { provide: HTTP_INTERCEPTORS, useClass: NgProgressInterceptor, multi: true }
-  ],
   imports: [
     // ...
     HttpClientModule,
-    NgProgressModule
+    NgProgressModule.forRoot(),
+    NgProgressHttpClientModule
   ]
 })
 ```
+
+See [HttpClient stackblitz](https://stackblitz.com/edit/ngx-progressbar-httpclient)
+
+### For loading lazy routes
+
+Install **NgProgressRouterModule**
+
+```bash
+$ npm install --save @ngx-progressbar/core @ngx-progressbar/router
+```
+
+To start the progress bar on router events use this code:
+
+```ts
+import { RouterModule } from '@angular/router';
+import { NgProgressModule } from '@ngx-progressbar/core';
+import { NgProgressRouterModule } from '@ngx-progressbar/router';
+
+@NgModule({
+  imports: [
+    RouterModule.forRoot(...),
+    NgProgressModule.forRoot(),
+    NgProgressRouterModule
+  ],
+})
+```
+
+See [lazy routes stackblitz](https://stackblitz.com/edit/ngx-progressbar-router)
+
 And just put the component in the template
 
 ```html
@@ -205,6 +247,35 @@ And just put the component in the template
 ```
 
  The progress will start and complete automatically with your HTTP requests. no need to use `NgProgress` service to call start()/done() manually.
+
+
+
+<a name="misc"/>
+
+## Misc
+
+You can integrate any progress bar or spinner by subscribing to `NgProgress.state`,  for example let's use Material progress bar
+
+```ts
+import { Component } from '@angular/core';
+import { NgProgress } from 'ngx-progressbar';
+
+@Component({
+  selector: 'app',
+  template: `
+    <div *ngIf="progress.state | async; let state">
+      <mat-progress-bar *ngIf="state.active" mode="determinate" [value]="state.value"></mat-progress-bar>
+    </div>
+  `,
+})
+export class App {
+
+  constructor(public progress: NgProgress) {
+  }
+}
+```
+
+Ofcourse you will not need to add the `<ng-progress>` component in this case :)
 
 <a name="issues"/>
 
@@ -218,11 +289,11 @@ If you identify any errors in the library, or have an idea for an improvement, p
 
  **[Murhaf Sousli](http://murhafsousli.com)**
 
- - [github/murhafsousli](https://github.com/MurhafSousli)
- - [twitter/murhafsousli](https://twitter.com/MurhafSousli)
- 
+- [github/murhafsousli](https://github.com/MurhafSousli)
+- [twitter/murhafsousli](https://twitter.com/MurhafSousli)
+
 <a name="credit"/>
 
-## Credits 
+## Credits
 
  Inspired by [NProgress.js by Rico Sta. Cruz.](https://github.com/rstacruz/nprogress)

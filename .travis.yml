@@ -1,23 +1,16 @@
 sudo: required
 dist: trusty
-addons:
-  apt:
-    sources:
-      - google-chrome
-    packages:
-      - google-chrome-stable
+
+language: node_js
+
+node_js:
+  - "6"
+
+script: npm run build-core && node .config/build.js && npm link build/core && npm run build-all
+
 language: node_js
 node_js:
-  - stable
-before_install:
-  - npm i npm@^4 -g
-install:
-  - npm install
-script:
-  - npm run build
-before_script:
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
-  - sleep 3
-notifications:
-  email: false
+  - "6"
+
+cache:
+  yarn: true

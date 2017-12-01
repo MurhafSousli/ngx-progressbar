@@ -1,0 +1,22 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ProgressBarComponent } from '../components/progress-bar/progress-bar.component';
+import { ProgressComponent } from '../components/progress/progress.component';
+import { NgProgress } from '../services/progress.service';
+
+@NgModule({
+  declarations: [
+    ProgressComponent,
+    ProgressBarComponent
+  ],
+  exports: [
+    ProgressComponent
+  ],
+  imports: [
+    CommonModule
+  ],
+  providers: [
+    NgProgress
+  ]
+})
+export class NgProgressModule { }

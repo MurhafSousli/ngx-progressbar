@@ -1,0 +1,18 @@
+{
+  "version": 3,
+  "file": "http.js",
+  "sources": [
+    "~/@ngx-progressbar/http/src/http.ts",
+    "~/@ngx-progressbar/http/src/ng-progress-http.module.ts",
+    "~/@ngx-progressbar/http/src/ng-progress.xhr.ts"
+  ],
+  "sourcesContent": [
+    "/**\n * Generated bundle index. Do not edit.\n */\n\nexport * from './index';\n\nexport {NgProgressBrowserXhr as ɵa} from './ng-progress.xhr';",
+    "import { NgModule } from '@angular/core';\nimport { BrowserXhr } from '@angular/http';\nimport { NgProgressBrowserXhr } from './ng-progress.xhr';\n\n@NgModule({\n  providers: [\n    { provide: BrowserXhr, useClass: NgProgressBrowserXhr }\n  ],\n})\nexport class NgProgressHttpModule {}\n",
+    "import { Injectable } from '@angular/core';\nimport { BrowserXhr } from '@angular/http';\nimport { NgProgress } from '@ngx-progressbar/core';\n\n@Injectable()\nexport class NgProgressBrowserXhr extends BrowserXhr {\n\n  private currentRequest = 0;\n\n  constructor(private progress: NgProgress) {\n    super();\n  }\n\n  public build() {\n    const xhr = super.build();\n\n    xhr.onload = (evt) => this.done();\n    xhr.onerror = (evt) => this.done();\n    xhr.onabort = (evt) => this.done();\n\n    xhr.onloadstart = (event) => {\n      this.currentRequest++;\n      if (!this.progress.isStarted) {\n        this.progress.start();\n      }\n    };\n\n    return xhr;\n  }\n\n  private done() {\n    this.currentRequest--;\n    if (this.currentRequest === 0) {\n      this.progress.done();\n    }\n  }\n}\n"
+  ],
+  "names": [
+    "__decorate"
+  ],
+  "mappings": ";;;;;;;;;;;;;AEAA,AAKA,IAAa,oBAAoB,GAAjC,MAAA,oBAAkC,SAAQ,UAAU,CAApD;IAIE,WAAF,CAAsB,QAAoB,EAA1C;QACI,KAAK,EAAE,CAAC;QADU,IAAtB,CAAA,QAA8B,GAAR,QAAQ,CAAY;QAFhC,IAAV,CAAA,cAAwB,GAAG,CAAC,CAAC;KAI1B;IAEM,KAAK,GAAd;QACI,MAAM,GAAG,GAAG,KAAK,CAAC,KAAK,EAAE,CAAC;QAE1B,GAAG,CAAC,MAAM,GAAG,CAAC,GAAG,KAAK,IAAI,CAAC,IAAI,EAAE,CAAC;QAClC,GAAG,CAAC,OAAO,GAAG,CAAC,GAAG,KAAK,IAAI,CAAC,IAAI,EAAE,CAAC;QACnC,GAAG,CAAC,OAAO,GAAG,CAAC,GAAG,KAAK,IAAI,CAAC,IAAI,EAAE,CAAC;QAEnC,GAAG,CAAC,WAAW,GAAG,CAAC,KAAK,KAA5B;YACM,IAAI,CAAC,cAAc,EAAE,CAAC;YACtB,IAAI,CAAC,IAAI,CAAC,QAAQ,CAAC,SAAS,EAAE;gBAC5B,IAAI,CAAC,QAAQ,CAAC,KAAK,EAAE,CAAC;aACvB;SACF,CAAC;QAEF,OAAO,GAAG,CAAC;KACZ;IAEO,IAAI,GAAd;QACI,IAAI,CAAC,cAAc,EAAE,CAAC;QACtB,IAAI,IAAI,CAAC,cAAc,KAAK,CAAC,EAAE;YAC7B,IAAI,CAAC,QAAQ,CAAC,IAAI,EAAE,CAAC;SACtB;KACF;CACF,CAAA;AA/BY,oBAAoB,GAAjCA,YAAA,CAAA;IADC,UAAU,EAAE;IAKb,UAAA,CAAA,mBAAA,EAAA,CAAgC,UAAU,CAA1C,CAAA;CAJA,EAAa,oBAAoB,CA+BhC,CA/BD;;;;;;;;ADLA,AASA,IAAa,oBAAoB,GAAjC,MAAA,oBAAA,CAAA;CAAoC,CAAA;AAAvB,oBAAoB,GAAjC,UAAA,CAAA;IALC,QAAQ,CAAC;QACR,SAAS,EAAE;YACT,EAAE,OAAO,EAAE,UAAU,EAAE,QAAQ,EAAE,oBAAoB,EAAE;SACxD;KACF,CAAC;CACF,EAAa,oBAAoB,CAAG,CAApC;;ADTA;;GAEG;;;;"
+}

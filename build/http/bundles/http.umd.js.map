@@ -1,0 +1,21 @@
+{
+  "version": 3,
+  "file": "http.umd.js",
+  "sources": [
+    "~/@ngx-progressbar/http/src/http.ts",
+    "~/@ngx-progressbar/http/src/ng-progress-http.module.ts",
+    "~/@ngx-progressbar/http/src/ng-progress.xhr.ts"
+  ],
+  "sourcesContent": [
+    "/**\n * Generated bundle index. Do not edit.\n */\n\nexport * from './index';\n\nexport {NgProgressBrowserXhr as ɵa} from './ng-progress.xhr';",
+    "import { NgModule } from '@angular/core';\nimport { BrowserXhr } from '@angular/http';\nimport { NgProgressBrowserXhr } from './ng-progress.xhr';\n\n@NgModule({\n  providers: [\n    { provide: BrowserXhr, useClass: NgProgressBrowserXhr }\n  ],\n})\nexport class NgProgressHttpModule {}\n",
+    "import { Injectable } from '@angular/core';\nimport { BrowserXhr } from '@angular/http';\nimport { NgProgress } from '@ngx-progressbar/core';\n\n@Injectable()\nexport class NgProgressBrowserXhr extends BrowserXhr {\n\n  private currentRequest = 0;\n\n  constructor(private progress: NgProgress) {\n    super();\n  }\n\n  public build() {\n    const xhr = super.build();\n\n    xhr.onload = (evt) => this.done();\n    xhr.onerror = (evt) => this.done();\n    xhr.onabort = (evt) => this.done();\n\n    xhr.onloadstart = (event) => {\n      this.currentRequest++;\n      if (!this.progress.isStarted) {\n        this.progress.start();\n      }\n    };\n\n    return xhr;\n  }\n\n  private done() {\n    this.currentRequest--;\n    if (this.currentRequest === 0) {\n      this.progress.done();\n    }\n  }\n}\n"
+  ],
+  "names": [
+    "NgProgressBrowserXhr",
+    "Injectable",
+    "BrowserXhr",
+    "this"
+  ],
+  "mappings": "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"
+}
