@@ -17,6 +17,9 @@ ___
 - [Installation](#installation)
 - [Usage](#usage)
 - [Automagic Usage](#automagic)
+  - [HttpModule requests](#http)
+  - [HttpClientModule requests](#http-client)
+  - [Router events](#router)
 - [Misc](#misc)
 - [Issues](#issues)
 - [Author](#author)
@@ -28,21 +31,10 @@ ___
 
 Install it with npm
 
-`npm install --save ngx-progressbar`
-
-### SystemJS
-
-If you are using SystemJS, you should also adjust your configuration to point to the UMD bundle.
-
-In your systemjs config file, map needs to tell the System loader where to look for `ngx-progressbar`:
-
-```js
-map: {
-  'ngx-progressbar': 'node_modules/ngx-progressbar/bundles/ngx-progressbar.umd.js',
-}
+```bash
+$ npm install --save @ngx-progressbar/core
 ```
-
-Here is a working [plunker](https://plnkr.co/edit/OEVjavH87Hk8GdAqdayK?p=preview). | [stackblitz](https://stackblitz.com/edit/ngx-progressbar)
+[stackblitz](https://stackblitz.com/edit/ngx-progressbar)
 
 <a name="usage"/>
 
@@ -51,12 +43,12 @@ Here is a working [plunker](https://plnkr.co/edit/OEVjavH87Hk8GdAqdayK?p=preview
 Import `NgProgressModule` in the root module
 
 ```ts
-import { NgProgressModule } from 'ngx-progressbar';
+import { NgProgressModule } from '@ngx-progressbar/core';
 
 @NgModule({
   imports: [
     // ...
-    NgProgressModule
+    NgProgressModule.forRoot()
   ]
 })
 ```
@@ -70,23 +62,25 @@ In your template
 Add `NgProgress` service wherever you want to use the progressbar.
 
 ```ts
-import { NgProgress } from 'ngx-progressbar';
+import { NgProgress } from '@ngx-progressbar/core';
 
-export class SomeComponent {
+export class AppComponent {
 
   constructor(public progress: NgProgress) {
   }
 
   ngOnInit(){
-      /** request started */
-      this.progress.start();
-      this.http.get(url).subscribe(res){
-          /** request completed */
-          this.progress.done();
-      }
+    /** progress starts on init */
+    this.progress.start();
+
+    setTimeout(() => {
+        /** progress ends after 2 seconds */
+        this.progress.done();
+    }, 2000);
   }
 }
 ```
+See [stackblitz demo](https://stackblitz.com/edit/ngx-progressbar)
 
 ## NgProgress Service
 
@@ -161,24 +155,49 @@ export class SomeComponent {
 
 If you only need a progress bar for multiple requests, there is a simple _plug and play_ module. It does the trick.
 
-### For HttpModule
+<a name="http"/>
+
+## For HttpModule
+
+Install **NgProgressHttpModule**
+
+```bash
+$ npm install --save @ngx-progressbar/core @ngx-progressbar/http
+```
 
  ```ts
-import { HttpClientModule } from '@angular/common/http';
+import { HttpModule } from '@angular/http';
 import { NgProgressModule } from '@ngx-progressbar/core';
 import { NgProgressHttpModule } from '@ngx-progressbar/http';
 
 @NgModule({
   imports: [
     // ...
-    HttpClientModule,
+    HttpModule,
     NgProgressModule.forRoot(),
     NgProgressHttpModule
   ]
 })
 ```
+And just put the component in your template
 
-### For HttpClientModule
+```html
+ <ng-progress></ng-progress>
+```
+
+See [Http stackblitz](https://stackblitz.com/edit/ngx-progressbar-http)
+
+The progress will start and complete automatically with your HTTP requests. no need to use `NgProgress` service to call start()/done() manually.
+
+<a name="http-client"/>
+
+## For HttpClientModule
+
+Install **NgProgressHttpClientModule**
+
+```bash
+$ npm install --save @ngx-progressbar/core @ngx-progressbar/http-client
+```
 
 ```ts
 import { HttpClientModule } from '@angular/common/http';
@@ -195,7 +214,27 @@ import { NgProgressHttpClientModule } from '@ngx-progressbar/http-client';
 })
 ```
 
-### For Lazy Routes
+See [HttpClient stackblitz](https://stackblitz.com/edit/ngx-progressbar-httpclient)
+
+And just put the component in your template
+
+```html
+ <ng-progress></ng-progress>
+```
+
+The progress will start and complete automatically with your HTTP requests. no need to use `NgProgress` service to call start()/done() manually.
+
+<a name="router"/>
+
+## For router events
+
+Install **NgProgressRouterModule**
+
+If you need the progress bar to start for navigating between your app routes, add this module
+
+```bash
+$ npm install --save @ngx-progressbar/core @ngx-progressbar/router
+```
 
 To start the progress bar on router events use this code:
 
@@ -212,21 +251,19 @@ import { NgProgressRouterModule } from '@ngx-progressbar/router';
   ],
 })
 ```
-
-And just put the component in the template
+And just put the component in your **AppComponent** template
 
 ```html
  <ng-progress></ng-progress>
 ```
 
- The progress will start and complete automatically with your HTTP requests. no need to use `NgProgress` service to call start()/done() manually.
-
+See [lazy routes stackblitz](https://stackblitz.com/edit/ngx-progressbar-router)
 
 <a name="misc"/>
 
 ## Misc
 
-You can integrate any progress bar or spinner by subscribing to `NgProgress.state`,  for example let's use Material progress bar
+You can integrate any progress bar or spinner by subscribing to `NgProgress.state$`,  here is an example of using Material progress bar
 
 ```ts
 import { Component } from '@angular/core';
@@ -235,7 +272,7 @@ import { NgProgress } from 'ngx-progressbar';
 @Component({
   selector: 'app',
   template: `
-    <div *ngIf="progress.state | async; let state">
+    <div *ngIf="progress.state$ | async; let state">
       <mat-progress-bar *ngIf="state.active" mode="determinate" [value]="state.value"></mat-progress-bar>
     </div>
   `,
@@ -247,7 +284,7 @@ export class App {
 }
 ```
 
-Ofcourse you will not need to add the `<ng-progress>` component in this case :)
+In this case you don't need to add `<ng-progress>` in your template :)
 
 <a name="issues"/>
 
