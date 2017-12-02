@@ -137,7 +137,7 @@ See [stackblitz demo](https://stackblitz.com/edit/ngx-progressbar)
 
   Set the progressbar color, default: `#29d`
 
-- **[showSpinner]**: boolean
+- **[spinner]**: boolean
 
   Display the spinner, default: `true`.
 

@@ -12,10 +12,11 @@
   - For Router events, use `@ngx-progressbar/router`
 
 - remove `[positionUsing]` option to use translate3d only
+- rename `[showSpinner]` option to `[spinner]`
 
 ### Features
 
-- Improve performance
+- Improve rendering performance
 - Add `[spinnerPosition]` options to set the spinner position, `left` | `right`
 - Add `progress.started()` event
 - Add `progress.ended()` event

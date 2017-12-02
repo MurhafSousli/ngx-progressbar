@@ -137,7 +137,7 @@ See [stackblitz demo](https://stackblitz.com/edit/ngx-progressbar)
 
   Set the progressbar color, default: `#29d`
 
-- **[showSpinner]**: boolean
+- **[spinner]**: boolean
 
   Display the spinner, default: `true`.
 
@@ -156,8 +156,6 @@ See [stackblitz demo](https://stackblitz.com/edit/ngx-progressbar)
 If you only need a progress bar for multiple requests, there is a simple _plug and play_ module. It does the trick.
 
 <a name="http"/>
-
-## For HttpModule
 
 Install **NgProgressHttpModule**
 
