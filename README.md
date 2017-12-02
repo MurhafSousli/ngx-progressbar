@@ -146,7 +146,7 @@ export class AppComponent {
 
   Set the progressbar color, default: `#29d`
 
-- **[showSpinner]**: boolean
+- **[spinner]**: boolean
 
   Display the spinner, default: `true`.
 
