@@ -6,7 +6,7 @@ language: node_js
 node_js:
   - "6"
 
-script: npm run build-core && node .config/build.js && npm link build/core && npm run build-all
+script: npm run build-core
 
 language: node_js
 node_js:
