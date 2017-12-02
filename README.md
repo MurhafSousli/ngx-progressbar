@@ -14,6 +14,7 @@ ___
 ## Table of Contents
 
 - [Live Demo](https://MurhafSousli.github.io/ngx-progressbar)
+- [Documentation for version 2.x (support Angular 2 & 4)](https://github.com/MurhafSousli/ngx-progressbar/wiki)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Automagic Usage](#automagic)
