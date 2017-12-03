@@ -1,7 +1,7 @@
 {
   "name": "@ngx-progressbar/demo",
   "description": "A nanoscopic progress bar. Featuring realistic trickle animations to convince your users that something is happening!",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
