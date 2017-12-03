@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { NgProgress } from './progressbar';
 import { Subject } from 'rxjs/Subject';
 import { HttpClient } from '@angular/common/http';
+import { NgProgress } from '@ngx-progressbar/core';
 
 @Component({
   selector: 'app-root',

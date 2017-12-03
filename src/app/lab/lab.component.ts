@@ -1,8 +1,6 @@
 import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
-import { NgProgress, NgProgressState } from '../progressbar';
-
-import 'rxjs/add/operator/distinctUntilChanged';
-import 'rxjs/add/operator/map';
+import { NgProgress, NgProgressState } from '@ngx-progressbar/core';
+import { map, distinctUntilChanged, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-lab',
@@ -35,12 +33,11 @@ export class LabComponent implements OnInit {
   ngOnInit() {
 
     /** For demo purpose */
-    this.progress.state$
-      .map((state: NgProgressState) => state.active)
-      .distinctUntilChanged()
-      .subscribe((toggle: boolean) => {
-        this.toggle = toggle;
-      });
+    this.progress.state$.pipe(
+      map((state: NgProgressState) => state.active),
+      distinctUntilChanged(),
+      tap((toggle: boolean) => this.toggle = toggle)
+    ).subscribe();
   }
 
   /** For demo purpose */
