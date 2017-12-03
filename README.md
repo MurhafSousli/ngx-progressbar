@@ -18,7 +18,6 @@ For Angular 2.x & 4.x use ngx-progress@2.1.1, See the [Wiki documentation](https
 ## Table of Contents
 
 - [Live Demo](https://MurhafSousli.github.io/ngx-progressbar)
-- [Documentation for version 2.x (support Angular 2 & 4)](https://github.com/MurhafSousli/ngx-progressbar/wiki)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Automagic Usage](#automagic)
