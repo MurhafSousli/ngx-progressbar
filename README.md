@@ -11,6 +11,10 @@ ___
 [![Build Status](https://travis-ci.org/MurhafSousli/ngx-progressbar.svg?branch=master)](https://www.npmjs.com/package/ngx-progressbar) 
 [![npm](https://img.shields.io/npm/l/express.svg?maxAge=2592000)](/LICENSE)
 
+This is the documentation for version 3.x (supports Angular >= 5)
+
+For Angular 2.x & 4.x use ngx-progress@2.1.1, See the [Wiki documentation](https://github.com/MurhafSousli/ngx-progressbar/wiki) 
+
 ## Table of Contents
 
 - [Live Demo](https://MurhafSousli.github.io/ngx-progressbar)
