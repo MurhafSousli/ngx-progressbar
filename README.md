@@ -104,7 +104,7 @@ See [stackblitz demo](https://stackblitz.com/edit/ngx-progressbar)
 
 ```html
 <ng-progress  [minimum]="0.15" [maximum]="1" [speed]="200" [ease]="'linear'"
-              [showSpinner]="false" [spinnerPosition]="'right'" [direction]="'rightToLeftIncreased'"
+              [spinner]="false" [spinnerPosition]="'right'" [direction]="'rightToLeftIncreased'"
               [color]="'red'" [trickleSpeed]="250" [thick]="false"
 ></ng-progress>
 ```
