@@ -77,7 +77,7 @@ export class NgProgressBarComponent implements OnInit {
 
   /**
    * Convert number to percent
-   * @param {number} n - State value
+   * @param n - State value
    */
   toPercentage(n: number) {
     return directionSwitcher[this.direction].toPercentage(n) * 100;
