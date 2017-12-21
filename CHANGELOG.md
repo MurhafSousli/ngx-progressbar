@@ -1,5 +1,14 @@
 # Changelog
 
+## 3.0.2
+
+- Refactor(ProgressBar)
+- track multiple concurrent requests in [#105](https://github.com/MurhafSousli/ngx-progressbar/pull/105)
+
+## 3.0.1
+
+- Fixed the problem with AOT build in v3.0.0
+
 ## 3.0.0
 
 ### Breaking Changes

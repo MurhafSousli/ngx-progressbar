@@ -1,9 +1,16 @@
 import { Component, Input, ChangeDetectionStrategy, OnInit } from '@angular/core';
 import { NgProgressState } from '../../models/ng-progress.state';
 import { NgProgress } from '../../services/ng-progress.service';
+import { Observable } from 'rxjs/Observable';
+import { map } from 'rxjs/operators';
 
-import { of } from 'rxjs/observable/of';
-import { switchMap } from 'rxjs/operators';
+export interface ProgressBarState {
+  containerClasses: any;
+  progressStyles: any;
+  meteorStyles?: any;
+  spinnerClasses?: any;
+  spinnerStyles?: any;
+}
 
 @Component({
   selector: 'ng-progress-bar',
@@ -22,52 +29,46 @@ export class NgProgressBarComponent implements OnInit {
   @Input() thick: string;
   @Input() color: string;
 
-  state$;
+  state$: Observable<ProgressBarState>;
 
   constructor(public progress: NgProgress) {
-
   }
 
   ngOnInit() {
     this.state$ = this.progress.state$.pipe(
-      switchMap((state: NgProgressState) => {
-        return of({
-          containerClasses: this.containerClasses(state),
-          progressStyles: this.progressBarStyles(state),
-          meteorStyles: this.meteorStyles(),
-          spinnerClasses: this.spinnerClasses(),
-          spinnerStyles: this.spinnerStyles()
-        });
-      })
-    );
+      map((state: NgProgressState) => ({
+        containerClasses: this.containerClasses(state),
+        progressStyles: this.progressBarStyles(state),
+        spinnerClasses: this.spinnerClasses(),
+        spinnerStyles: this.spinnerStyles(),
+        meteorStyles: this.meteor ? this.meteorStyles() : null
+      })));
   }
 
-  containerClasses(state: NgProgressState) {
+  private containerClasses(state: NgProgressState) {
     return {
       active: state.active,
       thick: this.thick
     };
   }
 
-  progressBarStyles(state: NgProgressState) {
+  private progressBarStyles(state: NgProgressState) {
 
     const n = (!state.value) ? directionSwitcher[this.direction].bar : this.toPercentage(state.value);
-
+    const translate3d = `translate3d(${n}%,0,0)`;
     return {
       transition: `all ${this.speed}ms ${this.ease}`,
       background: this.color,
-      mozTransform: translateX(n),
-      oTransform: translateX(n),
-      msTransform: translateX(n),
-      webkitTransform: translateX(n),
-      transform: translateX(n)
+      msTransform: translate3d,
+      webkitTransform: translate3d,
+      transform: translate3d
     };
   }
 
   /**
    * Styles for progressbar tail
    */
-  meteorStyles() {
+  private meteorStyles() {
     return {
       boxShadow: `0 0 10px ${this.color}, 0 0 5px ${this.color}`,
       left: directionSwitcher[this.direction].meteorLeft,
@@ -77,24 +78,23 @@ export class NgProgressBarComponent implements OnInit {
 
   /**
    * Convert number to percent
-   * @param {number} n - State value
+   * @param n - State value
    */
-  toPercentage(n: number) {
+  private toPercentage(n: number) {
     return directionSwitcher[this.direction].toPercentage(n) * 100;
   }
 
   /**
-   * Progress direction
+   * Spinner direction
    */
-  spinnerClasses() {
-    const spinnerClass = (this.spinnerPosition === 'left') ? ' spinner-left' : '';
-    return directionSwitcher[this.direction].spinnerClass + spinnerClass;
+  private spinnerClasses() {
+    return directionSwitcher[this.direction].spinnerClass + ' spinner-' + this.spinnerPosition;
   }
 
   /**
-   * Set spinner color
+   * Spinner styles
    */
-  spinnerStyles() {
+  private spinnerStyles() {
     return {
       borderTopColor: this.color,
       borderLeftColor: this.color
@@ -102,10 +102,6 @@ export class NgProgressBarComponent implements OnInit {
   }
 
 }
-
-const translateX = (n) => {
-  return `translate3d(${n}%,0,0)`;
-};
 
 const directionSwitcher = {
   leftToRightIncreased: {
