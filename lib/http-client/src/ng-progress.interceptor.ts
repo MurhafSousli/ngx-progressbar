@@ -6,9 +6,9 @@ import { NgProgress } from '@ngx-progressbar/core';
 
 @Injectable()
 export class NgProgressInterceptor implements HttpInterceptor {
-  
+
   private inProgressCount = 0;
-  
+
   constructor(public progress: NgProgress) {
   }
 
