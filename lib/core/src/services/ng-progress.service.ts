@@ -94,7 +94,7 @@ export class NgProgress {
 
   /**
    * Increment the progress
-   * @param {number} amount
+   * @param amount
    */
   inc(amount?: number) {
     let n = this.progress;
@@ -122,7 +122,7 @@ export class NgProgress {
 
   /**
    * Set the progress
-   * @param {number} n - Progress value
+   * @param n - Progress value
    */
   set(n: number) {
     this.progress = clamp(n, this.minimum, this.maximum);
@@ -156,8 +156,8 @@ export class NgProgress {
 
   /**
    * Update progress state
-   * @param {number} progress - Progress value
-   * @param {boolean} isActive - Progress active
+   * @param progress - Progress value
+   * @param isActive - Progress active
    */
   private updateState(progress: number, isActive: boolean) {
     this.state$.next({

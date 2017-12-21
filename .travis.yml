@@ -2,15 +2,10 @@ sudo: required
 dist: trusty
 
 language: node_js
-
 node_js:
-  - "6"
+  - "8"
 
 script: npm run build-core
-
-language: node_js
-node_js:
-  - "6"
 
 cache:
   yarn: true

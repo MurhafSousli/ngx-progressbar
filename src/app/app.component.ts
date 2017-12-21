@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
     spinner: true,
     spinnerPosition: 'right',
     direction: 'leftToRightIncreased',
-    color: '#1B95E0',
+    color: 'red',
     thick: false
   };
 
@@ -48,6 +48,12 @@ export class AppComponent implements OnInit {
         this.endedClass = false;
       }, 800);
     });
+
+    /** Initial start/done */
+    this.progress.start();
+    setTimeout(() => {
+      this.progress.done();
+    }, 2000);
   }
 
   testHttp() {
