@@ -6,9 +6,10 @@ import { NgProgress } from '@ngx-progressbar/core';
 
 @Injectable()
 export class NgProgressInterceptor implements HttpInterceptor {
-  private inProgressCount: number;
+  
+  private inProgressCount = 0;
+  
   constructor(public progress: NgProgress) {
-    this.inProgressCount = 0;
   }
 
   // Ignoring specific requests will be supported after this https://github.com/angular/angular/issues/18155
@@ -19,7 +20,7 @@ export class NgProgressInterceptor implements HttpInterceptor {
     }
     return next.handle(req).pipe(finalize(() => {
       this.inProgressCount--;
-      if (0 === this.inProgressCount) {
+      if (this.inProgressCount === 0) {
         this.progress.done();
       }
     }));
