@@ -96,9 +96,9 @@ See [stackblitz demo](https://stackblitz.com/edit/ngx-progressbar)
 
 - `NgProgress.done()`   *Completes the progress*
 
-- `NgProgress.started()`  *Progress started event*
+- `NgProgress.started`  *Progress started event*
 
-- `NgProgress.ended()`    *Progress ended event*
+- `NgProgress.ended`    *Progress ended event*
 
 ## NgProgress Component
 
