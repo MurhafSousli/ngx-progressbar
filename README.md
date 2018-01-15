@@ -11,11 +11,11 @@ ___
 [![Build Status](https://travis-ci.org/MurhafSousli/ngx-progressbar.svg?branch=master)](https://www.npmjs.com/package/ngx-progressbar) 
 [![npm](https://img.shields.io/npm/l/express.svg?maxAge=2592000)](/LICENSE)
 
-For **@ngx-progressbar@3.x** (Angular >= 5), See this [documentation](README_V3.md)
+For **ngx-progressbar@3.x** (Angular >= 5), See this [documentation](README_V3.md)
 
 For Angular 2.x & 4.x use ngx-progress@2.1.1, See the [Wiki documentation](https://github.com/MurhafSousli/ngx-progressbar/wiki) 
 
-#### Welcome to @ngx-progressbar@4.x beta
+#### Welcome to ngx-progressbar@4.x beta
 
 ## Table of Contents
 
@@ -57,7 +57,7 @@ import { NgProgressModule } from '@ngx-progressbar/core';
   ]
 })
 ```
-The `config` parameter is optional to set a global config for the progress bar(s)
+**config** is an optional parameter to set a global config for the progress bar(s)
 
 **Example 1:** Accessing the progress bar from the template
 
@@ -87,10 +87,6 @@ export class HomeComponent implements AfterViewInit {
 ```
 
 **Example 3:** Accessing the progress bar from anywhere
-
-```html
-<ng-progress></ng-progress>
-```
 
 ```ts
 @Component({
@@ -124,15 +120,12 @@ export class HomeComponent {
 }
 ```
 
-See [stackblitz demo](https://stackblitz.com/edit/ngx-progressbar)
-
 ## NgProgress Component
 
 ```html
-<ng-progress [id]="'myLoader'" [min]="20" [max]="1" [speed]="200" [ease]="'linear'"
-             [spinner]="true" [spinnerPosition]="'left'" [direction]="'ltr+'"
-             [color]="'red'" [trickleSpeed]="300" [thick]="false" [meteor]="true"
-></ng-progress>
+<ng-progress [direction]="'ltr+'" [min]="20" [max]="1" [speed]="200"  [trickleSpeed]="300"
+             [spinner]="true" [spinnerPosition]="'left'" [thick]="false" [meteor]="true"
+             [color]="'red'" [ease]="'linear'"></ng-progress>
 ```
 
 | Name                  | Default       | Description                                                |
@@ -160,6 +153,8 @@ See [stackblitz demo](https://stackblitz.com/edit/ngx-progressbar)
 
 
 ## NgProgressRef Class
+
+This class is used internally, you probably have no use for it unless you want to configure a custom progress bar like in the [integration example](#integration).
 
 | Name                          | Description                                           |
 | ----------------------------- | ----------------------------------------------------- |
@@ -228,7 +223,7 @@ And just put the component in your template
 
 See [Http stackblitz](https://stackblitz.com/edit/ngx-progressbar-http)
 
-The progress will start and complete automatically with your HTTP requests. no need to use `NgProgress` service to call start()/done() manually.
+The progress will start and complete automatically with your HTTP requests. no need to use `NgProgress` service to call start()/complete() manually.
 
 <a name="router"/>
 
@@ -322,8 +317,7 @@ If you need more than one the progress bar, just give it a unique `id`
 <ng-progress id="mainLoader"></ng-progress>
 ```
 
-Under the hood, the progress bar will get a unique progress worker. 
-
+Under the hood, each progress bar will get a unique progress worker. 
 
 <a name="issues"/>
 
