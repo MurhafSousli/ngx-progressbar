@@ -11,11 +11,12 @@ ___
 [![Build Status](https://travis-ci.org/MurhafSousli/ngx-progressbar.svg?branch=master)](https://www.npmjs.com/package/ngx-progressbar) 
 [![npm](https://img.shields.io/npm/l/express.svg?maxAge=2592000)](/LICENSE)
 
-For **ngx-progressbar@3.x** (Angular >= 5), See this [documentation](README_V3.md)
+### Before you begin!
 
-For Angular 2.x & 4.x use ngx-progress@2.1.1, See the [Wiki documentation](https://github.com/MurhafSousli/ngx-progressbar/wiki) 
+This is the documentation for **ngx-progressbar** version 4.x (Angular >= 5)
 
-#### Welcome to ngx-progressbar@4.x beta
+- For **ngx-progressbar** version 3.x (Angular >= 5), See this [documentation](README_V3.md)
+- For **ngx-progressbar** version 2.x (Angular 2 & 4), See this [documentation](https://github.com/MurhafSousli/ngx-progressbar/wiki) 
 
 ## Table of Contents
 
@@ -299,7 +300,7 @@ export class App implements OnInit, OnDestroy {
     this.ngProgress.destroy();
     
     // DO NOT DESTROY USING `progressRef` INSTANCE  
-    this.progressRef.destroy();
+    // this.progressRef.destroy();
   }
 }
 ```
