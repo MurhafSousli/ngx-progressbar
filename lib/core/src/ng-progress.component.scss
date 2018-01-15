@@ -1,0 +1,149 @@
+ng-progress {
+  z-index: 999999;
+  pointer-events: none;
+  position: relative;
+}
+
+.ng-progress-bar {
+  z-index: 999999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  position: fixed;
+  zoom: 1;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  transition: opacity var(--speed) var(--ease);
+  .bar {
+    transition: none;
+  }
+  &.-active {
+    filter: alpha(opacity=100);
+    opacity: 1;
+    transition: none;
+    .bar {
+      transition: all var(--speed) var(--ease);
+    }
+  }
+}
+
+.bar-placeholder {
+  position: absolute;
+  height: 2px;
+  width: 100%;
+}
+
+.bar {
+  width: 100%;
+  height: 100%;
+  transform: translate(-100%, 0, 0);
+  background-color: var(--color);
+}
+
+.meteor {
+  display: block;
+  position: absolute;
+  width: 100px;
+  height: 100%;
+  opacity: 1.0;
+  box-shadow: 0 0 10px var(--color), 0 0 5px var(--color);
+}
+
+.spinner {
+  display: block;
+  position: fixed;
+  z-index: 1031;
+  top: 15px;
+}
+
+.spinner-icon {
+  width: 18px;
+  height: 18px;
+  box-sizing: border-box;
+  animation: spinner-animation 400ms linear infinite;
+  border: 2px solid transparent;
+  border-radius: 50%;
+  border-top-color: var(--color);
+  border-left-color: var(--color);
+}
+
+[dir='ltr+'], [dir='ltr-'] {
+  .meteor {
+    transform: rotate(3deg);
+  }
+  &[thick='true'] .meteor {
+    transform: rotate(4deg);
+  }
+}
+
+[dir='ltr+'], [dir='rtl+'] {
+  .bar {
+    margin-left: -100%;
+  }
+  .meteor {
+    right: 0;
+  }
+}
+
+[dir='ltr+'], [dir='rtl-'] {
+  .meteor {
+    top: -3px;
+  }
+  &[thick='true'] .meteor {
+    top: -4px;
+  }
+}
+
+[dir='ltr-'], [dir='rtl+'] {
+  .meteor {
+    bottom: -3px;
+  }
+  &[thick='true'] .meteor {
+    bottom: -4px;
+  }
+  // reverse dir
+  .bar-placeholder {
+    transform: rotate(180deg);
+  }
+  .spinner-icon {
+    animation-direction: reverse;
+  }
+}
+
+[dir='rtl+'], [dir='rtl-'] {
+  .meteor {
+    transform: rotate(-3deg);
+  }
+  &[thick='true'] .meteor {
+    transform: rotate(-4deg);
+  }
+}
+
+[thick='true'] {
+  .spinner-icon {
+    width: 24px;
+    height: 24px;
+    border-width: 3px;
+  }
+  .bar-placeholder {
+    height: 3px;
+  }
+}
+
+[spinnerPosition='left'] .spinner {
+  left: 15px;
+  right: unset;
+}
+
+[spinnerPosition='right'] .spinner {
+  right: 15px;
+}
+
+@keyframes spinner-animation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

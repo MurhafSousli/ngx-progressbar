@@ -1,3 +1,5 @@
 export * from './ng-progress.module';
-export * from './services/ng-progress.service';
-export * from './models/ng-progress.state';
+export * from './ng-progress.component';
+export * from './ng-progress-ref';
+export * from './ng-progress.service';
+export * from './ng-progress.interface';
