@@ -1,0 +1,41 @@
+mat-progress-bar, .bar-placeholder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+mat-progress-spinner {
+  z-index: 10;
+}
+
+.bar-placeholder {
+  height: 5px;
+  background-color: #d1c4e9;
+}
+
+mat-card {
+  height: 270px;
+}
+
+button {
+  z-index: 10;
+}
+
+.test-container, .spinner-container {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+
+.spinner-container {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 2;
+}
+

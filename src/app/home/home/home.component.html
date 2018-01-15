@@ -1,0 +1,69 @@
+<ng-progress #labProgress id="lab" [meteor]="options.meteor" [color]="options.color"
+             [min]="options.min" [max]="options.max" [speed]="options.speed"
+             [spinner]="options.spinner" [spinnerPosition]="options.spinnerPosition"
+             [direction]="options.direction" [thick]="options.thick" [trickleSpeed]="options.trickleSpeed"
+             [ease]="options.ease" (started)="onProgressStarted()" (completed)="onProgressCompleted()">
+</ng-progress>
+
+<div class="grid">
+  <table>
+    <tr>
+      <td>
+        <button (click)="labProgress.start('lab')">
+          <img src="assets/play.svg"/>
+        </button>
+      </td>
+      <td>NgProgress.
+        <strong>start()</strong> —
+        <i>shows the progress bar</i>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <button (click)="labProgress.set(40, 'lab')">
+          <img src="assets/play.svg"/>
+        </button>
+      </td>
+      <td>NgProgress.
+        <strong>set(40)</strong> —
+        <i>sets a percentage 40%</i>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <button (click)="labProgress.inc(20, 'lab')">
+          <img src="assets/play.svg"/>
+        </button>
+      </td>
+      <td>NgProgress.
+        <strong>inc(20)</strong> —
+        <i>increments by a percentage 20%</i>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <button (click)="labProgress.complete('lab')">
+          <img src="assets/play.svg"/>
+        </button>
+      </td>
+      <td>NgProgress.
+        <strong>complete()</strong> —
+        <i>completes the progress</i>
+      </td>
+    </tr>
+  </table>
+  <div class="events">
+    <span class="chip" [class.changed]="startedClass | async"> NgProgress.
+      <strong>started</strong>
+    </span>
+    <span class="chip" [class.changed]="endedClass | async"> NgProgress.
+      <strong>completed</strong>
+    </span>
+
+    <button class="chip" (click)="testHttp()" [disabled]="preventAbuse | async">
+      {{ (preventAbuse | async) ? 'Wait...' : 'Test Http Request' }}
+    </button>
+  </div>
+</div>
+
+<app-lab [(options)]="options"></app-lab>

@@ -1,0 +1,16 @@
+<mat-card>
+  <ng-container *ngIf="progressRef.state$ | async; let state">
+    <div class="bar-placeholder"></div>
+    <mat-progress-bar [@fadeInOut] *ngIf="state.active" [value]="state.value"></mat-progress-bar>
+
+    <div class="test-container">
+      <button mat-fab (click)="toggle()">
+        <mat-icon>{{ state.active ? 'stop' : 'play_arrow'}}</mat-icon>
+      </button>
+    </div>
+
+    <div class="spinner-container">
+      <mat-progress-spinner [@fadeInOut] *ngIf="state.active" [value]="state.value"></mat-progress-spinner>
+    </div>
+  </ng-container>
+</mat-card>

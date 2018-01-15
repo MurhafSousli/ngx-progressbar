@@ -1,27 +1,30 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgProgressModule } from '@ngx-progressbar/core';
-import { NgProgressHttpClientModule } from '@ngx-progressbar/http-client';
+import { NgProgressHttpModule } from '@ngx-progressbar/http';
+import { NgProgressRouterModule } from '@ngx-progressbar/router';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import { LabComponent } from './lab/lab.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AppRoutingModule } from './routing.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
-    LabComponent
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule,
+    BrowserAnimationsModule,
     HttpClientModule,
+    AppRoutingModule,
     NgProgressModule.forRoot(),
-    NgProgressHttpClientModule
+    NgProgressRouterModule,
+    NgProgressHttpModule
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

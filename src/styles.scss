@@ -1,5 +1,16 @@
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700');
+@Import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 @import 'assets/variables';
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+$candy-app-primary: mat-palette($mat-indigo);
+$candy-app-accent: mat-palette($mat-pink, A200, A100, A400);
+$candy-app-warn: mat-palette($mat-red);
+$candy-app-theme: mat-light-theme($candy-app-primary, $candy-app-accent, $candy-app-warn);
+
+@include angular-material-theme($candy-app-theme);
 
 body,
 html {
@@ -15,83 +26,60 @@ body {
   background: -webkit-linear-gradient(-45deg, rgba(136, 212, 152, 0) 73%, rgba(136, 212, 152, 0.3) 81%, rgba(136, 212, 152, 1) 100%);
   background: linear-gradient(135deg, rgba(136, 212, 152, 0) 73%, rgba(136, 212, 152, 0.3) 81%, rgba(136, 212, 152, 1) 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0088d498', endColorstr='#88d498', GradientType=1);
-}
 
-app-root {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 100%;
 }
 
-.component-outer {
+app-root {
+  height: 630px;
+}
+
+button {
   display: flex;
+  align-content: center;
   justify-content: center;
-  align-items: center;
-  font-size: 14px;
-}
-
-.component {
-  margin-bottom: 10px;
-  display: flex;
-  flex-wrap: wrap;
-  background-color: $cmpBg;
-  color: $inputName;
-  padding: 10px;
+  color: gray;
+  margin: 4px 5px 3px 0;
+  background-color: $btnColor;
+  border: 0;
   border-radius: 4px;
-  font-family: monospace;
-  .tag-name,
-  .input-name,
-  .input-wrapper,
-  .input,
-  input {
-    padding: 0;
+  transition: all .15s ease;
+  outline: 0;
+  &:hover:enabled {
+    color: white;
+    background-color: $btnHoverColor;
+    cursor: pointer;
   }
-  .tag-name {
-    color: $cmpColor;
-    line-height: 30px;
-    font-weight: bold;
+  &:active:enabled {
+    box-shadow: inset 0 0 4px rgba(black, 0.8);
   }
-  .input-name {
-    color: $inputName;
-    &:before {
-      content: "[";
-      color: $inputName;
-    }
-    &:after {
-      content: "]";
-      color: $inputName;
-    }
+  img {
+    width: 12px;
+    padding: 7px;
   }
-  .input-wrapper {
-    margin: 3px;
-  }
-  .input {
-    color: $inputColor;
-    &:before {
-      content: '"';
-    }
-    &:after {
-      content: '"';
-    }
-    span {
-      color: $inputColor;
-      font-style: normal;
-    }
-    input,
-    select {
-      color: $inputColor;
-      border: 0;
-      font-family: monospace;
-      outline: 0;
-      background-color: $inputBg;
-    }
+  button:disabled,
+  button[disabled] {
+    background-color: #cccccc;
+    color: #666666;
   }
 }
 
 .container {
   max-width: 700px;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.root-progress-bar {
+  .bar-placeholder {
+    background-color: lightgray;
+  }
+  .bar {
+    background: linear-gradient(to right, #F11712, #0099F7);
+  }
 }
 
 .github-corner:hover .octo-arm {
@@ -113,7 +101,7 @@ app-root {
   }
 }
 
-@media (max-width:500px) {
+@media (max-width: 500px) {
   .github-corner:hover .octo-arm {
     animation: none
   }
@@ -121,3 +109,4 @@ app-root {
     animation: octocat-wave 560ms ease-in-out
   }
 }
+

@@ -1,0 +1,49 @@
+@import '../../../assets/variables';
+
+.grid {
+  display: flex;
+  align-items: center;
+}
+
+table {
+  font-size: 0.8em;
+  margin-bottom: 10px;
+  td {
+    color: gray;
+    i {
+      color: $fontColor;
+    }
+  }
+}
+
+strong {
+  color: $strongColor;
+}
+
+.events {
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+  span {
+    color: gray;
+    background-color: honeydew;
+    transition: background-color ease-out 1s;
+  }
+}
+
+.chip {
+  box-sizing: border-box;
+  margin: 0;
+  margin-bottom: 1em;
+  border-radius: 1.5em;
+  padding: 0.6em 1em;
+  font-size: 0.8em;
+  width: 160px;
+  text-align: center;
+}
+
+.changed {
+  background-color: rgb(151, 255, 218) !important;
+  transition: unset !important;
+}

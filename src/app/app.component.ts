@@ -1,68 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { Subject } from 'rxjs/Subject';
-import { HttpClient } from '@angular/common/http';
-import { NgProgress } from '@ngx-progressbar/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  preserveWhitespaces: false
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
 
-  options = {
-    minimum: 0.08,
-    maximum: 1,
-    ease: 'linear',
-    speed: 200,
-    trickleSpeed: 300,
-    meteor: true,
-    spinner: true,
-    spinnerPosition: 'right',
-    direction: 'leftToRightIncreased',
-    color: 'red',
-    thick: false
-  };
-
-  startedClass = false;
-  endedClass = false;
-  preventAbuse = false;
-
-  constructor(public progress: NgProgress, private http: HttpClient) {
-  }
-
-  ngOnInit() {
-
-    this.progress.started.subscribe(() => {
-
-      this.startedClass = true;
-      setTimeout(() => {
-        this.startedClass = false;
-      }, 800);
-    });
-
-    this.progress.ended.subscribe(() => {
-
-      this.endedClass = true;
-      setTimeout(() => {
-        this.endedClass = false;
-      }, 800);
-    });
-
-    /** Initial start/done */
-    this.progress.start();
-    setTimeout(() => {
-      this.progress.done();
-    }, 2000);
-  }
-
-  testHttp() {
-    this.preventAbuse = true;
-    this.http.get('https://jsonplaceholder.typicode.com/posts/1').subscribe(res => {
-      console.log(res);
-      setTimeout(() => {
-        this.preventAbuse = false;
-      }, 800);
-    });
-  }
 }
