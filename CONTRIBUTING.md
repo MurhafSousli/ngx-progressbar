@@ -18,14 +18,11 @@ Go inside the repo folder
 
  ### 3. Build the core package first
  
- The are 4 packages, 3 of them depends on the core package
+ The are 3 packages
  
 - **@ngx-progressbar/core**         no dependencies
 - **@ngx-progressbar/http**         depends on core
-- **@ngx-progressbar/http-client**  depends on core
 - **@ngx-progressbar/router**       depends on core
-
-So we need to make it visible by linking the core package in `core/build`
 
 A. Build the core package using the command
 
@@ -33,32 +30,24 @@ A. Build the core package using the command
 npm run build-core
 ```
 
-Go to `core/build/package.json`, and you will see the version's value is `"VERSION"`, change it to manually to any valid number, e.g. `3.0.0`
+Open to `core/build/package.json`, and replace `"VERSION"`, to valid version, e.g. `4.0.0`
 
-B. Now we can register a link to it
+B. Register it Link it
 
 ```bash
 npm link build/core
 ```
 
-C. Then link it in our project
-
-```bash
-npm link @ngx-progressbar/core
-```
-
-Now after we made **@ngx-progressbar/core** package "installed", we can build all packages without errors.
+Now **@ngx-progressbar/core** is linked, we can build the other packages without errors.
 
 ### 4. Make your changes
 
 Now the build setup should be working, make the changes. use the included demo app for testing
 
-### 5. Build the packages
+### 5. Build all the packages
  
  ```bash
  npm run build-all
  ```
 
 ### 6. Submit your PR
-
-It is not the best solution, but this is what I got so far. If you know a better way, please share it! :)

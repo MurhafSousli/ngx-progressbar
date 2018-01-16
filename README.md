@@ -22,10 +22,10 @@ This is the documentation for **ngx-progressbar** version 4.x (Angular >= 5)
 
 - [Live Demo](https://MurhafSousli.github.io/ngx-progressbar)
 - [Installation](#installation)
-- [Usage](#usage)
+- [Usage](#usage) | [stackblitz](https://stackblitz.com/edit/ngx-progressbar)
 - [Automagic Usage](#automagic)
-  - [Http requests](#http-client)
-  - [Router events](#router)
+  - [Http requests](#http-client) | [http stackblitz](https://stackblitz.com/edit/ngx-progressbar-http)
+  - [Router events](#router) | [routing stackblitz](https://stackblitz.com/edit/ngx-progressbar-router)
 - [Integration](#integration)
 - [Multiple progress bars](#multiple_instances)
 - [Issues](#issues)
@@ -259,7 +259,7 @@ And just put the component in your **AppComponent** template
 <ng-progress></ng-progress>
 ```
 
-See [lazy routes stackblitz](https://stackblitz.com/edit/ngx-progressbar-router)
+See [routing stackblitz](https://stackblitz.com/edit/ngx-progressbar-router)
 
 <a name="integration"/>
 
