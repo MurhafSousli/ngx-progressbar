@@ -1,5 +1,5 @@
 <p align="center">
-  <img height="200px" width="200px" style="text-align: center;" src="https://raw.githubusercontent.com/MurhafSousli/ngx-progressbar/master/src/assets/logo.svg">
+  <img height="200px" width="200px" style="text-align: center;" src="https://cdn.rawgit.com/MurhafSousli/ngx-progressbar/master/src/assets/logo.svg">
   <h1 align="center">Angular Progressbar</h1>
 </p>
 
@@ -24,7 +24,7 @@ This is the documentation for **ngx-progressbar** version 4.x (Angular >= 5)
 - [Installation](#installation)
 - [Usage](#usage) | [stackblitz](https://stackblitz.com/edit/ngx-progressbar)
 - [Automagic Usage](#automagic)
-  - [Http requests](#http-client) | [http stackblitz](https://stackblitz.com/edit/ngx-progressbar-http)
+  - [Http requests](#http) | [http stackblitz](https://stackblitz.com/edit/ngx-progressbar-http)
   - [Router events](#router) | [routing stackblitz](https://stackblitz.com/edit/ngx-progressbar-router)
 - [Integration](#integration)
 - [Multiple progress bars](#multiple_instances)
@@ -131,7 +131,7 @@ export class HomeComponent {
 
 | Name                  | Default       | Description                                                |
 | --------------------- | :-----------: | ---------------------------------------------------------- |
-| **[id]**              | root          | *For multiple progress bars instances.*                    |
+| **[id]**              | root          | *For multiple progress bars.*                    |
 | **[direction]**       | ltr+          | *Progress bar direction (`ltr+`, `ltr-`, `rtl+`, `rtl-`).* |
 | **[trickleSpeed]**    | 300           | *Progress trickling speed in ms.*                          |
 | **[speed]**           | 200           | *Transition speed in ms.*                                  |
@@ -186,7 +186,7 @@ NgProgress Service is used to control the progress bar(s) from anywhere in the a
 | NgProgress.**destroyAll()**    | *Destroys all existing `NgProgressRef` instances.*    |
 | NgProgress.**ref(id?)**        | *Returns `NgProgressRef` instance by id.*             |
 
-You don't have to specify the id parameter unless you are using more than one progress bar instance
+You don't have to specify the id parameter unless you are using more than one progress bar
 
 <a name="automagic"/>
 
@@ -296,10 +296,10 @@ export class App implements OnInit, OnDestroy {
   }
   
   ngOnDestroy() {
-    // Destroy instance using `NgProgress` service
+    // Destroy NgProgressRef instance using `NgProgress` service.
     this.ngProgress.destroy();
     
-    // DO NOT DESTROY USING `progressRef` INSTANCE  
+    // DO NOT DESTROY USING `progressRef` ITSELF.  
     // this.progressRef.destroy();
   }
 }
