@@ -11,7 +11,7 @@
 
 ### Features
 
-- Supports multiple progress bars instances.
+- Supports multiple progress bars, closes [#113](https://github.com/MurhafSousli/ngx-progressbar/issues/113).
 
 ```html
 <ng-progress></ng-progress>
