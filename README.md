@@ -28,6 +28,7 @@ This is the documentation for **ngx-progressbar** version 4.x (Angular >= 5)
   - [Router events](#router) | [routing stackblitz](https://stackblitz.com/edit/ngx-progressbar-router)
 - [Integration](#integration)
 - [Multiple progress bars](#multiple_instances) | [multiple progress bars stackblitz](https://stackblitz.com/edit/ngx-progressbar-mutliple-instances)
+- [Support](#support)
 - [Issues](#issues)
 - [Author](#author)
 - [Credits](#credits)
@@ -54,7 +55,7 @@ import { NgProgressModule } from '@ngx-progressbar/core';
 
 @NgModule({
   imports: [
-    NgProgressModule.forRoot(config?)
+    NgProgressModule.forRoot(config)
   ]
 })
 ```
@@ -321,6 +322,12 @@ If you need more than one the progress bar, just give it a unique `id`
 Under the hood, each progress bar will get a unique progress worker. 
 
 See [multiple progress bars stackblitz](https://stackblitz.com/edit/ngx-progressbar-mutliple-instances)
+
+<a name="support"/>
+
+## Support 
+
+[![npm](https://c5.patreon.com/external/logo/become_a_patron_button.png)](https://www.patreon.com/bePatron?u=5594898)
 
 <a name="issues"/>
 
