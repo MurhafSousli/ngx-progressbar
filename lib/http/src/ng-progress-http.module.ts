@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
-import { BrowserXhr } from '@angular/http';
-import { NgProgressBrowserXhr } from './ng-progress.xhr';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NgProgressInterceptor } from './ng-progress.interceptor';
 
 @NgModule({
   providers: [
-    { provide: BrowserXhr, useClass: NgProgressBrowserXhr }
+    { provide: HTTP_INTERCEPTORS, useClass: NgProgressInterceptor, multi: true }
   ],
 })
 export class NgProgressHttpModule {}

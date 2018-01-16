@@ -2,7 +2,6 @@ const fs = require("fs"),
   packages = [
     'core',
     'http',
-    'http-client',
     'router'
   ];
 

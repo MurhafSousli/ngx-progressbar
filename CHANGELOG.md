@@ -1,5 +1,46 @@
 # Changelog
 
+## 4.0.0
+
+- Move **NgProgress** logic to **NgProgressRef**.
+- Refactor(NgProgress): became a central service to access progress bars instances (NgProgressRef).
+- Refactor(NgProgressRef): shorten code, reduce complexity.
+- Refactor(NgProgressBarComponent): Initialize inputs from the global config.
+- Improve performance: Use a pure css solution for the progress bar.
+- Refactor(NgProgressModule): Remove the service factory.
+
+### Features
+
+- Supports multiple progress bars, closes [#113](https://github.com/MurhafSousli/ngx-progressbar/issues/113).
+
+```html
+<ng-progress></ng-progress>
+<ng-progress id="instance1"></ng-progress>
+<ng-progress id="instance2"></ng-progress>
+```
+
+- Ability to set global config for all progress bars using `forRoot(config)`.
+- Ability to set *background-color* of the progress bar holder using `.bar-placeholder` class.
+- Adds `(started)` and `(complete)` output to the component.
+- Adds `start()`, `set(n)`, `inc(n)`, `complete()` methods to the component.
+
+For example:
+
+```html
+<ng-progress #progressBar></ng-progress>
+<button (click)="progressBar.start()">Start</button>
+<button (click)="progressBar.complete()">Complete</button>
+```
+
+### Breaking Changes
+
+- `[toggle]` input has been removed from the component.
+- `NgProgress.done()` has been renamed to `NgProgress.complete()`.
+- `NgProgress.ended` has been renamed to `NgProgress.completed()`.
+- Since `HttpModule` is deprecated, **NgProgress** no longer supports it.
+- `NgProgressHttpClientModule` has been renamed to `NgProgressHttpModule`, so now the `HttpClient` automagic feature is published on `@ngx-progressbar/http`
+- `@ngx-progressbar/http-client` package is deprecated, use `@ngx-progressbar/http` instead.
+
 ## 3.0.2
 
 - Refactor(ProgressBar)

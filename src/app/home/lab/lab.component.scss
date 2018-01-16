@@ -1,0 +1,91 @@
+@import "../../../assets/variables";
+
+.component-outer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+}
+
+.component {
+  margin-bottom: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: $cmpBg;
+  color: $inputName;
+  padding: 10px;
+  border-radius: 4px;
+  font-family: monospace;
+}
+
+.tag-name,
+.input-name,
+.input-wrapper,
+.input,
+input {
+  padding: 0;
+}
+.tag-name {
+  color: $cmpColor;
+  line-height: 30px;
+  font-weight: bold;
+}
+
+.input-name {
+  color: $inputName;
+  &:before {
+    content: "[";
+    color: $inputName;
+  }
+  &:after {
+    content: "]";
+    color: $inputName;
+  }
+}
+
+.input-wrapper, .output-wrapper {
+  margin: 3px;
+}
+
+.input, .output {
+  color: $inputColor;
+  &:before {
+    content: '"';
+  }
+  &:after {
+    content: '"';
+  }
+  span {
+    color: $inputColor;
+    font-style: normal;
+  }
+}
+
+.output-name {
+  color: $inputName;
+  &:before {
+    content: "(";
+    color: $inputName;
+  }
+  &:after {
+    content: ")";
+    color: $inputName;
+  }
+}
+.output-wrapper {
+
+}
+
+input,
+select {
+  color: $inputColor;
+  border: 0;
+  font-family: monospace;
+  outline: 0;
+  background-color: $inputBg;
+  width: 60px;
+}
+
+input[type=checkbox] {
+  width: unset;
+}

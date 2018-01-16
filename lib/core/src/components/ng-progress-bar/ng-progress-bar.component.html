@@ -1,8 +1,0 @@
-<div class="ng-progress" *ngIf="state$ | async; let state" [ngClass]="state.containerClasses">
-  <div class="bar" [ngStyle]="state.progressStyles">
-    <div *ngIf="meteor" class="meteor" [ngStyle]="state.meteorStyles"></div>
-  </div>
-  <div *ngIf="spinner" class="spinner {{state.spinnerClasses}}">
-    <div class="spinner-icon" [ngStyle]="state.spinnerStyles"></div>
-  </div> 
-</div>

@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
-import { Router, NavigationStart, NavigationError, NavigationEnd, NavigationCancel } from '@angular/router';
-import { NgProgressModule, NgProgress } from '@ngx-progressbar/core';
+import { NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router } from '@angular/router';
+import { NgProgress } from '@ngx-progressbar/core';
 
-@NgModule({
-})
+@NgModule({})
 export class NgProgressRouterModule {
-  constructor(router: Router, progress: NgProgress) {
+
+  constructor(progress: NgProgress, router: Router) {
 
     router.events.subscribe(event => {
       if (event instanceof NavigationStart) {
@@ -13,7 +13,7 @@ export class NgProgressRouterModule {
       }
 
       if (event instanceof NavigationEnd || event instanceof NavigationCancel || event instanceof NavigationError) {
-        progress.done();
+        progress.complete();
       }
     });
   }

@@ -2,73 +2,13 @@
 
   <app-header></app-header>
 
-  <ng-progress [meteor]="options.meteor" [color]="options.color" 
-               [minimum]="options.minimum" [maximum]="options.maximum" [speed]="options.speed" 
-               [spinner]="options.spinner" [spinnerPosition]="options.spinnerPosition" 
-               [direction]="options.direction" [thick]="options.thick" 
-               [trickleSpeed]="options.trickleSpeed" [ease]="options.ease">
-  </ng-progress>
-
-  <div class="grid">
-    <table>
-      <tr>
-        <td>
-          <button (click)="progress.start()">
-            <img src="assets/play.svg" />
-          </button>
-        </td>
-        <td>NgProgress.
-          <strong>start()</strong> —
-          <i>shows the progress bar</i>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <button (click)="progress.set(0.4)">
-            <img src="assets/play.svg" />
-          </button>
-        </td>
-        <td>NgProgress.
-          <strong>set(0.4)</strong> —
-          <i>sets a percentage 40%</i>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <button (click)="progress.inc(0.2)">
-            <img src="assets/play.svg" />
-          </button>
-        </td>
-        <td>NgProgress.
-          <strong>inc(0.2)</strong> —
-          <i>increments by a percentage 20%</i>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <button (click)="progress.done()">
-            <img src="assets/play.svg" />
-          </button>
-        </td>
-        <td>NgProgress.
-          <strong>done()</strong> —
-          <i>completes the progress</i>
-        </td>
-      </tr>
-    </table>
-    <div class="events">
-      <span class="chip" [class.changed]="startedClass"> NgProgress.
-        <strong>started</strong>
-      </span>
-      <span class="chip" [class.changed]="endedClass"> NgProgress.
-        <strong>ended</strong>
-      </span>
-
-      <button class="chip" (click)="testHttp()" [disabled]="preventAbuse">
-        {{ preventAbuse ? 'Wait...' : 'Test Http Request' }}
-      </button>
-    </div>
+  <div class="menu">
+    <a routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}"> Basic </a> /
+    <a routerLink="/custom" routerLinkActive="active-link"> Custom </a>
   </div>
 
-  <app-lab [(options)]="options"></app-lab>
+  <div class="main">
+    <router-outlet></router-outlet>
+  </div>
 </div>
+<ng-progress class="root-progress-bar" [thick]="true" [meteor]="false" [spinner]="false"></ng-progress>
