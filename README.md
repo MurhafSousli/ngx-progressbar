@@ -65,7 +65,7 @@ import { NgProgressModule } from '@ngx-progressbar/core';
 ```html
 <ng-progress #progressBar></ng-progress>
 <button (click)="progressBar.start()">Start</button>
-<button (click)="progressBar.stop()">Stop</button>
+<button (click)="progressBar.complete()">Complete</button>
 ```
 
 **Example 2:** Accessing the progress bar from parent component
