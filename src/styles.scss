@@ -86,6 +86,11 @@ button {
   animation: octocat-wave 560ms ease-in-out
 }
 
+iframe {
+  display: inline-block;
+  margin-left: 5px;
+}
+
 @keyframes octocat-wave {
   0%,
   100% {
