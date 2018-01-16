@@ -27,7 +27,7 @@ This is the documentation for **ngx-progressbar** version 4.x (Angular >= 5)
   - [Http requests](#http) | [http stackblitz](https://stackblitz.com/edit/ngx-progressbar-http)
   - [Router events](#router) | [routing stackblitz](https://stackblitz.com/edit/ngx-progressbar-router)
 - [Integration](#integration)
-- [Multiple progress bars](#multiple_instances)
+- [Multiple progress bars](#multiple_instances) | [multiple progress bars stackblitz](https://stackblitz.com/edit/ngx-progressbar-mutliple-instances)
 - [Issues](#issues)
 - [Author](#author)
 - [Credits](#credits)
@@ -319,6 +319,8 @@ If you need more than one the progress bar, just give it a unique `id`
 ```
 
 Under the hood, each progress bar will get a unique progress worker. 
+
+See [multiple progress bars stackblitz](https://stackblitz.com/edit/ngx-progressbar-mutliple-instances)
 
 <a name="issues"/>
 
