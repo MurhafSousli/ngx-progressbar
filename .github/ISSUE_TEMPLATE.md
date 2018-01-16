@@ -24,7 +24,7 @@ Otherwise, output from: `node --version` , `npm --version` and Angular version.
 <!--
 Simple steps to reproduce this bug.
 Please include: commands run, packages added, related code changes.
-A link to a sample repo would help too.
+A link to a sample repo would help too. Use https://stackblitz.com/edit/ngx-progressbar if possible
 -->
 
 
