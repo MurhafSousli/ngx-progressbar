@@ -7,5 +7,5 @@ const execSync = require('child_process').execSync,
 
 packages.map(package => {
   const packagePath = `${__dirname}/../build/${package}`;
-  execSync(`cd ${packagePath} && npm publish --tag next`);
+  execSync(`cd ${packagePath} && npm publish`);
 });
