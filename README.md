@@ -40,7 +40,7 @@ This is the documentation for **ngx-progressbar** version 4.x (Angular >= 5)
 Install it with npm
 
 ```bash
-$ npm install --save @ngx-progressbar/core@next
+$ npm install --save @ngx-progressbar/core
 ```
 [stackblitz](https://stackblitz.com/edit/ngx-progressbar)
 
@@ -200,7 +200,7 @@ If you only need a progress bar for multiple requests, there is a simple _plug a
 Install **NgProgressHttpModule**
 
 ```bash
-$ npm install --save @ngx-progressbar/core@next @ngx-progressbar/http@next
+$ npm install --save @ngx-progressbar/core @ngx-progressbar/http
 ```
 
 ```ts
@@ -236,7 +236,7 @@ Install **NgProgressRouterModule**
 If you need the progress bar to start for navigating between your app routes, add this module
 
 ```bash
-$ npm install --save @ngx-progressbar/core@next @ngx-progressbar/router@next
+$ npm install --save @ngx-progressbar/core @ngx-progressbar/router
 ```
 
 To start the progress bar on router events use this code:

@@ -27,7 +27,8 @@ This is the documentation for **ngx-progressbar** version 4.x (Angular >= 5)
   - [Http requests](#http) | [http stackblitz](https://stackblitz.com/edit/ngx-progressbar-http)
   - [Router events](#router) | [routing stackblitz](https://stackblitz.com/edit/ngx-progressbar-router)
 - [Integration](#integration)
-- [Multiple progress bars](#multiple_instances)
+- [Multiple progress bars](#multiple_instances) | [multiple progress bars stackblitz](https://stackblitz.com/edit/ngx-progressbar-mutliple-instances)
+- [Support](#support)
 - [Issues](#issues)
 - [Author](#author)
 - [Credits](#credits)
@@ -54,7 +55,7 @@ import { NgProgressModule } from '@ngx-progressbar/core';
 
 @NgModule({
   imports: [
-    NgProgressModule.forRoot(config?)
+    NgProgressModule.forRoot(config)
   ]
 })
 ```
@@ -65,7 +66,7 @@ import { NgProgressModule } from '@ngx-progressbar/core';
 ```html
 <ng-progress #progressBar></ng-progress>
 <button (click)="progressBar.start()">Start</button>
-<button (click)="progressBar.stop()">Stop</button>
+<button (click)="progressBar.complete()">Complete</button>
 ```
 
 **Example 2:** Accessing the progress bar from parent component
@@ -269,7 +270,7 @@ You can integrate any progress bar or spinner by subscribing to `NgProgress.stat
 
 ```ts
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { NgProgress, progressRef } from 'ngx-progressbar';
+import { NgProgress, progressRef } from '@ngx-progressbar/core';
 
 @Component({
   selector: 'app',
@@ -319,6 +320,14 @@ If you need more than one the progress bar, just give it a unique `id`
 ```
 
 Under the hood, each progress bar will get a unique progress worker. 
+
+See [multiple progress bars stackblitz](https://stackblitz.com/edit/ngx-progressbar-mutliple-instances)
+
+<a name="support"/>
+
+## Support 
+
+[![npm](https://c5.patreon.com/external/logo/become_a_patron_button.png)](https://www.patreon.com/bePatron?u=5594898)
 
 <a name="issues"/>
 
