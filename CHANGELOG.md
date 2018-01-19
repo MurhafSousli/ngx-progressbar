@@ -1,5 +1,10 @@
 # Changelog
 
+## 4.0.1
+
+ - fix(NgProgressComponent): Initialize progress bar without inputs, closes [#118](https://github.com/MurhafSousli/ngx-progressbar/issues/118).
+ - refactor(NgProgressComponent): Use `style.transform` instead of `ngStyle` to animate the progress.
+
 ## 4.0.0
 
 - Move **NgProgress** logic to **NgProgressRef**.
