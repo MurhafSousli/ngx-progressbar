@@ -38,7 +38,7 @@ import { map } from 'rxjs/operators/map';
     <ng-container *ngIf="state$ | async; let state">
       <div class="ng-progress-bar" [class.-active]="state.active">
         <div class="bar-placeholder">
-          <div class="bar" [ngStyle]="state.transform">
+          <div class="bar" [style.transform]="state.transform">
             <div *ngIf="meteor" class="meteor"></div>
           </div>
         </div>
@@ -63,7 +63,7 @@ export class NgProgressComponent implements OnInit, OnChanges, OnDestroy {
   progressRef: NgProgressRef;
 
   /** Progress state stream */
-  state$: Observable<{ active: boolean, transform: any }>;
+  state$: Observable<{ active: boolean, transform: string }>;
 
   /** Creates a new instance if id is not already exists */
   @Input() id = 'root';
@@ -89,7 +89,6 @@ export class NgProgressComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnChanges() {
     if (this.progressRef instanceof NgProgressRef) {
-
       // Update progress bar config when input changes
       this.progressRef.setConfig({
         max: (this.max > 0 && this.max <= 100) ? this.max : 100,
@@ -97,23 +96,21 @@ export class NgProgressComponent implements OnInit, OnChanges, OnDestroy {
         speed: this.speed,
         trickleSpeed: this.trickleSpeed,
       });
-    } else {
-
-      // Get progress bar service instance
-      this.progressRef = this._ngProgress.ref(this.id, {
-        max: this.max,
-        min: this.min,
-        speed: this.speed,
-        trickleSpeed: this.trickleSpeed,
-      });
-      this.state$ = this.progressRef.state$.pipe(map((state: NgProgressState) => ({
-        active: state.active,
-        transform: {transform: `translate3d(${state.value}%, 0, 0)`}
-      })));
     }
   }
 
   ngOnInit() {
+    // Get progress bar service instance
+    this.progressRef = this._ngProgress.ref(this.id, {
+      max: this.max,
+      min: this.min,
+      speed: this.speed,
+      trickleSpeed: this.trickleSpeed,
+    });
+    this.state$ = this.progressRef.state$.pipe(map((state: NgProgressState) => ({
+      active: state.active,
+      transform: `translate3d(${state.value}%,0,0)`
+    })));
     /** Subscribes to started and completed events when user used them */
     if (this.started.observers.length) {
       this._started$ = this.progressRef.started.subscribe(() => this.started.next());
