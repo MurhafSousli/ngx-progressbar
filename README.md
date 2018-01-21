@@ -134,8 +134,8 @@ export class HomeComponent {
 | --------------------- | :-----------: | ---------------------------------------------------------- |
 | **[id]**              | root          | *For multiple progress bars.*                    |
 | **[direction]**       | ltr+          | *Progress bar direction (`ltr+`, `ltr-`, `rtl+`, `rtl-`).* |
-| **[trickleSpeed]**    | 300           | *Progress trickling speed in ms.*                          |
-| **[speed]**           | 200           | *Transition speed in ms.*                                  |
+| **[trickleSpeed]**    | 300           | *Progress trickling duration in ms.*                          |
+| **[speed]**           | 200           | *Transition duration in ms.*                                  |
 | **[min]**             | 8             | *Progress initial starting value.*                         |
 | **[max]**             | 100           | *Progress maximum value.*                                  |
 | **[ease]**            | linear        | *Progress [ease function](http://easings.net/).*           |
