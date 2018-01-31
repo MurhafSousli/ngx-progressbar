@@ -17,7 +17,7 @@ For Angular 2.x & 4.x use ngx-progress@2.1.1, See the [Wiki documentation](https
 
 ## Table of Contents
 
-- [Live Demo](https://MurhafSousli.github.io/ngx-progressbar)
+- [Live Demo](https://MurhafSousli.github.io/ngx-progressbar) | [stackblitz for 3.x](https://stackblitz.com/edit/ngx-progressbar-v3)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Automagic Usage](#automagic)
@@ -84,7 +84,7 @@ export class AppComponent {
   }
 }
 ```
-See [stackblitz demo](https://stackblitz.com/edit/ngx-progressbar)
+See [stackblitz demo](https://stackblitz.com/edit/ngx-progressbar-v3)
 
 ## NgProgress Service
 
