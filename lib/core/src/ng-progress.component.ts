@@ -17,7 +17,6 @@ import {
   EventEmitter,
   ViewEncapsulation
 } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
 import { NgProgress } from './ng-progress.service';
 import { NgProgressRef } from './ng-progress-ref';
 import { NgProgressState } from './ng-progress.interface';
@@ -31,19 +30,25 @@ import { map } from 'rxjs/operators/map';
     'role': 'progressbar',
     '[attr.spinnerPosition]': 'spinnerPosition',
     '[attr.dir]': 'direction',
-    '[attr.thick]': 'thick',
-    '[attr.style]': `sanitizer.bypassSecurityTrustStyle('--color:' + color + ';--speed:' + speed + 'ms;--ease:' + ease)`
+    '[attr.thick]': 'thick'
   },
   template: `
     <ng-container *ngIf="state$ | async; let state">
-      <div class="ng-progress-bar" [class.-active]="state.active">
-        <div class="bar-placeholder">
-          <div class="bar" [style.transform]="state.transform">
-            <div *ngIf="meteor" class="meteor"></div>
+      <div class="ng-progress-bar"
+            [class.-active]="state.active"
+            [style.transition]="'opacity ' + speed + 'ms ' + ease">
+        <div class="ng-bar-placeholder">
+          <div class="ng-bar"
+                [style.transform]="state.transform"
+                [style.backgroundColor]="color"
+                [style.transition]="state.active ? 'all ' + speed + 'ms ' + ease : 'none'">
+            <div *ngIf="meteor" class="ng-meteor" [style.boxShadow]="'0 0 10px '+ color + ', 0 0 5px ' + color"></div>
           </div>
         </div>
-        <div *ngIf="spinner" class="spinner">
-          <div class="spinner-icon"></div>
+        <div *ngIf="spinner" class="ng-spinner">
+          <div class="ng-spinner-icon"
+                [style.borderTopColor]="color"
+                [style.borderLeftColor]="color"></div>
         </div>
       </div>
     </ng-container>
@@ -84,7 +89,7 @@ export class NgProgressComponent implements OnInit, OnChanges, OnDestroy {
   @Output() started = new EventEmitter();
   @Output() completed = new EventEmitter();
 
-  constructor(private _ngProgress: NgProgress, public sanitizer: DomSanitizer) {
+  constructor(private _ngProgress: NgProgress) {
   }
 
   ngOnChanges() {
