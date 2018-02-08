@@ -1,9 +1,14 @@
 # Changelog
 
+## 4.1.0
+
+- feat(Support IE11): Remove css variable, closes [#123](https://github.com/MurhafSousli/ngx-progressbar/issues/123).
+- refactor(NgProgressComponent): prefix component classes with `ng-` to avoid the side effects with other libraries, closes [#125](https://github.com/MurhafSousli/ngx-progressbar/issues/125).
+
 ## 4.0.1
 
- - fix(NgProgressComponent): Initialize progress bar without inputs, closes [#118](https://github.com/MurhafSousli/ngx-progressbar/issues/118).
- - refactor(NgProgressComponent): Use `style.transform` instead of `ngStyle` to animate the progress.
+- fix(NgProgressComponent): Initialize progress bar without inputs, closes [#118](https://github.com/MurhafSousli/ngx-progressbar/issues/118).
+- refactor(NgProgressComponent): Use `style.transform` instead of `ngStyle` to animate the progress.
 
 ## 4.0.0
 
