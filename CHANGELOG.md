@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.1.1
+
+- Use rxjs deep imports to avoid the whole lib to be bundled, [#132](https://github.com/MurhafSousli/ngx-progressbar/pull/132).
+
 ## 4.1.0
 
 - feat(Support IE11): Remove css variable, closes [#123](https://github.com/MurhafSousli/ngx-progressbar/issues/123).
