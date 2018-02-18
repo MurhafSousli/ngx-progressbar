@@ -5,7 +5,14 @@ import { timer } from 'rxjs/observable/timer';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import { of } from 'rxjs/observable/of';
-import { tap, map, skip, delay, filter, switchMap, combineLatest, distinctUntilChanged } from 'rxjs/operators';
+import { tap } from 'rxjs/operators/tap';
+import { map } from 'rxjs/operators/map';
+import { skip } from 'rxjs/operators/skip';
+import { delay } from 'rxjs/operators/delay';
+import { filter } from 'rxjs/operators/filter';
+import { switchMap } from 'rxjs/operators/switchMap';
+import { combineLatest} from 'rxjs/operators/combineLatest';
+import { distinctUntilChanged } from 'rxjs/operators/distinctUntilChanged';
 
 export class NgProgressRef {
 
