@@ -157,20 +157,20 @@ export class HomeComponent {
 | **progress**          | -             | *`NgProgressRef` instance of the progress bar.*            |
 
 
-## NgProgressRef Class
+> ## NgProgressRef Class
 
-This class is used internally, you probably have no use for it unless you want to configure a custom progress bar like in the [integration example](#integration).
+>    This class is used internally, you probably have no use for it unless you want to configure a custom progress bar like in the [integration example](#integration).
 
-| Name                          | Description                                           |
-| ----------------------------- | ----------------------------------------------------- |
-| NgProgressRef.**start()**     | *Starts the progress.*                                |
-| NgProgressRef.**set(n)**      | *Sets a percentage n (where n is between 0-100).*     |
-| NgProgressRef.**inc(n)**      | *Increments by n (where n is between 0-100).*         |
-| NgProgressRef.**complete()**  | *Completes the progress.*                             |
-| NgProgressRef.**started**     | *Stream that emits when the progress has started.*    |
-| NgProgressRef.**completed**   | *Stream that emits when the progress has completed.*  |
-| NgProgressRef.**isStarted**   | *Checks if the progress has started.*                 |
-| NgProgressRef.**state$**      | *Stream that emits when progress has changed.*        |
+>    | Name                          | Description                                           |
+>    | ----------------------------- | ----------------------------------------------------- |
+>    | NgProgressRef.**start()**     | *Starts the progress.*                                |
+>    | NgProgressRef.**set(n)**      | *Sets a percentage n (where n is between 0-100).*     |
+>    | NgProgressRef.**inc(n)**      | *Increments by n (where n is between 0-100).*         |
+>    | NgProgressRef.**complete()**  | *Completes the progress.*                             |
+>    | NgProgressRef.**started**     | *Stream that emits when the progress has started.*    |
+>    | NgProgressRef.**completed**   | *Stream that emits when the progress has completed.*  |
+>    | NgProgressRef.**isStarted**   | *Checks if the progress has started.*                 |
+>    | NgProgressRef.**state$**      | *Stream that emits when progress has changed.*        |
 
 
 ## NgProgress Service
