@@ -30,10 +30,8 @@
     "url": "http://github.com/murhafsousli/ngx-progressbar/issues"
   },
   "license": "MIT",
-  "dependencies": {
-    "@ngx-progressbar/core": "VERSION"
-  },
   "peerDependencies": {
-    "@angular/router": ">=5.0.0"
+    "@angular/router": ">=5.0.0",
+    "@ngx-progressbar/core": "VERSION"
   }
 }
