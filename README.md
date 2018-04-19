@@ -145,7 +145,7 @@ export class HomeComponent {
 | **[id]**              | root          | *For multiple progress bars.*                              |
 | **[direction]**       | ltr+          | *Progress bar direction (`ltr+`, `ltr-`, `rtl+`, `rtl-`).* |
 | **[trickleSpeed]**    | 300           | *Progress trickling speed in ms.*                          |
-| **[trickleFunc]**     | 300           | *A **function** that returns the trickling amount.*        |
+| **[trickleFunc]**     | Function      | *A **function** that returns the trickling amount.*        |
 | **[speed]**           | 200           | *Transition speed in ms.*                                  |
 | **[min]**             | 8             | *Progress initial starting value.*                         |
 | **[max]**             | 100           | *Progress maximum value.*                                  |
@@ -229,7 +229,7 @@ import { NgProgressModule } from '@ngx-progressbar/core';
 | ------------------- | :-----------: | ---------------------------------------------------------- |
 | **direction**       | ltr+          | *Progress bar direction (`ltr+`, `ltr-`, `rtl+`, `rtl-`).* |
 | **trickleSpeed**    | 300           | *Progress trickling speed in ms.*                          |
-| **trickleFunc**     | 300           | *A **function** that returns the trickling amount.*        |
+| **trickleFunc**     | Function      | *A **function** that returns the trickling amount.*        |
 | **speed**           | 200           | *Transition speed in ms.*                                  |
 | **min**             | 8             | *Progress initial starting value.*                         |
 | **max**             | 100           | *Progress maximum value.*                                  |
