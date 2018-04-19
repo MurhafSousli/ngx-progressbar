@@ -85,6 +85,7 @@ export class NgProgressComponent implements OnInit, OnChanges, OnDestroy {
   @Input() min: number = this._ngProgress.config.min;
   @Input() speed: number = this._ngProgress.config.speed;
   @Input() trickleSpeed: number = this._ngProgress.config.trickleSpeed;
+  @Input() trickleFunc: (n: number) => number = this._ngProgress.config.trickleFunc;
 
   @Output() started = new EventEmitter();
   @Output() completed = new EventEmitter();
@@ -100,6 +101,7 @@ export class NgProgressComponent implements OnInit, OnChanges, OnDestroy {
         min: (this.min < 100 && this.min >= 0) ? this.min : 0,
         speed: this.speed,
         trickleSpeed: this.trickleSpeed,
+        trickleFunc: this.trickleFunc
       });
     }
   }
