@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.2.0
+
+- feat(core): Add `trickFunc` input. This allows users to change the trickling amount based on progress state, closes [#146](https://github.com/MurhafSousli/ngx-progressbar/issues/146) in [#148](https://github.com/MurhafSousli/ngx-progressbar/pull/148).
+
 ## 4.1.1
 
 - Use rxjs deep imports to avoid the whole lib to be bundled, [#132](https://github.com/MurhafSousli/ngx-progressbar/pull/132).
@@ -48,12 +52,12 @@ For example:
 
 ### Breaking Changes
 
+- `@ngx-progressbar/http-client` package is deprecated in version 4.x, use `@ngx-progressbar/http` instead.
 - `[toggle]` input has been removed from the component.
 - `NgProgress.done()` has been renamed to `NgProgress.complete()`.
 - `NgProgress.ended` has been renamed to `NgProgress.completed()`.
 - Since `HttpModule` is deprecated, **NgProgress** no longer supports it.
 - `NgProgressHttpClientModule` has been renamed to `NgProgressHttpModule`, so now the `HttpClient` automagic feature is published on `@ngx-progressbar/http`
-- `@ngx-progressbar/http-client` package is deprecated, use `@ngx-progressbar/http` instead.
 
 ## 3.0.2
 

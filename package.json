@@ -1,7 +1,7 @@
 {
   "name": "@ngx-progressbar/demo",
   "description": "A nanoscopic progress bar. Featuring realistic trickle animations to convince your users that something is happening!",
-  "version": "4.1.1",
+  "version": "4.2.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -14,7 +14,10 @@
     "build-http": "ng-packagr -p lib/http/ng-package.json",
     "build-router": "ng-packagr -p lib/router/ng-package.json",
     "publish-all": "node .config/publish.js",
-    "version": "node .config/build.js"
+    "version": "node .config/build.js",
+    "link-core": "npm run version && npm link build/core && npm link @ngx-progressbar/core",
+    "link-http": "npm run version && npm link build/http && npm link @ngx-progressbar/http",
+    "link-router": "npm run version && npm link build/router && npm link @ngx-progressbar/router"
   },
   "private": false,
   "homepage": "http://github.com/murhafsousli/ngx-progressbar",
@@ -77,7 +80,7 @@
     "karma-coverage-istanbul-reporter": "^1.2.1",
     "karma-jasmine": "~1.1.0",
     "karma-jasmine-html-reporter": "^0.2.2",
-    "ng-packagr": "2.0.0",
+    "ng-packagr": "^2.4.2",
     "protractor": "~5.1.2",
     "standard-version": "^4.2.0",
     "ts-node": "~3.2.0",
