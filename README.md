@@ -16,7 +16,9 @@ ___
 This is the documentation for **ngx-progressbar** version 4.x (Angular >= 5)
 
 - For **ngx-progressbar** version 3.x (Angular >= 5), See this [documentation](README_V3.md)
-- For **ngx-progressbar** version 2.x (Angular 2 & 4), See this [documentation](https://github.com/MurhafSousli/ngx-progressbar/wiki) 
+- For **ngx-progressbar** version 2.x (Angular 2 & 4), See this [documentation](https://github.com/MurhafSousli/ngx-progressbar/wiki)
+
+***
 
 ## Table of Contents
 
@@ -37,10 +39,16 @@ This is the documentation for **ngx-progressbar** version 4.x (Angular >= 5)
 
 ## Installation
 
-Install it with npm
+NPM
 
 ```
-$ npm install --save @ngx-progressbar/core
+$ npm i -S @ngx-progressbar/core
+```
+
+YARN
+
+```
+yarn add @ngx-progressbar/core
 ```
 
 [stackblitz](https://stackblitz.com/edit/ngx-progressbar)
@@ -156,6 +164,7 @@ export class HomeComponent {
 | **isStarted**         | -             | *Checks if the progress has started.*                      |
 | **progress**          | -             | *`NgProgressRef` instance of the progress bar.*            |
 
+***
 
 > ## NgProgressRef Class
 
@@ -172,6 +181,7 @@ export class HomeComponent {
 >    | NgProgressRef.**isStarted**   | *Checks if the progress has started.*                 |
 >    | NgProgressRef.**state$**      | *Stream that emits when progress has changed.*        |
 
+***
 
 ## NgProgress Service
 
@@ -189,13 +199,13 @@ NgProgress Service is used to control the progress bar(s) from anywhere in the a
 | NgProgress.**destroy(id?)**    | *Destroys `NgProgressRef` instance by id.*            |
 | NgProgress.**destroyAll()**    | *Destroys all existing `NgProgressRef` instances.*    |
 | NgProgress.**ref(id?)**        | *Returns `NgProgressRef` instance by id.*             |
-| NgProgress.**setConfig(config, id?)** | *Sets config for a `NgProgressRef` instance by id.* |
+| NgProgress.**setConfig(config, id?)** | *Sets config for a `NgProgressRef` instance.*  |
 
 You don't have to specify the id parameter unless you are using more than one progress bar
 
 ## Global config
 
-You can set the default config for all progress bars using **NgProgress** service.
+You can set the default config for all progress bars in **NgProgressModule**.
 
 Example:
 
@@ -238,10 +248,18 @@ If you only need a progress bar for multiple requests, there is a simple _plug a
 
 <a name="http"/>
 
-Install **NgProgressHttpModule**
+**Installation**:
+
+NPM
 
 ```
-$ npm install --save @ngx-progressbar/core @ngx-progressbar/http
+$ npm i -S @ngx-progressbar/{core,http}
+```
+
+YARN
+
+```
+$ yarn add @ngx-progressbar/{core,http}
 ```
 
 ```ts
@@ -273,12 +291,20 @@ The progress will start and complete automatically with your HTTP requests. no n
 
 ## For router events
 
-Install **NgProgressRouterModule**
-
 If you need the progress bar to start for navigating between your app routes, add this module
 
+**Installation:**
+
+NPM
+
 ```
-$ npm install --save @ngx-progressbar/core @ngx-progressbar/router
+$ npm i -S @ngx-progressbar/{core,router}
+```
+
+YARN
+
+```
+$ yarn add @ngx-progressbar/{core,router}
 ```
 
 To start the progress bar on router events use this code:
