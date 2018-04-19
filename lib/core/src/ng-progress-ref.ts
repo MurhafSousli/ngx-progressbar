@@ -89,17 +89,7 @@ export class NgProgressRef {
       this.start();
     } else {
       if (typeof amount !== 'number') {
-        if (n >= 0 && n < 20) {
-          amount = 10;
-        } else if (n >= 20 && n < 50) {
-          amount = 4;
-        } else if (n >= 50 && n < 80) {
-          amount = 2;
-        } else if (n >= 80 && n < 99) {
-          amount = 0.5;
-        } else {
-          amount = 0;
-        }
+        amount = this._config.trickleFunc(n);
       }
       n = this._clamp(n + amount);
       this.set(n);
