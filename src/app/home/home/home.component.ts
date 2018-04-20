@@ -18,6 +18,7 @@ export class HomeComponent {
     max: 100,
     speed: 200,
     trickleSpeed: 300,
+    debounceTime: 0,
     ease: 'linear',
     spinnerPosition: 'right',
     direction: 'ltr+',
