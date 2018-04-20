@@ -52,7 +52,7 @@ export class HomeComponent {
   testHttp() {
     this.preventAbuse.next(true);
 
-    this.http.get('https://reqres.in/api/users?delay=5')
+    this.http.get('https://reqres.in/api/users?delay=1')
       .subscribe(() => {
         setTimeout(() => {
           this.preventAbuse.next(false);
