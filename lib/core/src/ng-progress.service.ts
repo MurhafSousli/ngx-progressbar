@@ -16,6 +16,7 @@ const defaultConfig: NgProgressConfig = {
   min: 8,
   speed: 200,
   trickleSpeed: 300,
+  debounceTime: 0,
   trickleFunc: (n: number): number => {
     if (n >= 0 && n < 20) return 10;
     if (n >= 20 && n < 50) return 4;

@@ -13,6 +13,7 @@ import { filter } from 'rxjs/operators/filter';
 import { switchMap } from 'rxjs/operators/switchMap';
 import { combineLatest} from 'rxjs/operators/combineLatest';
 import { distinctUntilChanged } from 'rxjs/operators/distinctUntilChanged';
+import { debounce } from 'rxjs/operators';
 
 export class NgProgressRef {
 
@@ -61,6 +62,7 @@ export class NgProgressRef {
      * This stream makes it possible to use latest config values while incrementing
      */
     this._workerSub$ = this._trickling$.pipe(
+      debounce(start => timer(start ? this._config.debounceTime : 0)),
       combineLatest(this.config$),
       switchMap(([start, latestConfig]) => start ? this._trickling(latestConfig) : this._complete(latestConfig))
     ).subscribe();
@@ -69,16 +71,11 @@ export class NgProgressRef {
   }
 
   start() {
-    if (!this.isStarted) {
-      this.set(this._config.min);
-    }
     this._trickling$.next(true);
   }
 
   complete() {
-    if (this.isStarted) {
       this._trickling$.next(false);
-    }
   }
 
   inc(amount?: number) {
@@ -128,11 +125,17 @@ export class NgProgressRef {
 
   /** Keeps incrementing the progress */
   private _trickling(config: NgProgressConfig) {
+    if (!this.isStarted) {
+      this.set(this._config.min);
+    }
     return timer(0, config.trickleSpeed).pipe(tap(() => this.inc()));
   }
 
   /** Completes then resets the progress */
   private _complete(config: NgProgressConfig) {
+    if (!this.isStarted) {
+      return of({});
+    }
     return of({}).pipe(
       // Completes the progress
       tap(() => this._setState({value: 100})),

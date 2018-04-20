@@ -2,7 +2,8 @@
              [min]="options.min" [max]="options.max" [speed]="options.speed"
              [spinner]="options.spinner" [spinnerPosition]="options.spinnerPosition"
              [direction]="options.direction" [thick]="options.thick" [trickleSpeed]="options.trickleSpeed"
-             [ease]="options.ease" (started)="onProgressStarted()" (completed)="onProgressCompleted()">
+             [debounceTime]="options.debounceTime" [ease]="options.ease"
+             (started)="onProgressStarted()" (completed)="onProgressCompleted()">
 </ng-progress>
 
 <div class="grid">

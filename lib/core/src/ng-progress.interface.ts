@@ -16,5 +16,6 @@ export interface NgProgressConfig {
   speed?: number;
   trickleSpeed?: number;
   trickleFunc?: (n: number) => number;
+  debounceTime?: number;
 }
 
