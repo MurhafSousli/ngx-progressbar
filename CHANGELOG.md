@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.3.0
+
+- feat(core): add debounceTime option, closes [#141](https://github.com/MurhafSousli/ngx-progressbar/issues/141) in [#151](https://github.com/MurhafSousli/ngx-progressbar/pull/151)
+
 ## 4.2.0
 
 - feat(core): Add `trickleFunc` input. This allows users to change the trickling amount based on progress state, closes [#146](https://github.com/MurhafSousli/ngx-progressbar/issues/146) in [#148](https://github.com/MurhafSousli/ngx-progressbar/pull/148).

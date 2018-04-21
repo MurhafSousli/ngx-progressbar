@@ -1,6 +1,5 @@
 import { NgProgressState, NgProgressConfig } from './ng-progress.interface';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Subscription } from 'rxjs/Subscription';
 import { timer } from 'rxjs/observable/timer';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
@@ -10,18 +9,15 @@ import { map } from 'rxjs/operators/map';
 import { skip } from 'rxjs/operators/skip';
 import { delay } from 'rxjs/operators/delay';
 import { filter } from 'rxjs/operators/filter';
+import { debounce } from 'rxjs/operators/debounce';
 import { switchMap } from 'rxjs/operators/switchMap';
 import { combineLatest} from 'rxjs/operators/combineLatest';
 import { distinctUntilChanged } from 'rxjs/operators/distinctUntilChanged';
-import { debounce } from 'rxjs/operators';
 
 export class NgProgressRef {
 
   private _state: NgProgressState = {active: false, value: 0};
   private _config: NgProgressConfig;
-
-  /** Worker subscription used to unsubscribe from trickling$ stream */
-  private _workerSub$: Subscription;
 
   /** Stream that increments and updates progress state */
   private _trickling$ = new Subject();
@@ -55,19 +51,19 @@ export class NgProgressRef {
     );
   }
 
-  constructor(config: NgProgressConfig) {
+  constructor(customConfig: NgProgressConfig) {
 
     /**
      * Trickling stream starts the timer that increment the progress bar continuously
      * This stream makes it possible to use latest config values while incrementing
      */
-    this._workerSub$ = this._trickling$.pipe(
-      debounce(start => timer(start ? this._config.debounceTime : 0)),
+    this._trickling$.pipe(
+      debounce((start: boolean) => timer(start ? this._config.debounceTime : 0)),
       combineLatest(this.config$),
-      switchMap(([start, latestConfig]) => start ? this._trickling(latestConfig) : this._complete(latestConfig))
+      switchMap(([start, config]: [boolean, NgProgressConfig]) => start ? this._trickling(config) : this._complete(config))
     ).subscribe();
 
-    this.setConfig(config);
+    this.setConfig(customConfig);
   }
 
   start() {
@@ -75,21 +71,18 @@ export class NgProgressRef {
   }
 
   complete() {
-      this._trickling$.next(false);
+    this._trickling$.next(false);
   }
 
   inc(amount?: number) {
-
-    let n = this._state.value;
-
+    const n = this._state.value;
     if (!this.isStarted) {
       this.start();
     } else {
       if (typeof amount !== 'number') {
         amount = this._config.trickleFunc(n);
       }
-      n = this._clamp(n + amount);
-      this.set(n);
+      this.set(n + amount);
     }
   }
 
@@ -107,10 +100,9 @@ export class NgProgressRef {
    * Users should use NgProgressManager.destroy(id) instead
    */
   destroy() {
-    this._workerSub$.unsubscribe();
-    this._trickling$.unsubscribe();
-    this.state$.unsubscribe();
-    this.config$.unsubscribe();
+    this._trickling$.complete();
+    this.state$.complete();
+    this.config$.complete();
   }
 
   private _setState(state: NgProgressState) {
@@ -133,10 +125,7 @@ export class NgProgressRef {
 
   /** Completes then resets the progress */
   private _complete(config: NgProgressConfig) {
-    if (!this.isStarted) {
-      return of({});
-    }
-    return of({}).pipe(
+    return !this.isStarted ? of({}) : of({}).pipe(
       // Completes the progress
       tap(() => this._setState({value: 100})),
 

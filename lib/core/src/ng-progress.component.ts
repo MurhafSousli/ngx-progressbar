@@ -95,7 +95,7 @@ export class NgProgressComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnChanges() {
     if (this.progressRef instanceof NgProgressRef) {
-      // Update progress bar config when input changes
+      // Update progress bar config when inputs change
       this.progressRef.setConfig({
         max: (this.max > 0 && this.max <= 100) ? this.max : 100,
         min: (this.min < 100 && this.min >= 0) ? this.min : 0,
@@ -122,10 +122,10 @@ export class NgProgressComponent implements OnInit, OnChanges, OnDestroy {
     })));
     /** Subscribes to started and completed events when user used them */
     if (this.started.observers.length) {
-      this._started$ = this.progressRef.started.subscribe(() => this.started.next());
+      this._started$ = this.progressRef.started.subscribe(() => this.started.emit());
     }
     if (this.completed.observers.length) {
-      this._completed$ = this.progressRef.completed.subscribe(() => this.completed.next());
+      this._completed$ = this.progressRef.completed.subscribe(() => this.completed.emit());
     }
   }
 
