@@ -20,9 +20,8 @@ import {
 import { NgProgress } from './ng-progress.service';
 import { NgProgressRef } from './ng-progress-ref';
 import { NgProgressState } from './ng-progress.interface';
-import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs/Subscription';
-import { map } from 'rxjs/operators/map';
+import { Observable, Subscription } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'ng-progress',

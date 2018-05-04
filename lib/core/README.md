@@ -39,6 +39,8 @@ This is the documentation for **ngx-progressbar** version 4.x (Angular >= 5)
 
 ## Installation
 
+</a>
+
 NPM
 
 ```
@@ -56,6 +58,8 @@ yarn add @ngx-progressbar/core
 <a name="usage"/>
 
 ## Usage
+
+</a>
 
 Import `NgProgressModule` in the root module
 
@@ -246,11 +250,15 @@ import { NgProgressModule } from '@ngx-progressbar/core';
 
 ## Automagic loading bar
 
+</a>
+
 If you only need a progress bar for multiple requests, there is a simple _plug and play_ module. It does the trick.
 
 <a name="http"/>
 
 **Installation**:
+
+</a>
 
 NPM
 
@@ -292,6 +300,8 @@ The progress will start and complete automatically with your HTTP requests. no n
 <a name="router"/>
 
 ## For router events
+
+</a>
 
 If you need the progress bar to start for navigating between your app routes, add this module
 
@@ -336,6 +346,8 @@ See [routing stackblitz](https://stackblitz.com/edit/ngx-progressbar-router)
 <a name="integration"/>
 
 ## Integrating custom loaders
+
+</a>
 
 You can integrate any progress bar or spinner by subscribing to `NgProgress.state$`, here is an example of using Material progress bar
 
@@ -382,6 +394,8 @@ In this case you don't need to use `<ng-progress>` in your template :)
 <a name="multiple_instances"/>
 
 ## Using multiple progress bars
+
+</a>
 
 If you need more than one the progress bar, just give it a unique `id`
 

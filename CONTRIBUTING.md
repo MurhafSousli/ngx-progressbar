@@ -30,9 +30,9 @@ A. Build the core package using the command
 npm run build-core
 ```
 
-Open to `core/build/package.json`, and replace `"VERSION"`, to valid version, e.g. `4.0.0`
+Open `core/build/package.json`, and replace `"VERSION"`, to valid version, e.g. `4.0.0`
 
-B. Register it Link it
+B. Register it/Link it
 
 ```bash
 npm link build/core
