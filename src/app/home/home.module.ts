@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home/home.component';
 import { RouterModule } from '@angular/router';
 import { NgProgressModule } from '@ngx-progressbar/core';
+// import { NgProgressModule } from '../progressbar/core';
 import { FormsModule } from '@angular/forms';
 import { LabComponent } from './lab/lab.component';
 import { MatButtonModule } from '@angular/material';
