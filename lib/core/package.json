@@ -31,6 +31,6 @@
   },
   "license": "MIT",
   "peerDependencies": {
-    "@angular/common": ">=5.0.0"
+    "@angular/common": ">=6.0.0"
   }
 }

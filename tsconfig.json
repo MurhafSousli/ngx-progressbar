@@ -14,7 +14,7 @@
       "./node_modules/@types"
     ],
     "paths": {
-      "@ngx-progressbar/*": ["./*"]
+      "@ngx-progressbar/*": ["../build/*"]
     }
   },
   "awesomeTypescriptLoaderOptions": {

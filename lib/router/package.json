@@ -31,7 +31,7 @@
   },
   "license": "MIT",
   "peerDependencies": {
-    "@angular/router": ">=5.0.0",
+    "@angular/router": ">=6.0.0",
     "@ngx-progressbar/core": "VERSION"
   }
 }

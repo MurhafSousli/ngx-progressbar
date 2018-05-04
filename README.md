@@ -13,7 +13,9 @@ ___
 
 ### Before you begin!
 
-This is the documentation for **ngx-progressbar** version 4.x (Angular >= 5)
+This is the documentation for **ngx-progressbar** version 4.x (Angular >= 5). 
+
+For Angular v6 support, use **ngx-progressbar** version 5.x.
 
 - For **ngx-progressbar** version 3.x (Angular >= 5), See this [documentation](README_V3.md)
 - For **ngx-progressbar** version 2.x (Angular 2 & 4), See this [documentation](https://github.com/MurhafSousli/ngx-progressbar/wiki)
