@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpInterceptor, HttpEvent, HttpHandler, HttpRequest } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
-import { finalize } from 'rxjs/operators/finalize';
+import { Observable } from 'rxjs';
+import { finalize } from 'rxjs/operators';
 import { NgProgress } from '@ngx-progressbar/core';
 
 @Injectable()
