@@ -1,7 +1,7 @@
 import { Injectable, Inject, Optional } from '@angular/core';
 import { NgProgressRef } from './ng-progress-ref';
 import { NgProgressConfig } from './ng-progress.interface';
-import { empty } from 'rxjs/observable/empty';
+import { empty } from 'rxjs';
 import { CONFIG } from './ng-progress.token';
 
 const defaultConfig: NgProgressConfig = {
