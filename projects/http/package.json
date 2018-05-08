@@ -1,6 +1,6 @@
 {
   "name": "@ngx-progressbar/http",
-  "version": "^5.0.0-rc.0",
+  "version": "5.0.0-rc.1",
   "description": "A nanoscopic progress bar. Featuring realistic trickle animations to convince your users that something is happening!",
   "private": false,
   "homepage": "http://github.com/murhafsousli/ngx-progressbar",

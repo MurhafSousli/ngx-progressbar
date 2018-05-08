@@ -1,5 +1,9 @@
 # Changelog
 
+## 5.0.0-rc.1
+
+- fix(NgProgressService): NgProgress.completed: return completed observable, [#157](https://github.com/MurhafSousli/ngx-progressbar/pull/157)
+
 ## 5.0.0-rc.0
 
 - Upgrade to Angular 6, closes [#143](https://github.com/MurhafSousli/ngx-progressbar/issues/143) in [#156](https://github.com/MurhafSousli/ngx-progressbar/pull/156).

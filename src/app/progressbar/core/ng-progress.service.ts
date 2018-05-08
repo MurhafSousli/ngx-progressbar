@@ -90,7 +90,7 @@ export class NgProgress {
   }
 
   completed(id = 'root') {
-    return (this._instances[id] instanceof NgProgressRef) ? this._instances[id].ended : EMPTY;
+    return (this._instances[id] instanceof NgProgressRef) ? this._instances[id].completed : EMPTY;
   }
 
   destroy(id = 'root') {
