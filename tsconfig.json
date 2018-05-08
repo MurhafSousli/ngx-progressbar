@@ -1,28 +1,31 @@
 {
+  "compileOnSave": false,
   "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "target": "es5",
-    "declaration": true,
-    "moduleResolution": "node",
-    "removeComments": true,
-    "sourceMap": true,
-    "noImplicitAny": false,
-    "baseUrl": "build",
-    "lib": ["dom", "es2017"],
     "typeRoots": [
-      "./node_modules/@types"
+      "node_modules/@types"
+    ],
+    "lib": [
+      "es2017",
+      "dom"
     ],
     "paths": {
-      "@ngx-progressbar/*": ["./*"]
+      "core": [
+        "dist/core"
+      ],
+      "http": [
+        "dist/http"
+      ],
+      "router": [
+        "dist/router"
+      ]
     }
-  },
-  "awesomeTypescriptLoaderOptions": {
-    "useWebpackText": true
-  },
-  "include": [
-    "build/**/*.ts",
-    "src/**/*.ts"
-  ],
-  "compileOnSave": false
+  }
 }

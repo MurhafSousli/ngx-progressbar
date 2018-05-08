@@ -1,53 +1,57 @@
 # Contributing
 
-Here are the instructions on how to develop locally:
-
 ### 1. Clone the repo
 
  ```bash
-$ git clone https://github.com/MurhafSousli/ngx-progressbar.git
+$ git clone https://github.com/MurhafSousli/ngx-progressbar.git && cd ngx-progressbar
  ```
 
 ### 2. Install the dependencies
 
-Go inside the repo folder
+NPM
 
-```bash
- $ npm install
+```
+$ npm install
 ```
 
- ### 3. Build the core package first
+YARN
  
- The are 3 packages
+```
+$ yarn install
+```
+
+### 3. Building
+ 
+The are 3 packages
  
 - **@ngx-progressbar/core**         no dependencies
-- **@ngx-progressbar/http**         depends on core
-- **@ngx-progressbar/router**       depends on core
+- **@ngx-progressbar/http**         depended on the core package
+- **@ngx-progressbar/router**       depended on the core package
 
-A. Build the core package using the command
+**A. Build the core package**
 
-```bash
-npm run build-core
+```
+$ npm run build-core
 ```
 
-Open to `core/build/package.json`, and replace `"VERSION"`, to valid version, e.g. `4.0.0`
+Then link the core, so you can build the other packages (needed only the first time)
 
-B. Register it Link it
-
-```bash
-npm link build/core
+```
+$ npm run link-core
 ```
 
-Now **@ngx-progressbar/core** is linked, we can build the other packages without errors.
+**B. Build the http package**
 
-### 4. Make your changes
+```
+$ npm run build-http
+```
 
-Now the build setup should be working, make the changes. use the included demo app for testing
+**C. Build the router package**
 
-### 5. Build all the packages
- 
- ```bash
- npm run build-all
- ```
+```
+$ npm run build-router
+```
 
-### 6. Submit your PR
+***
+
+### 4. Submit your PR

@@ -23,3 +23,11 @@ li {
     text-decoration: underline;
   }
 }
+::ng-deep .root-progress-bar {
+  .ng-bar-placeholder {
+    background-color: lightgray;
+  }
+  .ng-bar {
+    background: linear-gradient(to right, #F11712, #0099F7);
+  }
+}

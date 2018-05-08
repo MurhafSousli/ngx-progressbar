@@ -73,15 +73,6 @@ button {
   flex-direction: column;
 }
 
-.root-progress-bar {
-  .bar-placeholder {
-    background-color: lightgray;
-  }
-  .bar {
-    background: linear-gradient(to right, #F11712, #0099F7);
-  }
-}
-
 .github-corner:hover .octo-arm {
   animation: octocat-wave 560ms ease-in-out
 }
@@ -114,4 +105,3 @@ iframe {
     animation: octocat-wave 560ms ease-in-out
   }
 }
-
