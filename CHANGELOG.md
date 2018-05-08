@@ -1,5 +1,9 @@
 # Changelog
 
+## 5.0.0-rc.0
+
+- Upgrade to Angular 6, closes [#143](https://github.com/MurhafSousli/ngx-progressbar/issues/143) in [#156](https://github.com/MurhafSousli/ngx-progressbar/pull/156).
+
 ## 4.3.0
 
 - feat(core): add debounceTime option, closes [#141](https://github.com/MurhafSousli/ngx-progressbar/issues/141) in [#151](https://github.com/MurhafSousli/ngx-progressbar/pull/151)
