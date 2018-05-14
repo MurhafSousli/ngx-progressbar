@@ -43,7 +43,9 @@
     "build-all": "ng build core --prod && ng build http --prod && ng build router --prod",
     "link-core": "npm link dist/core && npm link @ngx-progressbar/core",
     "link-http": "npm link dist/http && npm link @ngx-progressbar/http",
-    "link-router": "npm link dist/router && npm link @ngx-progressbar/router"
+    "link-router": "npm link dist/router && npm link @ngx-progressbar/router",
+    "publish-all": "node .config/publish.js",
+    "set-version": "node .config/build.js"
   },
   "dependencies": {
     "@angular/animations": "^6.0.0",
