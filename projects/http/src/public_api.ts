@@ -1,1 +1,1 @@
-export * from './lib';
+export * from './lib/ng-progress-http.module';
