@@ -1,6 +1,6 @@
 {
   "name": "@ngx-progressbar/router",
-  "version": "5.0.0-rc.1",
+  "version": "VERSION",
   "description": "A nanoscopic progress bar. Featuring realistic trickle animations to convince your users that something is happening!",
   "private": false,
   "homepage": "http://github.com/murhafsousli/ngx-progressbar",
@@ -33,6 +33,6 @@
   "peerDependencies": {
     "@angular/common": "^6.0.0-rc.0 || ^6.0.0",
     "@angular/core": "^6.0.0-rc.0 || ^6.0.0",
-    "@ngx-progressbar/core": "^5.0.0-rc.0 || ^5.0.0"
+    "@ngx-progressbar/core": "VERSION"
   }
 }
