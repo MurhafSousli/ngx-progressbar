@@ -1,5 +1,9 @@
 # Changelog
 
+## 5.0.1
+
+- fix(build): fix `warning " > @ngx-progressbar/core@5.0.0" has incorrect peer dependency "@angular/core@5.0.0".`
+
 ## 5.0.0
 
 - fixbug(build): fix build aot failure with angular 6, closes [#143](https://github.com/MurhafSousli/ngx-progressbar/issues/143), [#167](https://github.com/MurhafSousli/ngx-progressbar/issues/167), [#166](https://github.com/MurhafSousli/ngx-progressbar/issues/166), [#165](https://github.com/MurhafSousli/ngx-progressbar/issues/165), [#164](https://github.com/MurhafSousli/ngx-progressbar/issues/164), [#163](https://github.com/MurhafSousli/ngx-progressbar/issues/163), [#162](https://github.com/MurhafSousli/ngx-progressbar/issues/162), [#161](https://github.com/MurhafSousli/ngx-progressbar/issues/161), [#160](https://github.com/MurhafSousli/ngx-progressbar/issues/160)
