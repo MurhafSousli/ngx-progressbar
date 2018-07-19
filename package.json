@@ -40,12 +40,13 @@
     "build-core": "ng build core",
     "build-http": "ng build http",
     "build-router": "ng build router",
-    "build-all": "ng build core --prod && ng build http --prod && ng build router --prod",
+    "init-build": "npm run build-core && npm run version && npm run link-core && npm run build-http && npm run version && npm run link-http && npm run build-router && npm run version && npm run link-router && npm run version",
+    "build-all": "ng build core --prod && ng build http --prod && ng build router --prod && npm run version",
     "link-core": "npm link dist/core && npm link @ngx-progressbar/core",
     "link-http": "npm link dist/http && npm link @ngx-progressbar/http",
     "link-router": "npm link dist/router && npm link @ngx-progressbar/router",
     "publish-all": "node .config/publish.js",
-    "set-version": "node .config/build.js"
+    "version": "node .config/version.js"
   },
   "dependencies": {
     "@angular/animations": "^6.0.0",
@@ -72,6 +73,7 @@
     "@types/jasmine": "~2.8.6",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",
+    "ansi-colors": "^2.0.5",
     "codelyzer": "~4.2.1",
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",
