@@ -13,10 +13,15 @@ ___
 
 ### Before you begin!
 
-This is the documentation for **ngx-progressbar** version 4.x (Angular >= 5) and version 5.x (Angular >= 6)
+This is the documentations for:
 
-- For **ngx-progressbar** version 3.x (Angular >= 5), See this [documentation](README_V3.md)
-- For **ngx-progressbar** version 2.x (Angular 2 & 4), See this [documentation](https://github.com/MurhafSousli/ngx-progressbar/wiki)
+- `@ngx-progressbar/*` v5.x supports Angular >= 6
+- `@ngx-progressbar/*` v4.x supports Angular >= 5
+
+Older versions:
+
+- `@ngx-progressbar/*` v3.x supports Angular >= 5, see the [docs for v3.x](README_V3.md)
+- `ngx-progressbar` v2.x supports Angular 2 & 4, see the [docs for v2.x](https://github.com/MurhafSousli/ngx-progressbar/wiki)
 
 ***
 
@@ -29,6 +34,7 @@ This is the documentation for **ngx-progressbar** version 4.x (Angular >= 5) and
   - [Http requests](#http) | [http stackblitz](https://stackblitz.com/edit/ngx-progressbar-http)
   - [Router events](#router) | [routing stackblitz](https://stackblitz.com/edit/ngx-progressbar-router)
 - [Integration](#integration)
+- [Styling](#styling)
 - [Multiple progress bars](#multiple_instances) | [multiple progress bars stackblitz](https://stackblitz.com/edit/ngx-progressbar-mutliple-instances)
 - [Support](#support)
 - [Issues](#issues)
@@ -378,6 +384,38 @@ export class App implements OnInit, OnDestroy {
 ```
 
 In this case you don't need to use `<ng-progress>` in your template :)
+
+<a name="styling">
+
+To change the style of the progress bar use the following classes
+
+```scss
+ng-progress {
+  // host element
+}
+
+.ng-progress-bar {
+  // bar wrapper
+}
+
+.ng-bar-placeholder {
+  // bar placeholder (transparent by default)
+}
+
+.ng-bar {
+  // the actual bar that translates with when the progress increments
+}
+
+.ng-spinner {
+   // Spinner wrapper
+}
+
+.ng-spinner-icon {
+  // The actual spinner where defines the radius size and animation
+}
+```
+
+> Note that some rules require `!important` to override such as the height of the progress bar.
 
 <a name="multiple_instances"/>
 
