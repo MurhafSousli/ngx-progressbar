@@ -11,20 +11,16 @@ import { HeaderComponent } from './header/header.component';
 import { AppRoutingModule } from './routing.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent
-  ],
+  declarations: [AppComponent, HeaderComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
     NgProgressModule.forRoot(),
-    NgProgressRouterModule,
-    NgProgressHttpModule
+    NgProgressRouterModule.forRoot(),
+    NgProgressHttpModule.forRoot()
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-}
+export class AppModule {}
