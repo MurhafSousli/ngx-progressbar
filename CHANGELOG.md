@@ -1,5 +1,17 @@
 # Changelog
 
+## 5.1.0
+
+- feat(NgProgressHttp): Add optional config to set progressRef id and silent APIs, closes [#83](https://github.com/MurhafSousli/ngx-progressbar/issues/83) in [3c1d72c](https://github.com/MurhafSousli/ngx-progressbar/pull/178/commits/3c1d72c9e203f9b299f7dda2b2eefd0ce66a78c6) (Thanks to @bboyz269).
+- feat(NgPorgressRouter): Add optional config to set progressRef id and a delay to complete the progress bar, closes [#181](https://github.com/MurhafSousli/ngx-progressbar/issues/181) in [d274745](https://github.com/MurhafSousli/ngx-progressbar/pull/201/commits/d274745a9721f91f92c42987263b632d817b6bb9).
+- refactor(NgProgress): Use, `{providedIn: 'root'}` instead of `useFactory` function in [d31cacd](https://github.com/MurhafSousli/ngx-progressbar/pull/201/commits/d31cacd62d9731c1caddd898f83bb1b28c9704b7).
+
+### Breaking changes
+
+Before, to add the automagic features, we used to import `NgProgressHttpModule` and `NgProgressRouterModule`.
+
+Now we must use `forRoot()` on these modules => `NgProgressHttpModule.forRoot()` and `NgProgressRouterModule.forRoot()`.
+
 ## 5.0.1
 
 - fix(build): fix `warning " > @ngx-progressbar/core@5.0.0" has incorrect peer dependency "@angular/core@5.0.0".`
