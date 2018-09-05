@@ -1,5 +1,9 @@
 # Changelog
 
+## 5.1.1
+
+- fix(NgPorgressRouter): Progressbar is not completing when navigation ends, closes [#202](https://github.com/MurhafSousli/ngx-progressbar/issues/202) in [6d8b644](https://github.com/MurhafSousli/ngx-progressbar/pull/203/commits/6d8b644e6d8fe873aad20bb0b92e6e52e262c088).
+
 ## 5.1.0
 
 - feat(NgProgressHttp): Add optional config to set progressRef id and silent APIs, closes [#83](https://github.com/MurhafSousli/ngx-progressbar/issues/83) in [3c1d72c](https://github.com/MurhafSousli/ngx-progressbar/pull/178/commits/3c1d72c9e203f9b299f7dda2b2eefd0ce66a78c6) (Thanks to @bboyz269).
