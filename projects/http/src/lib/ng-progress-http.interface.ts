@@ -1,3 +1,8 @@
+import { InjectionToken } from '@angular/core';
+
 export interface NgProgressHttpConfig {
-    silentApis?: string[];
+  id?: string;
+  silentApis?: string[];
 }
+
+export const CONFIG = new InjectionToken<NgProgressHttpConfig>('config');
