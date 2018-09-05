@@ -280,10 +280,12 @@ import { NgProgressHttpModule } from '@ngx-progressbar/http';
     // ...
     HttpClientModule,
     NgProgressModule.forRoot(),
-    NgProgressHttpModule
+    NgProgressHttpModule.forRoot()
   ]
 })
 ```
+
+ > Since **v5.1.0** `NgProgressHttpModule` accepts an optional paramter for config that is used to set the progressRef id and the APIs to be ignored, e.g. `NgProgressHttpModule.forRoot({ id: 'httpProgressbar', silentApis: ['/silent-api/', '/another-silent-api/'] })`
 
 And just put the component in your template
 
@@ -326,10 +328,12 @@ import { NgProgressRouterModule } from '@ngx-progressbar/router';
   imports: [
     RouterModule.forRoot(...),
     NgProgressModule.forRoot(),
-    NgProgressRouterModule
+    NgProgressRouterModule.forRoot()
   ],
 })
 ```
+
+ > Since **v5.1.0** `NgProgressRouterModule` accepts an optional paramter for config that is used to set the progressRef id and the delay, e.g. `NgProgressRouterModule.forRoot({ id: 'routerProgressbar', delay: 500 })`
 
 And just put the component in your **AppComponent** template
 
