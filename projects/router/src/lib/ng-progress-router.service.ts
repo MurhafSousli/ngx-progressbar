@@ -1,6 +1,6 @@
 import { Injectable, Optional, Inject } from '@angular/core';
 import { Router, NavigationStart, NavigationEnd, NavigationCancel, NavigationError } from '@angular/router';
-import { of } from 'rxjs';
+import { of, EMPTY } from 'rxjs';
 import { tap, delay, switchMap } from 'rxjs/operators';
 import { NgProgress } from '@ngx-progressbar/core';
 import { NgProgressRouterConfig, CONFIG } from './ng-progress-router.interface';
@@ -32,6 +32,7 @@ export class NgProgressRouter {
         } else if (event instanceof NavigationEnd || event instanceof NavigationCancel || event instanceof NavigationError) {
           return completeProgress;
         }
+        return EMPTY;
       })
     ).subscribe();
   }
