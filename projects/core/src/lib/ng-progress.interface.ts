@@ -1,3 +1,5 @@
+import { InjectionToken } from '@angular/core';
+
 export interface NgProgressState {
   active?: boolean;
   value?: number;
@@ -19,3 +21,4 @@ export interface NgProgressConfig {
   debounceTime?: number;
 }
 
+export const CONFIG = new InjectionToken<NgProgressConfig>('config');

@@ -2,16 +2,22 @@ import { Injectable, Optional, Inject } from '@angular/core';
 import { HttpInterceptor, HttpEvent, HttpHandler, HttpRequest } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
-import { NgProgress } from '@ngx-progressbar/core';
-import { NgProgressHttpConfig } from './ng-progress-http.interface';
-import { CONFIG } from './ng-progress-http.token';
+import { NgProgress, NgProgressRef } from '@ngx-progressbar/core';
+import { NgProgressHttpConfig, CONFIG } from './ng-progress-http.interface';
 
 @Injectable()
 export class NgProgressInterceptor implements HttpInterceptor {
 
   private _inProgressCount = 0;
+  private _progressRef: NgProgressRef;
+  private _config: NgProgressHttpConfig = {
+    id: 'root',
+    silentApis: []
+  };
 
-  constructor(private _ngProgress: NgProgress, @Optional() @Inject(CONFIG) private _config?: NgProgressHttpConfig) {
+  constructor(ngProgress: NgProgress, @Optional() @Inject(CONFIG) config?: NgProgressHttpConfig) {
+    this._config = {...this._config, ...config};
+    this._progressRef = ngProgress.ref(this._config.id);
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -21,15 +27,19 @@ export class NgProgressInterceptor implements HttpInterceptor {
     }
 
     this._inProgressCount++;
-    if (!this._ngProgress.ref('root').isStarted) {
-      this._ngProgress.start();
+
+    if (!this._progressRef.isStarted) {
+      this._progressRef.start();
     }
-    return next.handle(req).pipe(finalize(() => {
-      this._inProgressCount--;
-      if (this._inProgressCount === 0) {
-        this._ngProgress.complete();
-      }
-    }));
+
+    return next.handle(req).pipe(
+      finalize(() => {
+        this._inProgressCount--;
+        if (this._inProgressCount === 0) {
+          this._progressRef.complete();
+        }
+      })
+    );
   }
 
   /**

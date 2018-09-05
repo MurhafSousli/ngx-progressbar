@@ -1,8 +1,7 @@
 import { Injectable, Inject, Optional } from '@angular/core';
-import { NgProgressRef } from './ng-progress-ref';
-import { NgProgressConfig } from './ng-progress.interface';
 import { EMPTY } from 'rxjs';
-import { CONFIG } from './ng-progress.token';
+import { NgProgressRef } from './ng-progress-ref';
+import { NgProgressConfig, CONFIG } from './ng-progress.interface';
 
 const defaultConfig: NgProgressConfig = {
   meteor: true,
@@ -26,7 +25,9 @@ const defaultConfig: NgProgressConfig = {
   }
 };
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class NgProgress {
 
   /** Stores NgProgressRef instances */
