@@ -1,20 +1,20 @@
-import { NgModule } from '@angular/core';
-import { NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router } from '@angular/router';
-import { NgProgress } from '@ngx-progressbar/core';
+import { NgModule, ModuleWithProviders } from '@angular/core';
+import { NgProgressRouterConfig, CONFIG } from './ng-progress-router.interface';
+import { NgProgressRouter } from './ng-progress-router.service';
 
 @NgModule({})
 export class NgProgressRouterModule {
 
-  constructor(progress: NgProgress, router: Router) {
+  // Inject the service to get it to work
+  constructor(ngProgressRouter: NgProgressRouter) {
+  }
 
-    router.events.subscribe(event => {
-      if (event instanceof NavigationStart) {
-        progress.start();
-      }
-
-      if (event instanceof NavigationEnd || event instanceof NavigationCancel || event instanceof NavigationError) {
-        progress.complete();
-      }
-    });
+  static forRoot(config?: NgProgressRouterConfig): ModuleWithProviders {
+    return {
+      ngModule: NgProgressRouterModule,
+      providers: [
+        { provide: CONFIG, useValue: config }
+      ]
+    };
   }
 }
