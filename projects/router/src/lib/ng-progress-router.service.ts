@@ -1,6 +1,6 @@
 import { Injectable, Optional, Inject } from '@angular/core';
 import { Router, NavigationStart, NavigationEnd, NavigationCancel, NavigationError } from '@angular/router';
-import { of, EMPTY } from 'rxjs';
+import { of } from 'rxjs';
 import { tap, delay, switchMap, filter } from 'rxjs/operators';
 import { NgProgress } from '@ngx-progressbar/core';
 import { NgProgressRouterConfig, CONFIG } from './ng-progress-router.interface';
@@ -23,7 +23,7 @@ export class NgProgressRouter {
     );
 
     const completeProgress = of({}).pipe(
-      delay(config.delay),
+      delay(this._config.delay),
       tap(() => progressRef.complete())
     );
 
