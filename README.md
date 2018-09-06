@@ -224,7 +224,7 @@ import { NgProgressModule } from '@ngx-progressbar/core';
 @NgModule({
   imports: [
     NgProgressModule.forRoot({
-      tricklSpeed: 200,
+      trickleSpeed: 200,
       min: 20,
       meteor: false
     })
