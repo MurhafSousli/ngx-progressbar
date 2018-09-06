@@ -1,9 +1,9 @@
 # Changelog
 
-## 5.1.1
+## 5.1.2
 
 - fix(NgPorgressRouter): Progressbar is not completing when navigation ends, closes [#202](https://github.com/MurhafSousli/ngx-progressbar/issues/202) in [6d8b644](https://github.com/MurhafSousli/ngx-progressbar/pull/203/commits/6d8b644e6d8fe873aad20bb0b92e6e52e262c088).
-- fix(NgProgressRouter): fix router config.delay is undefined error, in []().
+- fix(NgProgressRouter): fix router config.delay is undefined error, in [9dae94b](https://github.com/MurhafSousli/ngx-progressbar/pull/207/commits/9dae94bfa21644495c2e6af76d85b356b178b898).
 
 ## 5.1.0
 
