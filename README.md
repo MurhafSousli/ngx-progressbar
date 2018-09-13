@@ -35,7 +35,7 @@ Older versions:
 - [Automagic Usage](#automagic)
   - [Http requests](#http) | [http stackblitz](https://stackblitz.com/edit/ngx-progressbar-http)
   - [Router events](#router) | [routing stackblitz](https://stackblitz.com/edit/ngx-progressbar-router)
-- [Integration](#integration)
+- [Integration](#integration) | [integration stackblitz](https://stackblitz.com/edit/ngx-progressbar-integration?file=src/app/app.component.html)
 - [Styling](#styling)
 - [Multiple progress bars](#multiple_instances) | [multiple progress bars stackblitz](https://stackblitz.com/edit/ngx-progressbar-mutliple-instances)
 - [Support](#support)
@@ -380,18 +380,18 @@ export class App implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    // Destroy NgProgressRef instance using `NgProgress` service.
     this.ngProgress.destroy();
-
-    // DO NOT DESTROY USING `progressRef` ITSELF.
-    // this.progressRef.destroy();
   }
 }
 ```
 
 In this case you don't need to use `<ng-progress>` in your template :)
 
+See [navigation stackbliz](https://stackblitz.com/edit/ngx-progressbar-integration?file=src/app/app.component.html)
+
 <a name="styling">
+  
+## Styling
 
 To change the style of the progress bar use the following classes
 
@@ -405,7 +405,10 @@ ng-progress {
 }
 
 .ng-bar-placeholder {
-  // bar placeholder (transparent by default)
+  // bar placeholder
+  
+  // change the height of the progress bar
+  height: 40px !important;
 }
 
 .ng-bar {
@@ -443,13 +446,15 @@ See [multiple progress bars stackblitz](https://stackblitz.com/edit/ngx-progress
 
 ## Support
 
+Please give :stars: NgProgress a :star: 
+
 [![npm](https://c5.patreon.com/external/logo/become_a_patron_button.png)](https://www.patreon.com/bePatron?u=5594898)
 
 <a name="issues"/>
 
 ## Issues
 
-If you identify any errors in the library, or have an idea for an improvement, please open an [issue](https://github.com/MurhafSousli/ngx-progressbar/issues). I am excited to see what the community thinks of this project, and I would love your input!
+If you identify any errors in the library, or have an idea for an improvement, please open an [issue](https://github.com/MurhafSousli/ngx-progressbar/issues).
 
 <a name="author"/>
 
