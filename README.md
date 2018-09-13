@@ -263,13 +263,13 @@ If you only need a progress bar for multiple requests, there is a simple _plug a
 NPM
 
 ```
-$ npm i -S @ngx-progressbar/{core,http}
+$ npm i -S @ngx-progressbar/core @ngx-progressbar/http
 ```
 
 YARN
 
 ```
-$ yarn add @ngx-progressbar/{core,http}
+$ yarn add @ngx-progressbar/core @ngx-progressbar/http
 ```
 
 ```ts
@@ -310,13 +310,13 @@ If you need the progress bar to start for navigating between your app routes, ad
 NPM
 
 ```
-$ npm i -S @ngx-progressbar/{core,router}
+$ npm i -S @ngx-progressbar/core @ngx-progressbar/router
 ```
 
 YARN
 
 ```
-$ yarn add @ngx-progressbar/{core,router}
+$ yarn add @ngx-progressbar/core @ngx-progressbar/router 
 ```
 
 To start the progress bar on router events use this code:
@@ -373,10 +373,15 @@ export class App implements OnInit, OnDestroy {
   ngOnInit() {
     this.progressRef = this.ngProgress.ref();
 
-    // Start the progress
+    // Progress bar actions (optional)
     this.progressRef.start();
-    // or
-    this.ngProgress.start();
+    this.progressRef.stop();
+    this.progressRef.set();
+    this.progressRef.inc();
+    
+    // Get progress bar events (optional)
+    this.progressBar.started.subscribe(() => this.onStarted());
+    this.progressBar.completed.subscribe(() => this.onCompleted());
   }
 
   ngOnDestroy() {
