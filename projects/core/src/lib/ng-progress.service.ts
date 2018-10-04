@@ -1,5 +1,4 @@
 import { Injectable, Inject, Optional } from '@angular/core';
-import { EMPTY } from 'rxjs';
 import { NgProgressRef } from './ng-progress-ref';
 import { NgProgressConfig, CONFIG } from './ng-progress.interface';
 
@@ -30,8 +29,8 @@ const defaultConfig: NgProgressConfig = {
 })
 export class NgProgress {
 
-  /** Stores NgProgressRef instances */
-  private readonly _instances = {};
+  /** Store progress bar instances */
+  private readonly _instances = new Map<string, NgProgressRef>();
 
   /** Global config */
   config: NgProgressConfig;
@@ -41,70 +40,41 @@ export class NgProgress {
   }
 
   /**
-   * Returns NgProgressRef by ID
+   * Get or Create progress bar by ID
+   * @param id
+   * @param config
    */
   ref(id = 'root', config?: NgProgressConfig) {
-    if (this._instances[id] instanceof NgProgressRef) {
-      return this._instances[id];
+    if (this._instances.has(id)) {
+      // Get ProgressRef instance
+      const progressRef = this._instances.get(id);
+      if (config) {
+        progressRef.setConfig({...this.config, ...config});
+      }
+      return progressRef;
     } else {
-      config = {...this.config, ...config};
-      return this._instances[id] = new NgProgressRef(config);
+      // Create new ProgressRef instance
+      const progressRef = new NgProgressRef({...this.config, ...config}, this.deleteInstance(id));
+      return this._instances.set(id, progressRef).get(id);
     }
   }
 
-  setConfig(config: NgProgressConfig, id = 'root') {
-    if (this._instances[id] instanceof NgProgressRef) {
-      this._instances[id].setConfig(config);
-    }
-  }
-
-  start(id = 'root') {
-    if (this._instances[id] instanceof NgProgressRef) {
-      this._instances[id].start();
-    }
-  }
-
-  set(n: number, id = 'root') {
-    if (this._instances[id] instanceof NgProgressRef) {
-      this._instances[id].set(n);
-    }
-  }
-
-  inc(n?: number, id = 'root') {
-    if (this._instances[id] instanceof NgProgressRef) {
-      this._instances[id].inc(n);
-    }
-  }
-
-  complete(id = 'root') {
-    if (this._instances[id] instanceof NgProgressRef) {
-      this._instances[id].complete();
-    }
-  }
-
-  isStarted(id = 'root') {
-    return (this._instances[id] instanceof NgProgressRef) ? this._instances[id].isStarted : false;
-  }
-
-  started(id = 'root') {
-    return (this._instances[id] instanceof NgProgressRef) ? this._instances[id].started : EMPTY;
-  }
-
-  completed(id = 'root') {
-    return (this._instances[id] instanceof NgProgressRef) ? this._instances[id].completed : EMPTY;
-  }
-
-  destroy(id = 'root') {
-    if (this._instances[id] instanceof NgProgressRef) {
-      this._instances[id].destroy();
-      this._instances[id] = null;
-    }
-  }
-
+  /**
+   * Destroy all progress bar instances
+   */
   destroyAll() {
-    Object.keys(this._instances).map((key) => {
-      this._instances[key].destroy();
-      this._instances[key] = null;
+    this._instances.forEach((ref: NgProgressRef, id: string) => {
+      ref.destroy();
+      this._instances.delete(id);
     });
+  }
+
+  /**
+   * A destroyer function for each progress bar instance
+   */
+  private deleteInstance(id: string) {
+    return () => {
+      this._instances.delete(id);
+    };
   }
 }
