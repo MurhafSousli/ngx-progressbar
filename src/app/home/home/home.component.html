@@ -1,10 +1,13 @@
-<ng-progress #labProgress id="lab" [meteor]="options.meteor" [color]="options.color"
-             [min]="options.min" [max]="options.max" [speed]="options.speed"
-             [spinner]="options.spinner" [spinnerPosition]="options.spinnerPosition"
-             [direction]="options.direction" [thick]="options.thick" [trickleSpeed]="options.trickleSpeed"
-             [debounceTime]="options.debounceTime" [ease]="options.ease"
-             (started)="onProgressStarted()" (completed)="onProgressCompleted()">
-</ng-progress>
+<div class="progressbar-container">
+  <ng-progress #labProgress id="lab" [meteor]="options.meteor" [color]="options.color"
+               [min]="options.min" [max]="options.max" [speed]="options.speed"
+               [spinner]="options.spinner" [spinnerPosition]="options.spinnerPosition"
+               [direction]="options.direction" [trickleSpeed]="options.trickleSpeed"
+               [debounceTime]="options.debounceTime" [ease]="options.ease"
+               [thick]="options.thick" [fixed]="options.fixed"
+               (started)="onProgressStarted()" (completed)="onProgressCompleted()">
+  </ng-progress>
+</div>
 
 <div class="grid">
   <table>

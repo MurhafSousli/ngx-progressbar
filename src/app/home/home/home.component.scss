@@ -1,5 +1,13 @@
 @import '../../../assets/variables';
 
+.progressbar-container {
+  position: relative;
+  margin: auto;
+  width: 100%;
+  height: 40px;
+  overflow: hidden;
+}
+
 .grid {
   display: flex;
   align-items: center;
