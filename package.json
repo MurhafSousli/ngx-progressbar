@@ -1,6 +1,6 @@
 {
   "name": "ngx-progressbar",
-  "version": "5.1.2",
+  "version": "5.2.0",
   "description": "A nanoscopic progress bar. Featuring realistic trickle animations to convince your users that something is happening!",
   "private": false,
   "homepage": "http://github.com/murhafsousli/ngx-progressbar",
@@ -61,6 +61,7 @@
     "@angular/platform-browser": "^6.1.6",
     "@angular/platform-browser-dynamic": "^6.1.6",
     "@angular/router": "^6.1.6",
+    "classlist.js": "^1.1.20150312",
     "core-js": "^2.5.7",
     "rxjs": "^6.3.2",
     "zone.js": "^0.8.26"
