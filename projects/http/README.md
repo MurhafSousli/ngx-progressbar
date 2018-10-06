@@ -17,17 +17,17 @@ ___
 
 ### The documentation is available at the [wiki page](https://github.com/MurhafSousli/ngx-progressbar/wiki)
 
-### Support
+## Support
 
 Please give NgProgress a :star: 
 
 [![npm](https://c5.patreon.com/external/logo/become_a_patron_button.png)](https://www.patreon.com/bePatron?u=5594898)
 
-### Issues
+## Issues
 
 If you identify any errors in the library, or have an idea for an improvement, please open an [issue](https://github.com/MurhafSousli/ngx-progressbar/issues).
 
-### Author
+## Author
 
  **[Murhaf Sousli](http://murhafsousli.com)**
 
