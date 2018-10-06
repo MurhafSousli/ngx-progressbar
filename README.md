@@ -48,13 +48,13 @@ Older versions:
 
 ## Installation
 
-NPM
+**NPM**
 
 ```
 $ npm i -S @ngx-progressbar/core
 ```
 
-YARN
+**YARN**
 
 ```
 yarn add @ngx-progressbar/core
@@ -212,7 +212,7 @@ NgProgress Service is used to control the progress bar(s) from anywhere in the a
 
 You can set the default config for all progress bars in **NgProgressModule**.
 
-Example:
+**Example:**
 
 ```ts
 import { NgProgressModule } from '@ngx-progressbar/core';
@@ -249,21 +249,21 @@ import { NgProgressModule } from '@ngx-progressbar/core';
 
 <a name="automagic"/>
 
-## Automagic loading bar
+## Automagic loading bar for HttpClient requests
 
 If you only need a progress bar for multiple requests, there is a simple _plug and play_ module. It does the trick.
 
 <a name="http"/>
 
-**Installation**:
+### Installation
 
-NPM
+**NPM**
 
 ```
 $ npm i -S @ngx-progressbar/core @ngx-progressbar/http
 ```
 
-YARN
+**YARN**
 
 ```
 $ yarn add @ngx-progressbar/core @ngx-progressbar/http
@@ -292,7 +292,7 @@ And just put the component in your template
 
 The progress will start and complete automatically with your HTTP requests. no need to use `NgProgress` service to call start()/complete() manually.
 
-**NgProgressRouterConfig Interface**
+**NgProgressHttpConfig API**
 
 | Name               | Default     | Description                                                |
 | ------------------ | :---------: | ---------------------------------------------------------- |
@@ -303,19 +303,19 @@ See [Http stackblitz](https://stackblitz.com/edit/ngx-progressbar-http)
 
 <a name="router"/>
 
-## For router events
+## Automagic loading bar for Router events
 
 If you need the progress bar to start for navigating between your app routes, add this module
 
-**Installation:**
+### Installation
 
-NPM
+**NPM**
 
 ```
 $ npm i -S @ngx-progressbar/core @ngx-progressbar/router
 ```
 
-YARN
+**YARN**
 
 ```
 $ yarn add @ngx-progressbar/core @ngx-progressbar/router
@@ -343,7 +343,7 @@ And just put the component in your **AppComponent** template
 <ng-progress></ng-progress>
 ```
 
-**NgProgressRouterConfig Interface**
+**NgProgressRouterConfig API**
 
 | Name               | Default                                            | Description                                                |
 | ------------------ | :------------------------------------------------: | ---------------------------------------------------------- |
