@@ -14,24 +14,20 @@ ___
 [![npm](https://img.shields.io/npm/dm/@ngx-progressbar/core.svg)](https://www.npmjs.com/package/@ngx-progressbar/core)
 [![npm](https://img.shields.io/npm/l/express.svg?maxAge=2592000)](https://github.com/MurhafSousli/ngx-progressbar/blob/master/LICENSE)
 
-### Documentation is available at the [wiki page](https://github.com/MurhafSousli/ngx-progressbar/wiki)
 
+### The documentation is available at the [wiki page](https://github.com/MurhafSousli/ngx-progressbar/wiki)
 
-## Support
+### Support
 
-Please give :stars: NgProgress a :star: 
+Please give NgProgress a :star: 
 
 [![npm](https://c5.patreon.com/external/logo/become_a_patron_button.png)](https://www.patreon.com/bePatron?u=5594898)
 
-<a name="issues"/>
-
-## Issues
+### Issues
 
 If you identify any errors in the library, or have an idea for an improvement, please open an [issue](https://github.com/MurhafSousli/ngx-progressbar/issues).
 
-<a name="author"/>
-
-## Author
+### Author
 
  **[Murhaf Sousli](http://murhafsousli.com)**
 
