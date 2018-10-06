@@ -1,11 +1,3 @@
-/**
- * @license
- * Copyright ngx-progressbar All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://github.com/MurhafSousli/ngx-progressbar/blob/master/LICENSE
- */
-
 import {
   Component,
   Input,
@@ -17,11 +9,11 @@ import {
   EventEmitter,
   ViewEncapsulation
 } from '@angular/core';
+import { Observable, Subscription, SubscriptionLike} from 'rxjs';
+import { map } from 'rxjs/operators';
 import { NgProgress } from './ng-progress.service';
 import { NgProgressRef } from './ng-progress-ref';
 import { NgProgressState } from './ng-progress.interface';
-import { Observable, Subscription} from 'rxjs';
-import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'ng-progress',
@@ -60,13 +52,13 @@ import { map } from 'rxjs/operators';
 
 export class NgProgressComponent implements OnInit, OnChanges, OnDestroy {
 
-  private _started$: Subscription;
-  private _completed$: Subscription;
+  private _started: SubscriptionLike = Subscription.EMPTY;
+  private _completed: SubscriptionLike = Subscription.EMPTY;
 
   /** Progress bar worker */
   progressRef: NgProgressRef;
 
-  /** Progress state stream */
+  /** Stream that emits progress state */
   state$: Observable<{ active: boolean, transform: string }>;
 
   /** Creates a new instance if id is not already exists */
@@ -88,6 +80,10 @@ export class NgProgressComponent implements OnInit, OnChanges, OnDestroy {
   @Input() debounceTime: number = this._ngProgress.config.debounceTime;
   @Output() started = new EventEmitter();
   @Output() completed = new EventEmitter();
+
+  get isStarted() {
+    return this.progressRef.isStarted;
+  }
 
   constructor(private _ngProgress: NgProgress) {
   }
@@ -115,27 +111,28 @@ export class NgProgressComponent implements OnInit, OnChanges, OnDestroy {
       trickleSpeed: this.trickleSpeed,
       debounceTime: this.debounceTime
     });
-    this.state$ = this.progressRef.state$.pipe(map((state: NgProgressState) => ({
-      active: state.active,
-      transform: `translate3d(${state.value}%,0,0)`
-    })));
-    /** Subscribes to started and completed events when user used them */
+
+    // Subscribe to progress state
+    this.state$ = this.progressRef.state.pipe(
+      map((state: NgProgressState) => ({
+        active: state.active,
+        transform: `translate3d(${state.value}%,0,0)`
+      }))
+    );
+
+    // Subscribes to started and completed events on deman
     if (this.started.observers.length) {
-      this._started$ = this.progressRef.started.subscribe(() => this.started.emit());
+      this._started = this.progressRef.started.subscribe(() => this.started.emit());
     }
     if (this.completed.observers.length) {
-      this._completed$ = this.progressRef.completed.subscribe(() => this.completed.emit());
+      this._completed = this.progressRef.completed.subscribe(() => this.completed.emit());
     }
   }
 
   ngOnDestroy() {
-    if (this._started$) {
-      this._started$.unsubscribe();
-    }
-    if (this._completed$) {
-      this._completed$.unsubscribe();
-    }
-    this._ngProgress.destroy(this.id);
+    this._started.unsubscribe();
+    this._completed.unsubscribe();
+    this.progressRef.destroy();
   }
 
   start() {
@@ -152,9 +149,5 @@ export class NgProgressComponent implements OnInit, OnChanges, OnDestroy {
 
   set(n: number) {
     this.progressRef.set(n);
-  }
-
-  get isStarted() {
-    return this.progressRef.isStarted;
   }
 }
