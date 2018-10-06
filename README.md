@@ -389,8 +389,8 @@ export class App implements OnInit, OnDestroy {
     this.progressRef.inc();
     
     // Progress bar events (optional)
-    this.progressRef.started.subscribe(() => this.onStarted());
-    this.progressRef.completed.subscribe(() => this.onCompleted());
+    this.progressBar.started.subscribe(() => this.onStarted());
+    this.progressBar.completed.subscribe(() => this.onCompleted());
   }
 
   ngOnDestroy() {
