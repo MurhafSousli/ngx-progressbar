@@ -7,16 +7,24 @@ A nanoscopic progress bar. Featuring realistic trickle animations to convince yo
 
 ___
 [![npm](https://img.shields.io/badge/demo-online-ed1c46.svg)](https://murhafsousli.github.io/ngx-progressbar/)
-[![npm](https://img.shields.io/npm/v/@ngx-progressbar/core.svg?maxAge=2592000?style=plastic)](https://www.npmjs.com/package/ngx-progressbar/core) 
-[![Build Status](https://travis-ci.org/MurhafSousli/ngx-progressbar.svg?branch=master)](https://travis-ci.org/MurhafSousli/ngx-progressbar) 
+[![npm](https://img.shields.io/badge/stackblitz-online-orange.svg)](https://stackblitz.com/edit/ngx-progressbar)
+[![npm](https://img.shields.io/npm/v/@ngx-progressbar/core.svg?maxAge=2592000?style=plastic)](https://www.npmjs.com/package/@ngx-progressbar/core) 
+[![Build Status](https://travis-ci.org/MurhafSousli/ngx-progressbar.svg?branch=master)](https://travis-ci.org/MurhafSousli/ngx-progressbar)
+[![npm](https://img.shields.io/npm/dt/@ngx-progressbar/core.svg?maxAge=2592000?style=plastic)](https://www.npmjs.com/package/@ngx-progressbar/core)
+[![npm](https://img.shields.io/npm/dm/@ngx-progressbar/core.svg)](https://www.npmjs.com/package/@ngx-progressbar/core)
 [![npm](https://img.shields.io/npm/l/express.svg?maxAge=2592000)](https://github.com/MurhafSousli/ngx-progressbar/blob/master/LICENSE)
 
 ### Before you begin!
 
-This is the documentation for **ngx-progressbar** version 4.x (Angular >= 5) and version 5.x (Angular >= 6)
+This is the documentations for:
 
-- For **ngx-progressbar** version 3.x (Angular >= 5), See this [documentation](README_V3.md)
-- For **ngx-progressbar** version 2.x (Angular 2 & 4), See this [documentation](https://github.com/MurhafSousli/ngx-progressbar/wiki)
+- `@ngx-progressbar/*` v5.x supports Angular >= 6
+- `@ngx-progressbar/*` v4.x supports Angular >= 5
+
+Older versions:
+
+- `@ngx-progressbar/*` v3.x supports Angular >= 5, see the [docs for v3.x](README_V3.md)
+- `ngx-progressbar` v2.x supports Angular 2 & 4, see the [docs for v2.x](https://github.com/MurhafSousli/ngx-progressbar/wiki)
 
 ***
 
@@ -28,7 +36,8 @@ This is the documentation for **ngx-progressbar** version 4.x (Angular >= 5) and
 - [Automagic Usage](#automagic)
   - [Http requests](#http) | [http stackblitz](https://stackblitz.com/edit/ngx-progressbar-http)
   - [Router events](#router) | [routing stackblitz](https://stackblitz.com/edit/ngx-progressbar-router)
-- [Integration](#integration)
+- [Integration](#integration) | [integration stackblitz](https://stackblitz.com/edit/ngx-progressbar-integration?file=src/app/app.component.html)
+- [Styling](#styling)
 - [Multiple progress bars](#multiple_instances) | [multiple progress bars stackblitz](https://stackblitz.com/edit/ngx-progressbar-mutliple-instances)
 - [Support](#support)
 - [Issues](#issues)
@@ -115,19 +124,24 @@ export class HeaderComponent {
 })
 export class HomeComponent {
 
-  constructor(public progress: NgProgress) {
+  progressRef: NgProgressRef;
+  constructor(private progress: NgProgress) {
+  }
+  
+  ngOnInit() {
+    this.progressRef = progress.ref();
   }
 
   startLoading() {
-    this.progress.start();
+    this.progressRef.start();
   }
 
   completeLoading() {
-    this.progress.complete();
+    this.progressRef.complete();
   }
 
   changeProgressColor() {
-    this.progress.setConfig({ color: 'green' });
+    this.progressRef.setConfig({ color: 'green' });
   }
 }
 ```
@@ -142,7 +156,7 @@ export class HomeComponent {
 
 | Name                  | Default       | Description                                                |
 | --------------------- | :-----------: | ---------------------------------------------------------- |
-| **[id]**              | root          | *For multiple progress bars.*                              |
+| **[id]**              | root          | *Progress bar ID (used for multiple progress bars).*       |
 | **[direction]**       | ltr+          | *Progress bar direction (`ltr+`, `ltr-`, `rtl+`, `rtl-`).* |
 | **[trickleSpeed]**    | 300           | *Progress trickling speed in ms.*                          |
 | **[trickleFunc]**     | Function      | *A **function** that returns the trickling amount.*        |
@@ -155,6 +169,7 @@ export class HomeComponent {
 | **[spinnerPosition]** | right         | *Spinner position. (`right`, `left`).*                     |
 | **[color]**           | #1B95E0       | *Progress bar color.*                                      |
 | **[thick]**           | false         | *A thicker size of the progress bar.*                      |
+| **[fixed]**           | true          | *Progress bar fixed position.*                             |
 | **[meteor]**          | true          | *Meteor style.*                                            |
 | **(started)**         | -             | *Stream that emits when the progress bar has started.*     |
 | **(completed)**       | -             | *Stream that emits when the progress bar has completed.*   |
@@ -169,18 +184,16 @@ export class HomeComponent {
 
 > ## NgProgressRef Class
 
->    This class is used internally, you probably have no use for it unless you want to configure a custom progress bar like in the [integration example](#integration).
-
->    | Name                          | Description                                           |
->    | ----------------------------- | ----------------------------------------------------- |
->    | NgProgressRef.**start()**     | *Starts the progress.*                                |
->    | NgProgressRef.**set(n)**      | *Sets a percentage n (where n is between 0-100).*     |
->    | NgProgressRef.**inc(n)**      | *Increments by n (where n is between 0-100).*         |
->    | NgProgressRef.**complete()**  | *Completes the progress.*                             |
->    | NgProgressRef.**started**     | *Stream that emits when the progress has started.*    |
->    | NgProgressRef.**completed**   | *Stream that emits when the progress has completed.*  |
->    | NgProgressRef.**isStarted**   | *Checks if the progress has started.*                 |
->    | NgProgressRef.**state$**      | *Stream that emits when progress has changed.*        |
+| Name                          | Description                                           |
+| ----------------------------- | ----------------------------------------------------- |
+| NgProgressRef.**start()**     | *Starts the progress.*                                |
+| NgProgressRef.**set(n)**      | *Sets a percentage n (where n is between 0-100).*     |
+| NgProgressRef.**inc(n)**      | *Increments by n (where n is between 0-100).*         |
+| NgProgressRef.**complete()**  | *Completes the progress.*                             |
+| NgProgressRef.**started**     | *Stream that emits when the progress has started.*    |
+| NgProgressRef.**completed**   | *Stream that emits when the progress has completed.*  |
+| NgProgressRef.**isStarted**   | *Checks if the progress has started.*                 |
+| NgProgressRef.**state$**      | *Stream that emits when progress has changed.*        |
 
 ***
 
@@ -190,19 +203,10 @@ NgProgress Service is used to control the progress bar(s) from anywhere in the a
 
 | Name                           | Description                                           |
 | ------------------------------ | ----------------------------------------------------- |
-| NgProgress.**start(id?)**      | *Starts the progress.*                                |
-| NgProgress.**set(n, id?)**     | *Sets a percentage n (where n is between 0-100).*     |
-| NgProgress.**inc(n, id?)**     | *Increments by n (where n is between 0-100).*         |
-| NgProgress.**complete(id?)**   | *Completes the progress.*                             |
-| NgProgress.**started(id?)**    | *Stream that emits when the progress has started.*    |
-| NgProgress.**completed(id?)**  | *Stream that emits when the progress has completed.*  |
-| NgProgress.**isStarted(id?)**  | *Checks if the progress has started.*                 |
-| NgProgress.**destroy(id?)**    | *Destroys `NgProgressRef` instance by id.*            |
 | NgProgress.**destroyAll()**    | *Destroys all existing `NgProgressRef` instances.*    |
 | NgProgress.**ref(id?)**        | *Returns `NgProgressRef` instance by id.*             |
-| NgProgress.**setConfig(config, id?)** | *Sets config for a `NgProgressRef` instance.*  |
 
-You don't have to specify the id parameter unless you are using more than one progress bar
+ > You don't have to specify the id parameter unless you are using more than one progress bar
 
 ## Global config
 
@@ -216,7 +220,7 @@ import { NgProgressModule } from '@ngx-progressbar/core';
 @NgModule({
   imports: [
     NgProgressModule.forRoot({
-      tricklSpeed: 200,
+      trickleSpeed: 200,
       min: 20,
       meteor: false
     })
@@ -240,6 +244,7 @@ import { NgProgressModule } from '@ngx-progressbar/core';
 | **spinnerPosition** | right         | *Spinner position. (`right`, `left`).*                     |
 | **color**           | #1B95E0       | *Progress bar color.*                                      |
 | **thick**           | false         | *A thicker size of the progress bar.*                      |
+| **fixed**           | true          | *Progress bar fixed position.*                             |
 | **meteor**          | true          | *Meteor style.*                                            |
 
 <a name="automagic"/>
@@ -255,13 +260,13 @@ If you only need a progress bar for multiple requests, there is a simple _plug a
 NPM
 
 ```
-$ npm i -S @ngx-progressbar/{core,http}
+$ npm i -S @ngx-progressbar/core @ngx-progressbar/http
 ```
 
 YARN
 
 ```
-$ yarn add @ngx-progressbar/{core,http}
+$ yarn add @ngx-progressbar/core @ngx-progressbar/http
 ```
 
 ```ts
@@ -274,7 +279,7 @@ import { NgProgressHttpModule } from '@ngx-progressbar/http';
     // ...
     HttpClientModule,
     NgProgressModule.forRoot(),
-    NgProgressHttpModule
+    NgProgressHttpModule.forRoot()
   ]
 })
 ```
@@ -285,9 +290,16 @@ And just put the component in your template
 <ng-progress></ng-progress>
 ```
 
-See [Http stackblitz](https://stackblitz.com/edit/ngx-progressbar-http)
-
 The progress will start and complete automatically with your HTTP requests. no need to use `NgProgress` service to call start()/complete() manually.
+
+**NgProgressRouterConfig Interface**
+
+| Name               | Default     | Description                                                |
+| ------------------ | :---------: | ---------------------------------------------------------- |
+| **id**             | root        | *Progress bar ID.*                                         |
+| **silentApis**     | []          | *Array of silent APIs which will be ignored.*              |
+
+See [Http stackblitz](https://stackblitz.com/edit/ngx-progressbar-http)
 
 <a name="router"/>
 
@@ -300,13 +312,13 @@ If you need the progress bar to start for navigating between your app routes, ad
 NPM
 
 ```
-$ npm i -S @ngx-progressbar/{core,router}
+$ npm i -S @ngx-progressbar/core @ngx-progressbar/router
 ```
 
 YARN
 
 ```
-$ yarn add @ngx-progressbar/{core,router}
+$ yarn add @ngx-progressbar/core @ngx-progressbar/router
 ```
 
 To start the progress bar on router events use this code:
@@ -320,7 +332,7 @@ import { NgProgressRouterModule } from '@ngx-progressbar/router';
   imports: [
     RouterModule.forRoot(...),
     NgProgressModule.forRoot(),
-    NgProgressRouterModule
+    NgProgressRouterModule.forRoot()
   ],
 })
 ```
@@ -330,6 +342,15 @@ And just put the component in your **AppComponent** template
 ```html
 <ng-progress></ng-progress>
 ```
+
+**NgProgressRouterConfig Interface**
+
+| Name               | Default                                            | Description                                                |
+| ------------------ | :------------------------------------------------: | ---------------------------------------------------------- |
+| **id**             | root                                               | *Progress bar ID.*                                         |
+| **delay**          | 0                                                  | *The delay before completing the progress bar in ms.*      |
+| **startEvents**    | [NavigationStart]                                  | *Router events that starts the progressbar.*               |
+| **completeEvents** | [NavigationEnd, NavigationCancel, NavigationError] | *Router events that completes the progressbar.*            |
 
 See [routing stackblitz](https://stackblitz.com/edit/ngx-progressbar-router)
 
@@ -361,23 +382,64 @@ export class App implements OnInit, OnDestroy {
   ngOnInit() {
     this.progressRef = this.ngProgress.ref();
 
-    // Start the progress
+    // Progress bar actions (optional)
     this.progressRef.start();
-    // or
-    this.ngProgress.start();
+    this.progressRef.complete();
+    this.progressRef.set();
+    this.progressRef.inc();
+    
+    // Progress bar events (optional)
+    this.progressRef.started.subscribe(() => this.onStarted());
+    this.progressRef.completed.subscribe(() => this.onCompleted());
   }
 
   ngOnDestroy() {
-    // Destroy NgProgressRef instance using `NgProgress` service.
-    this.ngProgress.destroy();
-
-    // DO NOT DESTROY USING `progressRef` ITSELF.
-    // this.progressRef.destroy();
+    // Destroy the progress bar ref
+    this.progressRef.destroy();
   }
 }
 ```
 
 In this case you don't need to use `<ng-progress>` in your template :)
+
+See [navigation stackbliz](https://stackblitz.com/edit/ngx-progressbar-integration?file=src/app/app.component.html)
+
+<a name="styling">
+  
+## Styling
+
+To change the style of the progress bar use the following classes
+
+```scss
+ng-progress {
+  // host element
+}
+
+.ng-progress-bar {
+  // bar wrapper
+}
+
+.ng-bar-placeholder {
+  // bar placeholder
+  
+  // change the height of the progress bar
+  height: 40px !important;
+}
+
+.ng-bar {
+  // the actual bar that translates with when the progress increments
+}
+
+.ng-spinner {
+   // Spinner wrapper
+}
+
+.ng-spinner-icon {
+  // The actual spinner where defines the radius size and animation
+}
+```
+
+> Note that some rules require `!important` to override such as the height of the progress bar.
 
 <a name="multiple_instances"/>
 
@@ -399,13 +461,15 @@ See [multiple progress bars stackblitz](https://stackblitz.com/edit/ngx-progress
 
 ## Support
 
+Please give :stars: NgProgress a :star: 
+
 [![npm](https://c5.patreon.com/external/logo/become_a_patron_button.png)](https://www.patreon.com/bePatron?u=5594898)
 
 <a name="issues"/>
 
 ## Issues
 
-If you identify any errors in the library, or have an idea for an improvement, please open an [issue](https://github.com/MurhafSousli/ngx-progressbar/issues). I am excited to see what the community thinks of this project, and I would love your input!
+If you identify any errors in the library, or have an idea for an improvement, please open an [issue](https://github.com/MurhafSousli/ngx-progressbar/issues).
 
 <a name="author"/>
 
