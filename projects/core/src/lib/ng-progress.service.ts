@@ -3,18 +3,19 @@ import { NgProgressRef } from './ng-progress-ref';
 import { NgProgressConfig, CONFIG } from './ng-progress.interface';
 
 const defaultConfig: NgProgressConfig = {
-  meteor: true,
-  spinner: true,
-  thick: false,
-  ease: 'linear',
-  spinnerPosition: 'right',
-  direction: 'ltr+',
-  color: '#1B95E0',
-  max: 100,
   min: 8,
+  max: 100,
   speed: 200,
-  trickleSpeed: 300,
   debounceTime: 0,
+  trickleSpeed: 300,
+  fixed: true,
+  meteor: true,
+  thick: false,
+  spinner: true,
+  ease: 'linear',
+  color: '#1B95E0',
+  direction: 'ltr+',
+  spinnerPosition: 'right',
   trickleFunc: (n: number): number => {
     if (n >= 0 && n < 20) return 10;
     if (n >= 20 && n < 50) return 4;
