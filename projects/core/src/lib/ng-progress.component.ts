@@ -22,6 +22,7 @@ import { NgProgressState } from './ng-progress.interface';
     '[attr.spinnerPosition]': 'spinnerPosition',
     '[attr.dir]': 'direction',
     '[attr.thick]': 'thick'
+    '[attr.fixed]': 'fixed'
   },
   template: `
     <ng-container *ngIf="state$ | async; let state">
@@ -69,6 +70,7 @@ export class NgProgressComponent implements OnInit, OnChanges, OnDestroy {
   @Input() direction: 'ltr+' | 'ltr-' | 'rtl+' | 'rtl-' = this._ngProgress.config.direction;
   @Input() ease: string = this._ngProgress.config.ease;
   @Input() color: string = this._ngProgress.config.color;
+  @Input() fixed: boolean = this._ngProgress.config.fixed;
   @Input() meteor: boolean = this._ngProgress.config.meteor;
   @Input() spinner: boolean = this._ngProgress.config.spinner;
   @Input() thick: boolean = this._ngProgress.config.thick;
