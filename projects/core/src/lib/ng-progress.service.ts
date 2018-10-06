@@ -63,10 +63,7 @@ export class NgProgress {
    * Destroy all progress bar instances
    */
   destroyAll() {
-    this._instances.forEach((ref: NgProgressRef, id: string) => {
-      ref.destroy();
-      this._instances.delete(id);
-    });
+    this._instances.forEach((ref: NgProgressRef) => ref.destroy());
   }
 
   /**
