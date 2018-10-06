@@ -21,7 +21,7 @@ import { NgProgressState } from './ng-progress.interface';
     'role': 'progressbar',
     '[attr.spinnerPosition]': 'spinnerPosition',
     '[attr.dir]': 'direction',
-    '[attr.thick]': 'thick'
+    '[attr.thick]': 'thick',
     '[attr.fixed]': 'fixed'
   },
   template: `
@@ -66,20 +66,20 @@ export class NgProgressComponent implements OnInit, OnChanges, OnDestroy {
   @Input() id = 'root';
 
   /** Initializes inputs from the global config */
-  @Input() spinnerPosition: 'left' | 'right' = this._ngProgress.config.spinnerPosition;
-  @Input() direction: 'ltr+' | 'ltr-' | 'rtl+' | 'rtl-' = this._ngProgress.config.direction;
+  @Input() min: number = this._ngProgress.config.min;
+  @Input() max: number = this._ngProgress.config.max;
   @Input() ease: string = this._ngProgress.config.ease;
   @Input() color: string = this._ngProgress.config.color;
+  @Input() speed: number = this._ngProgress.config.speed;
+  @Input() thick: boolean = this._ngProgress.config.thick;
   @Input() fixed: boolean = this._ngProgress.config.fixed;
   @Input() meteor: boolean = this._ngProgress.config.meteor;
   @Input() spinner: boolean = this._ngProgress.config.spinner;
-  @Input() thick: boolean = this._ngProgress.config.thick;
-  @Input() max: number = this._ngProgress.config.max;
-  @Input() min: number = this._ngProgress.config.min;
-  @Input() speed: number = this._ngProgress.config.speed;
   @Input() trickleSpeed: number = this._ngProgress.config.trickleSpeed;
-  @Input() trickleFunc: (n: number) => number = this._ngProgress.config.trickleFunc;
   @Input() debounceTime: number = this._ngProgress.config.debounceTime;
+  @Input() trickleFunc: (n: number) => number = this._ngProgress.config.trickleFunc;
+  @Input() spinnerPosition: 'left' | 'right' = this._ngProgress.config.spinnerPosition;
+  @Input() direction: 'ltr+' | 'ltr-' | 'rtl+' | 'rtl-' = this._ngProgress.config.direction;
   @Output() started = new EventEmitter();
   @Output() completed = new EventEmitter();
 
