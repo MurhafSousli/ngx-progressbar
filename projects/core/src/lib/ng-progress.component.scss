@@ -1,15 +1,100 @@
 ng-progress {
   z-index: 999999;
   pointer-events: none;
-  position: relative;
+
+  &[fixed='true'] {
+    .ng-progress-bar, .ng-spinner {
+      position: fixed;
+    }
+    .ng-spinner {
+      top: 15px;
+    }
+    &[spinnerPosition='left'] .ng-spinner {
+      left: 15px;
+    }
+    &[spinnerPosition='right'] .ng-spinner {
+      right: 15px;
+    }
+  }
+
+  &[thick='true'] {
+    .ng-spinner-icon {
+      width: 24px;
+      height: 24px;
+      border-width: 3px;
+    }
+    .ng-bar-placeholder {
+      height: 3px !important;
+    }
+  }
+
+  &[dir='ltr+'], &[dir='ltr-'] {
+    .ng-meteor {
+      transform: rotate(3deg);
+    }
+    &[thick='true'] .ng-meteor {
+      transform: rotate(4deg);
+    }
+  }
+
+  &[dir='ltr+'], &[dir='rtl+'] {
+    .ng-bar {
+      margin-left: -100%;
+    }
+    .ng-meteor {
+      right: 0;
+    }
+  }
+
+  &[dir='ltr+'], &[dir='rtl-'] {
+    .ng-meteor {
+      top: -3px;
+    }
+    &[thick='true'] .ng-meteor {
+      top: -4px;
+    }
+  }
+
+  &[dir='ltr-'], &[dir='rtl+'] {
+    .ng-meteor {
+      bottom: -3px;
+    }
+    &[thick='true'] .ng-meteor {
+      bottom: -4px;
+    }
+    // reverse dir
+    .ng-bar-placeholder {
+      transform: rotate(180deg);
+    }
+    .ng-spinner-icon {
+      animation-direction: reverse;
+    }
+  }
+
+  &[dir='rtl+'], &[dir='rtl-'] {
+    .ng-meteor {
+      transform: rotate(-3deg);
+    }
+    &[thick='true'] .ng-meteor {
+      transform: rotate(-4deg);
+    }
+  }
+
+  &[spinnerPosition='left'] .ng-spinner {
+    left: 10px;
+  }
+
+  &[spinnerPosition='right'] .ng-spinner {
+    right: 10px;
+  }
 }
 
 .ng-progress-bar {
+  position: relative;
   z-index: 999999;
   top: 0;
   left: 0;
   width: 100%;
-  position: fixed;
   zoom: 1;
   filter: alpha(opacity=0);
   opacity: 0;
@@ -41,10 +126,10 @@ ng-progress {
 }
 
 .ng-spinner {
+  position: absolute;
   display: block;
-  position: fixed;
   z-index: 1031;
-  top: 15px;
+  top: 10px;
 }
 
 .ng-spinner-icon {
@@ -54,78 +139,6 @@ ng-progress {
   animation: spinner-animation 400ms linear infinite;
   border: 2px solid transparent;
   border-radius: 50%;
-}
-
-[dir='ltr+'], [dir='ltr-'] {
-  .ng-meteor {
-    transform: rotate(3deg);
-  }
-  &[thick='true'] .ng-meteor {
-    transform: rotate(4deg);
-  }
-}
-
-[dir='ltr+'], [dir='rtl+'] {
-  .ng-bar {
-    margin-left: -100%;
-  }
-  .ng-meteor {
-    right: 0;
-  }
-}
-
-[dir='ltr+'], [dir='rtl-'] {
-  .ng-meteor {
-    top: -3px;
-  }
-  &[thick='true'] .ng-meteor {
-    top: -4px;
-  }
-}
-
-[dir='ltr-'], [dir='rtl+'] {
-  .ng-meteor {
-    bottom: -3px;
-  }
-  &[thick='true'] .ng-meteor {
-    bottom: -4px;
-  }
-  // reverse dir
-  .ng-bar-placeholder {
-    transform: rotate(180deg);
-  }
-  .ng-spinner-icon {
-    animation-direction: reverse;
-  }
-}
-
-[dir='rtl+'], [dir='rtl-'] {
-  .ng-meteor {
-    transform: rotate(-3deg);
-  }
-  &[thick='true'] .ng-meteor {
-    transform: rotate(-4deg);
-  }
-}
-
-[thick='true'] {
-  .ng-spinner-icon {
-    width: 24px;
-    height: 24px;
-    border-width: 3px;
-  }
-  .ng-bar-placeholder {
-    height: 3px;
-  }
-}
-
-[spinnerPosition='left'] .ng-spinner {
-  left: 15px;
-  right: unset;
-}
-
-[spinnerPosition='right'] .ng-spinner {
-  right: 15px;
 }
 
 @keyframes spinner-animation {
