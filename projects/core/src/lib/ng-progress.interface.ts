@@ -11,6 +11,7 @@ export interface NgProgressConfig {
   ease?: string;
   color?: string;
   thick?: boolean;
+  fixed?: boolean;
   meteor?: boolean;
   spinner?: boolean;
   max?: number;
