@@ -1,6 +1,6 @@
 {
   "name": "ngx-progressbar",
-  "version": "5.1.2",
+  "version": "5.2.0",
   "description": "A nanoscopic progress bar. Featuring realistic trickle animations to convince your users that something is happening!",
   "private": false,
   "homepage": "http://github.com/murhafsousli/ngx-progressbar",
@@ -61,6 +61,7 @@
     "@angular/platform-browser": "^6.1.6",
     "@angular/platform-browser-dynamic": "^6.1.6",
     "@angular/router": "^6.1.6",
+    "classlist.js": "^1.1.20150312",
     "core-js": "^2.5.7",
     "rxjs": "^6.3.2",
     "zone.js": "^0.8.26"
@@ -68,7 +69,7 @@
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.7.5",
     "@angular-devkit/build-ng-packagr": "~0.7.5",
-    "@angular/cli": "^6.1.5",
+    "@angular/cli": "^6.2.4",
     "@angular/compiler-cli": "^6.1.6",
     "@angular/language-service": "^6.1.6",
     "@types/jasmine": "~2.8.8",
@@ -83,12 +84,12 @@
     "karma-coverage-istanbul-reporter": "~2.0.3",
     "karma-jasmine": "~1.1.1",
     "karma-jasmine-html-reporter": "^1.3.1",
-    "ng-packagr": "^4.1.1",
+    "ng-packagr": "^4.2.0",
     "protractor": "~5.4.0",
     "ts-node": "~7.0.1",
     "tsickle": "0.32.1",
     "tslib": "^1.9.3",
     "tslint": "~5.11.0",
-    "typescript": "~2.7.2"
+    "typescript": "~2.9.2"
   }
 }

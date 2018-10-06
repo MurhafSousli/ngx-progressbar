@@ -21,8 +21,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
       ])
     ])
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  preserveWhitespaces: false
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CustomComponent implements OnInit, OnDestroy {
 
@@ -36,7 +35,7 @@ export class CustomComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.ngProgress.destroy('material');
+    this.progressRef.destroy();
   }
 
   toggle() {

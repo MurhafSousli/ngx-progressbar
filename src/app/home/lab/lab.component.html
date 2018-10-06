@@ -53,6 +53,13 @@
     </span>
 
     <span class="input-wrapper">
+      <span class="input-name">fixed</span> = <i class="input">
+        <input name="fixed" type="checkbox" [(ngModel)]="options.fixed">
+        <span>{{ options.fixed }}</span>
+      </i>
+    </span>
+
+    <span class="input-wrapper">
       <span class="input-name">min</span> = <i class="input"><input type="number" name="min" min="0" max="99" [(ngModel)]="options.min"></i>
     </span>
 

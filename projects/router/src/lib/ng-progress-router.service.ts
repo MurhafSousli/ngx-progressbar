@@ -1,9 +1,20 @@
-import { Injectable, Optional, Inject } from '@angular/core';
-import { Router, NavigationStart, NavigationEnd, NavigationCancel, NavigationError } from '@angular/router';
+import { Injectable, Optional, Inject, Type } from '@angular/core';
+import { Router, NavigationStart, NavigationEnd, NavigationCancel, NavigationError, RouterEvent } from '@angular/router';
 import { of } from 'rxjs';
 import { tap, delay, switchMap, filter } from 'rxjs/operators';
 import { NgProgress } from '@ngx-progressbar/core';
 import { NgProgressRouterConfig, CONFIG } from './ng-progress-router.interface';
+
+/**
+ * Check if a router event type exists in an array of router event types
+ * @param routerEvent
+ * @param events
+ */
+function eventExists(routerEvent: RouterEvent, events: Type<RouterEvent>[]) {
+  let res = false;
+  events.map((event: Type<RouterEvent>) => res = res || routerEvent instanceof event);
+  return res;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +22,9 @@ import { NgProgressRouterConfig, CONFIG } from './ng-progress-router.interface';
 export class NgProgressRouter {
   private readonly _config: NgProgressRouterConfig = {
     id: 'root',
-    delay: 0
+    delay: 0,
+    startEvents: [NavigationStart],
+    completeEvents: [NavigationEnd, NavigationCancel, NavigationError]
   };
 
   constructor(progress: NgProgress, router: Router, @Optional() @Inject(CONFIG) config: NgProgressRouterConfig) {
@@ -27,14 +40,11 @@ export class NgProgressRouter {
       tap(() => progressRef.complete())
     );
 
+    const filterEvents = [...this._config.startEvents, ...this._config.completeEvents];
+
     router.events.pipe(
-      filter((event) =>
-        event instanceof NavigationStart ||
-        event instanceof NavigationEnd ||
-        event instanceof NavigationCancel ||
-        event instanceof NavigationError
-      ),
-      switchMap(event => (event instanceof NavigationStart) ? startProgress : completeProgress)
+      filter((event: RouterEvent) => eventExists(event, filterEvents)),
+      switchMap((event: RouterEvent) => eventExists(event, this._config.startEvents) ? startProgress : completeProgress)
     ).subscribe();
   }
 }

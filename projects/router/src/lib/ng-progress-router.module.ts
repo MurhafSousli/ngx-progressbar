@@ -5,7 +5,7 @@ import { NgProgressRouter } from './ng-progress-router.service';
 @NgModule({})
 export class NgProgressRouterModule {
 
-  // Inject the service to get it to work
+  // Inject the service to activate it
   constructor(ngProgressRouter: NgProgressRouter) {
   }
 

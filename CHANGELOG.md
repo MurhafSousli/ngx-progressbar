@@ -1,14 +1,62 @@
 # Changelog
 
+## 5.2.0
+
+- feat(core): Add `[fixed]` option, to disable the default progress bar fixed position, closes [#212](https://github.com/MurhafSousli/ngx-progressbar/issues/212) in [fff21f3](https://github.com/MurhafSousli/ngx-progressbar/pull/214/commits/fff21f3ffda3d6d515928236a33d5fec1dd549a3).
+- feat(router): Add `startEvents` and `completeEvents` options, closes [#211](https://github.com/MurhafSousli/ngx-progressbar/issues/211) in [0f7effe](https://github.com/MurhafSousli/ngx-progressbar/pull/214/commits/0f7effe0f607e583421a078d3a2a56ce9e0209fa).
+- refactor(core): Refactor progressbar destroyer function.
+- refactor(core): change progressbar state from `NgProgressRef.state$` to `NgProgressRef.state`.
+- refactor(core): Use `Map<string, NgProgressRef>` for instances instead of just an object.
+- refactor(core): Remove helper functions exposed in `NgProgress`.
+
+### Breaking Changes
+
+- The following functions has been remove from `NgProgress` service: `setConfig()`, `start()`, `set()`, `inc()`, `complete()`, `isStarted()`, `started()`, `completed()`, `destroy()`.
+
+**Before:**
+
+It was possible to use these functions from `NgProgress` service directly
+
+```ts
+ngProgress.start();
+```
+
+**After:**
+
+These functions are accessed by the `NgProgressRef` instance
+
+```ts
+const progressRef: NgProgressRef = ngProgress.ref();
+progressRef.start();
+```
+
+- If you are using `NgProgressRef` to integrate it with other progress bar components
+
+**Before:**
+
+```xml
+<ng-container *ngIf="progressRef.state$ | async; let state">
+  <mat-progress-bar *ngIf="state.active" [value]="state.value"></mat-progress-bar>
+</ng-container>
+```
+
+**After:**
+
+```xml
+<ng-container *ngIf="progressRef.state | async; let state">
+  <mat-progress-bar *ngIf="state.active" [value]="state.value"></mat-progress-bar>
+</ng-container>
+```
+
 ## 5.1.2
 
-- fix(NgPorgressRouter): Progressbar is not completing when navigation ends, closes [#202](https://github.com/MurhafSousli/ngx-progressbar/issues/202) in [6d8b644](https://github.com/MurhafSousli/ngx-progressbar/pull/203/commits/6d8b644e6d8fe873aad20bb0b92e6e52e262c088).
-- fix(NgProgressRouter): fix router config.delay is undefined error, in [9dae94b](https://github.com/MurhafSousli/ngx-progressbar/pull/207/commits/9dae94bfa21644495c2e6af76d85b356b178b898).
+- fix(router): Progressbar is not completing when navigation ends, closes [#202](https://github.com/MurhafSousli/ngx-progressbar/issues/202) in [6d8b644](https://github.com/MurhafSousli/ngx-progressbar/pull/203/commits/6d8b644e6d8fe873aad20bb0b92e6e52e262c088).
+- fix(router): Fix router config.delay is undefined error, in [9dae94b](https://github.com/MurhafSousli/ngx-progressbar/pull/207/commits/9dae94bfa21644495c2e6af76d85b356b178b898).
 
 ## 5.1.0
 
-- feat(NgProgressHttp): Add optional config to set progressRef id and silent APIs, closes [#83](https://github.com/MurhafSousli/ngx-progressbar/issues/83) in [3c1d72c](https://github.com/MurhafSousli/ngx-progressbar/pull/178/commits/3c1d72c9e203f9b299f7dda2b2eefd0ce66a78c6) (Thanks to @bboyz269).
-- feat(NgPorgressRouter): Add optional config to set progressRef id and a delay to complete the progress bar, closes [#181](https://github.com/MurhafSousli/ngx-progressbar/issues/181) in [d274745](https://github.com/MurhafSousli/ngx-progressbar/pull/201/commits/d274745a9721f91f92c42987263b632d817b6bb9).
+- feat(http): Add optional config to set progressRef id and silent APIs, closes [#83](https://github.com/MurhafSousli/ngx-progressbar/issues/83) in [3c1d72c](https://github.com/MurhafSousli/ngx-progressbar/pull/178/commits/3c1d72c9e203f9b299f7dda2b2eefd0ce66a78c6) (Thanks to @bboyz269).
+- feat(router): Add optional config to set progressRef id and a delay to complete the progress bar, closes [#181](https://github.com/MurhafSousli/ngx-progressbar/issues/181) in [d274745](https://github.com/MurhafSousli/ngx-progressbar/pull/201/commits/d274745a9721f91f92c42987263b632d817b6bb9).
 - refactor(NgProgress): Use, `{providedIn: 'root'}` instead of `useFactory` function in [d31cacd](https://github.com/MurhafSousli/ngx-progressbar/pull/201/commits/d31cacd62d9731c1caddd898f83bb1b28c9704b7).
 
 ### Breaking changes

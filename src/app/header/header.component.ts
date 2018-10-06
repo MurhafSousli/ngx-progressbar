@@ -4,8 +4,7 @@ import {Component, ChangeDetectionStrategy} from '@angular/core';
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  preserveWhitespaces: false
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HeaderComponent {
 

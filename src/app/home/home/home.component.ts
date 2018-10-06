@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
-import { NgProgress } from '@ngx-progressbar/core';
+import { NgProgress, NgProgressConfig } from '@ngx-progressbar/core';
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
 
@@ -8,12 +8,11 @@ import { Subject } from 'rxjs';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  preserveWhitespaces: false
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomeComponent {
 
-  options = {
+  options: NgProgressConfig = {
     min: 8,
     max: 100,
     speed: 200,
@@ -23,6 +22,7 @@ export class HomeComponent {
     spinnerPosition: 'right',
     direction: 'ltr+',
     color: 'red',
+    fixed: true,
     meteor: true,
     spinner: true,
     thick: false

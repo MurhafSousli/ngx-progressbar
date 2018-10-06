@@ -1,11 +1,11 @@
 import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
+import { NgProgressConfig } from '@ngx-progressbar/core';
 
 @Component({
   selector: 'app-lab',
   templateUrl: './lab.component.html',
   styleUrls: ['./lab.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  preserveWhitespaces: false
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LabComponent {
 
@@ -21,7 +21,7 @@ export class LabComponent {
     'left'
   ];
 
-  @Input() options: any = {};
+  @Input() options: NgProgressConfig = {};
   @Output() optionsChange = new EventEmitter(true);
 
 }

@@ -1,5 +1,5 @@
 <mat-card>
-  <ng-container *ngIf="progressRef.state$ | async; let state">
+  <ng-container *ngIf="progressRef.state | async; let state">
     <div class="bar-placeholder"></div>
     <mat-progress-bar [@fadeInOut] *ngIf="state.active" [value]="state.value"></mat-progress-bar>
 
