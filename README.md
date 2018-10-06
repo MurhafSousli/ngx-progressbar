@@ -9,7 +9,9 @@ ___
 [![npm](https://img.shields.io/badge/demo-online-ed1c46.svg)](https://murhafsousli.github.io/ngx-progressbar/)
 [![npm](https://img.shields.io/badge/stackblitz-online-orange.svg)](https://stackblitz.com/edit/ngx-progressbar)
 [![npm](https://img.shields.io/npm/v/@ngx-progressbar/core.svg?maxAge=2592000?style=plastic)](https://www.npmjs.com/package/@ngx-progressbar/core) 
-[![Build Status](https://travis-ci.org/MurhafSousli/ngx-progressbar.svg?branch=master)](https://travis-ci.org/MurhafSousli/ngx-progressbar) 
+[![Build Status](https://travis-ci.org/MurhafSousli/ngx-progressbar.svg?branch=master)](https://travis-ci.org/MurhafSousli/ngx-progressbar)
+[![npm](https://img.shields.io/npm/dt/@ngx-progressbar/core.svg?maxAge=2592000?style=plastic)](https://www.npmjs.com/package/@ngx-progressbar/core)
+[![npm](https://img.shields.io/npm/dm/@ngx-progressbar/core.svg)](https://www.npmjs.com/package/@ngx-progressbar/core)
 [![npm](https://img.shields.io/npm/l/express.svg?maxAge=2592000)](https://github.com/MurhafSousli/ngx-progressbar/blob/master/LICENSE)
 
 ### Before you begin!
@@ -34,7 +36,7 @@ Older versions:
 - [Automagic Usage](#automagic)
   - [Http requests](#http) | [http stackblitz](https://stackblitz.com/edit/ngx-progressbar-http)
   - [Router events](#router) | [routing stackblitz](https://stackblitz.com/edit/ngx-progressbar-router)
-- [Integration](#integration)
+- [Integration](#integration) | [integration stackblitz](https://stackblitz.com/edit/ngx-progressbar-integration?file=src/app/app.component.html)
 - [Styling](#styling)
 - [Multiple progress bars](#multiple_instances) | [multiple progress bars stackblitz](https://stackblitz.com/edit/ngx-progressbar-mutliple-instances)
 - [Support](#support)
@@ -218,7 +220,7 @@ import { NgProgressModule } from '@ngx-progressbar/core';
 @NgModule({
   imports: [
     NgProgressModule.forRoot({
-      tricklSpeed: 200,
+      trickleSpeed: 200,
       min: 20,
       meteor: false
     })
@@ -380,8 +382,15 @@ export class App implements OnInit, OnDestroy {
   ngOnInit() {
     this.progressRef = this.ngProgress.ref();
 
-    // Start the progress
+    // Progress bar actions (optional)
     this.progressRef.start();
+    this.progressRef.complete();
+    this.progressRef.set();
+    this.progressRef.inc();
+    
+    // Progress bar events (optional)
+    this.progressBar.started.subscribe(() => this.onStarted());
+    this.progressBar.completed.subscribe(() => this.onCompleted());
   }
 
   ngOnDestroy() {
@@ -393,7 +402,11 @@ export class App implements OnInit, OnDestroy {
 
 In this case you don't need to use `<ng-progress>` in your template :)
 
+See [navigation stackbliz](https://stackblitz.com/edit/ngx-progressbar-integration?file=src/app/app.component.html)
+
 <a name="styling">
+  
+## Styling
 
 To change the style of the progress bar use the following classes
 
@@ -407,7 +420,10 @@ ng-progress {
 }
 
 .ng-bar-placeholder {
-  // bar placeholder (transparent by default)
+  // bar placeholder
+  
+  // change the height of the progress bar
+  height: 40px !important;
 }
 
 .ng-bar {
@@ -445,13 +461,15 @@ See [multiple progress bars stackblitz](https://stackblitz.com/edit/ngx-progress
 
 ## Support
 
+Please give :stars: NgProgress a :star: 
+
 [![npm](https://c5.patreon.com/external/logo/become_a_patron_button.png)](https://www.patreon.com/bePatron?u=5594898)
 
 <a name="issues"/>
 
 ## Issues
 
-If you identify any errors in the library, or have an idea for an improvement, please open an [issue](https://github.com/MurhafSousli/ngx-progressbar/issues). I am excited to see what the community thinks of this project, and I would love your input!
+If you identify any errors in the library, or have an idea for an improvement, please open an [issue](https://github.com/MurhafSousli/ngx-progressbar/issues).
 
 <a name="author"/>
 
