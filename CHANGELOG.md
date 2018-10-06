@@ -5,6 +5,7 @@
 - feat(core): Add `[fixed]` option, to disable the default progress bar fixed position, closes [#212](https://github.com/MurhafSousli/ngx-progressbar/issues/212) in [fff21f3](https://github.com/MurhafSousli/ngx-progressbar/pull/214/commits/fff21f3ffda3d6d515928236a33d5fec1dd549a3).
 - feat(router): Add `startEvents` and `completeEvents` options, closes [#211](https://github.com/MurhafSousli/ngx-progressbar/issues/211) in [0f7effe](https://github.com/MurhafSousli/ngx-progressbar/pull/214/commits/0f7effe0f607e583421a078d3a2a56ce9e0209fa).
 - refactor(core): Refactor progressbar destroyer function.
+- refactor(core): change progressbar state from `NgProgressRef.state$` to `NgProgressRef.state`.
 - refactor(core): Use `Map<string, NgProgressRef>` for instances instead of just an object.
 - refactor(core): Remove helper functions exposed in `NgProgress`.
 
@@ -19,6 +20,7 @@ It was possible to use these functions from `NgProgress` service directly
 ```ts
 ngProgress.start();
 ```
+
 **After:**
 
 These functions are accessed by the `NgProgressRef` instance
@@ -26,6 +28,24 @@ These functions are accessed by the `NgProgressRef` instance
 ```ts
 const progressRef: NgProgressRef = ngProgress.ref();
 progressRef.start();
+```
+
+- If you are using `NgProgressRef` to integrate it with other progress bar components
+
+**Before:**
+
+```xml
+<ng-container *ngIf="progressRef.state$ | async; let state">
+  <mat-progress-bar *ngIf="state.active" [value]="state.value"></mat-progress-bar>
+</ng-container>
+```
+
+**After:**
+
+```xml
+<ng-container *ngIf="progressRef.state | async; let state">
+  <mat-progress-bar *ngIf="state.active" [value]="state.value"></mat-progress-bar>
+</ng-container>
 ```
 
 ## 5.1.2
