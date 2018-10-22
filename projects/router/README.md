@@ -12,6 +12,7 @@ ___
 [![Build Status](https://travis-ci.org/MurhafSousli/ngx-progressbar.svg?branch=master)](https://travis-ci.org/MurhafSousli/ngx-progressbar)
 [![npm](https://img.shields.io/npm/dt/@ngx-progressbar/core.svg?maxAge=2592000?style=plastic)](https://www.npmjs.com/package/@ngx-progressbar/core)
 [![npm](https://img.shields.io/npm/dm/@ngx-progressbar/core.svg)](https://www.npmjs.com/package/@ngx-progressbar/core)
+[![npm bundle size (minified + gzip)](https://img.shields.io/bundlephobia/minzip/@ngx-progressbar/core.svg)](https://bundlephobia.com/result?p=@ngx-progressbar/core)
 [![npm](https://img.shields.io/npm/l/express.svg?maxAge=2592000)](https://github.com/MurhafSousli/ngx-progressbar/blob/master/LICENSE)
 
 
@@ -19,7 +20,7 @@ ___
 
 ## Support
 
-Please give NgProgress a :star: 
+Please give NgProgress a :star:
 
 [![npm](https://c5.patreon.com/external/logo/become_a_patron_button.png)](https://www.patreon.com/bePatron?u=5594898)
 
