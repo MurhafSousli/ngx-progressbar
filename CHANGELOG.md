@@ -1,5 +1,10 @@
 # Changelog
 
+## 5.2.1
+
+- Update packages peerDependecies to remove npm warnings in Angular 7
+- Update project to Angular 7
+
 ## 5.2.0
 
 - feat(core): Add `[fixed]` option, to disable the default progress bar fixed position, closes [#212](https://github.com/MurhafSousli/ngx-progressbar/issues/212) in [fff21f3](https://github.com/MurhafSousli/ngx-progressbar/pull/214/commits/fff21f3ffda3d6d515928236a33d5fec1dd549a3).

@@ -1,6 +1,6 @@
 {
   "name": "ngx-progressbar",
-  "version": "5.2.0",
+  "version": "5.2.1",
   "description": "A nanoscopic progress bar. Featuring realistic trickle animations to convince your users that something is happening!",
   "private": false,
   "homepage": "http://github.com/murhafsousli/ngx-progressbar",
@@ -50,28 +50,28 @@
     "version": "node .config/version.js"
   },
   "dependencies": {
-    "@angular/animations": "^6.1.6",
-    "@angular/cdk": "^6.4.7",
-    "@angular/common": "^6.1.6",
-    "@angular/compiler": "^6.1.6",
-    "@angular/core": "^6.1.6",
-    "@angular/forms": "^6.1.6",
-    "@angular/http": "^6.1.6",
-    "@angular/material": "^6.4.7",
-    "@angular/platform-browser": "^6.1.6",
-    "@angular/platform-browser-dynamic": "^6.1.6",
-    "@angular/router": "^6.1.6",
+    "@angular/animations": "^7.0.0",
+    "@angular/cdk": "^7.0.0",
+    "@angular/common": "^7.0.0",
+    "@angular/compiler": "^7.0.0",
+    "@angular/core": "^7.0.0",
+    "@angular/forms": "^7.0.0",
+    "@angular/http": "^7.0.0",
+    "@angular/material": "^7.0.0",
+    "@angular/platform-browser": "^7.0.0",
+    "@angular/platform-browser-dynamic": "^7.0.0",
+    "@angular/router": "^7.0.0",
     "classlist.js": "^1.1.20150312",
     "core-js": "^2.5.7",
-    "rxjs": "^6.3.2",
+    "rxjs": "^6.3.3",
     "zone.js": "^0.8.26"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.7.5",
+    "@angular-devkit/build-angular": "~0.10.0",
     "@angular-devkit/build-ng-packagr": "~0.7.5",
-    "@angular/cli": "^6.2.4",
-    "@angular/compiler-cli": "^6.1.6",
-    "@angular/language-service": "^6.1.6",
+    "@angular/cli": "^7.0.2",
+    "@angular/compiler-cli": "^7.0.0",
+    "@angular/language-service": "^7.0.0",
     "@types/jasmine": "~2.8.8",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~10.9.4",
@@ -90,6 +90,6 @@
     "tsickle": "0.32.1",
     "tslib": "^1.9.3",
     "tslint": "~5.11.0",
-    "typescript": "~2.9.2"
+    "typescript": "~3.1.1"
   }
 }
