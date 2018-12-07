@@ -14,7 +14,8 @@ ___
 [![npm](https://img.shields.io/npm/dm/@ngx-progressbar/core.svg)](https://www.npmjs.com/package/@ngx-progressbar/core)
 [![npm bundle size (minified + gzip)](https://img.shields.io/bundlephobia/minzip/@ngx-progressbar/core.svg)](https://bundlephobia.com/result?p=@ngx-progressbar/core)
 [![npm](https://img.shields.io/npm/l/express.svg?maxAge=2592000)](https://github.com/MurhafSousli/ngx-progressbar/blob/master/LICENSE)
-
+[![Backers on Open Collective](https://opencollective.com/ngx-progressbar/backers/badge.svg)](#backers) 
+[![Sponsors on Open Collective](https://opencollective.com/ngx-progressbar/sponsors/badge.svg)](#sponsors) 
 
 ### The documentation is available at the [wiki page](https://github.com/MurhafSousli/ngx-progressbar/wiki)
 
@@ -34,3 +35,28 @@ If you identify any errors in the library, or have an idea for an improvement, p
 
 - [github/murhafsousli](https://github.com/MurhafSousli)
 - [twitter/murhafsousli](https://twitter.com/MurhafSousli)
+
+
+## Backers
+
+Thank you to all our backers! 🙏 [[Become a backer](https://opencollective.com/ngx-progressbar#backer)]
+
+<a href="https://opencollective.com/ngx-progressbar#backers" target="_blank"><img src="https://opencollective.com/ngx-progressbar/backers.svg?width=890"></a>
+
+
+## Sponsors
+
+Support this project by becoming a sponsor. Your logo will show up here with a link to your website. [[Become a sponsor](https://opencollective.com/ngx-progressbar#sponsor)]
+
+<a href="https://opencollective.com/ngx-progressbar/sponsor/0/website" target="_blank"><img src="https://opencollective.com/ngx-progressbar/sponsor/0/avatar.svg"></a>
+<a href="https://opencollective.com/ngx-progressbar/sponsor/1/website" target="_blank"><img src="https://opencollective.com/ngx-progressbar/sponsor/1/avatar.svg"></a>
+<a href="https://opencollective.com/ngx-progressbar/sponsor/2/website" target="_blank"><img src="https://opencollective.com/ngx-progressbar/sponsor/2/avatar.svg"></a>
+<a href="https://opencollective.com/ngx-progressbar/sponsor/3/website" target="_blank"><img src="https://opencollective.com/ngx-progressbar/sponsor/3/avatar.svg"></a>
+<a href="https://opencollective.com/ngx-progressbar/sponsor/4/website" target="_blank"><img src="https://opencollective.com/ngx-progressbar/sponsor/4/avatar.svg"></a>
+<a href="https://opencollective.com/ngx-progressbar/sponsor/5/website" target="_blank"><img src="https://opencollective.com/ngx-progressbar/sponsor/5/avatar.svg"></a>
+<a href="https://opencollective.com/ngx-progressbar/sponsor/6/website" target="_blank"><img src="https://opencollective.com/ngx-progressbar/sponsor/6/avatar.svg"></a>
+<a href="https://opencollective.com/ngx-progressbar/sponsor/7/website" target="_blank"><img src="https://opencollective.com/ngx-progressbar/sponsor/7/avatar.svg"></a>
+<a href="https://opencollective.com/ngx-progressbar/sponsor/8/website" target="_blank"><img src="https://opencollective.com/ngx-progressbar/sponsor/8/avatar.svg"></a>
+<a href="https://opencollective.com/ngx-progressbar/sponsor/9/website" target="_blank"><img src="https://opencollective.com/ngx-progressbar/sponsor/9/avatar.svg"></a>
+
+

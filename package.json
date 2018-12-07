@@ -47,7 +47,8 @@
     "link-http": "npm link dist/http && npm link @ngx-progressbar/http",
     "link-router": "npm link dist/router && npm link @ngx-progressbar/router",
     "publish-all": "node .config/publish.js",
-    "version": "node .config/version.js"
+    "version": "node .config/version.js",
+    "postinstall": "opencollective-postinstall"
   },
   "dependencies": {
     "@angular/animations": "^7.0.0",
@@ -63,8 +64,10 @@
     "@angular/router": "^7.0.0",
     "classlist.js": "^1.1.20150312",
     "core-js": "^2.5.7",
+    "opencollective-postinstall": "^2.0.1",
     "rxjs": "^6.3.3",
-    "zone.js": "^0.8.26"
+    "zone.js": "^0.8.26",
+    "opencollective": "^1.0.3"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.10.0",
@@ -91,5 +94,9 @@
     "tslib": "^1.9.3",
     "tslint": "~5.11.0",
     "typescript": "~3.1.1"
+  },
+  "collective": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/ngx-progressbar"
   }
 }
