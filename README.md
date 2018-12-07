@@ -36,11 +36,6 @@ If you identify any errors in the library, or have an idea for an improvement, p
 - [github/murhafsousli](https://github.com/MurhafSousli)
 - [twitter/murhafsousli](https://twitter.com/MurhafSousli)
 
-## Contributors
-
-This project exists thanks to all the people who contribute. [[Contribute](CONTRIBUTING.md)].
-<a href="https://github.com/MurhafSousli/ngx-progressbar/graphs/contributors"><img src="https://opencollective.com/ngx-progressbar/contributors.svg?width=890&button=false" /></a>
-
 
 ## Backers
 
