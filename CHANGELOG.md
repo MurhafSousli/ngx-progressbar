@@ -1,5 +1,19 @@
 # Changelog
 
+## 5.3.0
+
+- feat(http): Ignore HTTP request by appending `ignoreProgressBar` to request's headers, closes [#234](https://github.com/MurhafSousli/ngx-progressbar/issues/234) in [a625d01](https://github.com/MurhafSousli/ngx-progressbar/pull/238/commits/a625d01bfb7d3831fafb6b758512088ba93cfc24).
+- refactor(core, http, router): Deprecate `forRoot(config?)` usage, config can be provided using `withConfig(config)` instead, in [1b76e0b](https://github.com/MurhafSousli/ngx-progressbar/pull/239/commits/1b76e0bfb7381bb82e6d1bd18dea1bf73c7dcf10).
+
+ > This removes the need to import `NgProgressModule` in your root module, in other word, you no longer need to include this library in the main bundle if you are using it in lazy loaded modules.
+
+### Breaking changes
+
+- Change `NgProgressModule.forRoot()` to `NgProgressModule`
+- If you use custom config `NgProgressModule.forRoot(config)`, then change it to `NgProgressModule.withConfig(config)`
+
+ > The same applies on `NgProgressHttpModule` and `NgProgressRouterModule`
+
 ## 5.2.1
 
 - Update packages peerDependecies to remove npm warnings in Angular 7
