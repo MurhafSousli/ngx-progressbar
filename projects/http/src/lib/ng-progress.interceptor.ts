@@ -10,7 +10,7 @@ export class NgProgressInterceptor implements HttpInterceptor {
 
   private _inProgressCount = 0;
   private _progressRef: NgProgressRef;
-  private _config: NgProgressHttpConfig = {
+  private readonly _config: NgProgressHttpConfig = {
     id: 'root',
     silentApis: []
   };
