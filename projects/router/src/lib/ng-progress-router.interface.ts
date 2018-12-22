@@ -8,4 +8,4 @@ export interface NgProgressRouterConfig {
   completeEvents?: Type<RouterEvent>[];
 }
 
-export const CONFIG = new InjectionToken<NgProgressRouterConfig>('config');
+export const NG_PROGRESS_ROUTER_CONFIG = new InjectionToken<NgProgressRouterConfig>('ngProgressRouterConfig');

@@ -5,4 +5,4 @@ export interface NgProgressHttpConfig {
   silentApis?: string[];
 }
 
-export const CONFIG = new InjectionToken<NgProgressHttpConfig>('config');
+export const NG_PROGRESS_HTTP_CONFIG = new InjectionToken<NgProgressHttpConfig>('ngProgressHttpConfig');

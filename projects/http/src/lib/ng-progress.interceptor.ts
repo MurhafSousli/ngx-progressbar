@@ -3,7 +3,7 @@ import { HttpInterceptor, HttpEvent, HttpHandler, HttpRequest } from '@angular/c
 import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 import { NgProgress, NgProgressRef } from '@ngx-progressbar/core';
-import { NgProgressHttpConfig, CONFIG } from './ng-progress-http.interface';
+import { NgProgressHttpConfig, NG_PROGRESS_HTTP_CONFIG } from './ng-progress-http.interface';
 
 @Injectable()
 export class NgProgressInterceptor implements HttpInterceptor {
@@ -15,8 +15,8 @@ export class NgProgressInterceptor implements HttpInterceptor {
     silentApis: []
   };
 
-  constructor(ngProgress: NgProgress, @Optional() @Inject(CONFIG) config?: NgProgressHttpConfig) {
-    this._config = {...this._config, ...config};
+  constructor(ngProgress: NgProgress, @Optional() @Inject(NG_PROGRESS_HTTP_CONFIG) config?: NgProgressHttpConfig) {
+    this._config = config ? {...this._config, ...config} : this._config;
     this._progressRef = ngProgress.ref(this._config.id);
   }
 

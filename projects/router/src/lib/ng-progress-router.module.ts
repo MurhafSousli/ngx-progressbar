@@ -1,5 +1,5 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
-import { NgProgressRouterConfig, CONFIG } from './ng-progress-router.interface';
+import { NgProgressRouterConfig, NG_PROGRESS_ROUTER_CONFIG } from './ng-progress-router.interface';
 import { NgProgressRouter } from './ng-progress-router.service';
 
 @NgModule({})
@@ -9,11 +9,11 @@ export class NgProgressRouterModule {
   constructor(ngProgressRouter: NgProgressRouter) {
   }
 
-  static forRoot(config?: NgProgressRouterConfig): ModuleWithProviders {
+  static withConfig(config: NgProgressRouterConfig): ModuleWithProviders {
     return {
       ngModule: NgProgressRouterModule,
       providers: [
-        { provide: CONFIG, useValue: config }
+        { provide: NG_PROGRESS_ROUTER_CONFIG, useValue: config }
       ]
     };
   }

@@ -3,7 +3,7 @@ import { Router, NavigationStart, NavigationEnd, NavigationCancel, NavigationErr
 import { of } from 'rxjs';
 import { tap, delay, switchMap, filter } from 'rxjs/operators';
 import { NgProgress } from '@ngx-progressbar/core';
-import { NgProgressRouterConfig, CONFIG } from './ng-progress-router.interface';
+import { NgProgressRouterConfig, NG_PROGRESS_ROUTER_CONFIG } from './ng-progress-router.interface';
 
 /**
  * Check if a router event type exists in an array of router event types
@@ -27,8 +27,8 @@ export class NgProgressRouter {
     completeEvents: [NavigationEnd, NavigationCancel, NavigationError]
   };
 
-  constructor(progress: NgProgress, router: Router, @Optional() @Inject(CONFIG) config: NgProgressRouterConfig) {
-    this._config = {...this._config, ...config};
+  constructor(progress: NgProgress, router: Router, @Optional() @Inject(NG_PROGRESS_ROUTER_CONFIG) config: NgProgressRouterConfig) {
+    this._config = config ? {...this._config, ...config} : this._config;
     const progressRef = progress.ref(this._config.id);
 
     const startProgress = of({}).pipe(

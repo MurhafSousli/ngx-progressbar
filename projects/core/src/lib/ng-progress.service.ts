@@ -1,6 +1,6 @@
 import { Injectable, Inject, Optional } from '@angular/core';
 import { NgProgressRef } from './ng-progress-ref';
-import { NgProgressConfig, CONFIG } from './ng-progress.interface';
+import { NgProgressConfig, NG_PROGRESS_CONFIG } from './ng-progress.interface';
 
 const defaultConfig: NgProgressConfig = {
   min: 8,
@@ -36,8 +36,8 @@ export class NgProgress {
   /** Global config */
   config: NgProgressConfig;
 
-  constructor(@Optional() @Inject(CONFIG) config: NgProgressConfig) {
-    this.config = {...defaultConfig, ...config};
+  constructor(@Optional() @Inject(NG_PROGRESS_CONFIG) config: NgProgressConfig) {
+    this.config = config ? {...defaultConfig, ...config} : defaultConfig;
   }
 
   /**
