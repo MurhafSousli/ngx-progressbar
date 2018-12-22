@@ -4,8 +4,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  preserveWhitespaces: false
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent {
 

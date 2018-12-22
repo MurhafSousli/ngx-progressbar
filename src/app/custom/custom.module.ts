@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CustomComponent } from './custom/custom.component';
 import { RouterModule } from '@angular/router';
-import { NgProgressModule } from '@ngx-progressbar/core';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatButtonModule } from '@angular/material/button';
+import { NgProgressModule } from '@ngx-progressbar/core';
+import { CustomComponent } from './custom/custom.component';
 
 @NgModule({
   imports: [

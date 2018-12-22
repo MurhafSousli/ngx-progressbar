@@ -17,9 +17,9 @@ import { AppRoutingModule } from './routing.module';
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
-    NgProgressModule.forRoot(),
-    NgProgressRouterModule.forRoot(),
-    NgProgressHttpModule.forRoot()
+    NgProgressModule,
+    NgProgressHttpModule,
+    NgProgressRouterModule
   ],
   bootstrap: [AppComponent]
 })
