@@ -21,6 +21,12 @@ export class NgProgressInterceptor implements HttpInterceptor {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+
+    // Ignore by request headers
+    if (req.headers.has('ignoreProgressBar')) {
+      return next.handle(req.clone({headers: req.headers.delete('ignoreProgressBar')}));
+    }
+
     // Ignore silent api requests
     if (this.checkUrl(req)) {
       return next.handle(req);
