@@ -1,6 +1,6 @@
 # Changelog
 
-## 5.3.0
+## 5.3.1
 
 - feat(http): Ignore HTTP request by appending `ignoreProgressBar` to request's headers, closes [#234](https://github.com/MurhafSousli/ngx-progressbar/issues/234) in [a625d01](https://github.com/MurhafSousli/ngx-progressbar/pull/238/commits/a625d01bfb7d3831fafb6b758512088ba93cfc24).
 - enhance(core): Increase spinner speed, in [0381cd3](https://github.com/MurhafSousli/ngx-progressbar/pull/239/commits/0381cd3fa1901902feaa7ef6f02576db2d34cd6e).
