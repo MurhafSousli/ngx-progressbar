@@ -1,5 +1,5 @@
 import { NgProgressState, NgProgressConfig } from './ng-progress.interface';
-import { Observable, Subject, BehaviorSubject, timer, of, combineLatest, SubscriptionLike, Subscription } from 'rxjs';
+import { Observable, Subject, BehaviorSubject, timer, of, combineLatest, Subscription } from 'rxjs';
 import { tap, map, skip, delay, filter, debounce, switchMap, distinctUntilChanged } from 'rxjs/operators';
 
 export class NgProgressRef {
@@ -16,7 +16,7 @@ export class NgProgressRef {
   private readonly _trickling = new Subject();
 
   /** Stream that combines "_trickling" and "config" streams */
-  private readonly _worker: SubscriptionLike = Subscription.EMPTY;
+  private readonly _worker = Subscription.EMPTY;
 
   /** Get current progress state */
   private get currState(): NgProgressState {
@@ -47,7 +47,7 @@ export class NgProgressRef {
     );
   }
 
-  constructor(customConfig: NgProgressConfig, private deleteInstance: Function) {
+  constructor(customConfig: NgProgressConfig, private _onDestroyCallback: Function) {
     this._state = new BehaviorSubject<NgProgressState>({active: false, value: 0});
     this._config = new BehaviorSubject<NgProgressConfig>(customConfig);
     this.state = this._state.asObservable();
@@ -113,7 +113,7 @@ export class NgProgressRef {
     this._trickling.complete();
     this._state.complete();
     this._config.complete();
-    this.deleteInstance();
+    this._onDestroyCallback();
   }
 
   /**

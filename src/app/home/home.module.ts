@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HomeComponent } from './home/home.component';
-import { RouterModule } from '@angular/router';
-import { NgProgressModule } from '@ngx-progressbar/core';
 import { FormsModule } from '@angular/forms';
-import { LabComponent } from './lab/lab.component';
-import { MatButtonModule } from '@angular/material';
+import { RouterModule } from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { NgProgressModule } from '@ngx-progressbar/core';
+import { HomeComponent } from './home/home.component';
+import { LabComponent } from './lab/lab.component';
 
 @NgModule({
   imports: [

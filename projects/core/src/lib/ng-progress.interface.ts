@@ -22,4 +22,4 @@ export interface NgProgressConfig {
   debounceTime?: number;
 }
 
-export const CONFIG = new InjectionToken<NgProgressConfig>('config');
+export const NG_PROGRESS_CONFIG = new InjectionToken<NgProgressConfig>('ngProgressConfig');

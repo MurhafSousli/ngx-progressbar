@@ -1,7 +1,7 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgProgressComponent } from './ng-progress.component';
-import { NgProgressConfig, CONFIG } from './ng-progress.interface';
+import { NgProgressConfig, NG_PROGRESS_CONFIG } from './ng-progress.interface';
 
 @NgModule({
   declarations: [NgProgressComponent],
@@ -9,11 +9,11 @@ import { NgProgressConfig, CONFIG } from './ng-progress.interface';
   imports: [CommonModule]
 })
 export class NgProgressModule {
-  static forRoot(config?: NgProgressConfig): ModuleWithProviders {
+  static withConfig(config: NgProgressConfig): ModuleWithProviders {
     return {
       ngModule: NgProgressModule,
       providers: [
-        {provide: CONFIG, useValue: config}
+        {provide: NG_PROGRESS_CONFIG, useValue: config}
       ]
     };
   }
