@@ -134,7 +134,9 @@ export class NgProgressComponent implements OnInit, OnChanges, OnDestroy {
   ngOnDestroy() {
     this._started.unsubscribe();
     this._completed.unsubscribe();
-    this.progressRef.destroy();
+    if (this.progressRef instanceof NgProgressRef) {
+      this.progressRef.destroy();
+    }
   }
 
   start() {
