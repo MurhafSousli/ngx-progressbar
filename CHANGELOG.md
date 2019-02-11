@@ -1,5 +1,9 @@
 # Changelog
 
+## 5.3.2
+
+- fix(test): avoid destroying progressRef which is not yet initialized, closes [#217](https://github.com/MurhafSousli/ngx-progressbar/issues/217) in [850c65f](/MurhafSousli/ngx-progressbar/pull/246/commits/850c65f1f2681225ed091ba770dfdb65d92d382c)
+
 ## 5.3.1
 
 - feat(http): Ignore HTTP request by appending `ignoreProgressBar` to request's headers, closes [#234](https://github.com/MurhafSousli/ngx-progressbar/issues/234) in [a625d01](https://github.com/MurhafSousli/ngx-progressbar/pull/238/commits/a625d01bfb7d3831fafb6b758512088ba93cfc24).
