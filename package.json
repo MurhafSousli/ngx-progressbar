@@ -1,6 +1,6 @@
 {
   "name": "ngx-progressbar",
-  "version": "5.3.1",
+  "version": "5.3.2",
   "description": "A nanoscopic progress bar. Featuring realistic trickle animations to convince your users that something is happening!",
   "private": false,
   "homepage": "http://github.com/murhafsousli/ngx-progressbar",
@@ -18,13 +18,9 @@
     "progressbar",
     "loading",
     "http",
-    "xhr",
     "interceptors",
     "loader",
-    "slim",
-    "youtube",
-    "medium",
-    "github"
+    "slim"
   ],
   "bugs": {
     "url": "http://github.com/murhafsousli/ngx-progressbar/issues"
@@ -47,39 +43,36 @@
     "link-http": "npm link dist/http && npm link @ngx-progressbar/http",
     "link-router": "npm link dist/router && npm link @ngx-progressbar/router",
     "publish-all": "node .config/publish.js",
-    "version": "node .config/version.js",
-    "postinstall": "opencollective-postinstall"
+    "version": "node .config/version.js"
   },
   "dependencies": {
-    "@angular/animations": "^7.0.0",
-    "@angular/cdk": "^7.0.0",
-    "@angular/common": "^7.0.0",
-    "@angular/compiler": "^7.0.0",
-    "@angular/core": "^7.0.0",
-    "@angular/forms": "^7.0.0",
-    "@angular/http": "^7.0.0",
-    "@angular/material": "^7.0.0",
-    "@angular/platform-browser": "^7.0.0",
-    "@angular/platform-browser-dynamic": "^7.0.0",
-    "@angular/router": "^7.0.0",
+    "@angular/animations": "^7.2.4",
+    "@angular/cdk": "^7.3.1",
+    "@angular/common": "^7.2.4",
+    "@angular/compiler": "^7.2.4",
+    "@angular/core": "^7.2.4",
+    "@angular/forms": "^7.2.4",
+    "@angular/http": "^7.2.4",
+    "@angular/material": "^7.3.1",
+    "@angular/platform-browser": "^7.2.4",
+    "@angular/platform-browser-dynamic": "^7.2.4",
+    "@angular/router": "^7.2.4",
     "@types/jasmine": "^3.3.5",
     "classlist.js": "^1.1.20150312",
     "core-js": "^2.5.7",
-    "opencollective-postinstall": "^2.0.1",
-    "rxjs": "^6.3.3",
-    "zone.js": "^0.8.26",
-    "opencollective": "^1.0.3"
+    "rxjs": "^6.4.0",
+    "zone.js": "^0.8.29"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.10.0",
-    "@angular-devkit/build-ng-packagr": "~0.7.5",
-    "@angular/cli": "^7.0.2",
-    "@angular/compiler-cli": "^7.0.0",
-    "@angular/language-service": "^7.0.0",
+    "@angular-devkit/build-angular": "~0.13.0",
+    "@angular-devkit/build-ng-packagr": "~0.13.0",
+    "@angular/cli": "^7.3.1",
+    "@angular/compiler-cli": "^7.2.4",
+    "@angular/language-service": "^7.2.4",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~10.9.4",
     "ansi-colors": "^3.0.5",
-    "codelyzer": "~4.4.4",
+    "codelyzer": "^4.5.0",
     "jasmine-core": "^3.3.0",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "^3.1.4",
@@ -87,16 +80,12 @@
     "karma-coverage-istanbul-reporter": "~2.0.3",
     "karma-jasmine": "^2.0.1",
     "karma-jasmine-html-reporter": "^1.4.0",
-    "ng-packagr": "^4.2.0",
+    "ng-packagr": "^4.7.0",
     "protractor": "~5.4.0",
     "ts-node": "~7.0.1",
-    "tsickle": "0.32.1",
-    "tslib": "^1.9.3",
+    "tsickle": "^0.34.3",
+    "tslib": "^1.9.0",
     "tslint": "~5.11.0",
-    "typescript": "~3.1.1"
-  },
-  "collective": {
-    "type": "opencollective",
-    "url": "https://opencollective.com/ngx-progressbar"
+    "typescript": "~3.2.4"
   }
 }
