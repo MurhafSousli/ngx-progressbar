@@ -17,6 +17,13 @@ ___
 
 ### The documentation is available at the [wiki page](https://github.com/MurhafSousli/ngx-progressbar/wiki)
 
+In Usage.md: Using `NgProgress`  service: Please add the following: 
+
+ ```ngOnInit() {
+    this.progressRef = this.progress.ref('myProgress');
+  }
+  
+```
 ## Support
 
 Please give NgProgress a :star:
