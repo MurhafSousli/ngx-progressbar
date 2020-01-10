@@ -4,19 +4,29 @@
 
 ### Breaking changes
 
-The modules are now published to a different npm package
+#### Before
 
-**Before**
-
-Previously the modules `core`, `http` and `router` were published each in its own npm package
+Before version 6, there were 3 packages each one published in its own npm package
 
 `npm i @ngx-progressbar/core @ngx-progressbar/http @ngx-progressbar/router`
 
-**After**
+```ts
+import { NgProgressModule } from '@ngx-progressbar/core';
+import { NgProgressHttpModule } from '@ngx-progressbar/http';
+import { NgProgressRouterModule } from '@ngx-progressbar/router';
+```
 
-Now you the three packages has been combined in a single package
+#### After
+
+After version 6, all the packages is combined and published in one npm package
 
 `npm i ngx-progressbar`
+
+```ts
+import { NgProgressModule } from 'ngx-progressbar';
+import { NgProgressHttpModule } from 'ngx-progressbar/http';
+import { NgProgressRouterModule } from 'ngx-progressbar/router';
+```
 
 
 ## 5.3.2
