@@ -1,24 +1,48 @@
-# NgxProgressbar
+<p align="center">
+  <img height="200px" width="200px" style="text-align: center;" src="https://cdn.rawgit.com/MurhafSousli/ngx-progressbar/master/src/assets/logo.svg">
+  <h1 align="center">Angular Progressbar</h1>
+</p>
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.2.0.
+[![npm](https://img.shields.io/badge/demo-online-ed1c46.svg)](https://murhafsousli.github.io/ngx-progressbar/)
+[![npm](https://img.shields.io/badge/stackblitz-online-orange.svg)](https://stackblitz.com/edit/ngx-progressbar)
+[![npm](https://img.shields.io/npm/v/ngx-progressbar.svg?maxAge=2592000?style=plastic)](https://www.npmjs.com/package/ngx-progressbar) 
+[![Build Status](https://travis-ci.org/MurhafSousli/ngx-progressbar.svg?branch=master)](https://travis-ci.org/MurhafSousli/ngx-progressbar)
+[![npm](https://img.shields.io/npm/dt/ngx-progressbar.svg?maxAge=2592000?style=plastic)](https://www.npmjs.com/package/ngx-progressbar)
+[![npm](https://img.shields.io/npm/dm/ngx-progressbar.svg)](https://www.npmjs.com/package/@ngx-progressbar/core)
+[![npm bundle size (minified + gzip)](https://img.shields.io/bundlephobia/minzip/ngx-progressbar.svg)](https://bundlephobia.com/result?p=ngx-progressbar)
+[![npm](https://img.shields.io/npm/l/express.svg?maxAge=2592000)](https://github.com/MurhafSousli/ngx-progressbar/blob/master/LICENSE)
 
-## Code scaffolding
+A nanoscopic progress bar. Featuring realistic trickle animations to convince your users that something is happening!
 
-Run `ng generate component component-name --project ngx-progressbar` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project ngx-progressbar`.
-> Note: Don't forget to add `--project ngx-progressbar` or else it will be added to the default project in your `angular.json` file. 
+___
 
-## Build
+### The documentation is available at the [wiki page](https://github.com/MurhafSousli/ngx-progressbar/wiki) 📚
 
-Run `ng build ngx-progressbar` to build the project. The build artifacts will be stored in the `dist/` directory.
+___
 
-## Publishing
+## Issues
 
-After building your library with `ng build ngx-progressbar`, go to the dist folder `cd dist/ngx-progressbar` and run `npm publish`.
+If you identify any errors in the library, or have an idea for an improvement, please open an [issue](https://github.com/MurhafSousli/ngx-progressbar/issues).
 
-## Running unit tests
+## Sponsoring ngx-progressbar
 
-Run `ng test ngx-progressbar` to execute the unit tests via [Karma](https://karma-runner.github.io).
+[![Backers on Open Collective](https://opencollective.com/ngx-progressbar/tiers/backers/badge.svg?label=Backers&color=brightgreen)](#sponsoring-ngx-progressbar)
 
-## Further help
+### Sponsors
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Become a sponsor and get your logo on our README on GitHub and the front page of [https://ngx-progressbar.netlify.com/](https://ngx-progressbar.netlify.com/).
+
+[![Sponsors on Open Collective](https://opencollective.com/ngx-progressbar/tiers/sponsors.svg?avatarHeight=64)](https://opencollective.com/ngx-progressbar/contribute/sponsors-11015/checkout)
+
+### Backers
+
+Become a backer and get your logo on our README on GitHub.
+
+[![Backers on Open Collective](https://opencollective.com/ngx-progressbar/tiers/backers.svg?avatarHeight=64)](https://opencollective.com/ngx-progressbar/contribute/backers-11014/checkout)
+
+## Author
+
+ **[Murhaf Sousli](http://murhafsousli.com)**
+
+- [github/murhafsousli](https://github.com/MurhafSousli)
+- [twitter/murhafsousli](https://twitter.com/MurhafSousli)
