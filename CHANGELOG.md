@@ -1,5 +1,24 @@
 # Changelog
 
+## 6.0.0
+
+### Breaking changes
+
+The modules are now published to a different npm package
+
+**Before**
+
+Previously the modules `core`, `http` and `router` were published each in its own npm package
+
+`npm i @ngx-progressbar/core @ngx-progressbar/http @ngx-progressbar/router`
+
+**After**
+
+Now you the three packages has been combined in a single package
+
+`npm i ngx-progressbar`
+
+
 ## 5.3.2
 
 - fix(test): avoid destroying progressRef which is not yet initialized, closes [#217](https://github.com/MurhafSousli/ngx-progressbar/issues/217) in [850c65f](/MurhafSousli/ngx-progressbar/pull/246/commits/850c65f1f2681225ed091ba770dfdb65d92d382c)
