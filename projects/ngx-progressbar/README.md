@@ -8,7 +8,7 @@
 [![npm](https://img.shields.io/npm/v/ngx-progressbar.svg?maxAge=2592000?style=plastic)](https://www.npmjs.com/package/ngx-progressbar) 
 [![Build Status](https://travis-ci.org/MurhafSousli/ngx-progressbar.svg?branch=master)](https://travis-ci.org/MurhafSousli/ngx-progressbar)
 [![npm](https://img.shields.io/npm/dt/ngx-progressbar.svg?maxAge=2592000?style=plastic)](https://www.npmjs.com/package/ngx-progressbar)
-[![npm](https://img.shields.io/npm/dm/ngx-progressbar.svg)](https://www.npmjs.com/package/@ngx-progressbar/core)
+[![npm](https://img.shields.io/npm/dm/ngx-progressbar.svg)](https://www.npmjs.com/package/ngx-progressbar)
 [![npm bundle size (minified + gzip)](https://img.shields.io/bundlephobia/minzip/ngx-progressbar.svg)](https://bundlephobia.com/result?p=ngx-progressbar)
 [![npm](https://img.shields.io/npm/l/express.svg?maxAge=2592000)](https://github.com/MurhafSousli/ngx-progressbar/blob/master/LICENSE)
 
