@@ -47,8 +47,7 @@ import { NgProgressState } from './ng-progress.interface';
   `,
   styleUrls: ['./ng-progress.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  preserveWhitespaces: false
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class NgProgressComponent implements OnInit, OnChanges, OnDestroy {
