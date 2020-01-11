@@ -1,6 +1,6 @@
-import { NgProgressState, NgProgressConfig } from './ng-progress.interface';
 import { Observable, Subject, BehaviorSubject, timer, of, combineLatest, Subscription, EMPTY } from 'rxjs';
 import { tap, delay, debounce, switchMap, takeUntil, finalize } from 'rxjs/operators';
+import { NgProgressState, NgProgressConfig } from './ng-progress.interface';
 
 export class NgProgressRef {
 
