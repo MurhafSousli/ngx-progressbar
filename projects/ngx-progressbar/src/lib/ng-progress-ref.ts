@@ -1,6 +1,6 @@
 import { NgProgressState, NgProgressConfig } from './ng-progress.interface';
 import { Observable, Subject, BehaviorSubject, timer, of, combineLatest, Subscription, EMPTY } from 'rxjs';
-import { tap, map, skip, delay, filter, debounce, switchMap, distinctUntilChanged } from 'rxjs/operators';
+import { tap, delay, debounce, switchMap, takeUntil, finalize } from 'rxjs/operators';
 
 export class NgProgressRef {
 
@@ -13,6 +13,14 @@ export class NgProgressRef {
   config: Observable<NgProgressState>;
 
   // Progress start event
+  private readonly _started = new Subject();
+  readonly started = this._started.asObservable();
+
+  // Progress ended event
+  private readonly _completed = new Subject();
+  readonly completed = this._completed.asObservable();
+
+  // Stream that increments and updates the progress state
   private readonly _trickling = new Subject();
 
   // Stream that combines "_trickling" and "config" streams
@@ -26,25 +34,6 @@ export class NgProgressRef {
   // Check if progress has started
   get isStarted(): boolean {
     return this.currState.active;
-  }
-
-  /** Progress start event */
-  get started(): Observable<boolean> {
-    return this._state.pipe(
-      map((state: NgProgressState) => state.active),
-      distinctUntilChanged(),
-      filter(active => active)
-    );
-  }
-
-  /** Progress ended event */
-  get completed(): Observable<boolean> {
-    return this._state.pipe(
-      map((state: NgProgressState) => state.active),
-      distinctUntilChanged(),
-      filter(active => !active),
-      skip(1)
-    );
   }
 
   constructor(customConfig: NgProgressConfig, private _onDestroyCallback: () => void) {
@@ -63,6 +52,7 @@ export class NgProgressRef {
    * Start the progress
    */
   start() {
+    this._started.next();
     this._trickling.next(true);
   }
 
@@ -110,6 +100,8 @@ export class NgProgressRef {
     this._trickling.complete();
     this._state.complete();
     this._config.complete();
+    this._started.complete();
+    this._completed.complete();
     this._onDestroyCallback();
   }
 
@@ -141,17 +133,21 @@ export class NgProgressRef {
    * Completes then resets the progress
    */
   private onComplete(config: NgProgressConfig): Observable<any> {
+    this._completed.next();
     return !this.isStarted ? EMPTY : of({}).pipe(
-      // Completes the progress
+      // Complete the progress
       tap(() => this.setState({ value: 100 })),
 
-      // Hides the progress bar after a tiny delay
+      // Deactivate the progress after a tiny delay
       delay(config.speed * 1.7),
       tap(() => this.setState({ active: false })),
 
-      // Resets the progress state
+      // Use a tiny delay before resetting
       delay(config.speed),
-      tap(() => this.setState({ value: 0 }))
+      // Force the progress to reset even it got cancelled
+      finalize(() => this.setState({ value: 0 })),
+      // Cancel any of the finalizing delays if the progress has started again
+      takeUntil(this.started)
     );
   }
 }
