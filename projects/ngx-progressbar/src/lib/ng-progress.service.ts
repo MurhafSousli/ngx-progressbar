@@ -30,10 +30,10 @@ const defaultConfig: NgProgressConfig = {
 })
 export class NgProgress {
 
-  /** Store progress bar instances */
+  // Store progress bar instances
   private readonly _instances = new Map<string, NgProgressRef>();
 
-  /** Global config */
+  // Global config
   config: NgProgressConfig;
 
   constructor(@Optional() @Inject(NG_PROGRESS_CONFIG) config: NgProgressConfig) {
@@ -42,8 +42,6 @@ export class NgProgress {
 
   /**
    * Get or Create progress bar by ID
-   * @param id
-   * @param config
    */
   ref(id = 'root', config?: NgProgressConfig) {
     if (this._instances.has(id)) {

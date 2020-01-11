@@ -4,26 +4,26 @@ import { tap, map, skip, delay, filter, debounce, switchMap, distinctUntilChange
 
 export class NgProgressRef {
 
-  /** Stream that emits when progress state is changed */
+  // Stream that emits when progress state is changed
   private readonly _state: BehaviorSubject<NgProgressState>;
   state: Observable<NgProgressState>;
 
-  /** Stream that emits when config is changed */
+  // Stream that emits when config is changed
   private readonly _config: BehaviorSubject<NgProgressConfig>;
   config: Observable<NgProgressState>;
 
-  /** Stream that increments and updates progress state */
+  // Progress start event
   private readonly _trickling = new Subject();
 
-  /** Stream that combines "_trickling" and "config" streams */
+  // Stream that combines "_trickling" and "config" streams
   private readonly _worker = Subscription.EMPTY;
 
-  /** Get current progress state */
+  // Get current progress state
   private get currState(): NgProgressState {
     return this._state.value;
   }
 
-  /** Check if progress has started */
+  // Check if progress has started
   get isStarted(): boolean {
     return this.currState.active;
   }
@@ -75,7 +75,6 @@ export class NgProgressRef {
 
   /**
    * Increment the progress
-   * @param amount
    */
   inc(amount?: number) {
     const n = this.currState.value;
@@ -91,7 +90,6 @@ export class NgProgressRef {
 
   /**
    * Set the progress
-   * @param n
    */
   set(n: number) {
     this.setState({ value: this.clamp(n), active: true });
@@ -99,7 +97,6 @@ export class NgProgressRef {
 
   /**
    * Set config
-   * @param config
    */
   setConfig(config: NgProgressConfig) {
     this._config.next({ ...this._config.value, ...config });
@@ -118,7 +115,6 @@ export class NgProgressRef {
 
   /**
    * Set progress state
-   * @param state
    */
   private setState(state: NgProgressState) {
     this._state.next({ ...this.currState, ...state });
@@ -126,7 +122,6 @@ export class NgProgressRef {
 
   /**
    * Clamps a value to be between min and max
-   * @param n
    */
   private clamp(n: number): number {
     return Math.max(this._config.value.min, Math.min(this._config.value.max, n));
@@ -134,7 +129,6 @@ export class NgProgressRef {
 
   /**
    * Keeps incrementing the progress
-   * @param config
    */
   private onTrickling(config: NgProgressConfig): Observable<number> {
     if (!this.isStarted) {
@@ -145,7 +139,6 @@ export class NgProgressRef {
 
   /**
    * Completes then resets the progress
-   * @param config
    */
   private onComplete(config: NgProgressConfig): Observable<any> {
     return !this.isStarted ? EMPTY : of({}).pipe(

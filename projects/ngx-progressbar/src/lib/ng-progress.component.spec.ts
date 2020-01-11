@@ -16,8 +16,8 @@ class NgProgressStub {
           value: 5
         }
       )
-    }
-  };
+    };
+  }
 }
 
 describe('NgProgressComponent', () => {
@@ -48,7 +48,7 @@ describe('NgProgressComponent', () => {
     });
 
     it('should destroy component without errors', () => {
-      let ngOnDestroySpy = spyOn(component, 'ngOnDestroy').and.callThrough();
+      const ngOnDestroySpy = spyOn(component, 'ngOnDestroy').and.callThrough();
       fixture.destroy();
       expect(ngOnDestroySpy).toHaveBeenCalled();
     });
@@ -60,7 +60,7 @@ describe('NgProgressComponent', () => {
     });
 
     it('should destroy component without errors', () => {
-      let ngOnDestroySpy = spyOn(component, 'ngOnDestroy').and.callThrough();
+      const ngOnDestroySpy = spyOn(component, 'ngOnDestroy').and.callThrough();
       fixture.destroy();
       expect(ngOnDestroySpy).toHaveBeenCalled();
     });
