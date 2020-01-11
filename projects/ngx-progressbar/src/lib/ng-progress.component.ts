@@ -46,7 +46,6 @@ import { NgProgressState } from './ng-progress.interface';
     </ng-container>
   `,
   styleUrls: ['./ng-progress.component.scss'],
-  encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
