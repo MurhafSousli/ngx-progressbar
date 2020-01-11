@@ -1,5 +1,34 @@
 # Changelog
 
+## 6.0.0
+
+### Breaking changes
+
+#### Before
+
+Before version 6, there were 3 packages each one published in its own npm package
+
+`npm i @ngx-progressbar/core @ngx-progressbar/http @ngx-progressbar/router`
+
+```ts
+import { NgProgressModule } from '@ngx-progressbar/core';
+import { NgProgressHttpModule } from '@ngx-progressbar/http';
+import { NgProgressRouterModule } from '@ngx-progressbar/router';
+```
+
+#### After
+
+After version 6, all the packages is combined and published in one npm package
+
+`npm i ngx-progressbar`
+
+```ts
+import { NgProgressModule } from 'ngx-progressbar';
+import { NgProgressHttpModule } from 'ngx-progressbar/http';
+import { NgProgressRouterModule } from 'ngx-progressbar/router';
+```
+
+
 ## 5.3.2
 
 - fix(test): avoid destroying progressRef which is not yet initialized, closes [#217](https://github.com/MurhafSousli/ngx-progressbar/issues/217) in [850c65f](/MurhafSousli/ngx-progressbar/pull/246/commits/850c65f1f2681225ed091ba770dfdb65d92d382c)
