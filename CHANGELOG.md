@@ -1,5 +1,9 @@
 # Changelog
 
+## 6.0.1
+
+- fix: Cancel any finalizing delays if the progress started again too soon before it was fully completed, closes [#253](https://github.com/MurhafSousli/ngx-progressbar/issues/253) in [e68c7af](https://github.com/MurhafSousli/ngx-progressbar/commit/e68c7af9bf4570a0f4645a65f2bb08ba6ea1bdb2).
+
 ## 6.0.0
 
 ### Breaking changes
