@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
-import { NgProgress, NgProgressConfig } from '../../../../projects/ngx-progressbar/src/public-api';
+import { NgProgressConfig } from '../../../../projects/ngx-progressbar/src/public-api';
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
 
@@ -32,7 +32,7 @@ export class HomeComponent {
   startedClass = new Subject<boolean>();
   endedClass = new Subject<boolean>();
 
-  constructor(public progress: NgProgress, private http: HttpClient) {
+  constructor(private http: HttpClient) {
   }
 
   onProgressStarted() {

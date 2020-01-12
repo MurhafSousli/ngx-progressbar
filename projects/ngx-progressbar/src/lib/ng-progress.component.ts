@@ -46,9 +46,7 @@ import { NgProgressState } from './ng-progress.interface';
     </ng-container>
   `,
   styleUrls: ['./ng-progress.component.scss'],
-  encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  preserveWhitespaces: false
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class NgProgressComponent implements OnInit, OnChanges, OnDestroy {
@@ -122,7 +120,7 @@ export class NgProgressComponent implements OnInit, OnChanges, OnDestroy {
       }))
     );
 
-    // Subscribes to started and completed events on deman
+    // Subscribes to started and completed events on demand
     if (this.started.observers.length) {
       this._started = this.progressRef.started.subscribe(() => this.started.emit());
     }
