@@ -1,5 +1,5 @@
 import { Observable, Subject, BehaviorSubject, timer, of, combineLatest, Subscription, EMPTY } from 'rxjs';
-import { tap, delay, debounce, switchMap, takeUntil, finalize } from 'rxjs/operators';
+import { tap, delay, debounce, switchMap, takeUntil, finalize, filter } from 'rxjs/operators';
 import { NgProgressState, NgProgressConfig } from './ng-progress.interface';
 
 export class NgProgressRef {
@@ -12,13 +12,15 @@ export class NgProgressRef {
   private readonly _config: BehaviorSubject<NgProgressConfig>;
   config: Observable<NgProgressState>;
 
-  // Progress start event
+  // Progress start source event (used to cancel finalizing delays)
   private readonly _started = new Subject();
-  readonly started = this._started.asObservable();
+  // Progress start event: stream that emits only when it hasn't already started
+  readonly started = this._started.pipe(filter(() => !this.isStarted));
 
-  // Progress ended event
+  // Progress ended source event
   private readonly _completed = new Subject();
-  readonly completed = this._completed.asObservable();
+  // Progress start event: stream that emits only when it has already started
+  readonly completed = this._completed.pipe(filter(() => this.isStarted));
 
   // Stream that increments and updates the progress state
   private readonly _trickling = new Subject();
@@ -147,7 +149,7 @@ export class NgProgressRef {
       // Force the progress to reset even it got cancelled
       finalize(() => this.setState({ value: 0 })),
       // Cancel any of the finalizing delays if the progress has started again
-      takeUntil(this.started)
+      takeUntil(this._started)
     );
   }
 }
