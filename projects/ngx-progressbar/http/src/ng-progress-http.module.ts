@@ -9,7 +9,7 @@ import { NgProgressHttpConfig, NG_PROGRESS_HTTP_CONFIG } from './ng-progress-htt
   ]
 })
 export class NgProgressHttpModule {
-  static withConfig(config: NgProgressHttpConfig): ModuleWithProviders {
+  static withConfig(config: NgProgressHttpConfig): ModuleWithProviders<NgProgressHttpModule> {
     return {
       ngModule: NgProgressHttpModule,
       providers: [

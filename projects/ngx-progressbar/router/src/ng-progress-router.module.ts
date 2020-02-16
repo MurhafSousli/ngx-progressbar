@@ -9,7 +9,7 @@ export class NgProgressRouterModule {
   constructor(ngProgressRouter: NgProgressRouter) {
   }
 
-  static withConfig(config: NgProgressRouterConfig): ModuleWithProviders {
+  static withConfig(config: NgProgressRouterConfig): ModuleWithProviders<NgProgressRouterModule> {
     return {
       ngModule: NgProgressRouterModule,
       providers: [
