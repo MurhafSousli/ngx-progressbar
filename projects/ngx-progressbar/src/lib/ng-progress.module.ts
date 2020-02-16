@@ -9,7 +9,7 @@ import { NgProgressConfig, NG_PROGRESS_CONFIG } from './ng-progress.interface';
   imports: [CommonModule]
 })
 export class NgProgressModule {
-  static withConfig(config: NgProgressConfig): ModuleWithProviders {
+  static withConfig(config: NgProgressConfig): ModuleWithProviders<NgProgressModule> {
     return {
       ngModule: NgProgressModule,
       providers: [
