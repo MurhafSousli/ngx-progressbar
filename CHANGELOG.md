@@ -1,5 +1,10 @@
 # Changelog
 
+## 6.0.2
+
+- feat: Upgrade library to Angular 9 in [8b1929a](https://github.com/MurhafSousli/ngx-progressbar/pull/273/commits/8b1929abe3d091b96e12bc545ac83e01022761cc).
+- fix: Remove warning when the package is installed in Angular 9 in [bdfd1b7](https://github.com/MurhafSousli/ngx-progressbar/pull/271/commits/bdfd1b7844412a50a9aa4c288a38f21d326c07ad).
+
 ## 6.0.1
 
 - fix: Cancel any finalizing delays if the progress started again too soon before it was fully completed, closes [#253](https://github.com/MurhafSousli/ngx-progressbar/issues/253) in [e68c7af](https://github.com/MurhafSousli/ngx-progressbar/commit/e68c7af9bf4570a0f4645a65f2bb08ba6ea1bdb2).
