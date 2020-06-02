@@ -16,9 +16,8 @@ export class NgProgressInterceptor implements HttpInterceptor {
     silentApis: []
   };
 
-  constructor(ngProgress: NgProgress, @Optional() @Inject(NG_PROGRESS_HTTP_CONFIG) config?: NgProgressHttpConfig) {
+  constructor(protected ngProgress: NgProgress, @Optional() @Inject(NG_PROGRESS_HTTP_CONFIG) config?: NgProgressHttpConfig) {
     this._config = config ? {...this._config, ...config} : this._config;
-    this._progressRef = ngProgress.ref(this._config.id);
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -35,6 +34,7 @@ export class NgProgressInterceptor implements HttpInterceptor {
 
     this._inProgressCount++;
 
+    this._progressRef = this.ngProgress.ref(this._config.id);
     if (!this._progressRef.isStarted) {
       this._progressRef.start();
     }
