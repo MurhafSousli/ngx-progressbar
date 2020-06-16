@@ -3,8 +3,7 @@ dist: trusty
 
 language: node_js
 node_js:
-  - "12"
-  - "10"
+  - "14"
 
 cache:
   directories:
@@ -12,6 +11,7 @@ cache:
 
 install:
   - npm install
+  - npm audit fix --force
 
 script:
   - npm run build
