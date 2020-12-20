@@ -1,14 +1,12 @@
 {
-  "name": "ngx-progressbar",
+  "name": "ngx-progressbar-demo",
   "version": "0.0.0",
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build-demo": "ng build --prod",
-    "build": "ng build ngx-progressbar --prod",
-    "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e",
+    "start": "ng serve ngx-progressbar-demo",
+    "build-demo": "ng build ngx-progressbar-demo --prod",
+    "build-lib": "ng build ngx-progressbar --prod",
+    "test-lib": "ng test ngx-progressbar",
+    "test-lib-headless": "ng test ngx-progressbar --watch=false --no-progress --browsers=ChromeHeadless",
     "link-lib": "npm link dist/ngx-progressbar && npm link ngx-progressbar",
     "publish-lib": "npm publish dist/ngx-progressbar"
   },
