@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed} from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
 import { NgProgressComponent } from './ng-progress.component';
@@ -24,7 +24,7 @@ describe('NgProgressComponent', () => {
   let component: NgProgressComponent;
   let fixture: ComponentFixture<NgProgressComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [NgProgressComponent],
       imports: [
