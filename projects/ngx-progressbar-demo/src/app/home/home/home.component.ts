@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
-import { NgProgressConfig } from '../../../../projects/ngx-progressbar/src/public-api';
+import { NgProgressConfig } from '../../../../../ngx-progressbar/src/public-api';
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
 

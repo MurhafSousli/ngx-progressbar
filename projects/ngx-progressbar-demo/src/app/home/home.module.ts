@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 // import { NgProgressModule } from '@ngx-progressbar/core';
-import { NgProgressModule } from '../../../projects/ngx-progressbar/src/public-api';
+import { NgProgressModule } from '../../../../ngx-progressbar/src/public-api';
 import { HomeComponent } from './home/home.component';
 import { LabComponent } from './lab/lab.component';
 
