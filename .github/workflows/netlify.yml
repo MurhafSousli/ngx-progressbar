@@ -1,0 +1,35 @@
+name: Deploy Demo
+
+on:
+  push:
+    branches: [ deploy-netlify ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js 14
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14
+      - name: Install dependencies
+        run: npm install
+      - name: Build and link library
+        run: npm run build-lib && npm run link-lib
+      - name: Build demo
+        run: npm run build-demo
+      - name: Deploy to Netlify
+        uses: nwtgck/actions-netlify@v1.1.11
+        with:
+          publish-dir: './dist/ngx-progressbar-demo'
+          production-branch: deploy-netlify
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          deploy-message: "Deploy from GitHub Actions"
+          enable-pull-request-comment: true
+          enable-commit-comment: true
+          overwrites-pull-request-comment: true
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        timeout-minutes: 1

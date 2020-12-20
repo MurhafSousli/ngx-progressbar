@@ -1,6 +1,30 @@
 {
   "name": "ngx-progressbar",
-  "version": "6.0.3",
+  "version": "6.0.4",
+  "author": {
+    "name": "Murhaf Sousli",
+    "url": "https://github.com/MurhafSousli",
+    "email": "murhafsousli@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/murhafsousli/ngx-progressbar.git"
+  },
+  "bugs": {
+    "url": "http://github.com/murhafsousli/ngx-progressbar/issues"
+  },
+  "keywords": [
+    "angular",
+    "progress",
+    "progressbar",
+    "loading",
+    "loadingbar",
+    "ngx-progressbar"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "tslib": "^2.0.0"
+  },
   "peerDependencies": {
     "@angular/common": ">=8.0.0",
     "@angular/core": ">=8.0.0",

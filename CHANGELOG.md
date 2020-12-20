@@ -1,5 +1,9 @@
 # Changelog
 
+## 6.0.4
+
+- Upgrade to Angular 11
+
 ## 6.0.3
 
 - fix: get a new progressRef after the current one has been destroyed, in [69af8fe](https://github.com/MurhafSousli/ngx-progressbar/pull/278/commits/69af8feaac600c0a3c38e116364e9f56bcd81c16).
