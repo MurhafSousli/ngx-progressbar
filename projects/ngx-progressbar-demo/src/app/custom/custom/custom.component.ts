@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
-import { NgProgress, NgProgressRef } from '../../../../../ngx-progressbar/src/public-api';
+import { NgProgress, NgProgressRef } from 'ngx-progressbar';
+// import { NgProgress, NgProgressRef } from '../../../../../ngx-progressbar/src/public-api';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
