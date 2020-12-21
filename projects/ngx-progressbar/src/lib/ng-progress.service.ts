@@ -1,8 +1,8 @@
 import { Injectable, Inject, Optional } from '@angular/core';
 import { NgProgressRef } from './ng-progress-ref';
-import { NgProgressConfig, NG_PROGRESS_CONFIG } from './ng-progress.interface';
+import { NgProgressConfig, ProgressConfig, NG_PROGRESS_CONFIG } from './ng-progress.interface';
 
-const defaultConfig: NgProgressConfig = {
+const defaultConfig: ProgressConfig = {
   min: 8,
   max: 100,
   speed: 200,
@@ -34,27 +34,27 @@ export class NgProgress {
   private readonly _instances = new Map<string, NgProgressRef>();
 
   // Global config
-  config: NgProgressConfig;
+  config: ProgressConfig;
 
   constructor(@Optional() @Inject(NG_PROGRESS_CONFIG) config: NgProgressConfig) {
-    this.config = config ? {...defaultConfig, ...config} : defaultConfig;
+    this.config = config ? { ...defaultConfig, ...config } : defaultConfig;
   }
 
   /**
    * Get or Create progress bar by ID
    */
-  ref(id = 'root', config?: NgProgressConfig) {
+  ref(id = 'root', config?: NgProgressConfig): NgProgressRef {
     if (this._instances.has(id)) {
       // Get ProgressRef instance
-      const progressRef = this._instances.get(id);
+      const progressRef = this._instances.get(id) as NgProgressRef;
       if (config) {
-        progressRef.setConfig({...this.config, ...config});
+        progressRef.setConfig({ ...this.config, ...config });
       }
-      return progressRef;
+      return progressRef as NgProgressRef;
     } else {
       // Create new ProgressRef instance
-      const progressRef = new NgProgressRef({...this.config, ...config}, this.deleteInstance(id));
-      return this._instances.set(id, progressRef).get(id);
+      const progressRef = new NgProgressRef({ ...this.config, ...config }, this.deleteInstance(id));
+      return this._instances.set(id, progressRef).get(id) as NgProgressRef;
     }
   }
 
@@ -68,7 +68,7 @@ export class NgProgress {
   /**
    * A destroyer function for each progress bar instance
    */
-  private deleteInstance(id: string) {
+  private deleteInstance(id: string): () => void {
     return () => {
       this._instances.delete(id);
     };
