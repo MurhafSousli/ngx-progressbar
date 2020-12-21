@@ -3,15 +3,14 @@ import { HttpInterceptor, HttpEvent, HttpHandler, HttpRequest } from '@angular/c
 import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 import { NgProgress, NgProgressRef } from 'ngx-progressbar';
-// import { NgProgress, NgProgressRef } from '../../src/public-api';
-import { NgProgressHttpConfig, NG_PROGRESS_HTTP_CONFIG } from './ng-progress-http.interface';
+import { NgProgressHttpConfig, ProgressHttpConfig, NG_PROGRESS_HTTP_CONFIG } from './ng-progress-http.interface';
 
 @Injectable()
 export class NgProgressInterceptor implements HttpInterceptor {
 
   private _inProgressCount = 0;
-  private _progressRef: NgProgressRef;
-  private readonly _config: NgProgressHttpConfig = {
+  private _progressRef!: NgProgressRef;
+  private readonly _config: ProgressHttpConfig = {
     id: 'root',
     silentApis: []
   };
@@ -53,7 +52,7 @@ export class NgProgressInterceptor implements HttpInterceptor {
    * Check if request is silent.
    * @param req request
    */
-  private checkUrl(req: HttpRequest<any>) {
+  private checkUrl(req: HttpRequest<any>): boolean {
     const url = req.url.toLowerCase();
     const found = this._config.silentApis.find((u) => url.startsWith(u));
     return !!found;

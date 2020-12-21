@@ -1,16 +1,16 @@
 import { Observable, Subject, BehaviorSubject, timer, of, combineLatest, Subscription, EMPTY } from 'rxjs';
 import { tap, delay, debounce, switchMap, takeUntil, finalize, filter } from 'rxjs/operators';
-import { NgProgressState, NgProgressConfig } from './ng-progress.interface';
+import { NgProgressState, NgProgressConfig, ProgressConfig, ProgressState } from './ng-progress.interface';
 
 export class NgProgressRef {
 
   // Stream that emits when progress state is changed
-  private readonly _state: BehaviorSubject<NgProgressState>;
-  state: Observable<NgProgressState>;
+  private readonly _state: BehaviorSubject<ProgressState>;
+  state: Observable<ProgressState>;
 
   // Stream that emits when config is changed
-  private readonly _config: BehaviorSubject<NgProgressConfig>;
-  config: Observable<NgProgressState>;
+  private readonly _config: BehaviorSubject<ProgressConfig>;
+  config: Observable<ProgressConfig>;
 
   // Progress start source event (used to cancel finalizing delays)
   private readonly _started = new Subject();
@@ -23,30 +23,30 @@ export class NgProgressRef {
   readonly completed = this._completed.pipe(filter(() => this.isStarted));
 
   // Stream that increments and updates the progress state
-  private readonly _trickling = new Subject();
+  private readonly _trickling = new Subject<boolean>();
 
   // Stream that combines "_trickling" and "config" streams
   private readonly _worker = Subscription.EMPTY;
 
   // Get current progress state
-  private get currState(): NgProgressState {
+  private get snapshot(): ProgressState {
     return this._state.value;
   }
 
   // Check if progress has started
   get isStarted(): boolean {
-    return this.currState.active;
+    return this.snapshot.active;
   }
 
-  constructor(customConfig: NgProgressConfig, private _onDestroyCallback: () => void) {
-    this._state = new BehaviorSubject<NgProgressState>({ active: false, value: 0 });
-    this._config = new BehaviorSubject<NgProgressConfig>(customConfig);
+  constructor(customConfig: ProgressConfig, private _onDestroyCallback: () => void) {
+    this._state = new BehaviorSubject<ProgressState>({ active: false, value: 0 });
+    this._config = new BehaviorSubject<ProgressConfig>(customConfig);
     this.state = this._state.asObservable();
-    this.config = this._state.asObservable();
+    this.config = this._config.asObservable();
 
-    this._worker = combineLatest(this._trickling, this._config).pipe(
-      debounce(([start, config]: [boolean, NgProgressConfig]) => timer(start ? config.debounceTime : 0)),
-      switchMap(([start, config]: [boolean, NgProgressConfig]) => start ? this.onTrickling(config) : this.onComplete(config))
+    this._worker = combineLatest([this._trickling, this._config]).pipe(
+      debounce(([start, config]: [boolean, ProgressConfig]) => timer(start ? config.debounceTime : 0)),
+      switchMap(([start, config]: [boolean, ProgressConfig]) => start ? this.onTrickling(config) : this.onComplete(config))
     ).subscribe();
   }
 
@@ -69,7 +69,7 @@ export class NgProgressRef {
    * Increment the progress
    */
   inc(amount?: number) {
-    const n = this.currState.value;
+    const n = this.snapshot.value;
     if (!this.isStarted) {
       this.start();
     } else {
@@ -111,7 +111,7 @@ export class NgProgressRef {
    * Set progress state
    */
   private setState(state: NgProgressState) {
-    this._state.next({ ...this.currState, ...state });
+    this._state.next({ ...this.snapshot, ...state });
   }
 
   /**
@@ -124,7 +124,7 @@ export class NgProgressRef {
   /**
    * Keeps incrementing the progress
    */
-  private onTrickling(config: NgProgressConfig): Observable<number> {
+  private onTrickling(config: ProgressConfig): Observable<number> {
     if (!this.isStarted) {
       this.set(this._config.value.min);
     }
@@ -134,7 +134,7 @@ export class NgProgressRef {
   /**
    * Completes then resets the progress
    */
-  private onComplete(config: NgProgressConfig): Observable<any> {
+  private onComplete(config: ProgressConfig): Observable<any> {
     this._completed.next();
     return !this.isStarted ? EMPTY : of({}).pipe(
       // Complete the progress

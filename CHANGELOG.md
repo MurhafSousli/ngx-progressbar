@@ -1,5 +1,14 @@
 # Changelog
 
+## 6.1.0
+
+- feat: Use the strict mode, in [25f0976](https://github.com/MurhafSousli/ngx-progressbar/pull/294/commits/25f09769a4ae2a5be0945fdbbe7f0a252ce18bd6).
+- fix typo for config stream in `NgProgressRef` 
+
+### Breaking changes
+
+- Rename `NgProgressRef.getState` to `NgProgressRef.snapshot`
+
 ## 6.0.4
 
 - Upgrade to Angular 11
