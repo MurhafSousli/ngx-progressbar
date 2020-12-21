@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
-import { NgProgressConfig } from '../../../../../ngx-progressbar/src/public-api';
+import { NgProgressConfig } from 'ngx-progressbar';
+// import { NgProgressConfig } from '../../../../../ngx-progressbar/src/public-api';
 
 @Component({
   selector: 'app-lab',
