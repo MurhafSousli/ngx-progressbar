@@ -2,18 +2,17 @@ import {
   Component,
   Input,
   Output,
+  EventEmitter,
   OnChanges,
   OnDestroy,
   OnInit,
-  ChangeDetectionStrategy,
-  EventEmitter,
-  ViewEncapsulation
+  ChangeDetectionStrategy
 } from '@angular/core';
-import { Observable, Subscription, SubscriptionLike} from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { NgProgress } from './ng-progress.service';
 import { NgProgressRef } from './ng-progress-ref';
-import { NgProgressState } from './ng-progress.interface';
+import { ProgressState } from './ng-progress.interface';
 
 @Component({
   selector: 'ng-progress',
@@ -27,20 +26,20 @@ import { NgProgressState } from './ng-progress.interface';
   template: `
     <ng-container *ngIf="state$ | async; let state">
       <div class="ng-progress-bar"
-            [attr.active]="state.active"
-            [style.transition]="'opacity ' + speed + 'ms ' + ease">
+           [attr.active]="state.active"
+           [style.transition]="'opacity ' + speed + 'ms ' + ease">
         <div class="ng-bar-placeholder">
           <div class="ng-bar"
-                [style.transform]="state.transform"
-                [style.backgroundColor]="color"
-                [style.transition]="state.active ? 'all ' + speed + 'ms ' + ease : 'none'">
+               [style.transform]="state.transform"
+               [style.backgroundColor]="color"
+               [style.transition]="state.active ? 'all ' + speed + 'ms ' + ease : 'none'">
             <div *ngIf="meteor" class="ng-meteor" [style.boxShadow]="'0 0 10px '+ color + ', 0 0 5px ' + color"></div>
           </div>
         </div>
         <div *ngIf="spinner" class="ng-spinner">
           <div class="ng-spinner-icon"
-                [style.borderTopColor]="color"
-                [style.borderLeftColor]="color"></div>
+               [style.borderTopColor]="color"
+               [style.borderLeftColor]="color"></div>
         </div>
       </div>
     </ng-container>
@@ -51,14 +50,14 @@ import { NgProgressState } from './ng-progress.interface';
 
 export class NgProgressComponent implements OnInit, OnChanges, OnDestroy {
 
-  private _started: SubscriptionLike = Subscription.EMPTY;
-  private _completed: SubscriptionLike = Subscription.EMPTY;
+  private _started!: Subscription;
+  private _completed!: Subscription;
 
   /** Progress bar worker */
-  progressRef: NgProgressRef;
+  progressRef!: NgProgressRef;
 
   /** Stream that emits progress state */
-  state$: Observable<{ active: boolean, transform: string }>;
+  state$!: Observable<{ active: boolean, transform: string }>;
 
   /** Creates a new instance if id is not already exists */
   @Input() id = 'root';
@@ -82,24 +81,22 @@ export class NgProgressComponent implements OnInit, OnChanges, OnDestroy {
   @Output() completed = new EventEmitter();
 
   get isStarted() {
-    return this.progressRef.isStarted;
+    return this.progressRef?.isStarted;
   }
 
   constructor(private _ngProgress: NgProgress) {
   }
 
   ngOnChanges() {
-    if (this.progressRef instanceof NgProgressRef) {
-      // Update progress bar config when inputs change
-      this.progressRef.setConfig({
-        max: (this.max > 0 && this.max <= 100) ? this.max : 100,
-        min: (this.min < 100 && this.min >= 0) ? this.min : 0,
-        speed: this.speed,
-        trickleSpeed: this.trickleSpeed,
-        trickleFunc: this.trickleFunc,
-        debounceTime: this.debounceTime
-      });
-    }
+     // Update progress bar config when inputs change
+    this.progressRef?.setConfig({
+      max: (this.max > 0 && this.max <= 100) ? this.max : 100,
+      min: (this.min < 100 && this.min >= 0) ? this.min : 0,
+      speed: this.speed,
+      trickleSpeed: this.trickleSpeed,
+      trickleFunc: this.trickleFunc,
+      debounceTime: this.debounceTime
+    });
   }
 
   ngOnInit() {
@@ -114,9 +111,9 @@ export class NgProgressComponent implements OnInit, OnChanges, OnDestroy {
 
     // Subscribe to progress state
     this.state$ = this.progressRef.state.pipe(
-      map((state: NgProgressState) => ({
+      map((state: ProgressState) => ({
         active: state.active,
-        transform: `translate3d(${state.value}%,0,0)`
+        transform: `translate3d(${ state.value }%,0,0)`
       }))
     );
 
@@ -130,11 +127,9 @@ export class NgProgressComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnDestroy() {
-    this._started.unsubscribe();
-    this._completed.unsubscribe();
-    if (this.progressRef instanceof NgProgressRef) {
-      this.progressRef.destroy();
-    }
+    this._started?.unsubscribe();
+    this._completed?.unsubscribe();
+    this.progressRef?.destroy();
   }
 
   start() {
