@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "start": "ng serve ngx-progressbar-demo",
-    "build-demo": "ng build ngx-progressbar-demo --prod",
-    "build-lib": "ng build ngx-progressbar --prod",
+    "build-demo": "ng build ngx-progressbar-demo --configuration production",
+    "build-lib": "ng build ngx-progressbar --configuration production",
     "test-lib": "ng test ngx-progressbar",
     "test-lib-headless": "ng test ngx-progressbar --watch=false --no-progress --browsers=ChromeHeadless",
     "link-lib": "npm link dist/ngx-progressbar && npm link ngx-progressbar",
