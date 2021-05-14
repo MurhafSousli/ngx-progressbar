@@ -1,5 +1,5 @@
 <p align="center">
-  <img height="200px" width="200px" style="text-align: center;" src="https://cdn.rawgit.com/MurhafSousli/ngx-progressbar/master/src/assets/logo.svg">
+  <img height="200px" width="200px" style="text-align: center;" src="https://gitcdn.xyz/repo/MurhafSousli/ngx-progressbar/master/projects/ngx-progressbar-demo/src/assets/logo.svg">
   <h1 align="center">Angular Progressbar</h1>
 </p>
 

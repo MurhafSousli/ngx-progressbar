@@ -62,7 +62,6 @@
             "main": "projects/ngx-progressbar-demo/src/main.ts",
             "polyfills": "projects/ngx-progressbar-demo/src/polyfills.ts",
             "tsConfig": "projects/ngx-progressbar-demo/tsconfig.app.json",
-            "aot": true,
             "assets": [
               "projects/ngx-progressbar-demo/src/favicon.ico",
               "projects/ngx-progressbar-demo/src/assets"
@@ -70,7 +69,13 @@
             "styles": [
               "projects/ngx-progressbar-demo/src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           },
           "configurations": {
             "production": {
