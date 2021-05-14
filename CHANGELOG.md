@@ -1,5 +1,9 @@
 # Changelog
 
+## 6.1.1
+
+- Upgrade to Angular 12
+
 ## 6.1.0
 
 - feat: Use the strict mode, in [25f0976](https://github.com/MurhafSousli/ngx-progressbar/pull/294/commits/25f09769a4ae2a5be0945fdbbe7f0a252ce18bd6).
