@@ -28,7 +28,7 @@
     }
   }
 
-  &[dir='ltr+'], &[dir='ltr-'] {
+  &[direction='ltr+'], &[direction='ltr-'] {
     .ng-meteor {
       transform: rotate(3deg);
     }
@@ -37,7 +37,7 @@
     }
   }
 
-  &[dir='ltr+'], &[dir='rtl+'] {
+  &[direction='ltr+'], &[direction='rtl+'] {
     .ng-bar {
       margin-left: -100%;
     }
@@ -46,7 +46,7 @@
     }
   }
 
-  &[dir='ltr+'], &[dir='rtl-'] {
+  &[direction='ltr+'], &[direction='rtl-'] {
     .ng-meteor {
       top: -3px;
     }
@@ -55,23 +55,23 @@
     }
   }
 
-  &[dir='ltr-'], &[dir='rtl+'] {
+  &[direction='ltr-'], &[direction='rtl+'] {
     .ng-meteor {
       bottom: -3px;
     }
     &[thick='true'] .ng-meteor {
       bottom: -4px;
     }
-    // reverse dir
+    // reverse direction
     .ng-bar-placeholder {
       transform: rotate(180deg);
     }
     .ng-spinner-icon {
-      animation-direction: reverse;
+      animation-directionection: reverse;
     }
   }
 
-  &[dir='rtl+'], &[dir='rtl-'] {
+  &[direction='rtl+'], &[direction='rtl-'] {
     .ng-meteor {
       transform: rotate(-3deg);
     }
