@@ -28,18 +28,6 @@
             "tsConfig": "projects/ngx-progressbar/tsconfig.spec.json",
             "karmaConfig": "projects/ngx-progressbar/karma.conf.js"
           }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/ngx-progressbar/tsconfig.lib.json",
-              "projects/ngx-progressbar/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
         }
       }
     },
@@ -139,19 +127,6 @@
               "projects/ngx-progressbar-demo/src/styles.scss"
             ],
             "scripts": []
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/ngx-progressbar-demo/tsconfig.app.json",
-              "projects/ngx-progressbar-demo/tsconfig.spec.json",
-              "projects/ngx-progressbar-demo/e2e/tsconfig.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
           }
         },
         "e2e": {
