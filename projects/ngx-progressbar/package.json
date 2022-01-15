@@ -1,6 +1,6 @@
 {
   "name": "ngx-progressbar",
-  "version": "6.1.1",
+  "version": "7.0.0",
   "author": {
     "name": "Murhaf Sousli",
     "url": "https://github.com/MurhafSousli",
@@ -26,9 +26,9 @@
     "tslib": "^2.0.0"
   },
   "peerDependencies": {
-    "@angular/common": ">=8.0.0",
-    "@angular/core": ">=8.0.0",
-    "@angular/router": ">=8.0.0",
+    "@angular/common": ">=13.0.0",
+    "@angular/core": ">=13.0.0",
+    "@angular/router": ">=13.0.0",
     "rxjs": ">=6.0.0"
   }
 }

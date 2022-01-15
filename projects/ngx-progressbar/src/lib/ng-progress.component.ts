@@ -19,7 +19,7 @@ import { ProgressState } from './ng-progress.interface';
   host: {
     'role': 'progressbar',
     '[attr.spinnerPosition]': 'spinnerPosition',
-    '[attr.dir]': 'direction',
+    '[attr.direction]': 'direction',
     '[attr.thick]': 'thick',
     '[attr.fixed]': 'fixed'
   },
