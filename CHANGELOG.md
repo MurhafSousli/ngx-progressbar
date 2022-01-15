@@ -1,5 +1,10 @@
 # Changelog
 
+## 7.0.0
+
+- Upgrade to Angular 13, closes [#319](https://github.com/MurhafSousli/ngx-progressbar/issues/319) in [fdf89a2](https://github.com/MurhafSousli/ngx-progressbar/pull/325/commits/fdf89a216f3b137e00b6f6f303840f32ad9f30e8).
+- Rename dir attribute to direction, closes [#322](https://github.com/MurhafSousli/ngx-progressbar/issues/322) in [45634a2](https://github.com/MurhafSousli/ngx-progressbar/pull/325/commits/45634a20dae08df7b57b2f5f5a54ca09d2302e30).
+
 ## 6.1.1
 
 - Upgrade to Angular 12

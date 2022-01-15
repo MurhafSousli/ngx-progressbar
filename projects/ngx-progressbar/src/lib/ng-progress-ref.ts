@@ -13,12 +13,12 @@ export class NgProgressRef {
   config: Observable<ProgressConfig>;
 
   // Progress start source event (used to cancel finalizing delays)
-  private readonly _started = new Subject();
+  private readonly _started = new Subject<void>();
   // Progress start event: stream that emits only when it hasn't already started
   readonly started = this._started.pipe(filter(() => !this.isStarted));
 
   // Progress ended source event
-  private readonly _completed = new Subject();
+  private readonly _completed = new Subject<void>();
   // Progress start event: stream that emits only when it has already started
   readonly completed = this._completed.pipe(filter(() => this.isStarted));
 
