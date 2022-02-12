@@ -12,18 +12,19 @@ export class NgProgressInterceptor implements HttpInterceptor {
   private _progressRef!: NgProgressRef;
   private readonly _config: ProgressHttpConfig = {
     id: 'root',
-    silentApis: []
+    silentApis: [],
+    matcher: null
   };
 
   constructor(protected ngProgress: NgProgress, @Optional() @Inject(NG_PROGRESS_HTTP_CONFIG) config?: NgProgressHttpConfig) {
-    this._config = config ? {...this._config, ...config} : this._config;
+    this._config = config ? { ...this._config, ...config } : this._config;
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
     // Ignore by request headers
     if (req.headers.has('ignoreProgressBar')) {
-      return next.handle(req.clone({headers: req.headers.delete('ignoreProgressBar')}));
+      return next.handle(req.clone({ headers: req.headers.delete('ignoreProgressBar') }));
     }
 
     // Ignore silent api requests
@@ -55,6 +56,11 @@ export class NgProgressInterceptor implements HttpInterceptor {
   private checkUrl(req: HttpRequest<any>): boolean {
     const url = req.url.toLowerCase();
     const found = this._config.silentApis.find((u) => url.startsWith(u));
+
+    if (this._config.matcher) {
+      return Boolean(url.match(this._config.matcher));
+    }
+
     return !!found;
   }
 }
