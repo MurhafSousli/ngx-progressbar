@@ -55,7 +55,7 @@ export class NgProgressInterceptor implements HttpInterceptor {
    */
   private checkUrl(req: HttpRequest<any>): boolean {
     const url = req.url.toLowerCase();
-    const found = this._config.silentApis.find((u) => url.startsWith(u));
+    const found = this._config.silentApis.find((u) => url.startsWith(u.toLowerCase()));
 
     if (this._config.matcher) {
       return Boolean(url.match(this._config.matcher));
