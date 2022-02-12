@@ -95,7 +95,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  zoom: 1;
+  transform: scale(1);
   filter: alpha(opacity=0);
   opacity: 0;
   &[active="true"] {
