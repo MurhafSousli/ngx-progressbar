@@ -1,5 +1,25 @@
 # Changelog
 
+## 8.0.0
+
+- feat: Add matcher feature to http module, closes [#254](https://github.com/MurhafSousli/ngx-progressbar/issues/254) in [a6ab70b](https://github.com/MurhafSousli/ngx-progressbar/pull/331/commits/a6ab70b3c2c9f15c2c0e71c45a88e9745f61202c) and [ce3c0d6](https://github.com/MurhafSousli/ngx-progressbar/pull/331/commits/ce3c0d6b86632c873689330cddea6a977aecf07a).
+- fix: Remove case-sensitive from `silentApis`, closes [#283](https://github.com/MurhafSousli/ngx-progressbar/issues/283) in [32da22c](https://github.com/MurhafSousli/ngx-progressbar/pull/331/commits/32da22c85e9d9ea8897f7cfb6f11ef1c69226a1a).
+- refactor: Change `zoom` to `transform: scale`, closes [#275](https://github.com/MurhafSousli/ngx-progressbar/issues/275) in [c78dff6](https://github.com/MurhafSousli/ngx-progressbar/pull/331/commits/c78dff66506aaedf41cd6d82e52944bbafa5748c).
+- Added unit tests
+
+### Breaking changes
+
+**Before:**
+
+- `silentApis` used to check the url using `url.startsWith()`
+
+**After:**
+
+- `silentApis` checks the url using `url.includes()`
+
+When `silentApis` is used along with `matcher` regex, it will check if the URL matches both cases, learn more at [wiki page](https://github.com/MurhafSousli/ngx-progressbar/wiki/HttpClient-requests).
+
+
 ## 7.0.0
 
 - Upgrade to Angular 13, closes [#319](https://github.com/MurhafSousli/ngx-progressbar/issues/319) in [fdf89a2](https://github.com/MurhafSousli/ngx-progressbar/pull/325/commits/fdf89a216f3b137e00b6f6f303840f32ad9f30e8).

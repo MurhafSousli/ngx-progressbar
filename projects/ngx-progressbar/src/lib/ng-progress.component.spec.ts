@@ -1,39 +1,18 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
-import { of } from 'rxjs';
-import { NgProgressComponent } from './ng-progress.component';
-import { NgProgress } from './ng-progress.service';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { NgProgress, NgProgressComponent, NgProgressModule } from 'ngx-progressbar';
 
-class NgProgressStub {
-  config = {};
-
-  ref() {
-    return {
-      state: of(
-        {
-          active: true,
-          value: 5
-        }
-      )
-    };
-  }
-}
-
-describe('NgProgressComponent', () => {
+describe('NgProgress Component', () => {
   let component: NgProgressComponent;
+  let ngProgress: NgProgress;
   let fixture: ComponentFixture<NgProgressComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [NgProgressComponent],
-      imports: [
-        RouterTestingModule
-      ],
-      providers: [
-        { provide: NgProgress, useClass: NgProgressStub }
-      ]
-    }).compileComponents();
-  }));
+      imports: [NgProgressModule]
+    });
+
+    ngProgress = TestBed.inject(NgProgress);
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(NgProgressComponent);
@@ -44,10 +23,29 @@ describe('NgProgressComponent', () => {
     expect(component).toBeDefined();
   });
 
-  // it('should destroy component without errors', () => {
-  //   const ngOnDestroySpy = spyOn(component, 'ngOnDestroy');
-  //   fixture.destroy();
-  //   component.ngOnDestroy();
-  //   expect(ngOnDestroySpy).toHaveBeenCalled();
-  // });
+  it('should start/complete the progress using the start/complete functions', (done: DoneFn) => {
+    const progressRef = ngProgress.ref();
+    spyOn(progressRef, 'start');
+    spyOn(progressRef, 'complete');
+    component.ngOnInit();
+
+    component.start();
+    expect(progressRef.start).toHaveBeenCalled();
+
+    setTimeout(() => {
+      component.complete();
+      expect(progressRef.complete).toHaveBeenCalled();
+      done();
+    }, 200);
+  });
+
+  it('should get true on isStarted when progress is started', (done: DoneFn) => {
+    component.ngOnInit();
+    component.start();
+
+    setTimeout(() => {
+      expect(component.isStarted).toBeTrue();
+      done();
+    });
+  });
 });

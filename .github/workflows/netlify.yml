@@ -14,9 +14,7 @@ jobs:
         with:
           node-version: 14
       - name: Install dependencies
-        run: npm install
-      - name: Build and link library
-        run: npm run build-lib && npm run link-lib
+        run: npm ci
       - name: Build demo
         run: npm run build-demo
       - name: Deploy to Netlify
