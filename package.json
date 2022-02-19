@@ -7,7 +7,6 @@
     "build-lib": "ng build ngx-progressbar --configuration production",
     "test-lib": "ng test ngx-progressbar",
     "test-lib-headless": "ng test ngx-progressbar --watch=false --no-progress --browsers=ChromeHeadless",
-    "link-lib": "npm link dist/ngx-progressbar && npm link ngx-progressbar",
     "publish-lib": "npm publish dist/ngx-progressbar"
   },
   "private": true,
