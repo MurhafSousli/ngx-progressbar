@@ -20,10 +20,13 @@
     ],
     "paths": {
       "ngx-progressbar": [
-        "dist/ngx-progressbar"
+        "projects/ngx-progressbar/src/public-api"
       ],
-      "ngx-progressbar/*": [
-        "dist/ngx-progressbar/*"
+      "ngx-progressbar/http": [
+        "projects/ngx-progressbar/http/src/public_api"
+      ],
+      "ngx-progressbar/router": [
+        "projects/ngx-progressbar/router/src/public_api"
       ]
     }
   },
