@@ -12,18 +12,19 @@ export class NgProgressInterceptor implements HttpInterceptor {
   private _progressRef!: NgProgressRef;
   private readonly _config: ProgressHttpConfig = {
     id: 'root',
-    silentApis: []
+    silentApis: [],
+    matcher: undefined
   };
 
   constructor(protected ngProgress: NgProgress, @Optional() @Inject(NG_PROGRESS_HTTP_CONFIG) config?: NgProgressHttpConfig) {
-    this._config = config ? {...this._config, ...config} : this._config;
+    this._config = config ? { ...this._config, ...config } : this._config;
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
     // Ignore by request headers
     if (req.headers.has('ignoreProgressBar')) {
-      return next.handle(req.clone({headers: req.headers.delete('ignoreProgressBar')}));
+      return next.handle(req.clone({ headers: req.headers.delete('ignoreProgressBar') }));
     }
 
     // Ignore silent api requests
@@ -53,8 +54,25 @@ export class NgProgressInterceptor implements HttpInterceptor {
    * @param req request
    */
   private checkUrl(req: HttpRequest<any>): boolean {
-    const url = req.url.toLowerCase();
-    const found = this._config.silentApis.find((u) => url.startsWith(u));
-    return !!found;
+    const url: string = req.url.toLowerCase();
+
+    if (this._config.matcher && this._config.silentApis?.length) {
+      return checkForMatcher(url, this._config.matcher) && checkForSilentApis(url, this._config.silentApis);
+    }
+    if (this._config.silentApis?.length) {
+      return checkForSilentApis(url, this._config.silentApis);
+    }
+    if (this._config.matcher) {
+      return checkForMatcher(url, this._config.matcher);
+    }
+    return false;
   }
+}
+
+function checkForSilentApis(url: string, silentApis: string[]): boolean {
+  return !!silentApis.find((u: string) => url.includes(u.toLowerCase()));
+}
+
+function checkForMatcher(url: string, matcher: string): boolean {
+  return !!url.match(matcher);
 }

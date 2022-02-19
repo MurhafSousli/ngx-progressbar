@@ -118,10 +118,10 @@ export class NgProgressComponent implements OnInit, OnChanges, OnDestroy {
     );
 
     // Subscribes to started and completed events on demand
-    if (this.started.observers.length) {
+    if (this.started.observed) {
       this._started = this.progressRef.started.subscribe(() => this.started.emit());
     }
-    if (this.completed.observers.length) {
+    if (this.completed.observed) {
       this._completed = this.progressRef.completed.subscribe(() => this.completed.emit());
     }
   }

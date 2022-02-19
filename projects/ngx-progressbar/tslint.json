@@ -13,6 +13,7 @@
       "lib",
       "kebab-case"
     ],
-    "variable-name": false
+    "variable-name": false,
+    "no-inferrable-types": false
   }
 }
