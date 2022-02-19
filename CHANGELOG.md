@@ -17,7 +17,7 @@
 
 - `silentApis` checks the url using `url.includes()`
 
-When `silentApis` is used with `matcher` regex, it will check if the URL matches both cases.
+When `silentApis` is used along with `matcher` regex, it will check if the URL matches both cases, learn more at [wiki page](https://github.com/MurhafSousli/ngx-progressbar/wiki/HttpClient-requests).
 
 
 ## 7.0.0

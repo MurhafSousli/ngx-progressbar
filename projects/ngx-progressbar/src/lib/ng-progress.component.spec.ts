@@ -1,5 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { of } from 'rxjs';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NgProgress, NgProgressComponent, NgProgressModule } from 'ngx-progressbar';
 
 describe('NgProgress Component', () => {
