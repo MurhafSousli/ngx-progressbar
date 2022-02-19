@@ -13,7 +13,7 @@ export class NgProgressInterceptor implements HttpInterceptor {
   private readonly _config: ProgressHttpConfig = {
     id: 'root',
     silentApis: [],
-    matcher: null
+    matcher: undefined
   };
 
   constructor(protected ngProgress: NgProgress, @Optional() @Inject(NG_PROGRESS_HTTP_CONFIG) config?: NgProgressHttpConfig) {
@@ -54,13 +54,25 @@ export class NgProgressInterceptor implements HttpInterceptor {
    * @param req request
    */
   private checkUrl(req: HttpRequest<any>): boolean {
-    const url = req.url.toLowerCase();
-    const found = this._config.silentApis.find((u) => url.startsWith(u.toLowerCase()));
+    const url: string = req.url.toLowerCase();
 
-    if (this._config.matcher) {
-      return Boolean(url.match(this._config.matcher));
+    if (this._config.matcher && this._config.silentApis?.length) {
+      return checkForMatcher(url, this._config.matcher) && checkForSilentApis(url, this._config.silentApis);
     }
-
-    return !!found;
+    if (this._config.silentApis?.length) {
+      return checkForSilentApis(url, this._config.silentApis);
+    }
+    if (this._config.matcher) {
+      return checkForMatcher(url, this._config.matcher);
+    }
+    return false;
   }
+}
+
+function checkForSilentApis(url: string, silentApis: string[]): boolean {
+  return !!silentApis.find((u: string) => url.includes(u.toLowerCase()));
+}
+
+function checkForMatcher(url: string, matcher: string): boolean {
+  return !!url.match(matcher);
 }
