@@ -2,7 +2,7 @@
 
 ## 9.0.0
 
-- Update to Angular 14 in []().
+- Update to Angular 14 in [d7e70a9](https://github.com/MurhafSousli/ngx-progressbar/pull/341/commits/d7e70a9965e94d47e133b0ab5490142bb80df943).
 
 ## 8.0.0
 
