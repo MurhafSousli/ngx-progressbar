@@ -1,5 +1,9 @@
 # Changelog
 
+## 9.0.0
+
+- Update to Angular 14 in []().
+
 ## 8.0.0
 
 - feat: Add matcher feature to http module, closes [#254](https://github.com/MurhafSousli/ngx-progressbar/issues/254) in [a6ab70b](https://github.com/MurhafSousli/ngx-progressbar/pull/331/commits/a6ab70b3c2c9f15c2c0e71c45a88e9745f61202c) and [ce3c0d6](https://github.com/MurhafSousli/ngx-progressbar/pull/331/commits/ce3c0d6b86632c873689330cddea6a977aecf07a).
