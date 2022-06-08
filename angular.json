@@ -143,6 +143,5 @@
         }
       }
     }
-  },
-  "defaultProject": "ngx-progressbar-demo"
+  }
 }
