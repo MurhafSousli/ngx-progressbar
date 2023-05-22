@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
-import { NgProgress, NgProgressRef } from 'ngx-progressbar';
-// import { NgProgress, NgProgressRef } from '../../../../../ngx-progressbar/src/public-api';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { NgProgress, NgProgressRef } from 'ngx-progressbar';
 
 @Component({
   selector: 'app-custom',
@@ -9,16 +8,10 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
   styleUrls: ['./custom.component.scss'],
   animations: [
     trigger('fadeInOut', [
-      state('in', style({opacity: 0})),
-      transition(':leave', [
-        style({opacity: 1}),
-        animate(300,
-          style({opacity: 0}))
-      ]),
-      transition(':enter', [
-        style({opacity: 0}),
-        animate(5,
-          style({opacity: 1}))
+      state('false', style({ opacity: 0, visibility: 'hidden' })),
+      transition('true => false', [
+        style({ opacity: 1, visibility: 'visible' }),
+        animate(280, style({ opacity: 0 }))
       ])
     ])
   ],

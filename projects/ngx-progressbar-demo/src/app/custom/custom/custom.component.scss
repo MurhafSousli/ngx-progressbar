@@ -10,7 +10,7 @@ mat-progress-spinner {
 }
 
 .bar-placeholder {
-  height: 5px;
+  height: 4px;
   background-color: #d1c4e9;
 }
 
@@ -36,6 +36,6 @@ button {
   right: 0;
   top: 0;
   bottom: 0;
-  z-index: 2;
+  z-index: 0;
 }
 
