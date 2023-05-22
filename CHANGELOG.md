@@ -1,5 +1,10 @@
 # Changelog
 
+## 11.0.0
+
+- Update to Angular 16 in [5f05486](https://github.com/MurhafSousli/ngx-progressbar/pull/357/commits/5f054867396415c5490592bf6a3d13d68d1aa62e).
+- Refactor(core): Update progressbar styles directly to avoid triggering change detection frequently in [42f4bf5](https://github.com/MurhafSousli/ngx-progressbar/pull/357/commits/42f4bf529b13c45ef8f2a413179b090b451828c5).
+
 ## 10.0.0
 
 - Update to Angular 15 in [a4f365a](https://github.com/MurhafSousli/ngx-progressbar/pull/356/commits/a4f365ad139a817b38d533b391b3bec7f671c1d0).
