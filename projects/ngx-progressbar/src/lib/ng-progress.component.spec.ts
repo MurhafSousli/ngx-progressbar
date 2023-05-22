@@ -46,6 +46,6 @@ describe('NgProgress Component', () => {
     setTimeout(() => {
       expect(component.isStarted).toBeTrue();
       done();
-    });
+    }, 50);
   });
 });
