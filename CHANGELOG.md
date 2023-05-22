@@ -1,5 +1,9 @@
 # Changelog
 
+## 10.0.0
+
+- Update to Angular 15 in [a4f365a](https://github.com/MurhafSousli/ngx-progressbar/pull/356/commits/a4f365ad139a817b38d533b391b3bec7f671c1d0).
+
 ## 9.0.0
 
 - Update to Angular 14 in [d7e70a9](https://github.com/MurhafSousli/ngx-progressbar/pull/341/commits/d7e70a9965e94d47e133b0ab5490142bb80df943).
