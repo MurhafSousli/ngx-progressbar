@@ -46,14 +46,14 @@ export class NgProgress {
   ref(id = 'root', config?: NgProgressConfig): NgProgressRef {
     if (this._instances.has(id)) {
       // Get ProgressRef instance
-      const progressRef = this._instances.get(id) as NgProgressRef;
+      const progressRef: NgProgressRef = this._instances.get(id)!;
       if (config) {
         progressRef.setConfig({ ...this.config, ...config });
       }
       return progressRef as NgProgressRef;
     } else {
       // Create new ProgressRef instance
-      const progressRef = new NgProgressRef({ ...this.config, ...config }, this.deleteInstance(id));
+      const progressRef: NgProgressRef = new NgProgressRef({ ...this.config, ...config }, this.deleteInstance(id));
       return this._instances.set(id, progressRef).get(id) as NgProgressRef;
     }
   }
