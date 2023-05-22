@@ -1,7 +1,7 @@
 <mat-card>
   <ng-container *ngIf="progressRef.state | async as state">
     <div class="bar-placeholder"></div>
-    <mat-progress-bar [@fadeInOut] *ngIf="state.active" [value]="state.value"></mat-progress-bar>
+    <mat-progress-bar [@fadeInOut]="state.active" [value]="state.value"></mat-progress-bar>
 
     <div class="test-container">
       <button mat-fab (click)="toggle()">
@@ -10,7 +10,7 @@
     </div>
 
     <div class="spinner-container">
-      <mat-progress-spinner [@fadeInOut] *ngIf="state.active" [value]="state.value"></mat-progress-spinner>
+      <mat-progress-spinner [@fadeInOut]="state.active" [value]="state.value"></mat-progress-spinner>
     </div>
   </ng-container>
 </mat-card>

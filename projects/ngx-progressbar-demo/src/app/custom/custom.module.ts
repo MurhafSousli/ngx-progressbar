@@ -7,14 +7,13 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatButtonModule } from '@angular/material/button';
 import { NgProgressModule } from 'ngx-progressbar';
-// import { NgProgressModule } from '../../../../ngx-progressbar/src/public-api';
 import { CustomComponent } from './custom/custom.component';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule.forChild([
-      {path: '', component: CustomComponent}
+      { path: '', component: CustomComponent }
     ]),
     MatProgressBarModule,
     MatProgressSpinnerModule,

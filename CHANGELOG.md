@@ -1,5 +1,18 @@
 # Changelog
 
+## 11.0.0
+
+- Update to Angular 16 in [5f05486](https://github.com/MurhafSousli/ngx-progressbar/pull/357/commits/5f054867396415c5490592bf6a3d13d68d1aa62e).
+- Refactor(core): Update progressbar styles directly to avoid triggering change detection frequently in [42f4bf5](https://github.com/MurhafSousli/ngx-progressbar/pull/357/commits/42f4bf529b13c45ef8f2a413179b090b451828c5).
+
+## 10.0.0
+
+- Update to Angular 15 in [a4f365a](https://github.com/MurhafSousli/ngx-progressbar/pull/356/commits/a4f365ad139a817b38d533b391b3bec7f671c1d0).
+
+## 9.0.0
+
+- Update to Angular 14 in [d7e70a9](https://github.com/MurhafSousli/ngx-progressbar/pull/341/commits/d7e70a9965e94d47e133b0ab5490142bb80df943).
+
 ## 8.0.0
 
 - feat: Add matcher feature to http module, closes [#254](https://github.com/MurhafSousli/ngx-progressbar/issues/254) in [a6ab70b](https://github.com/MurhafSousli/ngx-progressbar/pull/331/commits/a6ab70b3c2c9f15c2c0e71c45a88e9745f61202c) and [ce3c0d6](https://github.com/MurhafSousli/ngx-progressbar/pull/331/commits/ce3c0d6b86632c873689330cddea6a977aecf07a).
