@@ -10,6 +10,7 @@ import {
   ElementRef,
   ChangeDetectionStrategy
 } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { Subscription, tap } from 'rxjs';
 import { NgProgress } from './ng-progress.service';
 import { NgProgressRef } from './ng-progress-ref';
@@ -43,7 +44,9 @@ import { ProgressState } from './ng-progress.interface';
     </div>
   `,
   styleUrls: ['./ng-progress.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [CommonModule]
 })
 
 export class NgProgressComponent implements OnInit, OnChanges, OnDestroy {
