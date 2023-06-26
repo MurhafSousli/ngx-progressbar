@@ -2,8 +2,8 @@
 
 ## 11.1.0
 
-- feat: Migrate to Angular standalone components.
-- refactor: Update rxjs imports.
+- feat: Migrate to Angular standalone components in [1a6f780](https://github.com/MurhafSousli/ngx-progressbar/pull/360/commits/1a6f780c2796b5762c47bd25f38079f613783dfe).
+- refactor: Update rxjs imports in [6f426b1](https://github.com/MurhafSousli/ngx-progressbar/pull/360/commits/6f426b165187a5791da13f823903eff9fa91f409).
 
 ## 11.0.0
 
