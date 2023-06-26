@@ -1,5 +1,10 @@
 # Changelog
 
+## 11.1.0
+
+- feat: Migrate to Angular standalone components.
+- refactor: Update rxjs imports.
+
 ## 11.0.0
 
 - Update to Angular 16 in [5f05486](https://github.com/MurhafSousli/ngx-progressbar/pull/357/commits/5f054867396415c5490592bf6a3d13d68d1aa62e).
