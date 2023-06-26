@@ -1,7 +1,6 @@
 import { Injectable, Optional, Inject } from '@angular/core';
 import { HttpInterceptor, HttpEvent, HttpHandler, HttpRequest } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { finalize } from 'rxjs/operators';
+import { Observable, finalize } from 'rxjs';
 import { NgProgress, NgProgressRef } from 'ngx-progressbar';
 import { NgProgressHttpConfig, ProgressHttpConfig, NG_PROGRESS_HTTP_CONFIG } from './ng-progress-http.interface';
 

@@ -3,10 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 
 const appRoutes: Routes = [
   {
-    path: '', loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
+    path: '',
+    loadComponent: () => import('./home/home.component').then(m => m.HomeComponent)
   },
   {
-    path: 'custom', loadChildren: () => import('./custom/custom.module').then(m => m.CustomModule)
+    path: 'custom',
+    loadComponent: () => import('./custom/custom.component').then(m => m.CustomComponent)
   }
 ];
 

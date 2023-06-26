@@ -1,15 +1,18 @@
-import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
-import { NgProgressConfig } from 'ngx-progressbar';
-// import { NgProgressConfig } from '../../../../../ngx-progressbar/src/public-api';
+import { Component, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
+import { NgProgressConfig, NgProgressModule } from 'ngx-progressbar';
 import { Subject } from 'rxjs';
+import { LabComponent } from './lab/lab.component';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [CommonModule, NgProgressModule, LabComponent]
 })
 export class HomeComponent {
 
