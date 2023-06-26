@@ -10,8 +10,7 @@ import {
   ElementRef,
   ChangeDetectionStrategy
 } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { Subscription, tap } from 'rxjs';
 import { NgProgress } from './ng-progress.service';
 import { NgProgressRef } from './ng-progress-ref';
 import { ProgressState } from './ng-progress.interface';
