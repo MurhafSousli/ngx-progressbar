@@ -1,7 +1,6 @@
 import { Injectable, Optional, Inject, Type } from '@angular/core';
 import { Router, NavigationStart, NavigationEnd, NavigationCancel, NavigationError, RouterEvent, Event } from '@angular/router';
-import { of } from 'rxjs';
-import { tap, delay, switchMap, filter } from 'rxjs/operators';
+import { of, tap, delay, switchMap, filter } from 'rxjs';
 import { NgProgress, NgProgressRef } from 'ngx-progressbar';
 import { NgProgressRouterConfig, ProgressRouterConfig, NG_PROGRESS_ROUTER_CONFIG } from './ng-progress-router.interface';
 

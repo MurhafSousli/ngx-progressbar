@@ -11,14 +11,18 @@ const CUSTOM_PROGRESS_DELAY: number = 200;
 
 @Component({
   selector: 'page-1',
-  template: ''
+  template: '',
+  standalone: true,
+  imports: [NgProgressModule]
 })
 export class Page1 {
 }
 
 @Component({
   selector: 'page-2',
-  template: ''
+  template: '',
+  standalone: true,
+  imports: [NgProgressModule]
 })
 export class Page2 {
 }
@@ -38,9 +42,9 @@ describe(`NgProgressRouter`, () => {
         RouterTestingModule.withRoutes([
           { path: '', component: Page1 },
           { path: 'page2', component: Page2 }
-        ])
-      ],
-      declarations: [Page1, Page2]
+        ]),
+        Page1, Page2
+      ]
     }).compileComponents();
 
     ngProgress = TestBed.inject(NgProgress);
