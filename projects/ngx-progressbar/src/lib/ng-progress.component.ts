@@ -1,20 +1,19 @@
 import {
+  ChangeDetectionStrategy,
   Component,
-  Input,
-  Output,
-  ViewChild,
+  ElementRef,
   EventEmitter,
+  Input,
   OnChanges,
   OnDestroy,
   OnInit,
-  ElementRef,
-  ChangeDetectionStrategy
+  Output,
+  ViewChild
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { Subscription, tap } from 'rxjs';
-import { NgProgress } from './ng-progress.service';
 import { NgProgressRef } from './ng-progress-ref';
 import { ProgressState } from './ng-progress.interface';
+import { NgProgress } from './ng-progress.service';
 
 @Component({
   selector: 'ng-progress',
@@ -33,20 +32,23 @@ import { ProgressState } from './ng-progress.interface';
         <div #progressbar
              class="ng-bar"
              [style.backgroundColor]="color">
-          <div *ngIf="meteor" class="ng-meteor" [style.boxShadow]="'0 0 10px ' + color + ', 0 0 5px ' + color"></div>
+             @if(meteor) {
+               <div class="ng-meteor" [style.boxShadow]="'0 0 10px ' + color + ', 0 0 5px ' + color"></div>
+             }
         </div>
       </div>
-      <div *ngIf="spinner" class="ng-spinner">
-        <div class="ng-spinner-icon"
-             [style.borderTopColor]="color"
-             [style.borderLeftColor]="color"></div>
-      </div>
+      @if(spinner) {
+        <div class="ng-spinner">
+          <div class="ng-spinner-icon"
+          [style.borderTopColor]="color"
+          [style.borderLeftColor]="color"></div>
+        </div>
+      }
     </div>
   `,
   styleUrls: ['./ng-progress.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [CommonModule]
 })
 
 export class NgProgressComponent implements OnInit, OnChanges, OnDestroy {

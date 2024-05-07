@@ -1,6 +1,6 @@
-import { ModuleWithProviders, NgModule } from '@angular/core';
+import { ModuleWithProviders, NgModule, Provider } from '@angular/core';
 import { NgProgressComponent } from './ng-progress.component';
-import { NgProgressConfig, NG_PROGRESS_CONFIG } from './ng-progress.interface';
+import { NG_PROGRESS_CONFIG, NgProgressConfig } from './ng-progress.interface';
 
 @NgModule({
   exports: [NgProgressComponent],
@@ -11,8 +11,12 @@ export class NgProgressModule {
     return {
       ngModule: NgProgressModule,
       providers: [
-        { provide: NG_PROGRESS_CONFIG, useValue: config }
+        provideNgProgress(config)
       ]
     };
   }
+}
+
+export function provideNgProgress(config: NgProgressConfig): Provider {
+  return { provide: NG_PROGRESS_CONFIG, useValue: config };
 }
