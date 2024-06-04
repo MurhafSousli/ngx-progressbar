@@ -1,6 +1,6 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { NgProgressComponent } from './ng-progress.component';
-import { NgProgressConfig, NG_PROGRESS_CONFIG } from './ng-progress.interface';
+import { NG_PROGRESS_CONFIG, NgProgressConfig } from './ng-progress.interface';
 
 @NgModule({
   exports: [NgProgressComponent],
