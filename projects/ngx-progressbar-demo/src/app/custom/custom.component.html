@@ -1,16 +1,14 @@
-<mat-card>
-  <ng-container *ngIf="progressRef.state | async as state">
-    <div class="bar-placeholder"></div>
-    <mat-progress-bar [@fadeInOut]="state.active" [value]="state.value"></mat-progress-bar>
+<mat-card ngProgressRef #progressRef="ngProgressRef">
+  <div class="bar-placeholder"></div>
+  <mat-progress-bar [@fadeInOut]="progressRef.active()" [value]="progressRef.progress()"/>
 
-    <div class="test-container">
-      <button mat-fab (click)="toggle()">
-        <mat-icon>{{ state.active ? 'stop' : 'play_arrow' }}</mat-icon>
-      </button>
-    </div>
+  <div class="test-container">
+    <button mat-fab (click)="!progressRef.active() ? progressRef.start() : progressRef.complete()">
+      <mat-icon>{{ progressRef.active() ? 'stop' : 'play_arrow' }}</mat-icon>
+    </button>
+  </div>
 
-    <div class="spinner-container">
-      <mat-progress-spinner [@fadeInOut]="state.active" [value]="state.value"></mat-progress-spinner>
-    </div>
-  </ng-container>
+  <div class="spinner-container">
+    <mat-progress-spinner [@fadeInOut]="progressRef.active()" [value]="progressRef.progress()"/>
+  </div>
 </mat-card>

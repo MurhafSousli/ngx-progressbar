@@ -1,5 +1,29 @@
 # Changelog
 
+## 12.0.0-beta.0
+
+- Upgrade to Angular 18 (still compatible v17.3.0 and above).
+- feat: Introduce CSS variables for more flexible customization.
+- feat: Provide `provideNgProgressOptions()` to override global options.
+- feat: Provide `provideNgProgressHttp()` to override http related options.
+- feat: Provide `provideNgProgressRouter()` to override router related options.
+- feat: Ability to use boolean inputs as attributes.
+- refactor: Utilize signals approach.
+
+### Breaking changes
+
+- The `fixed` option has been removed in favor of `relative` option which does the opposite.
+- The `meteor` option has been removed in favor of `flat` option which does the opposite.
+- The `spinner` default option has been changed to `false`.
+- The service `NgProgress` has been removed.
+- The component `NgProgressComponent` has been renamed to `NgProgress`.
+- The options interface `NgProgressConfig` has been renamed to `NgProgressOptions`.
+- Remove `thick` option, use `--ng-progress-thickness` and `--ng-progress-spinner-thickness` CSS variables instead.
+- Remove `color` option, use `--ng-progress-color` CSS variable instead.
+- Remove `ease` option, use `--ng-progress-ease` CSS variable instead.
+- The option `delay` has been renamed to `minDuration` in progressbar router options.
+
+
 ## 11.1.0
 
 - feat: Migrate to Angular standalone components in [1a6f780](https://github.com/MurhafSousli/ngx-progressbar/pull/360/commits/1a6f780c2796b5762c47bd25f38079f613783dfe).
@@ -330,7 +354,7 @@ For example:
 
 ## 2.0.4
 
-- feat(NgProgressInterceptor): Adds automagic feature to `HttpClient` (Angular >= 4.3)
+- feat(NgProgressHttpInterceptor): Adds automagic feature to `HttpClient` (Angular >= 4.3)
 
 ## 2.0.3
 

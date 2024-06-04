@@ -1,2 +1,2 @@
-export * from './ng-progress-router.module';
-export * from './ng-progress-router.interface';
+export * from './ng-progress-router.directive';
+export * from './ng-progress-router.model';

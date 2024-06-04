@@ -1,5 +1,3 @@
-@import '../../assets/variables';
-
 .progressbar-container {
   position: relative;
   margin: auto;
@@ -19,13 +17,13 @@ table {
   td {
     color: gray;
     i {
-      color: $fontColor;
+      color: var(--font-color);
     }
   }
 }
 
 strong {
-  color: $strongColor;
+  color: var(--strong-color);
 }
 
 .events {
@@ -54,4 +52,9 @@ strong {
 .changed {
   background-color: rgb(151, 255, 218) !important;
   transition: unset !important;
+}
+
+:host {
+  //--ng-progress-thickness: 5;
+  --ng-progress-color: red;
 }
