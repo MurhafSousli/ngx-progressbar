@@ -28,20 +28,20 @@ export class NgProgressRef {
   config: Observable<ProgressConfig>;
 
   // Progress start source event (used to cancel finalizing delays)
-  private readonly _started = new Subject<void>();
+  private readonly _started: Subject<void> = new Subject<void>();
   // Progress start event: stream that emits only when it hasn't already started
-  readonly started = this._started.pipe(filter(() => !this.isStarted));
+  readonly started: Observable<void> = this._started.pipe(filter(() => !this.isStarted));
 
   // Progress ended source event
-  private readonly _completed = new Subject<void>();
+  private readonly _completed: Subject<void> = new Subject<void>();
   // Progress start event: stream that emits only when it has already started
-  readonly completed = this._completed.pipe(filter(() => this.isStarted));
+  readonly completed: Observable<void> = this._completed.pipe(filter(() => this.isStarted));
 
   // Stream that increments and updates the progress state
-  private readonly _trickling = new Subject<boolean>();
+  private readonly _trickling: Subject<boolean> = new Subject<boolean>();
 
   // Stream that combines "_trickling" and "config" streams
-  private readonly _worker = Subscription.EMPTY;
+  private readonly _worker: Subscription;
 
   // Get current progress state
   private get snapshot(): ProgressState {
@@ -68,7 +68,7 @@ export class NgProgressRef {
   /**
    * Start the progress
    */
-  start() {
+  start(): void {
     this._started.next();
     this._trickling.next(true);
   }
@@ -76,14 +76,14 @@ export class NgProgressRef {
   /**
    * Complete the progress
    */
-  complete() {
+  complete(): void {
     this._trickling.next(false);
   }
 
   /**
    * Increment the progress
    */
-  inc(amount?: number) {
+  inc(amount?: number): void {
     const n = this.snapshot.value;
     if (!this.isStarted) {
       this.start();
@@ -98,22 +98,22 @@ export class NgProgressRef {
   /**
    * Set the progress
    */
-  set(n: number) {
+  set(n: number): void {
     this.setState({ value: this.clamp(n), active: true });
   }
 
   /**
    * Set config
    */
-  setConfig(config: NgProgressConfig) {
+  setConfig(config: NgProgressConfig): void {
     this._config.next({ ...this._config.value, ...config });
   }
 
   /**
    * Destroy progress reference
    */
-  destroy() {
-    this._worker.unsubscribe();
+  destroy(): void {
+    this._worker?.unsubscribe();
     this._trickling.complete();
     this._state.complete();
     this._config.complete();
@@ -125,7 +125,7 @@ export class NgProgressRef {
   /**
    * Set progress state
    */
-  private setState(state: NgProgressState) {
+  private setState(state: NgProgressState): void {
     this._state.next({ ...this.snapshot, ...state });
   }
 

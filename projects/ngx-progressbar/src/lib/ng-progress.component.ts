@@ -1,14 +1,14 @@
 import {
-  ChangeDetectionStrategy,
   Component,
-  ElementRef,
-  EventEmitter,
   Input,
+  Output,
+  ViewChild,
+  EventEmitter,
+  OnInit,
   OnChanges,
   OnDestroy,
-  OnInit,
-  Output,
-  ViewChild
+  ElementRef,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { Subscription, tap } from 'rxjs';
 import { NgProgressRef } from './ng-progress-ref';
@@ -16,6 +16,7 @@ import { ProgressState } from './ng-progress.interface';
 import { NgProgress } from './ng-progress.service';
 
 @Component({
+  standalone: true,
   selector: 'ng-progress',
   host: {
     'role': 'progressbar',
@@ -31,24 +32,23 @@ import { NgProgress } from './ng-progress.service';
       <div class="ng-bar-placeholder">
         <div #progressbar
              class="ng-bar"
-             [style.backgroundColor]="color">
-             @if(meteor) {
-               <div class="ng-meteor" [style.boxShadow]="'0 0 10px ' + color + ', 0 0 5px ' + color"></div>
-             }
+             [style.background-color]="color">
+          @if (meteor) {
+            <div class="ng-meteor" [style.box-shadow]="'0 0 10px ' + color + ', 0 0 5px ' + color"></div>
+          }
         </div>
       </div>
-      @if(spinner) {
+      @if (spinner) {
         <div class="ng-spinner">
           <div class="ng-spinner-icon"
-          [style.borderTopColor]="color"
-          [style.borderLeftColor]="color"></div>
+               [style.border-top-color]="color"
+               [style.border-left-color]="color"></div>
         </div>
       }
     </div>
   `,
-  styleUrls: ['./ng-progress.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
+  styleUrl: './ng-progress.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class NgProgressComponent implements OnInit, OnChanges, OnDestroy {
@@ -78,8 +78,8 @@ export class NgProgressComponent implements OnInit, OnChanges, OnDestroy {
   @Input() trickleFunc: (n: number) => number = this._ngProgress.config.trickleFunc;
   @Input() spinnerPosition: 'left' | 'right' = this._ngProgress.config.spinnerPosition;
   @Input() direction: 'ltr+' | 'ltr-' | 'rtl+' | 'rtl-' = this._ngProgress.config.direction;
-  @Output() started = new EventEmitter();
-  @Output() completed = new EventEmitter();
+  @Output() started: EventEmitter<void> = new EventEmitter<void>();
+  @Output() completed: EventEmitter<void> = new EventEmitter<void>();
 
   @ViewChild('progressbar', { static: true }) progressElement!: ElementRef<HTMLElement>;
   @ViewChild('progressbarWrapper', { static: true }) progressWrapperElement!: ElementRef<HTMLElement>;
@@ -91,7 +91,7 @@ export class NgProgressComponent implements OnInit, OnChanges, OnDestroy {
   constructor(private _ngProgress: NgProgress) {
   }
 
-  ngOnChanges() {
+  ngOnChanges(): void {
     // Update progress bar config when inputs change
     this.progressRef?.setConfig({
       max: (this.max > 0 && this.max <= 100) ? this.max : 100,
@@ -103,7 +103,7 @@ export class NgProgressComponent implements OnInit, OnChanges, OnDestroy {
     });
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     // Get progress bar service instance
     this.progressRef = this._ngProgress.ref(this.id, {
       max: this.max,
@@ -138,26 +138,26 @@ export class NgProgressComponent implements OnInit, OnChanges, OnDestroy {
     }
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this._state?.unsubscribe();
     this._started?.unsubscribe();
     this._completed?.unsubscribe();
     this.progressRef?.destroy();
   }
 
-  start() {
+  start(): void {
     this.progressRef.start();
   }
 
-  complete() {
+  complete(): void {
     this.progressRef.complete();
   }
 
-  inc(n?: number) {
+  inc(n?: number): void {
     this.progressRef.inc(n);
   }
 
-  set(n: number) {
+  set(n: number): void {
     this.progressRef.set(n);
   }
 }

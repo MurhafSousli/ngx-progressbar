@@ -31,7 +31,7 @@ const defaultConfig: ProgressConfig = {
 export class NgProgress {
 
   // Store progress bar instances
-  private readonly _instances = new Map<string, NgProgressRef>();
+  private readonly _instances: Map<string, NgProgressRef> = new Map<string, NgProgressRef>();
 
   // Global config
   config: ProgressConfig;
@@ -43,7 +43,7 @@ export class NgProgress {
   /**
    * Get or Create progress bar by ID
    */
-  ref(id = 'root', config?: NgProgressConfig): NgProgressRef {
+  ref(id: string = 'root', config?: NgProgressConfig): NgProgressRef {
     if (this._instances.has(id)) {
       // Get ProgressRef instance
       const progressRef: NgProgressRef = this._instances.get(id)!;
@@ -61,7 +61,7 @@ export class NgProgress {
   /**
    * Destroy all progress bar instances
    */
-  destroyAll() {
+  destroyAll(): void {
     this._instances.forEach((ref: NgProgressRef) => ref.destroy());
   }
 
