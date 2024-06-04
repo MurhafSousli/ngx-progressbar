@@ -1,8 +1,9 @@
 import { Component, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { NgProgressConfig, NgProgressModule } from 'ngx-progressbar';
 import { Subject } from 'rxjs';
+import { NgProgressbar, NgProgressConfig } from 'ngx-progressbar';
+import { NgProgressHttp, provideNgProgressHttp } from 'ngx-progressbar/http';
 import { LabComponent } from './lab/lab.component';
 
 @Component({
@@ -12,7 +13,10 @@ import { LabComponent } from './lab/lab.component';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [CommonModule, NgProgressModule, LabComponent]
+  providers: [
+    // provideNgProgressHttp(),
+  ],
+  imports: [CommonModule, NgProgressbar, LabComponent, NgProgressHttp]
 })
 export class HomeComponent {
 

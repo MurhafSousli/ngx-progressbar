@@ -1,148 +1,127 @@
 import {
   Component,
-  Input,
-  Output,
-  ViewChild,
-  EventEmitter,
-  OnInit,
-  OnChanges,
-  OnDestroy,
-  ElementRef,
-  ChangeDetectionStrategy
+  inject,
+  effect,
+  computed,
+  numberAttribute,
+  booleanAttribute,
+  input,
+  Signal,
+  InputSignal,
+  OutputRef,
+  ChangeDetectionStrategy,
+  InputSignalWithTransform
 } from '@angular/core';
-import { Subscription, tap } from 'rxjs';
 import { NgProgressRef } from './ng-progress-ref';
-import { ProgressState } from './ng-progress.interface';
-import { NgProgress } from './ng-progress.service';
+import { NG_PROGRESS_CONFIG, NgProgressConfig } from './ng-progress.model';
+import { defaultConfig } from './ng-progress-default';
+import { outputFromObservable } from '@angular/core/rxjs-interop';
 
 @Component({
   standalone: true,
   selector: 'ng-progress',
   host: {
     'role': 'progressbar',
-    '[attr.spinnerPosition]': 'spinnerPosition',
-    '[attr.direction]': 'direction',
-    '[attr.thick]': 'thick',
-    '[attr.fixed]': 'fixed'
+    '[attr.spinnerPosition]': 'spinnerPosition()',
+    '[attr.direction]': 'direction()',
+    '[attr.thick]': 'thick()',
+    '[attr.fixed]': 'fixed()'
   },
   template: `
     <div #progressbarWrapper
          class="ng-progress-bar"
-         [style.transition]="'opacity ' + speed + 'ms ' + ease">
+         [attr.active]="progressRef.active()"
+         [style.transition]="wrapperTransition()">
       <div class="ng-bar-placeholder">
         <div #progressbar
              class="ng-bar"
-             [style.background-color]="color">
-          @if (meteor) {
-            <div class="ng-meteor" [style.box-shadow]="'0 0 10px ' + color + ', 0 0 5px ' + color"></div>
+             [style.transform]="progressTransform()"
+             [style.transition]="progressTransition()"
+             [style.background-color]="color()">
+          @if (meteor()) {
+            <div class="ng-meteor" [style.box-shadow]="meteorBoxShadow()"></div>
           }
         </div>
       </div>
-      @if (spinner) {
+      @if (spinner()) {
         <div class="ng-spinner">
           <div class="ng-spinner-icon"
-               [style.border-top-color]="color"
-               [style.border-left-color]="color"></div>
+               [style.border-top-color]="color()"
+               [style.border-left-color]="color()"></div>
         </div>
       }
     </div>
   `,
+  providers: [NgProgressRef],
   styleUrl: './ng-progress.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
+export class NgProgressbar {
 
-export class NgProgressComponent implements OnInit, OnChanges, OnDestroy {
-
-  private _state!: Subscription;
-  private _started!: Subscription;
-  private _completed!: Subscription;
+  private readonly config: NgProgressConfig = { ...defaultConfig, ...inject(NG_PROGRESS_CONFIG, { optional: true }) };
 
   /** Progress bar worker */
-  progressRef!: NgProgressRef;
+  progressRef: NgProgressRef = inject(NgProgressRef, { host: true });
 
   /** Creates a new instance if id is not already exists */
-  @Input() id: string = 'root';
+  id: InputSignal<string> = input('root');
 
   /** Initializes inputs from the global config */
-  @Input() min: number = this._ngProgress.config.min;
-  @Input() max: number = this._ngProgress.config.max;
-  @Input() ease: string = this._ngProgress.config.ease;
-  @Input() color: string = this._ngProgress.config.color;
-  @Input() speed: number = this._ngProgress.config.speed;
-  @Input() thick: boolean = this._ngProgress.config.thick;
-  @Input() fixed: boolean = this._ngProgress.config.fixed;
-  @Input() meteor: boolean = this._ngProgress.config.meteor;
-  @Input() spinner: boolean = this._ngProgress.config.spinner;
-  @Input() trickleSpeed: number = this._ngProgress.config.trickleSpeed;
-  @Input() debounceTime: number = this._ngProgress.config.debounceTime;
-  @Input() trickleFunc: (n: number) => number = this._ngProgress.config.trickleFunc;
-  @Input() spinnerPosition: 'left' | 'right' = this._ngProgress.config.spinnerPosition;
-  @Input() direction: 'ltr+' | 'ltr-' | 'rtl+' | 'rtl-' = this._ngProgress.config.direction;
-  @Output() started: EventEmitter<void> = new EventEmitter<void>();
-  @Output() completed: EventEmitter<void> = new EventEmitter<void>();
+  min: InputSignalWithTransform<number, number | string> = input<number, number | string>(this.config.min, { transform: numberAttribute });
+  max: InputSignalWithTransform<number, number | string> = input<number, number | string>(this.config.max, { transform: numberAttribute });
+  speed: InputSignalWithTransform<number, number | string> = input<number, number | string>(this.config.speed, { transform: numberAttribute });
+  trickleSpeed: InputSignalWithTransform<number, number | string> = input<number, number | string>(this.config.trickleSpeed, { transform: numberAttribute });
+  debounceTime: InputSignalWithTransform<number, number | string> = input<number, number | string>(this.config.debounceTime, { transform: numberAttribute });
 
-  @ViewChild('progressbar', { static: true }) progressElement!: ElementRef<HTMLElement>;
-  @ViewChild('progressbarWrapper', { static: true }) progressWrapperElement!: ElementRef<HTMLElement>;
+  thick: InputSignalWithTransform<boolean, boolean | string> = input<boolean, boolean | string>(this.config.thick, { transform: booleanAttribute });
+  fixed: InputSignalWithTransform<boolean, boolean | string> = input<boolean, boolean | string>(this.config.fixed, { transform: booleanAttribute });
+  meteor: InputSignalWithTransform<boolean, boolean | string> = input<boolean, boolean | string>(this.config.meteor, { transform: booleanAttribute });
+  spinner: InputSignalWithTransform<boolean, boolean | string> = input<boolean, boolean | string>(this.config.spinner, { transform: booleanAttribute });
 
-  get isStarted() {
-    return this.progressRef?.isStarted;
+  ease: InputSignal<string> = input(this.config.ease);
+  color: InputSignal<string> = input(this.config.color);
+  trickleFunc: InputSignal<(n: number) => number> = input(this.config.trickleFunc);
+  spinnerPosition: InputSignal<'left' | 'right'> = input(this.config.spinnerPosition);
+  direction: InputSignal<'ltr+' | 'ltr-' | 'rtl+' | 'rtl-'> = input(this.config.direction);
+
+  wrapperTransition: Signal<string> = computed(() => {
+    return `opacity ${ this.speed() } ms ${ this.ease() }`;
+  });
+
+  meteorBoxShadow: Signal<string> = computed(() => {
+    return `0 0 10px ${ this.color() }, 0 0 5px ${ this.color() }`;
+  });
+
+  progressTransform: Signal<string> = computed(() => {
+    return `translate3d(${ this.progressRef.progress() }%,0,0)`;
+  });
+
+  progressTransition: Signal<string> = computed(() => {
+    return this.progressRef.active() ? `all ${ this.speed() }ms ${ this.ease() }` : 'none';
+  });
+
+  started: OutputRef<void> = outputFromObservable<void>(this.progressRef.started);
+
+  completed: OutputRef<void> = outputFromObservable<void>(this.progressRef.completed);
+
+  get active(): Signal<boolean> {
+    return this.progressRef.active;
   }
 
-  constructor(private _ngProgress: NgProgress) {
-  }
-
-  ngOnChanges(): void {
-    // Update progress bar config when inputs change
-    this.progressRef?.setConfig({
-      max: (this.max > 0 && this.max <= 100) ? this.max : 100,
-      min: (this.min < 100 && this.min >= 0) ? this.min : 0,
-      speed: this.speed,
-      trickleSpeed: this.trickleSpeed,
-      trickleFunc: this.trickleFunc,
-      debounceTime: this.debounceTime
+  constructor() {
+    effect(() => {
+      setTimeout(() => {
+        // Update progress bar config when inputs change
+        this.progressRef.setConfig({
+          max: (this.max() > 0 && this.max() <= 100) ? this.max() : 100,
+          min: (this.min() < 100 && this.min() >= 0) ? this.min() : 0,
+          speed: this.speed(),
+          trickleSpeed: this.trickleSpeed(),
+          trickleFunc: this.trickleFunc(),
+          debounceTime: this.debounceTime()
+        });
+      });
     });
-  }
-
-  ngOnInit(): void {
-    // Get progress bar service instance
-    this.progressRef = this._ngProgress.ref(this.id, {
-      max: this.max,
-      min: this.min,
-      speed: this.speed,
-      trickleSpeed: this.trickleSpeed,
-      debounceTime: this.debounceTime
-    });
-
-    // Subscribe to progress state
-    const progress: HTMLElement = this.progressElement.nativeElement;
-    const progressWrapper: HTMLElement = this.progressWrapperElement.nativeElement;
-    this._state = this.progressRef.state.pipe(
-      tap((state: ProgressState) => {
-        progress.style.transform = `translate3d(${ state.value }%,0,0)`;
-        if (state.active) {
-          progress.style.transition = `all ${ this.speed }ms ${ this.ease }`;
-          progressWrapper.setAttribute('active', 'true');
-        } else {
-          progress.style.transition = 'none';
-          progressWrapper.setAttribute('active', 'false');
-        }
-      })
-    ).subscribe();
-
-    // Subscribes to started and completed events on demand
-    if (this.started.observed) {
-      this._started = this.progressRef.started.subscribe(() => this.started.emit());
-    }
-    if (this.completed.observed) {
-      this._completed = this.progressRef.completed.subscribe(() => this.completed.emit());
-    }
-  }
-
-  ngOnDestroy(): void {
-    this._state?.unsubscribe();
-    this._started?.unsubscribe();
-    this._completed?.unsubscribe();
-    this.progressRef?.destroy();
   }
 
   start(): void {

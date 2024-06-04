@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -6,7 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatCardModule } from '@angular/material/card';
-import { NgProgress, NgProgressRef } from 'ngx-progressbar';
+import { NgProgressRef } from 'ngx-progressbar';
 
 @Component({
   selector: 'app-custom',
@@ -23,29 +23,9 @@ import { NgProgress, NgProgressRef } from 'ngx-progressbar';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
+  viewProviders: [NgProgressRef],
   imports: [CommonModule, MatCardModule, MatProgressBarModule, MatButtonModule, MatIconModule, MatProgressSpinnerModule]
 })
-export class CustomComponent implements OnInit, OnDestroy {
-
-  progressRef: NgProgressRef;
-
-  constructor(public ngProgress: NgProgress) {
-  }
-
-  ngOnInit() {
-    this.progressRef = this.ngProgress.ref('material');
-  }
-
-  ngOnDestroy() {
-    this.progressRef.destroy();
-  }
-
-  toggle() {
-    if (!this.progressRef.isStarted) {
-      this.progressRef.start();
-    } else {
-      this.progressRef.complete();
-    }
-  }
-
+export class CustomComponent {
+  progressRef: NgProgressRef = inject(NgProgressRef);
 }

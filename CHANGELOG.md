@@ -330,7 +330,7 @@ For example:
 
 ## 2.0.4
 
-- feat(NgProgressInterceptor): Adds automagic feature to `HttpClient` (Angular >= 4.3)
+- feat(NgProgressHttpInterceptor): Adds automagic feature to `HttpClient` (Angular >= 4.3)
 
 ## 2.0.3
 
