@@ -33,9 +33,9 @@ describe('NgProgressRef', () => {
     expect(directive.active()).toBeTrue();
     expect(directive.progress()).toBe(0);
 
-    directive.inc();
+    await afterTimeout(350);
     fixture.detectChanges();
-    expect(directive.progress()).toBeGreaterThan(0);
+    expect(directive.progress()).toBeGreaterThan(10);
 
     directive.complete();
     fixture.detectChanges();
@@ -44,6 +44,27 @@ describe('NgProgressRef', () => {
     expect(directive.progress()).toBe(100);
     await afterTimeout(350);
     expect(directive.active()).toBeFalse();
+  });
+
+  it('should start and complete the progress', (done: DoneFn) => {
+    const setSpy: jasmine.Spy = spyOn(directive, 'set');
+    // Assume active state is off
+    directive['_active'].set(false);
+    // Mock onTrickling call
+    directive['onTrickling']({ min: 5 }).subscribe(() => {
+      expect(setSpy).toHaveBeenCalledWith(5 as any);
+      done();
+    });
+  });
+
+
+  it('should increment the progress when inc function is called', async () => {
+    directive.inc();
+
+    fixture.detectChanges();
+    await afterTimeout(20);
+    expect(directive.active()).toBeTrue();
+    expect(directive.progress()).toBeGreaterThan(0);
   });
 
   it('should emit the started and completed events', async () => {
