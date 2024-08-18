@@ -1,35 +1,35 @@
 import { Component, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { NgProgressConfig, NgProgressModule } from 'ngx-progressbar';
 import { Subject } from 'rxjs';
+import { NgProgressbar, NgProgressOptions } from 'ngx-progressbar';
+import { NgProgressHttp, provideNgProgressHttp } from 'ngx-progressbar/http';
 import { LabComponent } from './lab/lab.component';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [CommonModule, NgProgressModule, LabComponent]
+  providers: [
+    // provideNgProgressHttp(),
+  ],
+  imports: [CommonModule, NgProgressbar, LabComponent, NgProgressHttp]
 })
 export class HomeComponent {
 
-  options: NgProgressConfig = {
+  options: NgProgressOptions = {
     min: 8,
     max: 100,
     speed: 200,
     trickleSpeed: 300,
     debounceTime: 0,
-    ease: 'linear',
     spinnerPosition: 'right',
     direction: 'ltr+',
-    color: 'red',
-    fixed: true,
-    meteor: true,
-    spinner: true,
-    thick: false
+    relative: false,
+    flat: false,
+    spinner: true
   };
 
   preventAbuse = new Subject<boolean>();

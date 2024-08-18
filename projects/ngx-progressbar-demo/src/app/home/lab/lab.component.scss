@@ -1,5 +1,3 @@
-@import "../../../assets/variables";
-
 .component-outer {
   display: flex;
   justify-content: center;
@@ -11,8 +9,8 @@
   margin-bottom: 10px;
   display: flex;
   flex-wrap: wrap;
-  background-color: $cmpBg;
-  color: $inputName;
+  background-color: var(--cmp-bg);
+  color: var(--input-name-color);
   padding: 10px;
   border-radius: 4px;
   font-family: monospace;
@@ -26,20 +24,20 @@ input {
   padding: 0;
 }
 .tag-name {
-  color: $cmpColor;
+  color: var(--cmp-color);
   line-height: 30px;
   font-weight: bold;
 }
 
 .input-name {
-  color: $inputName;
+  color: var(--input-name-color);
   &:before {
     content: "[";
-    color: $inputName;
+    color: var(--input-name-color);
   }
   &:after {
     content: "]";
-    color: $inputName;
+    color: var(--input-name-color);
   }
 }
 
@@ -48,7 +46,7 @@ input {
 }
 
 .input, .output {
-  color: $inputColor;
+  color: var(--input-color);
   &:before {
     content: '"';
   }
@@ -56,20 +54,20 @@ input {
     content: '"';
   }
   span {
-    color: $inputColor;
+    color: var(--input-color);
     font-style: normal;
   }
 }
 
 .output-name {
-  color: $inputName;
+  color: var(--input-name-color);
   &:before {
     content: "(";
-    color: $inputName;
+    color: var(--input-name-color);
   }
   &:after {
     content: ")";
-    color: $inputName;
+    color: var(--input-name-color);
   }
 }
 .output-wrapper {
@@ -78,11 +76,11 @@ input {
 
 input,
 select {
-  color: $inputColor;
+  color: var(--input-color);
   border: 0;
   font-family: monospace;
   outline: 0;
-  background-color: $inputBg;
+  background-color: var(--input-bg);
   width: 60px;
 }
 

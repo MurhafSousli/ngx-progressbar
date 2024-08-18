@@ -1,3 +1,3 @@
-export * from './ng-progress-http.module';
-export * from './ng-progress-http.interface';
-export * from './ng-progress.interceptor';
+export * from './ng-progress-http.model';
+export * from './ng-progress-http.directive';
+export * from './ng-progress-http.interceptor';
