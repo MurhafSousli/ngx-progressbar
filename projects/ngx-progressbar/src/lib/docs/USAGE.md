@@ -88,7 +88,7 @@ Here is an example of how to use the `<ng-progress>` component with some of the 
 <ng-progress ngProgressHttp/>
 ```
 
- > More info on customizing `ngProgressHttp` can be found in http guide.
+ > More info on customizing `ngProgressHttp` can be found in http requests guide.
 
 #### Use `ngProgressRouter` to start/complete the progress bar with router events.
 
@@ -96,4 +96,4 @@ Here is an example of how to use the `<ng-progress>` component with some of the 
 <ng-progress ngProgressRouter/>
 ```
 
-> More info on customizing `ngProgressRouter` can be found in router guide.
+> More info on customizing `ngProgressRouter` can be found in router events guide.

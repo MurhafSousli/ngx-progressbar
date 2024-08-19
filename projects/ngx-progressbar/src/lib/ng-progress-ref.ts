@@ -132,7 +132,7 @@ export class NgProgressRef implements OnDestroy {
    */
   private onTrickling(config: NgProgressOptions): Observable<number> {
     if (!this.active()) {
-      this.set(this.config().min);
+      this.set(config.min);
     }
     return timer(0, config.trickleSpeed).pipe(tap(() => this.inc()));
   }

@@ -4,7 +4,7 @@ The `ngProgressHttp` directive allows you to easily integrate the progress bar w
 
 ### Usage
 
-To use the `ngProgressHttp` directive, simply add it to your component:
+To use the `ngProgressHttp` directive, simply add it to your component along with the `NgProgressbar` component:
 
 ```typescript
 import { Component } from '@angular/core';
@@ -85,9 +85,9 @@ bootstrapApplication(AppComponent, {
 
 **Result:**
 
-* https://prod.domain.com/users: Ignored
-* https://example.com/users: Ignored
-* https://domain.com/reviews: Not ignored
+> https://prod.domain.com/users: Ignored  
+> https://example.com/users: Ignored  
+> https://domain.com/reviews: Not ignored
 
 
 **3. Ignore requests using a regular expression**:
@@ -108,9 +108,9 @@ bootstrapApplication(AppComponent, {
 
 **Result:**
 
-* https://api.domain.com/places: Ignored
-* https://prod.domain.com/users: Ignored
-* https://domain.com/reviews/v1/test: Ignored
+> https://api.domain.com/places: Ignored  
+> https://prod.domain.com/users: Ignored  
+> https://domain.com/reviews/v1/test: Ignored
 
 You can also use the `matcher` option in combination with the `silentApis` option to create more complex rules for ignoring requests.
 
@@ -130,9 +130,9 @@ bootstrapApplication(AppComponent, {
 
 **Result:**
 
-* https://api.domain.com/places: Not ignored
-* https://prod.domain.com/users: Ignored
-* https://domain.com/reviews/v1/test: Ignored
+> https://api.domain.com/places: Not ignored  
+> https://prod.domain.com/users: Ignored  
+> https://domain.com/reviews/v1/test: Ignored
 
 ### NgProgressHttp API
 

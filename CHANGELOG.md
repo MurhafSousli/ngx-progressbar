@@ -1,14 +1,14 @@
 # Changelog
 
-## 12.0.0-beta.0
+## 12.0.0
 
 - Upgrade to Angular 18 (still compatible v17.3.0 and above).
-- feat: Introduce CSS variables for more flexible customization.
+- feat: Introduce CSS variables for more flexible customization, see [styling](https://github.com/MurhafSousli/ngx-progressbar/wiki/styling).
 - feat: Provide `provideNgProgressOptions()` to override global options.
 - feat: Provide `provideNgProgressHttp()` to override http related options.
 - feat: Provide `provideNgProgressRouter()` to override router related options.
 - feat: Ability to use boolean inputs as attributes.
-- refactor: Utilize signals approach.
+- refactor: Utilize signals API.
 
 ### Breaking changes
 
