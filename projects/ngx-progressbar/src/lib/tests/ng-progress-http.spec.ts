@@ -40,18 +40,18 @@ describe(`NgProgressHttp`, () => {
     httpClient = TestBed.inject(HttpClient);
     httpTestingController = TestBed.inject(HttpTestingController);
 
-    const startSpy: jasmine.Spy = spyOn(progressRef, 'start');
+    const startSpy: jasmine.Spy = spyOn(progressRef, 'start').and.callThrough();
     const completeSpy: jasmine.Spy = spyOn(progressRef, 'complete');
 
     httpClient.get('/users').subscribe(() => {
-      // Check that progress.complete() has been called after the request is completed
-      // Need to check that async
       setTimeout(() => {
+        // Check that progress.complete() has been called after the request is completed
         expect(completeSpy).toHaveBeenCalled();
         done();
       });
     });
 
+    // Need to detect changes
     fixture.detectChanges();
 
     // Check that progress.start() has been called
@@ -60,7 +60,7 @@ describe(`NgProgressHttp`, () => {
     const req: TestRequest = httpTestingController.expectOne('/users');
     expect(req.request.method).toEqual('GET');
 
-    // Complete the request after a tiny delay
+    // Complete the request after 200ms delay
     setTimeout(() => {
       req.flush({});
     }, 200);

@@ -1,8 +1,19 @@
-import { inject, signal, effect, computed, Directive, OnDestroy, Signal, WritableSignal, EffectCleanupRegisterFn } from '@angular/core';
+import {
+  inject,
+  signal,
+  effect,
+  computed,
+  Directive,
+  OnDestroy,
+  Signal,
+  WritableSignal,
+  EffectCleanupRegisterFn
+} from '@angular/core';
 import {
   Observable,
   Subject,
   Subscription,
+  BehaviorSubject,
   of,
   tap,
   delay,
@@ -13,6 +24,11 @@ import {
   EMPTY
 } from 'rxjs';
 import { NgProgressOptions, NG_PROGRESS_OPTIONS } from './ng-progress.model';
+
+enum TriggerType {
+  START = 'START',
+  COMPLETE = 'COMPLETE'
+}
 
 @Directive({
   standalone: true,
@@ -27,15 +43,21 @@ export class NgProgressRef implements OnDestroy {
 
   private _active: WritableSignal<boolean> = signal<boolean>(false);
 
-  active: Signal<boolean> = computed(() => this._active());
+  // A boolean flag that indicates the active state
+  isActive: boolean;
+
+  active: Signal<boolean> = computed(() => {
+    this.isActive = this._active();
+    return this.isActive;
+  });
 
   progress: Signal<number> = computed(() => this._progress());
 
   config: Signal<NgProgressOptions> = computed(() => this._config());
 
-  private readonly _trigger: WritableSignal<boolean> = signal<boolean>(false);
+  private _trigger: BehaviorSubject<TriggerType> = new BehaviorSubject<TriggerType>(null);
 
-  // Progress start source event (used to cancel finalizing delays)
+  // Progress start source event (used to cancel onComplete delays)
   private readonly _started: Subject<void> = new Subject<void>();
   readonly started: Observable<void> = this._started.asObservable();
 
@@ -54,20 +76,23 @@ export class NgProgressRef implements OnDestroy {
     effect((onCleanup: EffectCleanupRegisterFn) => {
       sub$?.unsubscribe();
 
-      if (this._trigger()) {
-        sub$ = timer(this.config().debounceTime).pipe(
-          switchMap(() => this.onTrickling(this.config()))
-        ).subscribe();
-      } else {
-        setTimeout(() => {
-          sub$ = this.onComplete(this.config()).subscribe();
-        });
-      }
+      sub$ = this._trigger.pipe(
+        switchMap((trigger: TriggerType) => {
+          if (trigger === TriggerType.START) {
+            return timer(this.config().debounceTime).pipe(
+              switchMap(() => this.onTrickling(this.config()))
+            );
+          } else if (trigger === TriggerType.COMPLETE) {
+            return this.onComplete(this.config());
+          }
+          return EMPTY;
+        })
+      ).subscribe();
 
       onCleanup(() => {
         sub$?.unsubscribe();
       });
-    });
+    }, { allowSignalWrites: true });
   }
 
   ngOnDestroy(): void {
@@ -80,7 +105,7 @@ export class NgProgressRef implements OnDestroy {
    */
   start(): void {
     this._started.next();
-    this._trigger.set(true);
+    this._trigger.next(TriggerType.START);
     this._active.set(true);
   }
 
@@ -88,7 +113,7 @@ export class NgProgressRef implements OnDestroy {
    * Complete the progress
    */
   complete(): void {
-    this._trigger.set(false);
+    this._trigger.next(TriggerType.COMPLETE);
   }
 
   /**
@@ -110,6 +135,8 @@ export class NgProgressRef implements OnDestroy {
    * Set the progress
    */
   set(n: number): void {
+    // this._trigger.set(TriggerType.SET);
+    this._active.set(true);
     this._progress.set(this.clamp(n));
   }
 

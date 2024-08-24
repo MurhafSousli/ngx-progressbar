@@ -1,5 +1,4 @@
 import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgProgressOptions } from 'ngx-progressbar';
 
@@ -9,23 +8,23 @@ import { NgProgressOptions } from 'ngx-progressbar';
   templateUrl: './lab.component.html',
   styleUrls: ['./lab.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [FormsModule, CommonModule]
+  imports: [FormsModule]
 })
 export class LabComponent {
 
-  directions = [
+  directions: string[] = [
     'ltr+',
     'ltr-',
     'rtl+',
     'rtl-'
   ];
 
-  spinnerPosition = [
+  spinnerPosition: string[] = [
     'right',
     'left'
   ];
 
   @Input() options: NgProgressOptions = {};
-  @Output() optionsChange = new EventEmitter(true);
+  @Output() optionsChange: EventEmitter<boolean> = new EventEmitter(true);
 
 }

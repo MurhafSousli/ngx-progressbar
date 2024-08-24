@@ -6,7 +6,9 @@
       <span class="input-name">direction</span> =
       <i class="input">
         <select name="direction" [(ngModel)]="options.direction">
-          <option *ngFor="let d of directions" [ngValue]="d">{{ d }}</option>
+          @for (d of directions; track d) {
+            <option [ngValue]="d">{{ d }}</option>
+          }
         </select>
       </i>
     </span>
@@ -16,11 +18,13 @@
     </span>
 
     <span class="input-wrapper">
-      <span class="input-name">trickleSpeed</span> = <i class="input"><input name="trickleSpeed" [(ngModel)]="options.trickleSpeed"></i>
+      <span class="input-name">trickleSpeed</span> = <i class="input"><input name="trickleSpeed"
+                                                                             [(ngModel)]="options.trickleSpeed"></i>
     </span>
 
     <span class="input-wrapper">
-      <span class="input-name">debounceTime</span> = <i class="input"><input name="debounceTime" [(ngModel)]="options.debounceTime"></i>
+      <span class="input-name">debounceTime</span> = <i class="input"><input name="debounceTime"
+                                                                             [(ngModel)]="options.debounceTime"></i>
     </span>
 
     <span class="input-wrapper">
@@ -40,17 +44,12 @@
     <span class="input-wrapper">
       <span class="input-name">spinnerPosition</span> = <i class="input">
         <select name="spinnerPosition" [(ngModel)]="options.spinnerPosition">
-          <option *ngFor="let p of spinnerPosition" [ngValue]="p">{{ p }}</option>
+          @for (p of spinnerPosition; track p) {
+            <option [ngValue]="p">{{ p }}</option>
+          }
         </select>
       </i>
     </span>
-
-<!--    <span class="input-wrapper">-->
-<!--      <span class="input-name">thick</span> = <i class="input">-->
-<!--        <input name="thick" type="checkbox" [(ngModel)]="options.thick">-->
-<!--        <span>{{ options.thick }}</span>-->
-<!--      </i>-->
-<!--    </span>-->
 
     <span class="input-wrapper">
       <span class="input-name">relative</span> = <i class="input">
@@ -60,16 +59,14 @@
     </span>
 
     <span class="input-wrapper">
-      <span class="input-name">min</span> = <i class="input"><input type="number" name="min" min="0" max="99" [(ngModel)]="options.min"></i>
+      <span class="input-name">min</span> = <i class="input"><input type="number" name="min" min="0" max="99"
+                                                                    [(ngModel)]="options.min"></i>
     </span>
 
     <span class="input-wrapper">
-      <span class="input-name">max</span> = <i class="input"><input type="number" name="max" min="1" max="100" [(ngModel)]="options.max"></i>
+      <span class="input-name">max</span> = <i class="input"><input type="number" name="max" min="1" max="100"
+                                                                    [(ngModel)]="options.max"></i>
     </span>
-
-<!--    <span class="input-wrapper">-->
-<!--      <span class="input-name">color</span> = <i class="input"><input name="color" [(ngModel)]="options.color"></i>-->
-<!--    </span>-->
 
     <span class="output-wrapper">
       <span class="output-name">started</span> = <i class="output">onStarted()</i>
