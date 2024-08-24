@@ -13,7 +13,7 @@ class NgProgressHttpBase {
     effect(() => {
       if (this.manager.requestsLoading()) {
         this.progressRef.start();
-      } else {
+      } else if (this.progressRef.isActive) {
         this.progressRef.complete();
       }
     }, { allowSignalWrites: true });

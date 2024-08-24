@@ -46,7 +46,7 @@ describe('NgProgressRef', () => {
     expect(directive.active()).toBeFalse();
   });
 
-  it('should start and complete the progress', (done: DoneFn) => {
+  it('should call continuously call set() on trickling', (done: DoneFn) => {
     const setSpy: jasmine.Spy = spyOn(directive, 'set');
     // Assume active state is off
     directive['_active'].set(false);
@@ -57,6 +57,18 @@ describe('NgProgressRef', () => {
     });
   });
 
+  it('should set the progress even if it has not started', async () => {
+    // Assume active state is off
+    directive.set(40);
+    fixture.detectChanges();
+    expect(directive.progress()).toBe(40);
+    expect(directive.active()).toBeTrue();
+
+    directive.complete();
+    fixture.detectChanges();
+    await afterTimeout(350);
+    expect(directive.active()).toBeFalse();
+  });
 
   it('should increment the progress when inc function is called', async () => {
     directive.inc();
@@ -94,13 +106,20 @@ describe('NgProgressRef', () => {
     directive.setConfig(newConfig);
     expect(directive.config()).toEqual(newConfig);
   });
+
+  it('should not do anything if complete() is called when progress has not started', () => {
+    const completeSpy: jasmine.Spy = spyOn(directive, 'complete').and.callThrough();
+    directive.complete();
+    fixture.detectChanges();
+    expect(completeSpy).toHaveBeenCalled();
+  });
 });
 
 @Component({
   standalone: true,
   imports: [NgProgressRef],
   template: `
-    <div ngProgressRef></div>
+      <div ngProgressRef></div>
   `
 })
 class TestComponent {

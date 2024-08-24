@@ -1,6 +1,6 @@
 # Changelog
 
-## 12.0.0
+## 12.0.1
 
 - Upgrade to Angular 18 (still compatible v17.3.0 and above).
 - feat: Introduce CSS variables for more flexible customization, see [styling](https://github.com/MurhafSousli/ngx-progressbar/wiki/styling).
