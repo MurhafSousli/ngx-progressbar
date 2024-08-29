@@ -1,12 +1,12 @@
-import { enableProdMode, importProvidersFrom } from '@angular/core';
+import { enableProdMode } from '@angular/core';
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { provideAnimations } from '@angular/platform-browser/animations';
-import { BrowserModule, bootstrapApplication } from '@angular/platform-browser';
-
+import { bootstrapApplication } from '@angular/platform-browser';
+import { provideRouter, withHashLocation } from '@angular/router';
+import { progressInterceptor } from 'ngx-progressbar/http';
 import { environment } from './environments/environment';
 import { AppComponent } from './app/app.component';
-import { AppRoutingModule } from './app/routing.module';
-import { progressInterceptor } from 'ngx-progressbar/http';
+import { appRoutes } from './app/app-routes';
 
 if (environment.production) {
   enableProdMode();
@@ -14,10 +14,7 @@ if (environment.production) {
 
 bootstrapApplication(AppComponent, {
   providers: [
-    importProvidersFrom(
-      BrowserModule,
-      AppRoutingModule
-    ),
+    provideRouter(appRoutes, withHashLocation()),
     provideAnimations(),
     provideHttpClient(
       withFetch(),

@@ -11,7 +11,7 @@ mat-progress-spinner {
 
 .bar-placeholder {
   height: 4px;
-  background-color: #d1c4e9;
+  background-color: var(--mdc-linear-progress-track-color);
 }
 
 mat-card {

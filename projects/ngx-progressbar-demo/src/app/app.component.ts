@@ -10,12 +10,7 @@ import { HeaderComponent } from './header/header.component';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    RouterModule,
-    HeaderComponent,
-    NgProgressbar,
-    NgProgressRouter
-  ]
+  imports: [RouterModule, HeaderComponent, NgProgressbar, NgProgressRouter]
 })
 export class AppComponent {
 }
