@@ -1,5 +1,5 @@
 <div class="progressbar-container">
-  <ng-progress #labProgress
+  <ng-progress #labProgress="ngProgress"
                ngProgressHttp
                [flat]="options.flat"
                [min]="options.min"
@@ -63,15 +63,15 @@
     </tr>
   </table>
   <div class="events">
-    <span class="chip" [class.changed]="startedClass | async"> NgProgress.
+    <span class="chip" [class.changed]="startedClass()"> NgProgress.
       <strong>started</strong>
     </span>
-    <span class="chip" [class.changed]="endedClass | async"> NgProgress.
+    <span class="chip" [class.changed]="endedClass()"> NgProgress.
       <strong>completed</strong>
     </span>
 
-    <button class="chip" (click)="testHttp()" [disabled]="preventAbuse | async">
-      {{ (preventAbuse | async) ? 'Wait...' : 'Test Http Request' }}
+    <button class="chip" (click)="testHttp()" [disabled]="preventAbuse()">
+      {{ preventAbuse() ? 'Wait...' : 'Test Http Request' }}
     </button>
   </div>
 </div>

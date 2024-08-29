@@ -1,11 +1,10 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { MatCardModule } from '@angular/material/card';
+import { MatProgressSpinner } from '@angular/material/progress-spinner';
+import { MatIcon } from '@angular/material/icon';
+import { MatFabButton } from '@angular/material/button';
+import { MatProgressBar } from '@angular/material/progress-bar';
+import { MatCard } from '@angular/material/card';
 import { NgProgressRef } from 'ngx-progressbar';
 
 @Component({
@@ -23,7 +22,7 @@ import { NgProgressRef } from 'ngx-progressbar';
     ])
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule, MatCardModule, MatProgressBarModule, MatButtonModule, MatIconModule, MatProgressSpinnerModule, NgProgressRef]
+  imports: [MatCard, MatProgressBar, MatIcon, MatProgressSpinner, NgProgressRef, MatFabButton]
 })
 export class CustomComponent {
 }
