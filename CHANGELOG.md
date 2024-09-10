@@ -1,5 +1,9 @@
 # Changelog
 
+## 12.0.2
+
+- refactor: Use `untracked` in effects instead of `allowSignalWrites` and `setTimeout`.
+
 ## 12.0.1
 
 - Upgrade to Angular 18 (still compatible v17.3.0 and above).

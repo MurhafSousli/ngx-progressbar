@@ -1,5 +1,5 @@
 import { Directive, inject, Type, OnInit, OnDestroy } from '@angular/core';
-import { Event, Router, RouterEvent } from '@angular/router';
+import { Event, Router } from '@angular/router';
 import { Observable, Subscription, of, delay, filter, switchMap, tap } from 'rxjs';
 import { NgProgressRef } from 'ngx-progressbar';
 import { NG_PROGRESS_ROUTER_OPTIONS, NgProgressRouterOptions } from './ng-progress-router.model';
@@ -7,10 +7,8 @@ import { NG_PROGRESS_ROUTER_OPTIONS, NgProgressRouterOptions } from './ng-progre
 /**
  * Check if a router event type exists in an array of router event types
  */
-function eventExists(routerEvent: Event, events: Type<RouterEvent>[]): boolean {
-  let res: boolean = false;
-  events.map((event: Type<RouterEvent>) => res = res || routerEvent instanceof event);
-  return res;
+function eventExists(routerEvent: Event, events: Type<Event>[]): boolean {
+  return events.some((e: Type<Event>) => routerEvent instanceof e);
 }
 
 @Directive()
@@ -34,7 +32,7 @@ class NgProgressRouterBase implements OnInit, OnDestroy {
       tap(() => this.progressRef.complete())
     );
 
-    const filterEvents: Type<RouterEvent>[] = [...this.config.startEvents, ...this.config.completeEvents];
+    const filterEvents: Type<Event>[] = [...this.config.startEvents, ...this.config.completeEvents];
 
     this.subscription = this.router.events.pipe(
       filter((event: Event) => eventExists(event, filterEvents)),

@@ -3,13 +3,13 @@ import {
   inject,
   effect,
   computed,
+  untracked,
   numberAttribute,
   booleanAttribute,
   input,
   Signal,
   InputSignal,
   OutputRef,
-  ElementRef,
   ChangeDetectionStrategy,
   InputSignalWithTransform
 } from '@angular/core';
@@ -27,7 +27,8 @@ import { NG_PROGRESS_OPTIONS, NgProgressOptions } from './ng-progress.model';
     '[class.ng-progress-bar-active]': 'progressRef.active()',
     '[class.ng-progress-bar-relative]': 'relative()',
     '[attr.spinnerPosition]': 'spinnerPosition()',
-    '[attr.direction]': 'direction()'
+    '[attr.direction]': 'direction()',
+    '[style.--_ng-progress-speed]': 'this.speed() + "ms"'
   },
   template: `
     <div class="ng-progress-bar-wrapper">
@@ -80,21 +81,17 @@ export class NgProgressbar {
   completed: OutputRef<void> = outputFromObservable<void>(this.progressRef.completed);
 
   constructor() {
-    const element: HTMLElement = inject(ElementRef<HTMLElement>).nativeElement;
-
     effect(() => {
-      setTimeout(() => {
-        element.style.setProperty('--_ng-progress-speed', `${ this.speed() }ms`);
-        // Update progress bar config when inputs change
-        this.progressRef.setConfig({
-          max: (this.max() > 0 && this.max() <= 100) ? this.max() : 100,
-          min: (this.min() < 100 && this.min() >= 0) ? this.min() : 0,
-          speed: this.speed(),
-          trickleSpeed: this.trickleSpeed(),
-          trickleFunc: this.trickleFunc(),
-          debounceTime: this.debounceTime()
-        });
-      });
+      const config: NgProgressOptions = {
+        max: (this.max() > 0 && this.max() <= 100) ? this.max() : 100,
+        min: (this.min() < 100 && this.min() >= 0) ? this.min() : 0,
+        speed: this.speed(),
+        trickleSpeed: this.trickleSpeed(),
+        trickleFunc: this.trickleFunc(),
+        debounceTime: this.debounceTime()
+      };
+      // Update progress bar config when inputs change
+      untracked(() => this.progressRef.setConfig(config));
     });
   }
 

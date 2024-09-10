@@ -1,11 +1,11 @@
 import { InjectionToken, Provider, Type } from '@angular/core';
-import { RouterEvent } from '@angular/router';
+import { Event } from '@angular/router';
 import { defaultRouterOptions } from './ng-progress-router-default';
 
 export interface NgProgressRouterOptions {
   minDuration?: number;
-  startEvents?: Type<RouterEvent>[];
-  completeEvents?: Type<RouterEvent>[];
+  startEvents?: Type<Event>[];
+  completeEvents?: Type<Event>[];
 }
 
 export const NG_PROGRESS_ROUTER_OPTIONS: InjectionToken<NgProgressRouterOptions> = new InjectionToken<NgProgressRouterOptions>('NG_PROGRESS_ROUTER_OPTIONS', {

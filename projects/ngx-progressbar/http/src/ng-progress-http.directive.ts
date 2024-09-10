@@ -1,4 +1,4 @@
-import { Directive, effect, inject } from '@angular/core';
+import { Directive, effect, inject, untracked } from '@angular/core';
 import { NgProgressRef } from 'ngx-progressbar';
 import { NgProgressHttpManager } from './ng-progress-http-manager';
 
@@ -11,12 +11,15 @@ class NgProgressHttpBase {
 
   constructor() {
     effect(() => {
-      if (this.manager.requestsLoading()) {
-        this.progressRef.start();
-      } else if (this.progressRef.isActive) {
-        this.progressRef.complete();
-      }
-    }, { allowSignalWrites: true });
+      const requestLoading: boolean = this.manager.requestsLoading();
+      untracked(() => {
+        if (requestLoading) {
+          this.progressRef.start();
+        } else if (this.progressRef.active()) {
+          this.progressRef.complete();
+        }
+      });
+    });
   }
 }
 
