@@ -1,5 +1,20 @@
 # Changelog
 
+## 13.0.0
+
+- feat: `NgProgressRef` directive has `(started)` and `(completed)` outputs, instead of subjects.
+- feat: `NgProgressRef` directive has all `NgProgress` component inputs excepts the irrelevant styling inputs.
+- feat: Add `fadeOutSpeed` input to set the fade out transition after the progress completes.
+- feat: Add `--ng-progress-spinner-speed` CSS variable to set the spinner speed.
+- enhance: Use `NgProgressRef` as *hostDirective* in `NgProgress` component and forward its inputs and outputs.
+- enhance: avoid triggering the main effects twice in `ProgressRef` directive due to config update.
+- refactor: Use transform function for `min` and `max` inputs.
+
+### Breaking changes
+
+- Remove `setConfig()` function from `ProgressRef` directive, you can now set the inputs directly.
+- Remove `start()`, `complete()`, `inc()` and `set()` functions from the component reference.
+
 ## 12.0.2
 
 - refactor: Use `untracked` in effects instead of `allowSignalWrites` and `setTimeout`.

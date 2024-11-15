@@ -11,13 +11,13 @@ import { NgProgressRef } from 'ngx-progressbar';
   standalone: true,
   selector: 'app-custom',
   templateUrl: './custom.component.html',
-  styleUrls: ['./custom.component.scss'],
+  styleUrl: './custom.component.scss',
   animations: [
     trigger('fadeInOut', [
       state('false', style({ opacity: 0, visibility: 'hidden' })),
       transition('true => false', [
         style({ opacity: 1, visibility: 'visible' }),
-        animate(280, style({ opacity: 0 }))
+        animate(50, style({ opacity: 0 }))
       ])
     ])
   ],

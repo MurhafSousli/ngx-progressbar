@@ -6,7 +6,7 @@ import { NgProgressOptions } from 'ngx-progressbar';
   standalone: true,
   selector: 'app-lab',
   templateUrl: './lab.component.html',
-  styleUrls: ['./lab.component.scss'],
+  styleUrl: './lab.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [FormsModule]
 })

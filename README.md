@@ -17,7 +17,17 @@ A nanoscopic progress bar. Featuring realistic trickle animations to convince yo
 
 ___
 
-### The documentation is available at the [wiki page](https://github.com/MurhafSousli/ngx-progressbar/wiki) 📚
+## Documentations
+
+### Table of contents
+
+* [Usage](projects/ngx-progressbar/docs/Usage.md)
+* [Styling](projects/ngx-progressbar/docs/Styling.md)
+* [Global Options](projects/ngx-progressbar/docs/Global-options.md)
+* [Smooth Scroll Functions](projects/ngx-progressbar/docs/Integration.md)
+* Automagic features
+  * [HttpClient Requests](projects/ngx-progressbar/docs/HttpClient-requests.md)
+  * [Router Events](projects/ngx-progressbar/docs/Router-events.md)
 
 ___
 

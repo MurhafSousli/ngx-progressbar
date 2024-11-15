@@ -10,8 +10,15 @@ class NgProgressHttpBase {
   private readonly progressRef: NgProgressRef = inject(NgProgressRef, { host: true, self: true });
 
   constructor() {
+    let initial: boolean = true;
     effect(() => {
       const requestLoading: boolean = this.manager.requestsLoading();
+      // Ignore the initial execution if loading state is false
+      if (initial) {
+        initial = false;
+        if (!requestLoading) return;
+      }
+
       untracked(() => {
         if (requestLoading) {
           this.progressRef.start();

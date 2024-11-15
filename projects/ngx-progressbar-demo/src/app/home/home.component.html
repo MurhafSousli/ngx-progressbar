@@ -1,5 +1,5 @@
 <div class="progressbar-container">
-  <ng-progress #labProgress="ngProgress"
+  <ng-progress #labProgress="ngProgressRef"
                ngProgressHttp
                [flat]="options.flat"
                [min]="options.min"
@@ -9,6 +9,7 @@
                [spinnerPosition]="options.spinnerPosition"
                [direction]="options.direction"
                [trickleSpeed]="options.trickleSpeed"
+               [fadeOutSpeed]="options.fadeOutSpeed"
                [debounceTime]="options.debounceTime"
                [relative]="options.relative"
                (started)="onProgressStarted()"

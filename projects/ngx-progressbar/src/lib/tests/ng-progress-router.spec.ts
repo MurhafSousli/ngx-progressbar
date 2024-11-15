@@ -67,7 +67,7 @@ describe(`NgProgressRouter`, () => {
     const startSpy: jasmine.Spy = spyOn(progressRef, 'start');
     const completeSpy: jasmine.Spy = spyOn(progressRef, 'complete');
 
-    progressRouter.ngOnInit();
+    fixture.detectChanges();
 
     router.navigate(['page2']).then(() => {
       fixture.detectChanges();
@@ -77,6 +77,9 @@ describe(`NgProgressRouter`, () => {
       }, CUSTOM_PROGRESS_DELAY);
     });
 
-    expect(startSpy).toHaveBeenCalled();
+    // Need a tiny delay to catch the start call
+    setTimeout(() => {
+      expect(startSpy).toHaveBeenCalled();
+    });
   });
 });

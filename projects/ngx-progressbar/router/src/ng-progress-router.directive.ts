@@ -1,6 +1,7 @@
-import { Directive, inject, Type, OnInit, OnDestroy } from '@angular/core';
+import { Directive, inject, Type, effect, untracked, Signal, EffectCleanupRegisterFn } from '@angular/core';
 import { Event, Router } from '@angular/router';
-import { Observable, Subscription, of, delay, filter, switchMap, tap } from 'rxjs';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { filter, map } from 'rxjs';
 import { NgProgressRef } from 'ngx-progressbar';
 import { NG_PROGRESS_ROUTER_OPTIONS, NgProgressRouterOptions } from './ng-progress-router.model';
 
@@ -12,36 +13,38 @@ function eventExists(routerEvent: Event, events: Type<Event>[]): boolean {
 }
 
 @Directive()
-class NgProgressRouterBase implements OnInit, OnDestroy {
-
-  private subscription: Subscription;
+class NgProgressRouterBase {
 
   private readonly router: Router = inject(Router);
 
-  readonly progressRef: NgProgressRef = inject(NgProgressRef, { host: true, self: true });
-
   private readonly config: NgProgressRouterOptions = inject(NG_PROGRESS_ROUTER_OPTIONS);
 
-  ngOnInit(): void {
-    const startProgress: Observable<unknown> = of({}).pipe(
-      tap(() => this.progressRef.start())
-    );
+  readonly progressRef: NgProgressRef = inject(NgProgressRef, { host: true, self: true });
 
-    const completeProgress: Observable<unknown> = of({}).pipe(
-      delay(this.config.minDuration),
-      tap(() => this.progressRef.complete())
-    );
+  private readonly routerToggleEvent: Signal<boolean> = toSignal<boolean>(
+    this.router.events.pipe(
+      filter((event: Event) => eventExists(event, [...this.config.startEvents, ...this.config.completeEvents])),
+      map((event: Event) => eventExists(event, this.config.startEvents))
+    )
+  );
 
-    const filterEvents: Type<Event>[] = [...this.config.startEvents, ...this.config.completeEvents];
+  constructor() {
+    effect((onCleanup: EffectCleanupRegisterFn) => {
+      const toggle: boolean = this.routerToggleEvent();
+      let completeTimeout: ReturnType<typeof setTimeout>;
 
-    this.subscription = this.router.events.pipe(
-      filter((event: Event) => eventExists(event, filterEvents)),
-      switchMap((event: Event) => eventExists(event, this.config.startEvents) ? startProgress : completeProgress)
-    ).subscribe();
-  }
+      untracked(() => {
+        if (toggle) {
+          this.progressRef.start();
+        } else {
+          completeTimeout = setTimeout(() => {
+            this.progressRef.complete();
+          }, this.config.minDuration);
+        }
 
-  ngOnDestroy(): void {
-    this.subscription?.unsubscribe();
+        onCleanup(() => clearTimeout(completeTimeout));
+      });
+    });
   }
 }
 
