@@ -18,6 +18,8 @@
   --_ng-progress-spinner-size: var(--ng-progress-spinner-size, 18);
   --_ng-progress-spinner-size-px: calc(var(--_ng-progress-spinner-size) * 1px);
 
+  --_ng-progress-spinner-speed: var(--ng-progress-spinner-speed, 250ms);
+
   z-index: 999999;
   pointer-events: none;
 
@@ -104,7 +106,7 @@
   transform: scale(1);
   filter: alpha(opacity=0);
   opacity: 0;
-  transition: opacity var(--_ng-progress-speed) var(--_ng-progress-ease);
+  transition: opacity var(--_ng-progress-fade-out-speed) linear;
 }
 
 .ng-bar-placeholder {
@@ -118,7 +120,6 @@
   height: 100%;
   transform: translate(-100%, 0, 0);
   background: var(--_ng-progress-color);
-  transition: all var(--_ng-progress-speed) var(--_ng-progress-ease);
 }
 
 .ng-meteor {
@@ -139,7 +140,7 @@
 
 .ng-spinner-icon {
   box-sizing: border-box;
-  animation: spinner-animation 250ms linear infinite;
+  animation: spinner-animation var(--_ng-progress-spinner-speed) linear infinite;
   border-style: solid;
   border-color: transparent;
   border-radius: 50%;

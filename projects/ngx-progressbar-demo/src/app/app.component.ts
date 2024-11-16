@@ -8,7 +8,7 @@ import { HeaderComponent } from './header/header.component';
   standalone: true,
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  styleUrl: './app.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [RouterModule, HeaderComponent, NgProgressbar, NgProgressRouter]
 })

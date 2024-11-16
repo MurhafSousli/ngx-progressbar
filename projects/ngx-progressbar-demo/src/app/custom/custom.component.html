@@ -4,7 +4,7 @@
 
   <div class="test-container">
     <button mat-fab (click)="!progressRef.active() ? progressRef.start() : progressRef.complete()">
-      <mat-icon>{{ progressRef.active() ? 'stop' : 'play_arrow' }}</mat-icon>
+      <mat-icon [fontIcon]="progressRef.active() ? 'stop' : 'play_arrow'"/>
     </button>
   </div>
 

@@ -6,6 +6,7 @@ export const defaultOptions: NgProgressOptions = {
   speed: 200,
   debounceTime: 0,
   trickleSpeed: 300,
+  fadeOutSpeed: 50,
   relative: false,
   flat: false,
   spinner: false,
