@@ -1,8 +1,8 @@
-import { inject, WritableSignal } from '@angular/core';
 import { HttpEvent, HttpHandlerFn, HttpRequest } from '@angular/common/http';
-import { Observable, finalize } from 'rxjs';
-import { NG_PROGRESS_HTTP_OPTIONS, NgProgressHttpOptions } from './ng-progress-http.model';
+import { inject, untracked, WritableSignal } from '@angular/core';
+import { finalize, Observable } from 'rxjs';
 import { NgProgressHttpCounter } from './ng-progress-http-counter';
+import { NG_PROGRESS_HTTP_OPTIONS, NgProgressHttpOptions } from './ng-progress-http.model';
 
 export function progressInterceptor(req: HttpRequest<unknown>, next: HttpHandlerFn): Observable<HttpEvent<unknown>> {
 
@@ -20,13 +20,15 @@ export function progressInterceptor(req: HttpRequest<unknown>, next: HttpHandler
     return next(req);
   }
 
-  inProgressCount.set(inProgressCount() + 1);
+  return untracked(() => {
+    inProgressCount.set(inProgressCount() + 1);
 
-  return next(req).pipe(
-    finalize(() => {
-      inProgressCount.set(inProgressCount() - 1);
-    })
-  );
+    return next(req).pipe(
+      finalize(() => {
+        inProgressCount.set(inProgressCount() - 1);
+      })
+    );
+  });
 }
 
 
