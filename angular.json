@@ -3,34 +3,6 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ngx-progressbar": {
-      "projectType": "library",
-      "root": "projects/ngx-progressbar",
-      "sourceRoot": "projects/ngx-progressbar/src",
-      "prefix": "lib",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:ng-packagr",
-          "options": {
-            "tsConfig": "projects/ngx-progressbar/tsconfig.lib.json",
-            "project": "projects/ngx-progressbar/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "projects/ngx-progressbar/tsconfig.lib.prod.json"
-            }
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/ngx-progressbar/src/test.ts",
-            "tsConfig": "projects/ngx-progressbar/tsconfig.spec.json",
-            "karmaConfig": "projects/ngx-progressbar/karma.conf.js"
-          }
-        }
-      }
-    },
     "ngx-progressbar-demo": {
       "projectType": "application",
       "schematics": {
@@ -45,14 +17,14 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": {
-              "base": "dist/ngx-progressbar-demo"
-            },
+            "outputPath": "dist/ngx-progressbar-demo",
             "index": "projects/ngx-progressbar-demo/src/index.html",
+            "browser": "projects/ngx-progressbar-demo/src/main.ts",
             "polyfills": [
-              "projects/ngx-progressbar-demo/src/polyfills.ts"
+              "zone.js"
             ],
             "tsConfig": "projects/ngx-progressbar-demo/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
             "assets": [
               "projects/ngx-progressbar-demo/src/favicon.ico",
               "projects/ngx-progressbar-demo/src/assets"
@@ -61,50 +33,47 @@
               "projects/ngx-progressbar-demo/src/styles.scss"
             ],
             "scripts": [],
-            "extractLicenses": false,
-            "sourceMap": true,
-            "optimization": false,
-            "namedChunks": true,
-            "browser": "projects/ngx-progressbar-demo/src/main.ts"
+            "server": "projects/ngx-progressbar-demo/src/main.server.ts",
+            "prerender": true,
+            "ssr": {
+              "entry": "projects/ngx-progressbar-demo/src/server.ts"
+            }
           },
           "configurations": {
             "production": {
-              "fileReplacements": [
-                {
-                  "replace": "projects/ngx-progressbar-demo/src/environments/environment.ts",
-                  "with": "projects/ngx-progressbar-demo/src/environments/environment.prod.ts"
-                }
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "namedChunks": false,
-              "extractLicenses": true,
               "budgets": [
                 {
                   "type": "initial",
                   "maximumWarning": "2mb",
-                  "maximumError": "5mb"
+                  "maximumError": "3mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
-                  "maximumError": "10kb"
+                  "maximumWarning": "15kb",
+                  "maximumError": "15kb"
                 }
-              ]
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
             }
-          }
+          },
+          "defaultConfiguration": "production"
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "buildTarget": "ngx-progressbar-demo:build"
-          },
           "configurations": {
             "production": {
               "buildTarget": "ngx-progressbar-demo:build:production"
+            },
+            "development": {
+              "buildTarget": "ngx-progressbar-demo:build:development"
             }
-          }
+          },
+          "defaultConfiguration": "development"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
@@ -115,10 +84,12 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/ngx-progressbar-demo/src/test.ts",
-            "polyfills": "projects/ngx-progressbar-demo/src/polyfills.ts",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
             "tsConfig": "projects/ngx-progressbar-demo/tsconfig.spec.json",
-            "karmaConfig": "projects/ngx-progressbar-demo/karma.conf.js",
+            "inlineStyleLanguage": "scss",
             "assets": [
               "projects/ngx-progressbar-demo/src/favicon.ico",
               "projects/ngx-progressbar-demo/src/assets"
@@ -128,20 +99,56 @@
             ],
             "scripts": []
           }
-        },
-        "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
+        }
+      }
+    },
+    "ngx-progressbar": {
+      "projectType": "library",
+      "root": "projects/ngx-progressbar",
+      "sourceRoot": "projects/ngx-progressbar/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
-            "protractorConfig": "projects/ngx-progressbar-demo/e2e/protractor.conf.js",
-            "devServerTarget": "ngx-progressbar-demo:serve"
+            "project": "projects/ngx-progressbar/ng-package.json"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "ngx-progressbar-demo:serve:production"
+              "tsConfig": "projects/ngx-progressbar/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/ngx-progressbar/tsconfig.lib.json"
             }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/ngx-progressbar/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
+            "karmaConfig": "projects/ngx-progressbar/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/ngx-progressbar/**/*.ts",
+              "projects/ngx-progressbar/**/*.html"
+            ]
           }
         }
       }
     }
+  },
+  "cli": {
+    "schematicCollections": [
+      "@angular-eslint/schematics"
+    ]
   }
 }

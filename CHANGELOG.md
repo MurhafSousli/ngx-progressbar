@@ -1,5 +1,10 @@
 # Changelog
 
+## 14.0.0
+
+- Upgrade to Angular 19 (still compatible v17.3.0 and above).
+- fix: `ngProgressHttp` gives an error with http requests inside effects, closes [#386](https://github.com/MurhafSousli/ngx-progressbar/issues/386)
+
 ## 13.0.0
 
 - feat: `NgProgressRef` directive has `(started)` and `(completed)` outputs, instead of subjects.
