@@ -60,7 +60,7 @@ describe('NgProgressRef', () => {
     directive['_active'].set(false);
     // Mock onTrickling call
     directive['onTrickling']({ min: 5 }).subscribe(() => {
-      expect(setSpy).toHaveBeenCalledWith(5 as any);
+      expect(setSpy).toHaveBeenCalledWith(5);
       done();
     });
   });
