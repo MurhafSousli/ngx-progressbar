@@ -1,14 +1,15 @@
 {
   "name": "ngx-progressbar",
-  "version": "13.0.0",
+  "version": "14.0.0",
+  "license": "MIT",
+  "homepage": "https://ngx-progressbar.netlify.app/",
   "author": {
     "name": "Murhaf Sousli",
-    "url": "https://github.com/MurhafSousli",
-    "email": "murhafsousli@gmail.com"
+    "url": "http://github.com/murhafsousli"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/murhafsousli/ngx-progressbar.git"
+    "url": "https://github.com/MurhafSousli/ngx-progressbar"
   },
   "bugs": {
     "url": "http://github.com/murhafsousli/ngx-progressbar/issues"
@@ -21,14 +22,14 @@
     "loadingbar",
     "ngx-progressbar"
   ],
-  "license": "MIT",
-  "dependencies": {
-    "tslib": "^2.0.0"
-  },
   "peerDependencies": {
     "@angular/common": ">=17.3.0",
     "@angular/core": ">=17.3.0",
-    "@angular/router": ">=17.3.0",
+    "@angular/cdk": ">=17.3.0",
     "rxjs": ">=7.0.0"
-  }
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false
 }

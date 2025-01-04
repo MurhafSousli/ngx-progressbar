@@ -36,7 +36,6 @@ export class Page2 {
 describe(`NgProgressRouter`, () => {
   let fixture: ComponentFixture<TestComponent>;
   let progressRef: NgProgressRef;
-  let progressRouter: NgProgressRouter;
   let router: Router;
 
   beforeEach(async () => {
@@ -60,7 +59,6 @@ describe(`NgProgressRouter`, () => {
     router = TestBed.inject(Router);
     fixture = TestBed.createComponent(TestComponent);
     progressRef = fixture.debugElement.query(By.directive(NgProgressRef)).injector.get(NgProgressRef);
-    progressRouter = fixture.debugElement.query(By.directive(NgProgressRouter)).injector.get(NgProgressRouter);
   });
 
   it('should start/complete the progress bar on route change', (done: DoneFn) => {

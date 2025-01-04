@@ -1,7 +1,7 @@
-import { Directive, inject, Type, effect, untracked, Signal, EffectCleanupRegisterFn } from '@angular/core';
+import { Directive, inject, Type } from '@angular/core';
 import { Event, Router } from '@angular/router';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { filter, map } from 'rxjs';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { filter, map, tap } from 'rxjs';
 import { NgProgressRef } from 'ngx-progressbar';
 import { NG_PROGRESS_ROUTER_OPTIONS, NgProgressRouterOptions } from './ng-progress-router.model';
 
@@ -21,19 +21,17 @@ class NgProgressRouterBase {
 
   readonly progressRef: NgProgressRef = inject(NgProgressRef, { host: true, self: true });
 
-  private readonly routerToggleEvent: Signal<boolean> = toSignal<boolean>(
+  constructor() {
+    let completeTimeout: ReturnType<typeof setTimeout>;
+
+    // Previously in v13, we had the router events toggle converted to a signal,
+    // the issue with toSignal is when the new route is loaded too fast, it won't start the progressbar, causing the tests to break.
+    // Therefore, we switched back to stream subscription to make sure it always starts and completes with the route events.
     this.router.events.pipe(
       filter((event: Event) => eventExists(event, [...this.config.startEvents, ...this.config.completeEvents])),
-      map((event: Event) => eventExists(event, this.config.startEvents))
-    )
-  );
-
-  constructor() {
-    effect((onCleanup: EffectCleanupRegisterFn) => {
-      const toggle: boolean = this.routerToggleEvent();
-      let completeTimeout: ReturnType<typeof setTimeout>;
-
-      untracked(() => {
+      map((event: Event) => eventExists(event, this.config.startEvents)),
+      tap((toggle: boolean) => {
+        clearTimeout(completeTimeout);
         if (toggle) {
           this.progressRef.start();
         } else {
@@ -41,10 +39,9 @@ class NgProgressRouterBase {
             this.progressRef.complete();
           }, this.config.minDuration);
         }
-
-        onCleanup(() => clearTimeout(completeTimeout));
-      });
-    });
+      }),
+      takeUntilDestroyed()
+    ).subscribe();
   }
 }
 

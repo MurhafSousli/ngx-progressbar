@@ -25,7 +25,7 @@ module.exports = function (config) {
       suppressAll: true // removes the duplicated traces
     },
     coverageReporter: {
-      dir: require('path').join(__dirname, '../../coverage/ngx-progressbar'),
+      dir: require('path').join(__dirname, '../../coverage/ngx-scrollbar'),
       subdir: '.',
       reporters: [
         { type: 'html' },
@@ -35,7 +35,13 @@ module.exports = function (config) {
       ]
     },
     reporters: ['progress', 'kjhtml'],
-    browsers: ['Chrome'],
+    browsers: ["MyChromeWithoutSearchSelect"],
+    customLaunchers: {
+      MyChromeWithoutSearchSelect: {
+        base: "Chrome",
+        flags: ["-disable-search-engine-choice-screen"],
+      },
+    },
     restartOnFileChange: true
   });
 };

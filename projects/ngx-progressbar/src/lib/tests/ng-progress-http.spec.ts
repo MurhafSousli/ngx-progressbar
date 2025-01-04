@@ -63,6 +63,7 @@ describe(`NgProgressHttp`, () => {
     // Complete the request after 200ms delay
     setTimeout(() => {
       req.flush({});
+      fixture.detectChanges();
     }, 200);
   });
 
