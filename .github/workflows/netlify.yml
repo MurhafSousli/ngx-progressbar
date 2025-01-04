@@ -8,9 +8,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@master
       - name: Use Node.js 20
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@master
         with:
           node-version: 20
       - name: Install dependencies
@@ -18,7 +18,7 @@ jobs:
       - name: Build demo
         run: npm run build
       - name: Deploy to Netlify
-        uses: nwtgck/actions-netlify@v3.0.0
+        uses: nwtgck/actions-netlify@v3
         with:
           publish-dir: './dist/ngx-progressbar-demo/browser'
           production-branch: deploy-netlify

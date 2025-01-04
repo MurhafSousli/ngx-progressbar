@@ -25,7 +25,7 @@ module.exports = function (config) {
       suppressAll: true // removes the duplicated traces
     },
     coverageReporter: {
-      dir: require('path').join(__dirname, '../../coverage/ngx-scrollbar'),
+      dir: require('path').join(__dirname, '../../coverage/ngx-progressbar'),
       subdir: '.',
       reporters: [
         { type: 'html' },
