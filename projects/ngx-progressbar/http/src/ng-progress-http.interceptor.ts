@@ -1,5 +1,5 @@
-import { HttpEvent, HttpHandlerFn, HttpRequest } from '@angular/common/http';
 import { inject, untracked, WritableSignal } from '@angular/core';
+import { HttpEvent, HttpHandlerFn, HttpRequest } from '@angular/common/http';
 import { finalize, Observable } from 'rxjs';
 import { NgProgressHttpCounter } from './ng-progress-http-counter';
 import { NG_PROGRESS_HTTP_OPTIONS, NgProgressHttpOptions } from './ng-progress-http.model';
@@ -35,7 +35,7 @@ export function progressInterceptor(req: HttpRequest<unknown>, next: HttpHandler
 /**
  * Check if request is silent.
  */
-function checkUrl(req: HttpRequest<any>, config: NgProgressHttpOptions): boolean {
+function checkUrl(req: HttpRequest<unknown>, config: NgProgressHttpOptions): boolean {
   const url: string = req.url.toLowerCase();
 
   if (config.matcher && config.silentApis?.length) {
