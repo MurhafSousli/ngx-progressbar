@@ -1,9 +1,12 @@
 ---
 name: Feature
 about: Propose a new feature for ngx-progressbar
+title: ''
 labels: feature
+assignees: ''
+
 ---
- 
+
 #### Feature Description
 
 Provide a brief summary of the feature you would like to see.
