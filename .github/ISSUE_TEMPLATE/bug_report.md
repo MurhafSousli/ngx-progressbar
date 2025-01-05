@@ -1,6 +1,6 @@
 ---
 name: Bug Report
-about: Report a bug found in ngx-progressbar
+about: Report a bug found
 title: ''
 labels: ''
 assignees: ''
