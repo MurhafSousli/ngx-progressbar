@@ -1,6 +1,6 @@
 ---
 name: Feature
-about: Propose a new feature for ngx-progressbar
+about: Propose a new feature
 title: ''
 labels: feature
 assignees: ''
