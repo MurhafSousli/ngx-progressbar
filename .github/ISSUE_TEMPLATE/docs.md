@@ -1,6 +1,6 @@
 ---
 name: Documentation
-about: Suggest an improvement to our documentation at https://github.com/MurhafSousli/ngx-progressbar/wiki
+about: Suggest an improvement to our documentation
 title: ''
 labels: ''
 assignees: ''
