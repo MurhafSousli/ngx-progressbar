@@ -1,8 +1,11 @@
 ---
 name: Bug Report
-about: Report a bug found in ngx-progressbar
----
+about: Report a bug found
+title: ''
+labels: ''
+assignees: ''
 
+---
 
 #### Reproduction
 
@@ -28,4 +31,4 @@ What behavior did you actually see?
 - Angular:
 - ngx-progressbar:
 - Browser(s):
-- Operating System (e.g. Windows, macOS, Ubuntu): 
+- Operating System (e.g. Windows, macOS, Ubuntu):
