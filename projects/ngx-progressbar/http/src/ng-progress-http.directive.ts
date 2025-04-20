@@ -32,14 +32,12 @@ class NgProgressHttpBase {
 
 
 @Directive({
-  standalone: true,
   selector: 'ng-progress[ngProgressHttp]'
 })
 export class NgProgressHttp extends NgProgressHttpBase {
 }
 
 @Directive({
-  standalone: true,
   selector: '[ngProgressHttp]:not(ng-progress)',
   hostDirectives: [NgProgressRef]
 })

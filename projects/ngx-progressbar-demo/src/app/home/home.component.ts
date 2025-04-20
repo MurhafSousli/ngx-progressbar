@@ -5,7 +5,6 @@ import { NgProgressHttp } from 'ngx-progressbar/http';
 import { LabComponent } from './lab/lab.component';
 
 @Component({
-  standalone: true,
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],

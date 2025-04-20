@@ -13,7 +13,6 @@ import { NgProgressRef } from './ng-progress-ref';
 import { NG_PROGRESS_OPTIONS, NgProgressOptions } from './ng-progress.model';
 
 @Component({
-  standalone: true,
   selector: 'ng-progress',
   exportAs: 'ngProgress',
   host: {

@@ -5,7 +5,6 @@ import { NgProgressRouter } from 'ngx-progressbar/router';
 import { HeaderComponent } from './header/header.component';
 
 @Component({
-  standalone: true,
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

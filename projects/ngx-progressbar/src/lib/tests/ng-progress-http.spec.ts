@@ -7,7 +7,6 @@ import { NgProgressbar, NgProgressRef } from 'ngx-progressbar';
 import { NG_PROGRESS_HTTP_OPTIONS, NgProgressHttp, progressInterceptor } from 'ngx-progressbar/http';
 
 @Component({
-  standalone: true,
   template: `
     <ng-progress ngProgressHttp/>
   `,
@@ -22,12 +21,11 @@ describe(`NgProgressHttp`, () => {
   let httpClient: HttpClient;
   let httpTestingController: HttpTestingController;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [TestComponent, NgProgressHttp],
+  beforeEach(() => {
+    TestBed.configureTestingModule({
       providers: [
         provideHttpClient(
-          withInterceptors([progressInterceptor]),
+          withInterceptors([progressInterceptor])
         ),
         provideHttpClientTesting()
       ]

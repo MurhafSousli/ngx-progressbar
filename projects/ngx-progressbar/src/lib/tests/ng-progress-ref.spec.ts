@@ -13,11 +13,7 @@ describe('NgProgressRef', () => {
   let directive: NgProgressRef;
   let fixture: ComponentFixture<TestComponent>;
 
-  beforeEach(async () => {
-    TestBed.configureTestingModule({
-      imports: [TestComponent]
-    });
-
+  beforeEach(() => {
     fixture = TestBed.createComponent(TestComponent);
     directive = fixture.debugElement.query(By.directive(NgProgressRef)).injector.get(NgProgressRef);
   });
@@ -169,7 +165,6 @@ describe('NgProgressRef', () => {
 });
 
 @Component({
-  standalone: true,
   imports: [NgProgressRef],
   template: `
     <div ngProgressRef [min]="min" [max]="max"></div>

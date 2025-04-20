@@ -31,7 +31,6 @@ Alternatively, you can add the progress bar and access the instance using the `@
 import { NgProgressbar } from 'ngx-progressbar';
 
 @Component({
-  standalone: true,
   selector: 'app-home',
   imports: [NgProgressbar],
   template: `
@@ -47,7 +46,7 @@ export class HomeComponent {
 }
 ```
 
-### NgProgress Component API
+### NgProgress API
 
 | Name                  | Default  | Description                                                |
 |-----------------------|:--------:|------------------------------------------------------------|
@@ -65,15 +64,18 @@ export class HomeComponent {
 | **[flat]**            |  false   | *Flat style (disables meteor style).*                      |
 | **(started)**         |    -     | *Stream that emits when the progress bar has started.*     |
 | **(completed)**       |    -     | *Stream that emits when the progress bar has completed.*   |
-| **progressRef**       |    -     | *`NgProgressRef` instance of the progress bar.*            |
+| **start()**           |    -     | *Starts the progress bar.*                                 |
+| **set(n)**            |    -     | *Sets a percentage n (where n is between 0-100).*          |
+| **inc(n)**            |    -     | *Increments by n (where n is between 0-100).*              |
+| **complete()**        |    -     | *Completes the progress bar.*                              |
 
 
 Here is an example of how to use the `<ng-progress>` component with some of the available options:
 
 ```html
 <ng-progress direction="ltr+" min="20" max="1" speed="200" trickleSpeed="300"
-             fadeOutSpeed="50" ease="linear" relative flat spinner spinnerPosition="left"
-             (started)="onStarted()" (complete)="onComplete()"/>
+             fadeOutSpeed="50" relative flat spinner spinnerPosition="left"
+             (started)="onStarted()" (completed)="onComplete()"/>
 ```
 
 ## Automagic features

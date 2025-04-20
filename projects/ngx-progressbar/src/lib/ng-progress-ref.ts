@@ -48,7 +48,6 @@ function maxAttribute(value: string | number): number {
 }
 
 @Directive({
-  standalone: true,
   selector: '[ngProgressRef]',
   exportAs: 'ngProgressRef'
 })
