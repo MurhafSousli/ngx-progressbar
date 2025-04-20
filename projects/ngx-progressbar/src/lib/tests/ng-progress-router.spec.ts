@@ -8,7 +8,6 @@ import { NgProgressRouter, provideNgProgressRouter } from 'ngx-progressbar/route
 const CUSTOM_PROGRESS_DELAY: number = 200;
 
 @Component({
-  standalone: true,
   template: `
     <ng-progress ngProgressRouter/>
   `,
@@ -18,7 +17,6 @@ class TestComponent {
 }
 
 @Component({
-  standalone: true,
   selector: 'page-1',
   template: ''
 })
@@ -26,7 +24,6 @@ export class Page1 {
 }
 
 @Component({
-  standalone: true,
   selector: 'page-2',
   template: ''
 })
@@ -38,13 +35,8 @@ describe(`NgProgressRouter`, () => {
   let progressRef: NgProgressRef;
   let router: Router;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [
-        TestComponent,
-        Page1,
-        Page2
-      ],
+  beforeEach(() => {
+    TestBed.configureTestingModule({
       providers: [
         provideRouter([
           { path: '', component: Page1 },

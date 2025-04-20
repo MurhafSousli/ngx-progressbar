@@ -3,7 +3,6 @@ import { FormsModule } from '@angular/forms';
 import { NgProgressOptions } from 'ngx-progressbar';
 
 @Component({
-  standalone: true,
   selector: 'app-lab',
   templateUrl: './lab.component.html',
   styleUrl: './lab.component.scss',

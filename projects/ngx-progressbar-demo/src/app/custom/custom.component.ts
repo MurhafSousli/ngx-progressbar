@@ -8,7 +8,6 @@ import { MatCard } from '@angular/material/card';
 import { NgProgressRef } from 'ngx-progressbar';
 
 @Component({
-  standalone: true,
   selector: 'app-custom',
   templateUrl: './custom.component.html',
   styleUrl: './custom.component.scss',

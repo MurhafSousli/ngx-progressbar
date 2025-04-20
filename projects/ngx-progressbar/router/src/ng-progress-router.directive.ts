@@ -46,14 +46,12 @@ class NgProgressRouterBase {
 }
 
 @Directive({
-  standalone: true,
   selector: 'ng-progress[ngProgressRouter]'
 })
 export class NgProgressRouter extends NgProgressRouterBase {
 }
 
 @Directive({
-  standalone: true,
   selector: '[ngProgressRouter]:not(ng-progress)',
   hostDirectives: [NgProgressRef]
 })

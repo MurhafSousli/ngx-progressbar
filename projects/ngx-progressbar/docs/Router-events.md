@@ -11,7 +11,6 @@ import { NgProgressbar } from 'ngx-progressbar';
 import { NgProgressRouter } from 'ngx-progressbar/router';
 
 @Component({
-  standalone: true,
   selector: 'app-root',
   imports: [NgProgressbar, NgProgressRouter, RouterOutlet],
   template: `

@@ -7,10 +7,6 @@ describe('NgProgress Component', () => {
   let progressRef: NgProgressRef;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({
-      imports: [NgProgressbar]
-    });
-
     fixture = TestBed.createComponent(NgProgressbar);
     component = fixture.componentInstance;
     progressRef = component.progressRef;
