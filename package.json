@@ -18,7 +18,7 @@
     "@angular/animations": "^19.2.7",
     "@angular/cdk": "^19.2.10",
     "@angular/common": "^19.2.7",
-    "@angular/compiler": "^19.2.7",
+    "@angular/compiler": "^19.2.18",
     "@angular/core": "^19.2.7",
     "@angular/forms": "^19.2.7",
     "@angular/material": "^19.2.10",
