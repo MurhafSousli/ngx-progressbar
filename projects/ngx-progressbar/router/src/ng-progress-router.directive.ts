@@ -1,4 +1,4 @@
-import { Directive, inject, Type } from '@angular/core';
+import { Directive, inject, NgZone, Type } from '@angular/core';
 import { Event, Router } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { filter, map, tap } from 'rxjs';
@@ -23,7 +23,7 @@ class NgProgressRouterBase {
 
   constructor() {
     let completeTimeout: ReturnType<typeof setTimeout>;
-
+    const ngZone = inject(NgZone);
     // Previously in v13, we had the router events toggle converted to a signal,
     // the issue with toSignal is when the new route is loaded too fast, it won't start the progressbar, causing the tests to break.
     // Therefore, we switched back to stream subscription to make sure it always starts and completes with the route events.
@@ -35,9 +35,11 @@ class NgProgressRouterBase {
         if (toggle) {
           this.progressRef.start();
         } else {
-          completeTimeout = setTimeout(() => {
-            this.progressRef.complete();
-          }, this.config.minDuration);
+          ngZone.runOutsideAngular(() => {
+            completeTimeout = setTimeout(() => {
+              this.progressRef.complete();
+            }, this.config.minDuration);
+          });
         }
       }),
       takeUntilDestroyed()
