@@ -20,7 +20,6 @@ export type NgProgressOptions = NgProgressRefOptions & {
 }
 
 export const NG_PROGRESS_OPTIONS: InjectionToken<NgProgressOptions> = new InjectionToken<NgProgressOptions>('NG_PROGRESS_OPTIONS', {
-  providedIn: 'root',
   factory: () => defaultOptions
 });
 

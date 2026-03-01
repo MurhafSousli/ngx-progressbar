@@ -13,7 +13,8 @@ import {
   WritableSignal,
   OutputEmitterRef,
   EffectCleanupRegisterFn,
-  InputSignalWithTransform
+  InputSignalWithTransform,
+  NgZone
 } from '@angular/core';
 import { outputToObservable } from '@angular/core/rxjs-interop';
 import {
@@ -32,7 +33,7 @@ import {
 } from 'rxjs';
 import { NgProgressOptions, NG_PROGRESS_OPTIONS, NgProgressRefOptions } from './ng-progress.model';
 
-enum TriggerType {
+const enum TriggerType {
   START = 'START',
   COMPLETE = 'COMPLETE'
 }
@@ -91,23 +92,24 @@ export class NgProgressRef {
 
   private _trigger: BehaviorSubject<TriggerType> = new BehaviorSubject<TriggerType>(null);
 
+  private readonly _ngZone = inject(NgZone);
+
   constructor() {
     let sub$: Subscription;
     effect((onCleanup: EffectCleanupRegisterFn) => {
       const config: NgProgressOptions = this.config();
-
       untracked(() => {
-        sub$ = this._trigger.pipe(
-          filter((trigger: TriggerType) => !!trigger),
-          switchMap((trigger: TriggerType) => {
-            if (trigger === TriggerType.START) {
-              return timer(config.debounceTime).pipe(
-                switchMap(() => this.onTrickling(config))
-              );
-            }
-            return this.onComplete(config);
-          })
-        ).subscribe();
+        sub$ = this._trigger
+          .pipe(
+            filter((trigger: TriggerType) => !!trigger),
+            switchMap((trigger: TriggerType) => {
+              if (trigger === TriggerType.START) {
+                return  timer(config.debounceTime).pipe(switchMap(() => this.onTrickling(config)));
+              }
+              return this.onComplete(config);
+            }),
+          )
+          .subscribe();
 
         onCleanup(() => sub$?.unsubscribe());
       });
@@ -119,7 +121,7 @@ export class NgProgressRef {
    */
   start(): void {
     this.started.emit();
-    this._trigger.next(TriggerType.START);
+    this._ngZone.runOutsideAngular(() => this._trigger.next(TriggerType.START));
     this._active.set(true);
   }
 
@@ -127,7 +129,7 @@ export class NgProgressRef {
    * Complete the progress
    */
   complete(): void {
-    this._trigger.next(TriggerType.COMPLETE);
+    this._ngZone.runOutsideAngular(() => this._trigger.next(TriggerType.COMPLETE));
   }
 
   /**
@@ -185,16 +187,45 @@ export class NgProgressRef {
     return of({}).pipe(
       // Complete the progress
       tap(() => this._progress.set(100)),
-      // Deactivate the progress after a tiny delay
+
+      // Subsequent delays must run outside Angular's zone to avoid keeping
+      // the zone busy during the fade-out, which would prevent the app from
+      // stabilizing (e.g. for SSR or testing awaiting stability).
+      // The only way for `delay` to schedule an observable outside of the Angular zone,
+      // is to emit outside of the Angular zone, otherwise there's no other way except
+      // for providing custom scheduler which is not friendly in public APIs.
+      leaveNgZone(this._ngZone),
+
+      // Hold at 100% briefly so the user can see the completed state
+      // before the bar starts fading out.
       delay(config.speed + 140),
       tap(() => this._active.set(false)),
 
-      // Use a tiny delay before resetting
+      leaveNgZone(this._ngZone),
+
+      // Wait for the CSS fade-out transition to finish before resetting
+      // the progress value, so the bar doesn't snap back to 0 while still visible.
       delay(config.fadeOutSpeed),
-      // Force the progress to reset even it got cancelled
+
+      // Always reset to 0 regardless of how the observable terminates,
+      // including cancellation, to leave the bar in a clean initial state.
+
       finalize(() => this._progress.set(0)),
-      // Cancel any of the finalizing delays if the progress has started again
+      // If a new request starts during the fade-out, abort the reset sequence
+      // so the bar doesn't flicker back to 0 before immediately starting again
       takeUntil(outputToObservable(this.started))
     );
   }
+}
+
+/**
+ * Re-subscribes to the source observable outside of Angular's zone so that
+ * any async work scheduled by downstream operators (e.g. `delay`) does not
+ * trigger change detection, keeping the zone idle during non-UI transitions.
+ */
+function leaveNgZone<T>(ngZone: NgZone) {
+  return (source: Observable<T>) =>
+    new Observable<T>((subscriber) => {
+      return ngZone.runOutsideAngular(() => source.subscribe(subscriber));
+    });
 }
