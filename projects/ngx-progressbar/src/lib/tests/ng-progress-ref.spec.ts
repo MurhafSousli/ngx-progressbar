@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NgProgressRef } from 'ngx-progressbar';
@@ -166,6 +166,7 @@ describe('NgProgressRef', () => {
 
 @Component({
   imports: [NgProgressRef],
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <div ngProgressRef [min]="min" [max]="max"></div>
   `
