@@ -3,11 +3,13 @@
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700');
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
-@include mat.core();
+@include mat.elevation-classes();
+@include mat.app-background();
 
 html {
   // Apply the light theme by default
-  @include mat.core-theme(m3-theme.$light-theme);
+  @include mat.elevation-classes();
+  @include mat.app-background();
   @include mat.all-component-themes(m3-theme.$light-theme);
   @include mat.strong-focus-indicators-theme(m3-theme.$light-theme);
 }
