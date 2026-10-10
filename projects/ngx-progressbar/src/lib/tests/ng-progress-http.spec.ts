@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpTestingController, provideHttpClientTesting, TestRequest } from '@angular/common/http/testing';
@@ -10,7 +10,6 @@ import { NG_PROGRESS_HTTP_OPTIONS, NgProgressHttp, progressInterceptor } from 'n
   template: `
     <ng-progress ngProgressHttp/>
   `,
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [NgProgressbar, NgProgressHttp]
 })
 class TestComponent {

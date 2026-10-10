@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { provideRouter, Router } from '@angular/router';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
@@ -11,7 +11,6 @@ const CUSTOM_PROGRESS_DELAY: number = 200;
   template: `
     <ng-progress ngProgressRouter/>
   `,
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [NgProgressbar, NgProgressRouter]
 })
 class TestComponent {
@@ -19,7 +18,6 @@ class TestComponent {
 
 @Component({
   selector: 'page-1',
-  changeDetection: ChangeDetectionStrategy.Eager,
   template: ''
 })
 export class Page1 {
@@ -27,7 +25,6 @@ export class Page1 {
 
 @Component({
   selector: 'page-2',
-  changeDetection: ChangeDetectionStrategy.Eager,
   template: ''
 })
 export class Page2 {
