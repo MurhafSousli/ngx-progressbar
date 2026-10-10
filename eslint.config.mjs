@@ -16,7 +16,7 @@ export default tseslint.config(
     processor: angular.processInlineTemplates
   },
   {
-    files: ['projects/ngx-progressbar/**/*.ts'],
+    files: ['projects/ngx-progressbar-next/**/*.ts'],
     rules: {
       // The library ships selectors like ng-progress, so it uses no prefix.
       '@angular-eslint/directive-selector': [
@@ -35,7 +35,7 @@ export default tseslint.config(
     }
   },
   {
-    files: ['projects/ngx-progressbar-demo/**/*.ts'],
+    files: ['projects/ngx-progressbar-next-demo/**/*.ts'],
     rules: {
       '@angular-eslint/directive-selector': [
         'error',
@@ -55,7 +55,7 @@ export default tseslint.config(
     ]
   },
   {
-    files: ['projects/ngx-progressbar/**/*.html'],
+    files: ['projects/ngx-progressbar-next/**/*.html'],
     rules: {
       '@angular-eslint/template/elements-content': 'off'
     }

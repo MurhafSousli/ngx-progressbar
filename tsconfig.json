@@ -11,14 +11,14 @@
     "noFallthroughCasesInSwitch": true,
     "skipLibCheck": true,
     "paths": {
-      "ngx-progressbar": [
-        "./projects/ngx-progressbar/src/public-api"
+      "ngx-progressbar-next": [
+        "./projects/ngx-progressbar-next/src/public-api"
       ],
-      "ngx-progressbar/http": [
-        "./projects/ngx-progressbar/http/src/public_api"
+      "ngx-progressbar-next/http": [
+        "./projects/ngx-progressbar-next/http/src/public_api"
       ],
-      "ngx-progressbar/router": [
-        "./projects/ngx-progressbar/router/src/public_api"
+      "ngx-progressbar-next/router": [
+        "./projects/ngx-progressbar-next/router/src/public_api"
       ]
     },
     "esModuleInterop": true,

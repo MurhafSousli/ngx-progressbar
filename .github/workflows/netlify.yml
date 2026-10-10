@@ -25,7 +25,7 @@ jobs:
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v3
         with:
-          publish-dir: './dist/ngx-progressbar-demo/browser'
+          publish-dir: './dist/ngx-progressbar-next-demo/browser'
           production-branch: deploy-netlify
           github-token: ${{ secrets.GITHUB_TOKEN }}
           deploy-message: "Deploy from GitHub Actions"

@@ -1,19 +1,46 @@
 <p align="center">
-  <img height="200px" width="200px" style="text-align: center;" src="https://rawcdn.githack.com/MurhafSousli/ngx-progressbar/e5f30ba33c83690da3249ef2a665e6168b8caeb1/projects/ngx-progressbar-demo/src/assets/logo.svg">
+  <img height="200px" width="200px" style="text-align: center;" src="https://raw.githubusercontent.com/arturovt/ngx-progressbar-next/master/projects/ngx-progressbar-next-demo/src/assets/logo.svg">
   <h1 align="center">Angular Progressbar</h1>
 </p>
 
-[![demo](https://img.shields.io/badge/demo-online-ed1c46.svg)](https://ngx-progressbar.netlify.app/)
-[![npm](https://img.shields.io/badge/stackblitz-online-orange.svg)](https://stackblitz.com/edit/ngx-progressbar)
-[![npm](https://img.shields.io/npm/v/ngx-progressbar.svg?maxAge=2592000?style=plastic)](https://www.npmjs.com/package/ngx-progressbar)
-[![tests](https://github.com/MurhafSousli/ngx-progressbar/workflows/tests/badge.svg)](https://github.com/MurhafSousli/ngx-progressbar/actions?query=workflow%3Atests)
-[![codecov](https://codecov.io/gh/MurhafSousli/ngx-progressbar/graph/badge.svg?token=hIKXnJRikz)](https://codecov.io/gh/MurhafSousli/ngx-progressbar)
-[![npm](https://img.shields.io/npm/dt/ngx-progressbar.svg?maxAge=2592000?style=plastic)](https://www.npmjs.com/package/ngx-progressbar)
-[![npm](https://img.shields.io/npm/dm/ngx-progressbar.svg)](https://www.npmjs.com/package/ngx-progressbar)
-[![npm bundle size (minified + gzip)](https://img.shields.io/bundlephobia/minzip/ngx-progressbar.svg)](https://bundlephobia.com/result?p=ngx-progressbar)
-[![npm](https://img.shields.io/npm/l/express.svg?maxAge=2592000)](https://github.com/MurhafSousli/ngx-progressbar/blob/master/LICENSE)
+[![npm](https://img.shields.io/npm/v/ngx-progressbar-next.svg)](https://www.npmjs.com/package/ngx-progressbar-next)
+[![CI Build](https://github.com/arturovt/ngx-progressbar-next/actions/workflows/integrate.yml/badge.svg)](https://github.com/arturovt/ngx-progressbar-next/actions/workflows/integrate.yml)
+[![codecov](https://codecov.io/gh/arturovt/ngx-progressbar-next/graph/badge.svg)](https://codecov.io/gh/arturovt/ngx-progressbar-next)
+[![npm](https://img.shields.io/npm/dm/ngx-progressbar-next.svg)](https://www.npmjs.com/package/ngx-progressbar-next)
+[![npm bundle size (minified + gzip)](https://img.shields.io/bundlephobia/minzip/ngx-progressbar-next.svg)](https://bundlephobia.com/result?p=ngx-progressbar-next)
+[![license](https://img.shields.io/npm/l/ngx-progressbar-next.svg)](https://github.com/arturovt/ngx-progressbar-next/blob/master/LICENSE)
 
 A nanoscopic progress bar. Featuring realistic trickle animations to convince your users that something is happening!
+
+___
+
+## About this package
+
+This is a fork of [MurhafSousli/ngx-progressbar](https://github.com/MurhafSousli/ngx-progressbar),
+published as `ngx-progressbar-next`. The original package is no longer updated.
+
+The major version follows the Angular major version. Version 22 supports Angular 22.
+
+___
+
+## Installation
+
+```bash
+npm install ngx-progressbar-next
+```
+
+## Migrating from ngx-progressbar
+
+The API is unchanged. Only the import paths change:
+
+```diff
+- import { NgProgressbar } from 'ngx-progressbar';
+- import { progressInterceptor } from 'ngx-progressbar/http';
+- import { NgProgressRouter } from 'ngx-progressbar/router';
++ import { NgProgressbar } from 'ngx-progressbar-next';
++ import { progressInterceptor } from 'ngx-progressbar-next/http';
++ import { NgProgressRouter } from 'ngx-progressbar-next/router';
+```
 
 ___
 
@@ -21,23 +48,22 @@ ___
 
 ### Table of contents
 
-* [Usage](projects/ngx-progressbar/docs/Usage.md)
-* [Styling](projects/ngx-progressbar/docs/Styling.md)
-* [Global Options](projects/ngx-progressbar/docs/Global-options.md)
-* [Smooth Scroll Functions](projects/ngx-progressbar/docs/Integration.md)
+* [Usage](projects/ngx-progressbar-next/docs/Usage.md)
+* [Styling](projects/ngx-progressbar-next/docs/Styling.md)
+* [Global Options](projects/ngx-progressbar-next/docs/Global-options.md)
+* [Smooth Scroll Functions](projects/ngx-progressbar-next/docs/Integration.md)
 * Automagic features
-  * [HttpClient Requests](projects/ngx-progressbar/docs/HttpClient-requests.md)
-  * [Router Events](projects/ngx-progressbar/docs/Router-events.md)
+  * [HttpClient Requests](projects/ngx-progressbar-next/docs/HttpClient-requests.md)
+  * [Router Events](projects/ngx-progressbar-next/docs/Router-events.md)
 
 ___
 
 ## Issues
 
-If you identify any errors in the library, or have an idea for an improvement, please open an [issue](https://github.com/MurhafSousli/ngx-progressbar/issues).
+If you identify any errors in the library, or have an idea for an improvement, please open an [issue](https://github.com/arturovt/ngx-progressbar-next/issues).
 
-## Author
+## Credits
 
-**Murhaf Sousli**
+Original author: **Murhaf Sousli**, [github/murhafsousli](https://github.com/MurhafSousli).
 
-- [github/murhafsousli](https://github.com/MurhafSousli)
-- [twitter/murhafsousli](https://twitter.com/MurhafSousli)
+This fork is maintained by **arturovt**, [github/arturovt](https://github.com/arturovt).

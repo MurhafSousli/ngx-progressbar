@@ -9,7 +9,7 @@ assignees: ''
 
 #### Reproduction
 
-Use StackBlitz to reproduce your issue: https://stackblitz.com/edit/ngx-progressbar
+Use StackBlitz to reproduce your issue: https://stackblitz.com
 
 Steps to reproduce:
 1. 
@@ -29,6 +29,6 @@ What behavior did you actually see?
 #### Environment
 
 - Angular:
-- ngx-progressbar:
+- ngx-progressbar-next:
 - Browser(s):
 - Operating System (e.g. Windows, macOS, Ubuntu):

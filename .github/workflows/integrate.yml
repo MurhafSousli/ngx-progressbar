@@ -39,7 +39,7 @@ jobs:
         uses: codecov/codecov-action@main
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          slug: MurhafSousli/ngx-progressbar
+          slug: arturovt/ngx-progressbar-next
 
       - name: Code Coverage Report
         uses: irongut/CodeCoverageSummary@master
